@@ -9,6 +9,7 @@
  */
 
 import { PDFDocument, PDFFont } from 'pdf-lib';
+import fontkit from '@pdf-lib/fontkit';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
@@ -42,10 +43,14 @@ function loadFontBytes(): { regular: Uint8Array; bold: Uint8Array; italic: Uint8
  * pdf-lib embeds the full font (not subsetted) when subset=false.
  * Full embedding is required for KDP compliance (FR-86).
  *
+ * Registers @pdf-lib/fontkit on the document before embedding custom TTF fonts.
+ * This must be called before any custom font embedding.
+ *
  * @param doc - The PDFDocument to embed fonts into.
  * @returns Embedded font references for Regular, Bold, and Italic.
  */
 export async function embedFonts(doc: PDFDocument): Promise<EmbeddedFonts> {
+  doc.registerFontkit(fontkit);
   const bytes = loadFontBytes();
 
   const [regular, bold, italic] = await Promise.all([
