@@ -202,7 +202,7 @@ class TestHtmlStripping:
 class TestBollsLifeRetrieval:
     def test_successful_single_verse(self):
         verse_data = _bolls_verse(45, 8, 15, "Spirit of adoption text here")
-        retriever = _make_retriever([_mock_response(200, [verse_data])])
+        retriever = _make_retriever([_mock_response(200, verse_data)])
         result = retriever.retrieve("Romans 8:15", "NASB")
         assert isinstance(result, ScriptureResult)
         assert result.text == "Spirit of adoption text here"
@@ -215,8 +215,8 @@ class TestBollsLifeRetrieval:
         verse15 = _bolls_verse(45, 8, 15, "Verse fifteen text.")
         verse16 = _bolls_verse(45, 8, 16, "Verse sixteen text.")
         retriever = _make_retriever([
-            _mock_response(200, [verse15]),
-            _mock_response(200, [verse16]),
+            _mock_response(200, verse15),
+            _mock_response(200, verse16),
         ])
         result = retriever.retrieve("Romans 8:15-16", "NASB")
         assert isinstance(result, ScriptureResult)
@@ -225,7 +225,7 @@ class TestBollsLifeRetrieval:
 
     def test_html_stripped_from_returned_text(self):
         verse_data = _bolls_verse(45, 8, 15, "<b>Spirit</b> of <i>adoption</i>")
-        retriever = _make_retriever([_mock_response(200, [verse_data])])
+        retriever = _make_retriever([_mock_response(200, verse_data)])
         result = retriever.retrieve("Romans 8:15", "NASB")
         assert isinstance(result, ScriptureResult)
         assert "<" not in result.text
@@ -235,8 +235,8 @@ class TestBollsLifeRetrieval:
         """First attempt returns 500 → retry → 200 → ScriptureResult (FR-59a)."""
         verse_data = _bolls_verse(45, 8, 15, "Spirit of adoption")
         retriever = _make_retriever([
-            _mock_response(500),               # first attempt fails
-            _mock_response(200, [verse_data]), # retry succeeds
+            _mock_response(500),              # first attempt fails
+            _mock_response(200, verse_data),  # retry succeeds
         ])
         result = retriever.retrieve("Romans 8:15", "NASB")
         assert isinstance(result, ScriptureResult)
@@ -254,11 +254,11 @@ class TestBollsLifeRetrieval:
         assert result.failure_mode == FailureMode.ALL_SOURCES_EXHAUSTED
 
     def test_wrong_verse_data_fails_validation(self):
-        """200 response with wrong book data → validate_match fails → both retries fail."""
-        wrong_verse = _bolls_verse(1, 1, 1, "In the beginning")  # Genesis 1:1
+        """200 response with wrong verse number → validate_match fails → both retries fail."""
+        wrong_verse = _bolls_verse(1, 1, 1, "In the beginning")  # verse=1, not 15
         retriever = _make_retriever([
-            _mock_response(200, [wrong_verse]),  # first: passes HTTP but fails FR-58
-            _mock_response(200, [wrong_verse]),  # retry: same
+            _mock_response(200, wrong_verse),  # first: passes HTTP but fails FR-58 (verse mismatch)
+            _mock_response(200, wrong_verse),  # retry: same
         ])
         result = retriever.retrieve("Romans 8:15", "NASB")
         assert isinstance(result, ScriptureFailureAlert)
@@ -396,7 +396,7 @@ class TestOperatorImport:
             tmp_path,
         )
         verse_data = _bolls_verse(45, 8, 15, "Bolls life text")
-        retriever = _make_retriever([_mock_response(200, [verse_data])])
+        retriever = _make_retriever([_mock_response(200, verse_data)])
         result = retriever.retrieve("Romans 8:15", "NASB", operator_import=csv_path)
         assert isinstance(result, ScriptureResult)
         assert result.retrieval_source == "bolls_life"

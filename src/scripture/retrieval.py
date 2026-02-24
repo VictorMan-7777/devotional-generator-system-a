@@ -8,8 +8,10 @@ Priority chain (FR-59):
   4. ScriptureFailureAlert — structured failure object; caller surfaces to operator (FR-59d–f)
 
 Validation (FR-58):
-  - book, chapter, verse fields in Bolls.life response match the requested reference
+  - verse field in Bolls.life response matches the requested verse number
   - text field is non-empty after HTML tag stripping
+  - book and chapter are implicitly validated by URL construction (baked into request URL);
+    they are augmented onto the response dict before validate_match for uniform interface.
 
 Network isolation:
   All HTTP calls are routed through HttpClient, which is injected at construction
@@ -122,7 +124,7 @@ class ScriptureRetriever:
     Inject `api_bible_key` to enable the API.Bible secondary source.
     """
 
-    BOLLS_LIFE_BASE = "https://bolls.life/get-text"
+    BOLLS_LIFE_BASE = "https://bolls.life/get-verse"
     API_BIBLE_BASE = "https://api.scripture.api.bible/v1"
     # Default API.Bible bible ID for NASB; override via constructor if needed.
     DEFAULT_API_BIBLE_BIBLE_ID = "72c7f6f5e7fa1b62-01"
@@ -266,10 +268,12 @@ class ScriptureRetriever:
                 return None
 
             data = response.json()
-            if not data or not isinstance(data, list):
+            if not data or not isinstance(data, dict):
                 return None
 
-            verse_data = data[0]
+            # Augment with book and chapter (not returned by API; derived from URL).
+            # This keeps validate_match interface uniform across sources.
+            verse_data = {**data, "book": parsed.book_id, "chapter": parsed.chapter}
 
             # Per-verse FR-58 validation
             verse_ref = f"{parsed.book_name} {parsed.chapter}:{verse_num}"
