@@ -32,7 +32,13 @@ class PageNumberStyle(str, Enum):
 class DocumentBlock(BaseModel):
     block_type: BlockType
     content: str
+    # Reserved — not consumed by the Phase 003 PDF engine.
+    # The engine reads page_number_style from DocumentPage only.
+    # Do not remove: may be used by Phase 004 UI.
     page_number_style: PageNumberStyle = PageNumberStyle.ARABIC
+    # Reserved — not consumed by the Phase 003 PDF engine.
+    # Populated by Phase 002 renderers (e.g., {"heading_level": 2}, {"footnote_id": "tw"}).
+    # Do not remove: Phase 004 UI may read heading_level for display hierarchy.
     metadata: Dict[str, Any] = {}
 
 
@@ -49,4 +55,7 @@ class DocumentRepresentation(BaseModel):
     content_pages: List[DocumentPage]
     has_toc: bool
     has_day7: bool
+    # Reserved — not consumed by the Phase 003 PDF engine.
+    # Currently always None from DocumentRenderer.render(); the engine computes its
+    # own page count via two-pass layout. Do not use for layout decisions.
     total_estimated_pages: Optional[int] = None

@@ -74,4 +74,19 @@ def export_pdf(
         check=True,
     )
 
-    return bytes(result.stdout)
+    pdf_bytes = bytes(result.stdout)
+
+    # Guard against stdout contamination: any console.log() in the TypeScript engine
+    # would prepend text to the PDF bytes, producing a corrupt file.  Validate the
+    # PDF magic bytes before returning.  If this assertion fires, check the TypeScript
+    # engine for console.log / console.warn / console.info calls — all logging must
+    # go to stderr only.
+    if not pdf_bytes.startswith(b"%PDF"):
+        raise RuntimeError(
+            f"PDF export failed: stdout does not begin with %PDF magic bytes. "
+            f"Got: {pdf_bytes[:20]!r}. "
+            "TypeScript engine may be emitting console.log() to stdout — "
+            "all logging must use process.stderr.write() instead."
+        )
+
+    return pdf_bytes

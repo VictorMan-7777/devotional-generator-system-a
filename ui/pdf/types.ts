@@ -26,7 +26,17 @@ export type PageNumberStyle = 'roman' | 'arabic' | 'suppressed';
 export interface DocumentBlock {
   block_type: BlockType;
   content: string;
+  /**
+   * @deprecated Reserved — not consumed by the Phase 003 PDF engine.
+   * The engine reads page_number_style from DocumentPage only.
+   * Do not remove: field is present in Python schema and may be used by Phase 004 UI.
+   */
   page_number_style?: PageNumberStyle;
+  /**
+   * @deprecated Reserved — not consumed by the Phase 003 PDF engine.
+   * Populated by Phase 002 renderers (e.g., {"heading_level": 2}, {"footnote_id": "tw"}).
+   * Do not remove: Phase 004 UI may read heading level for display hierarchy.
+   */
   metadata?: Record<string, unknown>;
 }
 
@@ -43,5 +53,10 @@ export interface DocumentRepresentation {
   content_pages: DocumentPage[];
   has_toc: boolean;
   has_day7: boolean;
+  /**
+   * @deprecated Reserved — not consumed by the Phase 003 PDF engine.
+   * Currently always None/null from the Python renderer; the engine computes its
+   * own page count from the two-pass layout. Do not use for layout decisions.
+   */
   total_estimated_pages?: number | null;
 }

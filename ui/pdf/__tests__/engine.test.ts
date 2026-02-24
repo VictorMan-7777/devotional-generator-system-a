@@ -293,3 +293,107 @@ describe('generatePDF — personal mode', () => {
     expect(result.complianceResult.passes).toBe(true);
   }, 30000);
 });
+
+// ── Overflow tests (R-04 risk surface) ───────────────────────────────────────
+//
+// R-04 risk: content overflow is checked between blocks, not within a single block.
+// A single block taller than one PDF page will render and extend below the bottom
+// margin without triggering a new page — content is silently clipped.
+//
+// These tests document the current behavior and verify:
+//   (A) Multi-block overflow: inter-block detection works — new pages are created.
+//   (B) Single large block: engine does not crash; PDF is valid; R-04 is exposed.
+
+describe('generatePDF — overflow handling', () => {
+  /** Build a DocumentRepresentation with a single content page of N body_text blocks. */
+  function makeOverflowDoc(blocks: Array<{ content: string }>): DocumentRepresentation {
+    return {
+      title: 'Overflow Test',
+      subtitle: null,
+      front_matter: [
+        {
+          blocks: [{ block_type: 'title', content: 'Overflow Test' }],
+          starts_new_page: false,
+          page_number_style: 'suppressed',
+        },
+      ],
+      content_pages: [
+        {
+          blocks: blocks.map((b) => ({ block_type: 'body_text' as const, content: b.content })),
+          starts_new_page: true,
+          page_number_style: 'arabic',
+        },
+        // Offer page — needed for compliance in publish-ready mode
+        {
+          blocks: [
+            {
+              block_type: 'body_text' as const,
+              content: 'More titles at sacredwhisperspublishing.com',
+            },
+          ],
+          starts_new_page: true,
+          page_number_style: 'arabic',
+        },
+      ],
+      has_toc: false,
+      has_day7: false,
+      total_estimated_pages: null,
+    };
+  }
+
+  it('(A) multi-block overflow: many blocks in one DocumentPage create additional PDF pages', async () => {
+    // 80 short body_text blocks, each ~11pt tall, will exceed the single-page
+    // content area (~574pt), triggering the inter-block overflow detection.
+    // Expected: pageCount > 2 (front matter + at least 2 content PDF pages).
+    const blocks = Array.from({ length: 80 }, (_, i) => ({
+      content: `Overflow block ${i + 1}. Grace meets us precisely where we are.`,
+    }));
+    const doc = makeOverflowDoc(blocks);
+    const result = await generatePDF(doc, 'personal');
+
+    expect(result.pdfBytes.length).toBeGreaterThan(0);
+    expect(result.pdfBytes.slice(0, 4)).toEqual(new Uint8Array([0x25, 0x50, 0x44, 0x46])); // %PDF
+
+    // With 80 blocks, the content overflows to multiple PDF pages.
+    // Front matter = 1 page, content = at least 2 pages, offer = 1 page → > 3 total.
+    expect(result.pageCount).toBeGreaterThan(3);
+  }, 30000);
+
+  it('(A) multi-block overflow: PDF is loadable after overflow', async () => {
+    const blocks = Array.from({ length: 80 }, (_, i) => ({
+      content: `Block ${i + 1}: The steadfast love of the Lord never ceases; his mercies never come to an end.`,
+    }));
+    const doc = makeOverflowDoc(blocks);
+    const result = await generatePDF(doc, 'personal');
+    const loaded = await PDFDocument.load(result.pdfBytes);
+    expect(loaded.getPageCount()).toBe(result.pageCount);
+  }, 30000);
+
+  it('(B) single large block: engine does not crash and produces valid PDF bytes', async () => {
+    // R-04 known limitation: a single block taller than a full page is NOT split.
+    // The block renders from the top of its page and may extend below the bottom margin.
+    // This test documents the current behavior: engine produces a valid PDF but
+    // content below the bottom margin is silently clipped.
+    //
+    // A ~400-word paragraph at 11pt ≈ 50 lines × 15.4pt = 770pt > 574pt content height.
+    // The block will start at the top of a page and overflow the bottom margin.
+    const veryLongContent = Array.from({ length: 50 }, (_, i) =>
+      `Sentence ${i + 1}: The grace of God is not a reward for our performance but a gift freely given to those who receive it with open hands and humble hearts, finding in it both the courage to endure and the joy to celebrate.`
+    ).join(' ');
+
+    const doc = makeOverflowDoc([{ content: veryLongContent }]);
+
+    // Verify: engine does not throw (PDF is produced despite overflow)
+    const result = await generatePDF(doc, 'personal');
+    expect(result.pdfBytes.length).toBeGreaterThan(0);
+
+    // Verify: PDF is structurally valid (not corrupt)
+    const loaded = await PDFDocument.load(result.pdfBytes);
+    expect(loaded.getPageCount()).toBeGreaterThan(0);
+
+    // R-04 NOTE: The content of this single block may extend below the bottom margin.
+    // The engine does NOT detect overflow within a single block's render call.
+    // Mitigation (not implemented): line-level overflow detection in renderBodyText().
+    // This test exposes R-04 as a KNOWN LIMITATION, not a regression trigger.
+  }, 30000);
+});
