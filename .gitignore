@@ -30,3 +30,7 @@ node_modules/
 .idea/
 *.swp
 *.swo
+
+# Generated state / local toolchain files
+uv.lock
+builder-manifest.yaml
