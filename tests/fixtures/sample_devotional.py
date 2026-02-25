@@ -74,7 +74,7 @@ def _exposition() -> ExpositionSection:
     return ExpositionSection(
         text=_EXPOSITION_TEXT,
         word_count=560,
-        grounding_map_id="gm-fixture-placeholder",
+        grounding_map_id="",
     )
 
 

@@ -107,7 +107,7 @@ class MockSectionGenerator:
             exposition=ExpositionSection(
                 text=_EXPOSITION_TEXT,
                 word_count=550,
-                grounding_map_id="gm-mock",
+                grounding_map_id="",
             ),
             be_still=BeStillSection(
                 prompts=_BE_STILL_PROMPTS,
@@ -173,7 +173,7 @@ class FailFirstMockGenerator:
             exposition=ExpositionSection(
                 text=_FAIL_EXPOSITION_TEXT,  # 100 words — below 500 minimum
                 word_count=100,
-                grounding_map_id="gm-mock",
+                grounding_map_id="",
             ),
             be_still=BeStillSection(
                 prompts=_BE_STILL_PROMPTS,

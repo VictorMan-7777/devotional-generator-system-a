@@ -42,7 +42,14 @@ class GroundingMapStore:
         root_dir: Directory where JSON files are stored directly.
                   Created (with parents) on construction if absent.
                   Inject ``tmp_path`` in tests.
+
+    Class Attributes:
+        DEFAULT_ROOT: The canonical root directory.  Exposed as a class
+                      attribute so callers can read it at runtime (e.g. for
+                      monkeypatching in tests) rather than at import time.
     """
+
+    DEFAULT_ROOT: Path = _DEFAULT_ROOT
 
     def __init__(self, root_dir: Path = _DEFAULT_ROOT) -> None:
         self._dir = root_dir

@@ -8,6 +8,7 @@ from __future__ import annotations
 
 from typing import Optional
 
+from src.grounding_store.store import GroundingMapStore
 from src.models.artifacts import GroundingMap, PrayerTraceMap
 from src.models.devotional import DailyDevotional
 from src.models.validation import ValidatorAssessment
@@ -45,6 +46,13 @@ def validate_daily_devotional(
           5. Doctrinal checks on exposition text
           6. Doctrinal checks on prayer text
     """
+    # Auto-resolve GroundingMap from canonical store when an id is present but no
+    # map was explicitly provided.  Raises KeyError if the id is set but the
+    # artifact is absent — no silent skip.
+    if grounding_map is None and day.exposition.grounding_map_id:
+        _store = GroundingMapStore(root_dir=GroundingMapStore.DEFAULT_ROOT)
+        grounding_map = _store.load(day.exposition.grounding_map_id)
+
     assessments: list[ValidatorAssessment] = []
 
     assessments.extend(validate_exposition(day.exposition, grounding_map=grounding_map))

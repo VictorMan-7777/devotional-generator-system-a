@@ -95,7 +95,7 @@ class TestFailureInjection:
             ExpositionSection(
                 text=text,
                 word_count=len(text.split()),
-                grounding_map_id="gm-test",
+                grounding_map_id="",
             ),
         )
         return day
