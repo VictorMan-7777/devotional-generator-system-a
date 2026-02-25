@@ -102,7 +102,7 @@ def _prayer() -> PrayerSection:
     return PrayerSection(
         text=_PRAYER_TEXT,
         word_count=135,
-        prayer_trace_map_id="ptm-fixture-placeholder",
+        prayer_trace_map_id="",
     )
 
 

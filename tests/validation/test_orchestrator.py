@@ -122,7 +122,7 @@ class TestFailureInjection:
             PrayerSection(
                 text=text,
                 word_count=len(text.split()),
-                prayer_trace_map_id="ptm-test",
+                prayer_trace_map_id="",
             ),
         )
         return day

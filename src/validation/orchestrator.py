@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import Optional
 
 from src.grounding_store.store import GroundingMapStore
+from src.prayer_trace_store.store import PrayerTraceMapStore
 from src.models.artifacts import GroundingMap, PrayerTraceMap
 from src.models.devotional import DailyDevotional
 from src.models.validation import ValidatorAssessment
@@ -52,6 +53,12 @@ def validate_daily_devotional(
     if grounding_map is None and day.exposition.grounding_map_id:
         _store = GroundingMapStore(root_dir=GroundingMapStore.DEFAULT_ROOT)
         grounding_map = _store.load(day.exposition.grounding_map_id)
+
+    # Auto-resolve PrayerTraceMap from canonical store when an id is present but
+    # no map was explicitly provided.  Same KeyError-on-missing contract.
+    if prayer_trace_map is None and day.prayer.prayer_trace_map_id:
+        _ptm_store = PrayerTraceMapStore(root_dir=PrayerTraceMapStore.DEFAULT_ROOT)
+        prayer_trace_map = _ptm_store.load(day.prayer.prayer_trace_map_id)
 
     assessments: list[ValidatorAssessment] = []
 

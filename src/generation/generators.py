@@ -122,7 +122,7 @@ class MockSectionGenerator:
             prayer=PrayerSection(
                 text=_PRAYER_TEXT,
                 word_count=150,
-                prayer_trace_map_id="ptm-mock",
+                prayer_trace_map_id="",
             ),
             sending_prompt=None,
             day7=None,
@@ -185,7 +185,7 @@ class FailFirstMockGenerator:
             prayer=PrayerSection(
                 text=_PRAYER_TEXT,
                 word_count=150,
-                prayer_trace_map_id="ptm-mock",
+                prayer_trace_map_id="",
             ),
             sending_prompt=None,
             day7=None,
