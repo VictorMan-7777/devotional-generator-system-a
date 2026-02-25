@@ -1,8 +1,11 @@
-"""store.py — Phase 006 CP1 GroundingMapStore + resolve_grounding_map.
+"""store.py — Phase 006/007 GroundingMapStore + resolve_grounding_map.
 
 Local-only deterministic persistence for GroundingMap artifacts.
-Each GroundingMap is serialised as JSON under:
-  <root_dir>/grounding-maps/<id>.json
+Each GroundingMap is serialised as JSON directly under root_dir:
+  <root_dir>/<id>.json
+
+Canonical default: <project_root>/data/artifacts/grounding_maps/<id>.json
+(Phase 007 CP1: DEFAULT_ROOT anchored via __file__; _SUBDIR removed.)
 
 Serialisation is deterministic (sorted keys). No encryption. No network.
 No LLM calls. No embeddings.
@@ -16,26 +19,33 @@ from typing import Optional
 from src.models.artifacts import GroundingMap
 from src.models.devotional import ExpositionSection
 
-# CWD-relative default mirrors the existing data/ directory convention.
-# Tests must inject tmp_path; the default is only used in production context.
-_DEFAULT_ROOT = Path("data")
-_SUBDIR = "grounding-maps"
+# Anchored canonical default — does not depend on CWD.
+# Canonical path: <project_root>/data/artifacts/grounding_maps/
+# __file__ is src/grounding_store/store.py → parent×3 is project root.
+_DEFAULT_ROOT: Path = (
+    Path(__file__).parent.parent.parent / "data" / "artifacts" / "grounding_maps"
+)
 
 
 class GroundingMapStore:
     """Local-only deterministic store for GroundingMap artifacts.
 
-    Each map is persisted as JSON at <root_dir>/grounding-maps/<id>.json.
+    Each map is persisted as JSON directly under root_dir:
+      <root_dir>/<id>.json
+
+    The canonical default is:
+      <project_root>/data/artifacts/grounding_maps/<id>.json
+
     Serialisation uses ``json.dumps(sort_keys=True)`` for determinism.
 
     Args:
-        root_dir: Parent directory for the grounding-maps subdirectory.
-                  The subdirectory is created on construction if absent.
+        root_dir: Directory where JSON files are stored directly.
+                  Created (with parents) on construction if absent.
                   Inject ``tmp_path`` in tests.
     """
 
     def __init__(self, root_dir: Path = _DEFAULT_ROOT) -> None:
-        self._dir = root_dir / _SUBDIR
+        self._dir = root_dir
         self._dir.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
@@ -50,7 +60,7 @@ class GroundingMapStore:
     # ------------------------------------------------------------------
 
     def save(self, grounding_map: GroundingMap) -> None:
-        """Persist grounding_map to <root_dir>/grounding-maps/<id>.json.
+        """Persist grounding_map to <root_dir>/<id>.json.
 
         Overwrites any existing file for the same id.
         Output is deterministic: identical input always produces identical bytes.
