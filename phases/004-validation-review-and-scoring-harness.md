@@ -212,6 +212,7 @@ class ScoringResult:
     scored_at: str               # ISO 8601 timestamp
     spec_version: str            # e.g. "1.0.0"
     spec_hash: str               # SHA-256 of test spec file at scoring time
+    authority: str               # spec authority identifier/source
     total_acs: int               # 43
     passed: int
     failed: int
@@ -478,7 +479,7 @@ Replace mock RAG with real RAG implementations. Wire all layers into a complete 
 - Primary: OS keychain (macOS Keychain Services) manages AES-256 key
 - Fallback: operator-provided passphrase derives key via PBKDF2
 - File-level encryption: encrypt on write, decrypt on read
-- ChromaDB directory: encrypted at rest using file-system level encryption or per-file encryption of the SQLite backing store
+- ChromaDB directory: encrypted at rest using file-system-level encryption or per-file encryption of the SQLite backing store
 
 ### End-to-End Export Gate
 
@@ -511,7 +512,7 @@ class ExportGate:
 ### CP1: AC Scoring Harness
 
 **Files to Stage:**
-- `scoring/spec_extractor.py`
+- `scoring/spec_loader.py`
 - `scoring/models.py`
 - `scoring/spec_verifier.py`
 - `scoring/ac_checks.py`
@@ -816,7 +817,7 @@ Returns to: PDF engine working, no validators, no UI, no real RAG, no encryption
 1. `pytest tests/ -v` → all tests pass (all phases)
 2. `cd ui && pnpm test` → all TypeScript tests pass
 3. Smoke tests: `pytest tests/validation/smoke_tests.py -v` → all pass
-4. Spec integrity: modify `ac-test-spec.yaml` → `pytest tests/scoring/test_spec_integrity.py` → `SpecIntegrityError` raised
+4. Spec integrity: modify `scoring/draft_spec/provisional-dev-spec.yaml` → `pytest tests/scoring/test_spec_integrity.py` → `SpecIntegrityError` raised
 5. End-to-end: run `tests/system/test_volume_1.py` → all assertions pass
 6. WCAG: run `axe` or `lighthouse` on review UI → no AA violations
 7. KDP compliance: generate PDF → `compliance_check.passes == True`

@@ -2,7 +2,7 @@
 
 **Project**: devotional-generator-system-a
 **Phase**: 003
-**Version**: 1.0
+**Version**: 1.1
 **Date**: 2026-02-24
 **Status**: APPROVED — operator decisions confirmed 2026-02-24; execution authorized
 
@@ -93,7 +93,7 @@ Select two open-source fonts for embedding:
 
 Set up TypeScript project for the UI layer:
 
-```
+```text
 ui/
 ├── package.json
 ├── tsconfig.json

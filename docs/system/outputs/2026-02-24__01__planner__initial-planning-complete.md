@@ -40,7 +40,7 @@ Initial planning phase complete for `devotional-generator-system-a` (System A in
 
 ## Directory Structure Created
 
-```
+```text
 devotional-generator-system-a/
 ├── index.md
 ├── prd.md
