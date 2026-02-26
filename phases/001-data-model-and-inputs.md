@@ -59,7 +59,7 @@ Establish the foundational data contracts, schemas, and input handling layer tha
 ### Step 1: Project Scaffold
 
 1. Create project directory structure:
-   ```
+   ```text
    devotional-generator-system-a-app/   (or agreed application root)
    ├── src/
    │   ├── models/
@@ -190,11 +190,13 @@ class GroundingMap(BaseModel):
     exposition_id: str
     entries: List[GroundingMapEntry]    # Must have exactly 4 entries
 
-    @validator("entries")
+    @field_validator("entries")
+    @classmethod
     def must_have_four_entries(cls, v):
-        assert len(v) == 4, "GroundingMap must have exactly 4 entries"
-        assert all(e.sources_retrieved and e.excerpts_used for e in v), \
-            "All GroundingMap entries must be non-empty"
+        if len(v) != 4:
+            raise ValueError("GroundingMap must have exactly 4 entries")
+        if not all(e.sources_retrieved and e.excerpts_used for e in v):
+            raise ValueError("All GroundingMap entries must be non-empty")
         return v
 
 class PrayerTraceMapEntry(BaseModel):
@@ -207,10 +209,12 @@ class PrayerTraceMap(BaseModel):
     prayer_id: str
     entries: List[PrayerTraceMapEntry]  # One per prayer element; no untraceable elements
 
-    @validator("entries")
+    @field_validator("entries")
+    @classmethod
     def no_untraceable_elements(cls, v):
-        assert all(e.source_type in ("scripture", "exposition", "be_still") for e in v), \
-            "All prayer elements must be traceable to scripture, exposition, or be_still"
+        invalid = [e for e in v if e.source_type not in ("scripture", "exposition", "be_still")]
+        if invalid:
+            raise ValueError("All prayer elements must be traceable to scripture, exposition, or be_still")
         return v
 ```
 

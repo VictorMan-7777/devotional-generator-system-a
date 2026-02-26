@@ -319,7 +319,7 @@ These seed files inform Volume 1 content but do not change application architect
 
 Competition artifacts are segregated from project documentation:
 
-```
+```text
 ../competition-2026/
 ├── input/        (read-only authoritative inputs)
 ├── outputs/      (append-only: scoring runs, PDFs, spec snapshots, comparison reports)

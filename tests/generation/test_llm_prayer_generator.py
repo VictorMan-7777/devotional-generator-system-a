@@ -146,9 +146,9 @@ def _full_day(expo_gen, prayer_gen, day_number: int = 1):
     Uses MockSectionGenerator as the base (all other sections pass validators),
     then replaces exposition and prayer with the LLM-generated versions.
     """
-    exposition = expo_gen.generate_exposition("expo-grace-day1", "grace", "Romans 8:28")
+    exposition = expo_gen.generate_exposition(f"expo-grace-day{day_number}", "grace", "Romans 8:28")
     prayer = prayer_gen.generate_prayer(
-        prayer_id="prayer-grace-day1",
+        prayer_id=f"prayer-grace-day{day_number}",
         topic="grace",
         passage_reference="Romans 8:28",
         exposition_text=exposition.text,

@@ -112,7 +112,7 @@ def _build_prompt(
     lines.append("  3. theological")
     lines.append("  4. bridge")
     lines.append("")
-    lines.append("TARGET LENGTH: 500–650 words total.")
+    lines.append("TARGET LENGTH: 500-650 words total.")
     lines.append("VOICE: Do not use 'you' or 'your'. Use communal voice (we, our).")
 
     return "\n".join(lines)

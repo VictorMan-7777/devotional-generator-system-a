@@ -1,7 +1,7 @@
 # Devotional Generator — System A
 
 **Project Slug**: devotional-generator-system-a
-**Status**: Phase 002 Complete — Phase 003 in planning
+**Status**: Phase 003 Complete — Phase 004 in progress
 **Last Updated**: 2026-02-24
 **Operator**: Barbara
 **Competition Role**: System A (Automated Builder — builds first)
@@ -96,8 +96,8 @@ Full boundary definition: [constitution.md](constitution.md)
 |-------|--------|
 | Phase 001 — Data Model & Inputs | **COMPLETE — 2026-02-24** (CP1–CP5; 102 tests) |
 | Phase 002 — Template System | **COMPLETE — 2026-02-24** (CP1–CP4; 123 tests) |
-| Phase 003 — KDP PDF Export | In planning |
-| Phase 004 — Validation, Review UI & AC Scoring Harness | Not started |
+| Phase 003 — KDP PDF Export | **COMPLETE — 2026-02-24** (CP1–CP8; 73 TypeScript tests) |
+| Phase 004 — Validation, Review UI & AC Scoring Harness | In progress — FR-73–77 validators complete; scoring harness and Review UI pending |
 
-**Current Step**: Phase 003 plan under operator review
-**Next Step**: Phase 003 Builder execution (pending plan approval)
+**Current Step**: Phase 004 implementation ongoing
+**Next Step**: Phase 004 AC Scoring Harness
