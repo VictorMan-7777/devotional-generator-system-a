@@ -71,8 +71,8 @@ class TestBuildStructure:
     def test_corpus_file_is_relative_path(self):
         builder = CorpusIndexBuilder()
         index = builder.build(_EXCERPTS_CORPUS)
-        # Must not contain absolute home-directory paths
-        assert "/Users/" not in index["corpus_file"]
+        # Must be a relative path (no absolute home-directory paths)
+        assert not Path(index["corpus_file"]).is_absolute()
         assert index["corpus_file"] == "data/corpus/excerpts-corpus.json"
 
     def test_corpus_version_matches_provenance(self):
@@ -354,7 +354,7 @@ class TestCommittedIndex:
     def test_committed_index_corpus_file_no_absolute_path(self):
         builder = CorpusIndexBuilder()
         index = builder.load(_EXCERPTS_INDEX)
-        assert "/Users/" not in index["corpus_file"]
+        assert not Path(index["corpus_file"]).is_absolute()
 
     def test_committed_index_matches_fresh_build(self):
         """Committed index must match a fresh build from current corpus."""
