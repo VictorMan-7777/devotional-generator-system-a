@@ -1,0 +1,130 @@
+{
+  "provenance": {
+    "corpus_version": "1.0.0",
+    "created_date": "2026-02-27",
+    "license": "public domain",
+    "notes": "Oswald Chambers, My Utmost for His Highest (1927) — public domain in all jurisdictions"
+  },
+  "documents": [
+    {
+      "source_id": "quot_chambers_001",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — September 29",
+      "text": "Faith is deliberate confidence in the character of God whose ways you may not understand at the time.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_002",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — January 5",
+      "text": "God does not give us overcoming life; He gives us life as we overcome.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_003",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — June 22",
+      "text": "My worth to God in public is what I am in private.",
+      "source_type": "reference",
+      "paragraph_type": "context"
+    },
+    {
+      "source_id": "quot_chambers_004",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — August 2",
+      "text": "The battle is lost or won in the secret places of the will before God, never first in the external world.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_005",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — October 17 (Prayer)",
+      "text": "We have to pray with our eyes on God, not on the difficulties.",
+      "source_type": "reference",
+      "paragraph_type": "context"
+    },
+    {
+      "source_id": "quot_chambers_006",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — October 31",
+      "text": "The greatest competitor of devotion to Jesus is service for Him.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_007",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — November 5",
+      "text": "God cannot give us happiness and peace apart from Himself, because it is not there.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_008",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — August 31",
+      "text": "Holiness, not happiness, is the chief end of man.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_009",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — February 14",
+      "text": "The grace of God is the overflowing favour of God; you can always count on it being there to draw upon.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_010",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — March 9",
+      "text": "If you are going to be used by God, He will take you through a multitude of experiences that are not meant for you at all; they are meant to make you useful in His hands.",
+      "source_type": "reference",
+      "paragraph_type": "context"
+    },
+    {
+      "source_id": "quot_chambers_011",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — May 1",
+      "text": "The love of God is not a sentimental feeling; it is sovereign and almighty, and will have its way.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    },
+    {
+      "source_id": "quot_chambers_012",
+      "author": "Oswald Chambers",
+      "work": "My Utmost for His Highest",
+      "publication_year": 1927,
+      "canonical_citation": "My Utmost for His Highest — October 17 (Greater Work)",
+      "text": "Prayer does not fit us for the greater works; prayer is the greater work.",
+      "source_type": "reference",
+      "paragraph_type": "theological"
+    }
+  ]
+}
