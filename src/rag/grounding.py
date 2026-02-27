@@ -13,6 +13,20 @@ from typing import Dict, List, Optional
 
 from src.interfaces.rag import RetrievedExcerpt
 from src.models.artifacts import GroundingMap, GroundingMapEntry
+from src.rag.corpus import parse_source_id
+
+def _safe_parse_source_id(source_title: str) -> str:
+    """Parse source_id from a canonical source_title; return full title on failure.
+
+    Existing test fixtures may use non-canonical source_title strings. Rather
+    than raising, fall back to the full source_title so backward compatibility
+    is preserved while still populating the traceability field.
+    """
+    try:
+        return parse_source_id(source_title)
+    except ValueError:
+        return source_title
+
 
 _DEFAULT_PARAGRAPH_NAMES: Dict[int, str] = {
     1: "declaration",
@@ -60,6 +74,7 @@ class GroundingMapBuilder:
         exposition_id: str,
         paragraph_excerpts: Dict[int, List[RetrievedExcerpt]],
         paragraph_names: Optional[Dict[int, str]] = None,
+        retrieval_run_id: Optional[str] = None,
     ) -> GroundingMap:
         names = dict(_DEFAULT_PARAGRAPH_NAMES)
         if paragraph_names:
@@ -95,6 +110,8 @@ class GroundingMapBuilder:
                         f"Retrieved {len(excerpts)} excerpt(s) "
                         f"from {len(sources)} source(s)."
                     ),
+                    source_ids=[_safe_parse_source_id(e.source_title) for e in excerpts],
+                    similarity_scores=[e.relevance_score for e in excerpts],
                 )
             )
 
@@ -102,4 +119,5 @@ class GroundingMapBuilder:
             id=str(uuid.uuid4()),
             exposition_id=exposition_id,
             entries=entries,
+            retrieval_run_id=retrieval_run_id,
         )

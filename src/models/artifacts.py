@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel, field_validator
 
@@ -11,12 +11,15 @@ class GroundingMapEntry(BaseModel):
     sources_retrieved: List[str]  # Document names retrieved
     excerpts_used: List[str]  # Specific passages drawn upon
     how_retrieval_informed_paragraph: str  # One-sentence statement
+    source_ids: List[str] = []  # parse_source_id per excerpt (parallel to excerpts_used)
+    similarity_scores: List[float] = []  # relevance_score per excerpt (parallel to source_ids)
 
 
 class GroundingMap(BaseModel):
     id: str  # UUID
     exposition_id: str
     entries: List[GroundingMapEntry]  # Must have exactly 4 entries
+    retrieval_run_id: Optional[str] = None  # Caller-supplied logical run identifier [AC-2]
 
     @field_validator("entries")
     @classmethod
