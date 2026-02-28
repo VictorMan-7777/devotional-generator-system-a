@@ -1,0 +1,11 @@
+project_slug: devotional-generator
+
+profile: default
+
+tier_configs:
+  1:
+    python_interpreter: .venv/bin/python
+  1.5:
+    python_interpreter: .venv/bin/python
+  2:
+    python_interpreter: .venv/bin/python

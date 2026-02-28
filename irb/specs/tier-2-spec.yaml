@@ -1,0 +1,169 @@
+spec_id:          irb-tier-2
+spec_version:     1.1.1
+tier:             2
+title:            IRB Tier-2 Certification — Integration & Smoke Test
+description: >
+  Tier 2 validates cross-module integration, deterministic execution,
+  artifact production in isolation, and lifecycle invariants.
+  Tier 2 is SINGLE-AGENT and NON-ADVERSARIAL.
+  Adversarial simulation belongs to Tier 3.
+
+# ─────────────────────────────────────────────────────────────
+# EXECUTION MODEL
+# ─────────────────────────────────────────────────────────────
+
+execution_mode:   deterministic
+offline_required: true
+mutation_allowed: false
+evidence_required: true
+
+agent_model:
+  mode: single                 # exactly one IRB execution agent
+  max_agents: 1                # no multi-agent orchestration
+  allow_parallel_checks: false # checks must execute sequentially
+  forbid_subagents: true       # no agent spawning
+  allow_tool_subprocesses: true  # pytest or python subprocess allowed as tools only
+
+# ─────────────────────────────────────────────────────────────
+# DETERMINISM & BOUNDARIES
+# ─────────────────────────────────────────────────────────────
+
+config:
+  allow_network_calls: false
+  require_fixed_seed: true
+  enforce_reproducible_ordering: true
+
+  enforce_hard_time_limit: true
+  max_runtime_seconds: 120
+
+  smoke_test:
+    required: true
+    sample_input_fixture: tests/fixtures/devotional_smoke_input.yaml
+    require_artifact_generation: true
+    artifact_workspace: temp_outside_git_tree
+    cleanup_required: true
+
+  required_pipeline_components:
+    - generate_devotional
+    - MockSectionGenerator
+    - LLMExpositionGenerator
+    - LLMPrayerGenerator
+    - DeterministicRealSectionGenerator
+    - validate_daily_devotional
+
+  required_stores:
+    - GroundingMapStore
+    - PrayerTraceMapStore
+
+  forbid_runtime_schema_drift: true
+  forbid_untracked_prompt_templates: true
+
+  # evidence_rules duplicated here from the top-level section so that
+  # runtime checks can read them via cache["spec_config"]["evidence_rules"].
+  # The runner loads only config: into cache["spec_config"]; top-level keys
+  # are not propagated. This duplicate is the canonical runtime source.
+  # (spec_version 1.1.1)
+  evidence_rules:
+    no_artifact_no_credit: true
+    require_hash_for_artifacts: true
+    canonical_json_serialization: true
+    stable_sort_required: true
+    forbid_log_only_evidence: true
+    require_structured_evidence_output: true
+
+# ─────────────────────────────────────────────────────────────
+# CHECK CATALOG
+# ─────────────────────────────────────────────────────────────
+
+checks:
+
+  # ── INTEGRATION ────────────────────────────────────────────
+  - id: T2-INT-001
+    category: integration
+    name: pipeline_entry_callable
+    blocking: true
+
+  - id: T2-INT-002
+    category: integration
+    name: required_components_importable
+    blocking: true
+
+  - id: T2-INT-003
+    category: integration
+    name: required_stores_importable
+    blocking: true
+
+  - id: T2-INT-004
+    category: integration
+    name: no_untracked_prompt_templates
+    blocking: true
+
+  - id: T2-INT-005
+    category: integration
+    name: no_runtime_schema_overrides
+    blocking: true
+
+  # ── SMOKE ──────────────────────────────────────────────────
+  - id: T2-SMOKE-001
+    category: smoke
+    name: smoke_fixture_present
+    blocking: true
+
+  - id: T2-SMOKE-002
+    category: smoke
+    name: smoke_pipeline_executes
+    blocking: true
+    depends_on: T2-SMOKE-001
+
+  - id: T2-SMOKE-003
+    category: smoke
+    name: smoke_grounding_map_artifact_generated
+    blocking: true
+    depends_on: T2-SMOKE-001
+
+  - id: T2-SMOKE-004
+    category: smoke
+    name: smoke_prayer_trace_map_artifact_generated
+    blocking: false   # advisory only
+    depends_on: T2-SMOKE-001
+
+  # ── GUARD ──────────────────────────────────────────────────
+  - id: T2-GUARD-001
+    category: guard
+    name: repo_mutation_guard
+    blocking: true
+
+# ─────────────────────────────────────────────────────────────
+# EVIDENCE REQUIREMENTS
+# ─────────────────────────────────────────────────────────────
+
+evidence_rules:
+  no_artifact_no_credit: true
+  require_hash_for_artifacts: true
+  canonical_json_serialization: true
+  stable_sort_required: true
+  forbid_log_only_evidence: true
+  require_structured_evidence_output: true
+
+# ─────────────────────────────────────────────────────────────
+# REPORTING
+# ─────────────────────────────────────────────────────────────
+
+reporting:
+  format: [md, json]
+  include_fields:
+    - hashes
+    - digests
+    - duration_seconds
+    - component_trace
+  require_outcome_summary: true
+  require_blocking_failure_list: true
+
+# ─────────────────────────────────────────────────────────────
+# EXIT CODES
+# ─────────────────────────────────────────────────────────────
+
+exit_codes:
+  0: CERTIFIED
+  1: FAILED
+  2: ERROR

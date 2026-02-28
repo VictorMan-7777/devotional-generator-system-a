@@ -1,0 +1,132 @@
+spec_id: "irb-tier-1.5"
+spec_version: "1.0.0"
+tier: 1.5
+title: "IRB Tier-1.5 Certification — Repo Hygiene & Competition Safety"
+description: >
+  Tier-1.5 enforces hygiene and safety invariants: no machine-local paths
+  committed, no secret-like tokens, no local-state files tracked, and no
+  runtime artifacts outside the allowed outputs allowlist. Evidence-gated:
+  "no artifact, no credit."
+
+config:
+  # Tracked output files that are explicitly permitted
+  allow_tracked_outputs_globs:
+    - "outputs/reviews/.gitkeep"
+    - "outputs/reviews/*.md"
+    - "outputs/reviews/*.json"
+
+  # Substrings that must not appear in tracked file content
+  forbid_tracked_path_substrings:
+    - "/Users/"
+    - "C:\\Users\\"
+
+  # PEM-style private key header markers
+  forbid_tracked_secret_markers:
+    - "BEGIN PRIVATE KEY"
+    - "BEGIN OPENSSH PRIVATE KEY"
+    - "BEGIN RSA PRIVATE KEY"
+    - "BEGIN DSA PRIVATE KEY"
+    - "BEGIN EC PRIVATE KEY"
+    - "BEGIN PGP PRIVATE KEY BLOCK"
+
+  # Regex patterns for secret-like tokens (conservative set)
+  forbid_tracked_secret_regexes:
+    - "ghp_[A-Za-z0-9]{20,}"
+    - "github_pat_[A-Za-z0-9_]{20,}"
+    - "AKIA[0-9A-Z]{16}"
+    - "ASIA[0-9A-Z]{16}"
+    - "xox[baprs]-[0-9A-Za-z-]{10,}"
+
+checks:
+
+  # ── HYGIENE ──────────────────────────────────────────────────────────────
+  - id: "T15-HYG-001"
+    category: "hygiene"
+    name: "tracked_files_no_home_paths"
+    description: >
+      No tracked file contains a machine-local home-directory path substring
+      (e.g. /Users/<name>/ or C:\Users\<name>\).
+      Evidence: git ls-files list hash + match_count + up to 5 samples.
+    evidence_type: "content_scan"
+    blocking: true
+
+  - id: "T15-HYG-002"
+    category: "hygiene"
+    name: "tracked_outputs_allowlist_only"
+    description: >
+      All tracked files under outputs/ match allow_tracked_outputs_globs.
+      Any outputs file not on the allowlist is disallowed.
+    evidence_type: "git_tracked_scan"
+    blocking: true
+
+  - id: "T15-HYG-003"
+    category: "hygiene"
+    name: "local_state_files_not_tracked"
+    description: >
+      Local state and ephemeral files (.claude/settings.local.json, .DS_Store,
+      node_modules/**, .pytest_cache/**, __pycache__/**) must not be tracked.
+    evidence_type: "git_tracked_scan"
+    blocking: true
+
+  # ── SECURITY ─────────────────────────────────────────────────────────────
+  - id: "T15-SEC-001"
+    category: "security"
+    name: "tracked_files_no_private_key_markers"
+    description: >
+      No tracked file contains a PEM private key header marker
+      (e.g. "BEGIN PRIVATE KEY", "BEGIN RSA PRIVATE KEY", etc.).
+    evidence_type: "content_scan"
+    blocking: true
+
+  - id: "T15-SEC-002"
+    category: "security"
+    name: "tracked_files_no_secret_like_tokens"
+    description: >
+      No tracked file contains a secret-like token matching the configured
+      regex patterns (GitHub PAT, AWS key, Slack token). Lines containing
+      "<redacted>", "EXAMPLE", or "fake" are ignored.
+    evidence_type: "content_scan"
+    blocking: true
+
+  # ── QUALITY (advisory) ───────────────────────────────────────────────────
+  - id: "T15-QA-001"
+    category: "quality"
+    name: "irb_docs_md040_no_bare_fences"
+    description: >
+      Advisory: docs/irb/*.md must not contain fenced code blocks that open
+      with ``` immediately followed by a newline (no language tag).
+    evidence_type: "file_scan"
+    blocking: false
+
+  - id: "T15-QA-002"
+    category: "quality"
+    name: "irb_docs_no_absolute_target_examples"
+    description: >
+      Advisory: docs/irb/*.md must not contain "/Users/" or "C:\\Users\\"
+      (machine-local example paths that should use placeholders).
+    evidence_type: "file_scan"
+    blocking: false
+
+  - id: "T15-QA-003"
+    category: "quality"
+    name: "reports_redaction_assertion_present"
+    description: >
+      Advisory: self-check that scripts/irb/reporter.py contains the
+      _sanitize_paths function and that build_md_report/build_json_report
+      accept target/builder_root arguments (redaction is wired in).
+    evidence_type: "file_content"
+    depends_on: "T15-HYG-001"
+    blocking: false
+
+  # ── GUARD (final, blocking) ───────────────────────────────────────────────
+  - id: "T15-GUARD-001"
+    category: "guard"
+    name: "repo_mutation_guard"
+    description: >
+      git status --porcelain captured before all checks (executor pre-loop)
+      and after all checks (executor finally block). FAIL if any delta.
+      Guard always runs — finally ensures post-status is always captured.
+    evidence_type: "git_status_delta"
+    depends_on: "T15-HYG-002"
+    pass_condition: "no_delta"
+    blocking: true

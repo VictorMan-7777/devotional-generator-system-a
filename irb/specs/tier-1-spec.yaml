@@ -1,0 +1,302 @@
+spec_id: "irb-tier-1"
+spec_version: "2.0.0"
+tier: 1
+title: "IRB Tier-1 Certification — Structural, Build, and Lifecycle Integrity"
+description: >
+  Tier-1 certifies that a target repository meets minimum structural,
+  build, and artifact lifecycle requirements. Evidence-gated: each check
+  must collect concrete evidence before evaluating its pass condition.
+  "No artifact, no credit."
+
+config:
+  # R3: minimum passed test count — configurable here, not hardcoded in runner
+  minimum_passed_tests: 549
+
+checks:
+
+  # ── REPO ──────────────────────────────────────────────────────────────────
+  - id: "T1-REPO-001"
+    category: "repo"
+    name: "git_repo_valid"
+    description: "Target directory is inside a valid git repository."
+    evidence_type: "command_output"
+    evidence_command: "git rev-parse --is-inside-work-tree"
+    pass_condition: "exit_code_zero"
+    blocking: true
+
+  - id: "T1-REPO-002"
+    category: "repo"
+    name: "head_commit_readable"
+    description: "HEAD commit SHA is readable (40-char hex). Cached as git_sha for report filename."
+    evidence_type: "command_output"
+    evidence_command: "git log -1 --format=%H"
+    pass_condition: "output_is_40char_hex"
+    blocking: true
+
+  - id: "T1-REPO-003"
+    category: "repo"
+    name: "pyproject_toml_present"
+    description: "pyproject.toml exists at target root."
+    evidence_type: "path_exists"
+    evidence_path: "pyproject.toml"
+    pass_condition: "path_exists"
+    blocking: false
+
+  - id: "T1-REPO-004"
+    category: "repo"
+    name: "working_tree_clean"
+    description: "Advisory: working tree has no uncommitted changes to tracked files."
+    evidence_type: "command_output"
+    evidence_command: "git status --porcelain"
+    pass_condition: "output_empty"
+    blocking: false
+
+  # ── ARCH ──────────────────────────────────────────────────────────────────
+  - id: "T1-ARCH-001"
+    category: "arch"
+    name: "src_directory_exists"
+    description: "src/ directory exists at target root."
+    evidence_type: "path_exists"
+    evidence_path: "src"
+    pass_condition: "path_is_directory"
+    blocking: true
+
+  - id: "T1-ARCH-002"
+    category: "arch"
+    name: "required_src_modules_present"
+    description: "All required src sub-modules are present."
+    evidence_type: "directory_listing"
+    evidence_path: "src"
+    required_entries:
+      - "api"
+      - "generation"
+      - "validation"
+      - "models"
+      - "grounding_store"
+      - "prayer_trace_store"
+      - "llm"
+      - "rag"
+      - "interfaces"
+    pass_condition: "all_entries_present"
+    blocking: true
+
+  - id: "T1-ARCH-003"
+    category: "arch"
+    name: "pipeline_entry_point_present"
+    description: "src/api/generation_pipeline.py exists."
+    evidence_type: "path_exists"
+    evidence_path: "src/api/generation_pipeline.py"
+    pass_condition: "path_exists"
+    blocking: true
+
+  - id: "T1-ARCH-004"
+    category: "arch"
+    name: "hard_halt_preserved"
+    description: >
+      generation_pipeline.py does NOT import or instantiate LLMExpositionGenerator,
+      LLMPrayerGenerator, or DeterministicRealSectionGenerator.
+      R4: comment lines excluded; separate import-statement and instantiation-call
+      patterns checked per symbol to avoid false positives.
+    evidence_type: "grep_not_found"
+    evidence_file: "src/api/generation_pipeline.py"
+    exclude_comment_lines: true
+    forbidden_patterns:
+      - name: "LLMExpositionGenerator_import"
+        regex: "^\\s*(?:from\\s+\\S+\\s+import\\s+.*LLMExpositionGenerator|import\\s+.*LLMExpositionGenerator)"
+      - name: "LLMExpositionGenerator_instantiation"
+        regex: "\\bLLMExpositionGenerator\\s*\\("
+      - name: "LLMPrayerGenerator_import"
+        regex: "^\\s*(?:from\\s+\\S+\\s+import\\s+.*LLMPrayerGenerator|import\\s+.*LLMPrayerGenerator)"
+      - name: "LLMPrayerGenerator_instantiation"
+        regex: "\\bLLMPrayerGenerator\\s*\\("
+      - name: "DeterministicRealSectionGenerator_import"
+        regex: "^\\s*(?:from\\s+\\S+\\s+import\\s+.*DeterministicRealSectionGenerator|import\\s+.*DeterministicRealSectionGenerator)"
+      - name: "DeterministicRealSectionGenerator_instantiation"
+        regex: "\\bDeterministicRealSectionGenerator\\s*\\("
+    pass_condition: "none_found"
+    blocking: true
+
+  # ── BUILD ─────────────────────────────────────────────────────────────────
+  - id: "T1-BUILD-001"
+    category: "build"
+    name: "interpreter_available"
+    description: >
+      Advisory (R2, non-blocking): records Python interpreter path and version.
+      Confirms pytest is importable via the configured interpreter.
+    evidence_type: "interpreter_check"
+    pass_condition: "pytest_importable"
+    blocking: false
+
+  - id: "T1-BUILD-002"
+    category: "build"
+    name: "pytest_exits_zero"
+    description: >
+      Full test suite (tests/ -v --tb=short) exits with code 0.
+      TWEAK 1: output cached and reused by BUILD-003, BUILD-004,
+      T1-ARTI-005, T1-ARTI-006.
+    evidence_type: "command_output"
+    evidence_command: "<python_exe> -m pytest tests/ -v --tb=short"
+    pass_condition: "exit_code_zero"
+    timeout_seconds: 300
+    blocking: true
+
+  - id: "T1-BUILD-003"
+    category: "build"
+    name: "python_test_count_minimum"
+    description: >
+      Parsed 'N passed' from cached pytest stdout >= config.minimum_passed_tests.
+      R3: threshold read from spec config, not hardcoded.
+      Parse failure is automatic FAIL with output excerpt.
+    evidence_type: "pytest_cache_parse"
+    pass_condition: "parsed_count_gte_config_minimum"
+    depends_on: "T1-BUILD-002"
+    blocking: true
+
+  - id: "T1-BUILD-004"
+    category: "build"
+    name: "zero_test_failures"
+    description: "Pytest cached output contains zero failed or errored tests."
+    evidence_type: "pytest_cache_parse"
+    pass_condition: "no_failure_or_error_line"
+    depends_on: "T1-BUILD-002"
+    blocking: true
+
+  # ── ARTIFACT — Code Lifecycle (blocking) ──────────────────────────────────
+  # R1: Lifecycle invariants verified via source code + passing tests.
+  # No dependency on runtime-generated artifact files.
+
+  - id: "T1-ARTI-001"
+    category: "artifact"
+    name: "grounding_map_store_source"
+    description: >
+      src/grounding_store/store.py exists and contains GroundingMapStore.
+      Verifies the lifecycle store implementation exists at code level.
+    evidence_type: "file_content"
+    evidence_path: "src/grounding_store/store.py"
+    required_symbols:
+      - "GroundingMapStore"
+    pass_condition: "file_exists_and_symbols_present"
+    blocking: true
+
+  - id: "T1-ARTI-002"
+    category: "artifact"
+    name: "grounding_map_id_policy_source"
+    description: >
+      src/grounding_store/id_policy.py exists and contains create_grounding_map_id.
+      Verifies the deterministic ID policy function is implemented.
+    evidence_type: "file_content"
+    evidence_path: "src/grounding_store/id_policy.py"
+    required_symbols:
+      - "create_grounding_map_id"
+    pass_condition: "file_exists_and_symbols_present"
+    blocking: true
+
+  - id: "T1-ARTI-003"
+    category: "artifact"
+    name: "prayer_trace_map_store_source"
+    description: >
+      src/prayer_trace_store/store.py exists and contains PrayerTraceMapStore.
+    evidence_type: "file_content"
+    evidence_path: "src/prayer_trace_store/store.py"
+    required_symbols:
+      - "PrayerTraceMapStore"
+    pass_condition: "file_exists_and_symbols_present"
+    blocking: true
+
+  - id: "T1-ARTI-004"
+    category: "artifact"
+    name: "prayer_trace_map_id_policy_source"
+    description: >
+      src/prayer_trace_store/id_policy.py exists and contains create_prayer_trace_map_id.
+    evidence_type: "file_content"
+    evidence_path: "src/prayer_trace_store/id_policy.py"
+    required_symbols:
+      - "create_prayer_trace_map_id"
+    pass_condition: "file_exists_and_symbols_present"
+    blocking: true
+
+  - id: "T1-ARTI-005"
+    category: "artifact"
+    name: "grounding_store_lifecycle_tests"
+    description: >
+      tests/grounding_store/ output from cached BUILD-002 pytest run shows all
+      tests PASSED. Validates GroundingMap ID policy, entry-count invariant,
+      and artifact persistence. TWEAK 1: no separate pytest invocation.
+    evidence_type: "pytest_cache_filter"
+    evidence_test_path: "tests/grounding_store"
+    pass_condition: "all_matching_tests_passed_and_count_nonzero"
+    depends_on: "T1-ARTI-001"
+    blocking: true
+
+  - id: "T1-ARTI-006"
+    category: "artifact"
+    name: "prayer_trace_store_lifecycle_tests"
+    description: >
+      tests/prayer_trace_store/ output from cached BUILD-002 pytest run shows all
+      tests PASSED. Validates PrayerTraceMap ID policy, source_type invariant,
+      and artifact persistence. TWEAK 1: no separate pytest invocation.
+    evidence_type: "pytest_cache_filter"
+    evidence_test_path: "tests/prayer_trace_store"
+    pass_condition: "all_matching_tests_passed_and_count_nonzero"
+    depends_on: "T1-ARTI-003"
+    blocking: true
+
+  # ── ARTIFACT — Advisory Runtime Presence (non-blocking) ───────────────────
+  # Clearly labeled advisory. Runtime artifact dirs populated by pipeline
+  # execution, not committed. FAIL here is expected on a clean clone.
+
+  - id: "T1-ARTI-007"
+    category: "artifact"
+    name: "advisory_grounding_maps_runtime_dir"
+    description: >
+      Advisory: data/artifacts/grounding_maps/ exists.
+      Populated at pipeline runtime; not committed. FAIL expected on clean clone.
+    evidence_type: "path_exists"
+    evidence_path: "data/artifacts/grounding_maps"
+    pass_condition: "path_exists"
+    blocking: false
+
+  - id: "T1-ARTI-008"
+    category: "artifact"
+    name: "advisory_grounding_maps_runtime_files"
+    description: "Advisory: at least 1 GroundingMap JSON file exists in runtime dir."
+    evidence_type: "file_count"
+    evidence_path: "data/artifacts/grounding_maps"
+    file_pattern: "*.json"
+    pass_condition: "count_gte_one"
+    depends_on: "T1-ARTI-007"
+    blocking: false
+
+  - id: "T1-ARTI-009"
+    category: "artifact"
+    name: "advisory_prayer_trace_maps_runtime_dir"
+    description: >
+      Advisory: data/artifacts/prayer_trace_maps/ exists.
+      Populated at pipeline runtime; not committed. FAIL expected on clean clone.
+    evidence_type: "path_exists"
+    evidence_path: "data/artifacts/prayer_trace_maps"
+    pass_condition: "path_exists"
+    blocking: false
+
+  - id: "T1-ARTI-010"
+    category: "artifact"
+    name: "advisory_prayer_trace_maps_runtime_files"
+    description: "Advisory: at least 1 PrayerTraceMap JSON file exists in runtime dir."
+    evidence_type: "file_count"
+    evidence_path: "data/artifacts/prayer_trace_maps"
+    file_pattern: "*.json"
+    pass_condition: "count_gte_one"
+    depends_on: "T1-ARTI-009"
+    blocking: false
+
+  # ── GUARD ─────────────────────────────────────────────────────────────────
+  - id: "T1-GUARD-001"
+    category: "guard"
+    name: "repo_mutation_guard"
+    description: >
+      R5: git status --porcelain captured before all checks (executor pre-loop)
+      and after all checks (executor finally block). FAIL if any delta.
+      Guard always runs — finally ensures post-status is always captured.
+    evidence_type: "git_status_delta"
+    pass_condition: "no_delta"
+    blocking: true
