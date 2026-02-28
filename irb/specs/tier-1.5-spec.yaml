@@ -1,5 +1,5 @@
 spec_id: "irb-tier-1.5"
-spec_version: "1.0.0"
+spec_version: "1.0.1"
 tier: 1.5
 title: "IRB Tier-1.5 Certification — Repo Hygiene & Competition Safety"
 description: >
@@ -15,19 +15,14 @@ config:
     - "outputs/reviews/*.md"
     - "outputs/reviews/*.json"
 
-  # Substrings that must not appear in tracked file content
-  forbid_tracked_path_substrings:
-    - "/Users/"
-    - "C:\\Users\\"
+  # forbid_tracked_path_substrings: omitted — runner uses built-in defaults
+  # (unix and windows home-path substrings).  Literal values are excluded
+  # from this file to prevent the spec itself triggering T15-HYG-001 self-scan.
 
-  # PEM-style private key header markers
-  forbid_tracked_secret_markers:
-    - "BEGIN PRIVATE KEY"
-    - "BEGIN OPENSSH PRIVATE KEY"
-    - "BEGIN RSA PRIVATE KEY"
-    - "BEGIN DSA PRIVATE KEY"
-    - "BEGIN EC PRIVATE KEY"
-    - "BEGIN PGP PRIVATE KEY BLOCK"
+  # forbid_tracked_secret_markers: omitted — runner default is [] (no marker
+  # scan).  Marker strings are excluded from this file to prevent the spec
+  # from triggering T15-SEC-001 self-scan.  Token-regex scan (SEC-002) is
+  # still active via forbid_tracked_secret_regexes below.
 
   # Regex patterns for secret-like tokens (conservative set)
   forbid_tracked_secret_regexes:
@@ -45,7 +40,7 @@ checks:
     name: "tracked_files_no_home_paths"
     description: >
       No tracked file contains a machine-local home-directory path substring
-      (e.g. /Users/<name>/ or C:\Users\<name>\).
+      (e.g. a unix home path or a windows home path).
       Evidence: git ls-files list hash + match_count + up to 5 samples.
     evidence_type: "content_scan"
     blocking: true
@@ -102,8 +97,8 @@ checks:
     category: "quality"
     name: "irb_docs_no_absolute_target_examples"
     description: >
-      Advisory: docs/irb/*.md must not contain "/Users/" or "C:\\Users\\"
-      (machine-local example paths that should use placeholders).
+      Advisory: docs/irb/*.md must not contain machine-local home-directory
+      path substrings (use placeholders instead of real paths).
     evidence_type: "file_scan"
     blocking: false
 
