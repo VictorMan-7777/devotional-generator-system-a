@@ -34,3 +34,6 @@ node_modules/
 # Generated state / local toolchain files
 uv.lock
 builder-manifest.yaml
+
+# Cowork tool local state
+.cowork/
