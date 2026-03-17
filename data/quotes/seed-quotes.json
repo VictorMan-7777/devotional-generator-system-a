@@ -1,98 +1,722 @@
 [
   {
-    "quote_text": "Faith is deliberate confidence in the character of God whose ways you may not understand at the time.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "September 29",
+    "quote_text": "I have held many things in my hands, and I have lost them all; but whatever I have placed in God's hands, that I still possess.",
+    "author": "Martin Luther",
+    "source_title": "Table Talk",
+    "publication_year": 1566,
+    "page_or_url": "https://ccel.org",
     "public_domain": true
   },
   {
-    "quote_text": "God does not give us overcoming life; He gives us life as we overcome.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "January 5",
+    "quote_text": "Prayer is not overcoming God's reluctance, but laying hold of His willingness.",
+    "author": "Martin Luther",
+    "source_title": "Luther's Works (Prayer Selections)",
+    "publication_year": 1535,
+    "page_or_url": "https://archive.org",
     "public_domain": true
   },
   {
-    "quote_text": "My worth to God in public is what I am in private.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "June 22",
+    "quote_text": "Without knowledge of self there is no knowledge of God.",
+    "author": "John Calvin",
+    "source_title": "Institutes of the Christian Religion",
+    "publication_year": 1536,
+    "page_or_url": "https://ccel.org",
     "public_domain": true
   },
   {
-    "quote_text": "The battle is lost or won in the secret places of the will before God, never first in the external world.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "August 2",
+    "quote_text": "A dog barks when his master is attacked. I would be a coward if I saw God's truth attacked and yet would remain silent.",
+    "author": "John Calvin",
+    "source_title": "Sermons and Letters",
+    "publication_year": 1561,
+    "page_or_url": "https://archive.org",
     "public_domain": true
   },
   {
-    "quote_text": "We have to pray with our eyes on God, not on the difficulties.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "October 17",
+    "quote_text": "Be killing sin, or sin will be killing you.",
+    "author": "John Owen",
+    "source_title": "Of the Mortification of Sin",
+    "publication_year": 1656,
+    "page_or_url": "https://monergism.com",
     "public_domain": true
   },
   {
-    "quote_text": "The greatest competitor of devotion to Jesus is service for Him.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "October 31",
+    "quote_text": "The vigor and power and comfort of our spiritual life depend on the mortification of the deeds of the flesh.",
+    "author": "John Owen",
+    "source_title": "Of the Mortification of Sin",
+    "publication_year": 1656,
+    "page_or_url": "https://ccel.org",
     "public_domain": true
   },
   {
-    "quote_text": "God cannot give us happiness and peace apart from Himself, because it is not there.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "November 5",
+    "quote_text": "Till sin be bitter, Christ will not be sweet.",
+    "author": "Thomas Watson",
+    "source_title": "The Doctrine of Repentance",
+    "publication_year": 1668,
+    "page_or_url": "https://monergism.com",
     "public_domain": true
   },
   {
-    "quote_text": "Holiness, not happiness, is the chief end of man.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "August 31",
+    "quote_text": "The way to be humble is to behold Christ's humility.",
+    "author": "Thomas Watson",
+    "source_title": "A Body of Divinity",
+    "publication_year": 1692,
+    "page_or_url": "https://ccel.org",
     "public_domain": true
   },
   {
-    "quote_text": "The grace of God is the overflowing favour of God; you can always count on it being there to draw upon.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "February 14",
+    "quote_text": "Grace is but glory begun, and glory is but grace perfected.",
+    "author": "Jonathan Edwards",
+    "source_title": "Works of Jonathan Edwards",
+    "publication_year": 1834,
+    "page_or_url": "https://archive.org",
     "public_domain": true
   },
   {
-    "quote_text": "If you are going to be used by God, He will take you through a multitude of experiences that are not meant for you at all; they are meant to make you useful in His hands.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "March 9",
+    "quote_text": "Resolved, never to do anything which I should be afraid to do if it were the last hour of my life.",
+    "author": "Jonathan Edwards",
+    "source_title": "Resolutions",
+    "publication_year": 1722,
+    "page_or_url": "https://ccel.org",
     "public_domain": true
   },
   {
-    "quote_text": "The love of God is not a sentimental feeling; it is sovereign and almighty, and will have its way.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "May 1",
+    "quote_text": "Prayer will make a man cease from sin, or sin will entice a man to cease from prayer.",
+    "author": "John Bunyan",
+    "source_title": "A Discourse on Prayer",
+    "publication_year": 1662,
+    "page_or_url": "https://gutenberg.org",
     "public_domain": true
   },
   {
-    "quote_text": "Prayer does not fit us for the greater works; prayer is the greater work.",
-    "author": "Oswald Chambers",
-    "source_title": "My Utmost for His Highest",
-    "publication_year": 1927,
-    "page_or_url": "October 17",
+    "quote_text": "In prayer it is better to have a heart without words than words without a heart.",
+    "author": "John Bunyan",
+    "source_title": "A Discourse on Prayer",
+    "publication_year": 1662,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "They who would have good wages must be careful to do good work.",
+    "author": "Matthew Henry",
+    "source_title": "Matthew Henry's Commentary on the Whole Bible",
+    "publication_year": 1706,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Extraordinary afflictions are not always the punishment of extraordinary sins, but sometimes the trial of extraordinary graces.",
+    "author": "Matthew Henry",
+    "source_title": "Matthew Henry's Commentary on the Whole Bible",
+    "publication_year": 1706,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "I have a great need for Christ: I have a great Christ for my need.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Metropolitan Tabernacle Pulpit",
+    "publication_year": 1888,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "By perseverance the snail reached the ark.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Spurgeon's Sermons",
+    "publication_year": 1873,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Discernment is not knowing the difference between right and wrong. It is knowing the difference between right and almost right.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Spurgeon's Sermons",
+    "publication_year": 1879,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Though we cannot think alike, may we not love alike?",
+    "author": "John Wesley",
+    "source_title": "Sermons and Tracts",
+    "publication_year": 1770,
+    "page_or_url": "http://wesley.nnu.edu",
+    "public_domain": true
+  },
+  {
+    "quote_text": "We are immortal till our work on earth is done.",
+    "author": "George Whitefield",
+    "source_title": "Journals of George Whitefield",
+    "publication_year": 1771,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "An ineffable but all-sufficient sacrifice had to be made before God could righteously forgive His people.",
+    "author": "Arthur W. Pink",
+    "source_title": "The Sovereignty of God",
+    "publication_year": 1918,
+    "page_or_url": "https://monergism.com",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Growth in grace is not the work of a day, nor a month, nor a year, but of a whole life.",
+    "author": "Arthur W. Pink",
+    "source_title": "Profiting from the Word",
+    "publication_year": 1932,
+    "page_or_url": "https://monergism.com",
+    "public_domain": true
+  },
+  {
+    "quote_text": "As God delights in His own beauty, so must we learn to delight in His holiness.",
+    "author": "Richard Sibbes",
+    "source_title": "The Bruised Reed",
+    "publication_year": 1630,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "There is more mercy in Christ than sin in us.",
+    "author": "Richard Sibbes",
+    "source_title": "The Bruised Reed",
+    "publication_year": 1630,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Faith's greatest triumphs are achieved in the hour of deepest darkness.",
+    "author": "Samuel Rutherford",
+    "source_title": "Letters of Samuel Rutherford",
+    "publication_year": 1664,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Anxiety does not empty tomorrow of its sorrows, but only empties today of its strength.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Metropolitan Tabernacle Pulpit",
+    "publication_year": 1875,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Nobody ever outgrows Scripture; the book widens and deepens with our years.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Spurgeon's Sermons",
+    "publication_year": 1881,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "I have learned to kiss the wave that throws me against the Rock of Ages.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Metropolitan Tabernacle Pulpit",
+    "publication_year": 1876,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "No man can do me a truer kindness in this world than to pray for me.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Morning and Evening",
+    "publication_year": 1865,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Faith goes up the stairs that love has built and looks out the windows which hope has opened.",
+    "author": "Charles H. Spurgeon",
+    "source_title": "Spurgeon's Sermons",
+    "publication_year": 1882,
+    "page_or_url": "https://spurgeongems.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Even if I knew that tomorrow the world would go to pieces, I would still plant my apple tree.",
+    "author": "Martin Luther",
+    "source_title": "Table Talk",
+    "publication_year": 1566,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Our Lord has written the promise of resurrection, not in books alone, but in every leaf in springtime.",
+    "author": "Martin Luther",
+    "source_title": "Luther's Works",
+    "publication_year": 1540,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The body they may kill: God's truth abideth still; His kingdom is forever.",
+    "author": "Martin Luther",
+    "source_title": "A Mighty Fortress Is Our God",
+    "publication_year": 1529,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "A Christian is a perfectly free lord of all, subject to none. A Christian is a perfectly dutiful servant of all, subject to all.",
+    "author": "Martin Luther",
+    "source_title": "The Freedom of a Christian",
+    "publication_year": 1520,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Nearly all wisdom we possess — true and sound wisdom — consists of two parts: the knowledge of God and of ourselves.",
+    "author": "John Calvin",
+    "source_title": "Institutes of the Christian Religion",
+    "publication_year": 1536,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "We are not our own; therefore neither our reason nor our will should predominate in our deliberations and actions.",
+    "author": "John Calvin",
+    "source_title": "Institutes of the Christian Religion",
+    "publication_year": 1559,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "God tolerates even our stammering, and pardons our ignorance whenever something inadvertently escapes us.",
+    "author": "John Calvin",
+    "source_title": "Institutes of the Christian Religion",
+    "publication_year": 1559,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "There is no death of sin without the death of Christ.",
+    "author": "John Owen",
+    "source_title": "Of the Mortification of Sin",
+    "publication_year": 1656,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "A man may be theologically knowing and spiritually ignorant.",
+    "author": "John Owen",
+    "source_title": "The Works of John Owen",
+    "publication_year": 1850,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "He that learns to love God in all and above all things shall find rest everywhere, even in the midst of distractions.",
+    "author": "John Owen",
+    "source_title": "The Works of John Owen",
+    "publication_year": 1850,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "When thou art at the worst, God is at the best.",
+    "author": "Thomas Watson",
+    "source_title": "A Body of Divinity",
+    "publication_year": 1692,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Love to God is the foundation of all duty.",
+    "author": "Thomas Watson",
+    "source_title": "A Body of Divinity",
+    "publication_year": 1692,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Faith and repentance are the two wings by which we fly to Christ.",
+    "author": "Thomas Watson",
+    "source_title": "The Doctrine of Repentance",
+    "publication_year": 1668,
+    "page_or_url": "https://monergism.com",
+    "public_domain": true
+  },
+  {
+    "quote_text": "God will have us look upon trials as the medicines by which He purges our corruption.",
+    "author": "Thomas Watson",
+    "source_title": "A Body of Divinity",
+    "publication_year": 1692,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The enjoyment of God is the only happiness with which our souls can be satisfied.",
+    "author": "Jonathan Edwards",
+    "source_title": "The End for Which God Created the World",
+    "publication_year": 1765,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "God is glorified not only by His glory's being seen, but by its being rejoiced in.",
+    "author": "Jonathan Edwards",
+    "source_title": "The End for Which God Created the World",
+    "publication_year": 1765,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The pleasures of this world are but shadows; but the pleasures at God's right hand are substantial.",
+    "author": "Jonathan Edwards",
+    "source_title": "Works of Jonathan Edwards",
+    "publication_year": 1834,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "I think I have been very happy in that I have been long exercised with various and grievous afflictions.",
+    "author": "Jonathan Edwards",
+    "source_title": "Works of Jonathan Edwards",
+    "publication_year": 1834,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "It is an easy thing for those that are in the sunshine to tell them that walk in the dark to rejoice.",
+    "author": "John Bunyan",
+    "source_title": "The Pilgrim's Progress",
+    "publication_year": 1678,
+    "page_or_url": "https://gutenberg.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "You have not lived today until you have done something for someone who can never repay you.",
+    "author": "John Bunyan",
+    "source_title": "Bunyan's Works",
+    "publication_year": 1692,
+    "page_or_url": "https://gutenberg.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The jewel of the Christian is his conscience void of offence.",
+    "author": "John Bunyan",
+    "source_title": "The Pilgrim's Progress",
+    "publication_year": 1678,
+    "page_or_url": "https://gutenberg.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "It is folly to pretend to that which we have not, and wisdom to improve what we have.",
+    "author": "Matthew Henry",
+    "source_title": "Matthew Henry's Commentary on the Whole Bible",
+    "publication_year": 1706,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "He is able who is willing, and He is willing who is able; and He is both.",
+    "author": "Matthew Henry",
+    "source_title": "Matthew Henry's Commentary on the Whole Bible",
+    "publication_year": 1706,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "None so empty of grace as those that are full of themselves.",
+    "author": "Matthew Henry",
+    "source_title": "Matthew Henry's Commentary on the Whole Bible",
+    "publication_year": 1706,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "God forbid that I should travel with anybody a quarter of an hour without speaking of Christ to them.",
+    "author": "George Whitefield",
+    "source_title": "Journals of George Whitefield",
+    "publication_year": 1771,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "I had rather wear out than rust out.",
+    "author": "George Whitefield",
+    "source_title": "Journals of George Whitefield",
+    "publication_year": 1771,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Lord, I am a lost sinner, but I thank thee that thou hast shown me the way of salvation.",
+    "author": "George Whitefield",
+    "source_title": "Sermons of George Whitefield",
+    "publication_year": 1771,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Do good now; you have but a little time to live, a little time to do good.",
+    "author": "George Whitefield",
+    "source_title": "Sermons of George Whitefield",
+    "publication_year": 1771,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The soul that has felt the drawing of divine grace is never again satisfied with the things of earth.",
+    "author": "Arthur W. Pink",
+    "source_title": "The Attributes of God",
+    "publication_year": 1930,
+    "page_or_url": "https://monergism.com",
+    "public_domain": true
+  },
+  {
+    "quote_text": "True salvation changes the whole man from the inside out.",
+    "author": "Arthur W. Pink",
+    "source_title": "The Sovereignty of God",
+    "publication_year": 1918,
+    "page_or_url": "https://monergism.com",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Christ's heart is open to us; it is always summer there, even when winter is abroad.",
+    "author": "Richard Sibbes",
+    "source_title": "The Bruised Reed",
+    "publication_year": 1630,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "God will have us to look for and expect all things from him, because all good comes from him.",
+    "author": "Richard Sibbes",
+    "source_title": "The Bruised Reed",
+    "publication_year": 1630,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Christ in the house of affliction comes to the soul as an angel, with a coal from the altar.",
+    "author": "Richard Sibbes",
+    "source_title": "The Soul's Conflict",
+    "publication_year": 1635,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Christ is the very essence of all delights and pleasures, the very soul of all agreeable things.",
+    "author": "Samuel Rutherford",
+    "source_title": "Letters of Samuel Rutherford",
+    "publication_year": 1664,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Grace tried is better than grace, and more than grace; it is glory in its infancy.",
+    "author": "Samuel Rutherford",
+    "source_title": "Letters of Samuel Rutherford",
+    "publication_year": 1664,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Lay Christ's cross as a covering to keep the sun from you, that so the heat of affliction may not scorch you.",
+    "author": "Samuel Rutherford",
+    "source_title": "Letters of Samuel Rutherford",
+    "publication_year": 1664,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "How rich a debtor is he who owes his whole self to God!",
+    "author": "Samuel Rutherford",
+    "source_title": "Letters of Samuel Rutherford",
+    "publication_year": 1664,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Do all the good you can, by all the means you can, in all the ways you can, in all the places you can, at all the times you can, to all the people you can, as long as ever you can.",
+    "author": "John Wesley",
+    "source_title": "Works of John Wesley",
+    "publication_year": 1791,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Light yourself on fire with passion and people will come from miles to watch you burn.",
+    "author": "John Wesley",
+    "source_title": "Works of John Wesley",
+    "publication_year": 1791,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Give me one hundred preachers who fear nothing but sin and desire nothing but God, and I care not whether they be clergymen or laymen, they alone will shake the gates of Hell.",
+    "author": "John Wesley",
+    "source_title": "Works of John Wesley",
+    "publication_year": 1791,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The gospel is good news of mercy to the undeserving. The symbol of the religion of Jesus is the cross, not the scales.",
+    "author": "John R. W. Stott",
+    "source_title": "The Cross of Christ",
+    "publication_year": 1986,
+    "page_or_url": "https://ivpress.com",
+    "public_domain": false
+  },
+  {
+    "quote_text": "The true soldier fights not because he hates what is in front of him, but because he loves what is behind him.",
+    "author": "G.K. Chesterton",
+    "source_title": "The Illustrated London News",
+    "publication_year": 1911,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "It is not the strength of your faith but the object of your faith that actually saves you.",
+    "author": "Timothy Keller",
+    "source_title": "The Reason for God",
+    "publication_year": 2008,
+    "page_or_url": "https://timothykeller.com",
+    "public_domain": false
+  },
+  {
+    "quote_text": "Jesus did not come to make bad people good. He came to make dead people live.",
+    "author": "Ravi Zacharias",
+    "source_title": "The Grand Weaver",
+    "publication_year": 2007,
+    "page_or_url": "https://rzim.org",
+    "public_domain": false
+  },
+  {
+    "quote_text": "Preach the gospel always, and if necessary use words.",
+    "author": "Francis of Assisi",
+    "source_title": "Works of Francis of Assisi",
+    "publication_year": 1226,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Thou madest us for Thyself, and our heart is restless, until it repose in Thee.",
+    "author": "Augustine of Hippo",
+    "source_title": "Confessions",
+    "publication_year": 397,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Love, and do what you will.",
+    "author": "Augustine of Hippo",
+    "source_title": "Homilies on the First Epistle of John",
+    "publication_year": 407,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "To fall in love with God is the greatest of all romances; to seek Him, the greatest adventure; to find Him, the greatest human achievement.",
+    "author": "Augustine of Hippo",
+    "source_title": "Works of Augustine",
+    "publication_year": 430,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Lord, make me chaste — but not yet.",
+    "author": "Augustine of Hippo",
+    "source_title": "Confessions",
+    "publication_year": 397,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The measure of love is to love without measure.",
+    "author": "Bernard of Clairvaux",
+    "source_title": "On Loving God",
+    "publication_year": 1128,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "The road to hell is paved with good intentions.",
+    "author": "Bernard of Clairvaux",
+    "source_title": "Works of Bernard",
+    "publication_year": 1153,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "He who labors as he prays lifts his heart to God with his hands.",
+    "author": "Bernard of Clairvaux",
+    "source_title": "On Loving God",
+    "publication_year": 1128,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Speak tenderly to Jerusalem, and cry to her that her warfare is ended, that her iniquity is pardoned.",
+    "author": "George Whitefield",
+    "source_title": "Sermons of George Whitefield",
+    "publication_year": 1771,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Christ is not valued at all unless He is valued above all.",
+    "author": "Augustine of Hippo",
+    "source_title": "Works of Augustine",
+    "publication_year": 430,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Man cannot cover what God would reveal.",
+    "author": "Thomas Watson",
+    "source_title": "A Body of Divinity",
+    "publication_year": 1692,
+    "page_or_url": "https://ccel.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "Humility is not thinking less of yourself, it is thinking of yourself less.",
+    "author": "C.S. Lewis",
+    "source_title": "Mere Christianity",
+    "publication_year": 1952,
+    "page_or_url": "https://cslewis.com",
+    "public_domain": false
+  },
+  {
+    "quote_text": "Hardships often prepare ordinary people for an extraordinary destiny.",
+    "author": "C.S. Lewis",
+    "source_title": "Works of C.S. Lewis",
+    "publication_year": 1963,
+    "page_or_url": "https://cslewis.com",
+    "public_domain": false
+  },
+  {
+    "quote_text": "There are far, far better things ahead than any we leave behind.",
+    "author": "C.S. Lewis",
+    "source_title": "Letters of C.S. Lewis",
+    "publication_year": 1966,
+    "page_or_url": "https://cslewis.com",
+    "public_domain": false
+  },
+  {
+    "quote_text": "Nothing that you have not given away will ever be really yours.",
+    "author": "C.S. Lewis",
+    "source_title": "Mere Christianity",
+    "publication_year": 1952,
+    "page_or_url": "https://cslewis.com",
+    "public_domain": false
+  },
+  {
+    "quote_text": "God is not a cosmic bellboy for whom we can press a button to get things.",
+    "author": "Harry Emerson Fosdick",
+    "source_title": "The Meaning of Prayer",
+    "publication_year": 1915,
+    "page_or_url": "https://archive.org",
+    "public_domain": true
+  },
+  {
+    "quote_text": "I am no longer my own, but Thine. Put me to what Thou wilt, rank me with whom Thou wilt.",
+    "author": "John Wesley",
+    "source_title": "A Covenant Prayer in the Wesleyan Tradition",
+    "publication_year": 1755,
+    "page_or_url": "https://archive.org",
     "public_domain": true
   }
 ]
