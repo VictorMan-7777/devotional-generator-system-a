@@ -918,7 +918,7 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
     christological = _christological_frame(brief)
     theme_variant = _theme_variant(brief, scripture_text)
     if christological:
-        larger_movement = "in which Jesus is being received, resisted, watched, and answered"
+        larger_movement = f"in which {focus.lower()} stands as the passage's defining event"
     elif brief.genre == "wisdom":
         larger_movement = "in which wisdom's invitation and folly's seduction are being set before the reader as two distinct paths"
     elif brief.genre == "epistle":
@@ -931,8 +931,8 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         larger_movement = "in which God's purposes, covenant faithfulness, and human response are being displayed through events"
     if christological:
         presence_sentence = (
-            f"What we see in {brief.scripture_reference} shows how people respond when Jesus stands near "
-            "and the cost of discipleship is no longer theoretical."
+            f"What {brief.scripture_reference} puts before the reader is not abstract: {focus.lower()}. "
+            "The text does not explain the scene from a distance — it names what people do when Jesus is near."
         )
     elif brief.genre == "wisdom":
         presence_sentence = (
@@ -1110,15 +1110,13 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
             f"{opening_sentence} "
             f"The passage puts one clear scene in front of us: {focus}. "
             "We should stay with that scene before we rush to a slogan. "
-            f"{genre_sentence} "
+            f"What the passage shows through {key_terms} must be received before it is applied. "
             "That keeps the reading honest."
         ),
         (
-            f"The wider context matters too. {brief.scripture_reference} belongs to a larger movement "
-            f"{larger_movement}. "
-            f"So the burden here is {burden}. "
-            f"The theological lane is {brief.theological_lane}. "
-            f"The passage stays concrete through {image} and {key_terms}. "
+            f"{brief.theological_lane}. "
+            f"{brief.scripture_reference} stays concrete through {image} — "
+            f"the specific language of {key_terms} does the work before any principle is named. "
             f"{theme_sentence}".strip()
         ),
         (
