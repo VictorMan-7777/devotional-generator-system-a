@@ -125,12 +125,12 @@ class ExpositionRAG:
             if entry_ref:
                 # Direct match: the indexed entry was tagged to this passage.
                 return norm_ref in entry_ref or entry_ref in norm_ref
-            # Heuristic fallback: check whether the excerpt text mentions the
-            # target book (used for un-indexed seed entries).
+            # Heuristic fallback for un-indexed seed entries (no passage_reference).
+            # Only exclude entries that explicitly mention the WRONG book.
+            # Entries that mention no book are general theological content and
+            # remain eligible (excluding them would over-concentrate results on
+            # sources that write about many passages, e.g. Spurgeon on Psalms).
             mentioned_books = _mentioned_books(entry.get("text", ""))
-            if target_books and not mentioned_books:
-                # Text mentions no specific book — too generic to be passage-specific; exclude.
-                return False
             if target_books and mentioned_books and target_books.isdisjoint(mentioned_books):
                 return False
             return True
@@ -151,7 +151,24 @@ class ExpositionRAG:
                 scored.append((overlap, entry))
 
         if scored:
-            matched = [entry for _, entry in sorted(scored, key=lambda item: (-item[0], self._raw.index(item[1])))]
+            sorted_scored = sorted(scored, key=lambda item: (-item[0], self._raw.index(item[1])))
+            # Round-robin interleave by source to prevent any single source
+            # (e.g. a large corpus like Metropolitan Tabernacle Pulpit) from
+            # occupying all top slots.  Sources are ordered by their best score.
+            source_order: list[str] = []
+            buckets: dict[str, list[Dict[str, Any]]] = {}
+            for _score, entry in sorted_scored:
+                st = entry["source_title"]
+                if st not in buckets:
+                    source_order.append(st)
+                    buckets[st] = []
+                buckets[st].append(entry)
+            interleaved: list[Dict[str, Any]] = []
+            while any(buckets[st] for st in source_order):
+                for st in source_order:
+                    if buckets[st]:
+                        interleaved.append(buckets[st].pop(0))
+            matched = interleaved
         elif primary_matches:
             matched = primary_matches
         else:
