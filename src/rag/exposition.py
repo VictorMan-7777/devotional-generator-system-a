@@ -128,6 +128,9 @@ class ExpositionRAG:
             # Heuristic fallback: check whether the excerpt text mentions the
             # target book (used for un-indexed seed entries).
             mentioned_books = _mentioned_books(entry.get("text", ""))
+            if target_books and not mentioned_books:
+                # Text mentions no specific book — too generic to be passage-specific; exclude.
+                return False
             if target_books and mentioned_books and target_books.isdisjoint(mentioned_books):
                 return False
             return True

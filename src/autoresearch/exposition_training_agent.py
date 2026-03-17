@@ -13,11 +13,23 @@ from src.autoresearch.grammar_advisor_agent import build_grammar_advisor_report
 from src.autoresearch.theological_reviewer_agent import build_theological_reviewer_report
 from src.autoresearch.training_corpus import ensure_approved_training_artifact
 from src.autoresearch.llm_exposition_core import build_llm_exposition_trainer_review
+from src.generation.editorial import build_editorial_day_brief
+from src.generation.real_section_generator import _build_exposition
 from src.models.devotional import DevotionalBook
 from src.persistence.paths import default_registry_db_path
 from src.rag.research_librarian import prepare_passage_resource_bundle
 from src.scripture.planner import select_daily_key_verses_reference
 from src.scripture.retrieval import ScriptureFailureAlert, ScriptureRetriever, ScriptureResult
+
+
+# Benchmark passages for fresh-generation evaluation — rotate through genres
+_FRESH_BENCHMARK_PASSAGES = [
+    ("Luke 15:1-2", "Luke 15:1-10"),
+    ("John 10:11-13", "John 10:1-18"),
+    ("Romans 5:1-5", "Romans 5:1-11"),
+    ("Psalm 23:1-3", "Psalm 23:1-6"),
+    ("Philippians 2:5-8", "Philippians 2:1-11"),
+]
 
 
 EXPOSITION_TRAINER_PROFILE = {
@@ -71,6 +83,89 @@ def _scripture_text(retriever: ScriptureRetriever, reference: str) -> str:
     if isinstance(result, ScriptureFailureAlert):
         return reference
     return reference
+
+
+def run_fresh_exposition_benchmark(repo_root: Path) -> dict[str, Any]:
+    """Generate fresh exposition text using current templates and evaluate with LLM.
+
+    Unlike run_llm_exposition_trainer_review() which reads static book.json artifacts,
+    this regenerates exposition dynamically from the deterministic template so that
+    score changes immediately reflect code improvements — no new production run needed.
+    Rotates through benchmark passages to cover multiple genres each cycle.
+    """
+    import hashlib
+
+    retriever = ScriptureRetriever()
+    now = _utc_now()
+
+    # Rotate through benchmark passages by hour so each gets coverage
+    hour_index = datetime.now(timezone.utc).hour % len(_FRESH_BENCHMARK_PASSAGES)
+    focal_reference, context_reference = _FRESH_BENCHMARK_PASSAGES[hour_index]
+
+    scripture_text = _scripture_text(retriever, context_reference)
+    if not scripture_text or scripture_text == context_reference:
+        return {
+            "status": "blocked",
+            "benchmark_passage": focal_reference,
+            "error": "Scripture retrieval failed for fresh benchmark.",
+            "evaluation": None,
+        }
+
+    brief = build_editorial_day_brief(
+        day_number=1,
+        scripture_reference=focal_reference,
+        scripture_text=scripture_text,
+        study_window_reference=context_reference,
+    )
+    exposition_text = _build_exposition(brief=brief, scripture_text=scripture_text)
+
+    try:
+        review = build_llm_exposition_trainer_review(
+            exposition_text,
+            passage_text=scripture_text,
+            focal_reference=focal_reference,
+            topic=f"{focal_reference} - {brief.focus_clause}",
+        )
+    except Exception as exc:
+        return {
+            "status": "blocked",
+            "benchmark_passage": focal_reference,
+            "error": str(exc),
+            "evaluation": None,
+        }
+
+    slug = re.sub(r"[^a-z0-9]+", "-", focal_reference.lower()).strip("-")
+    log_experiment(
+        experiment_id=f"exposition-fresh-benchmark__{slug}__{now}",
+        worker_name="exposition_writer",
+        benchmark_name="llm-fresh-exposition-benchmark",
+        benchmark_reference=slug,
+        status=review["status"],
+        attempted_change=(
+            f"Fresh benchmark: LLM trainer evaluated dynamically-generated exposition for {focal_reference}. "
+            "Score reflects current template quality without requiring a new production run."
+        ),
+        metrics={
+            "score": review["score"],
+            "passage_grounded": review["passage_grounded"],
+            "generic_phrase_count": review["generic_phrase_count"],
+        },
+        learning_note=(
+            "Fresh benchmark regenerates exposition from current deterministic templates each cycle. "
+            "Score changes directly track template improvements."
+        ),
+        keep_decision="keep" if review["status"] == "pass" else "review",
+        created_at_utc=now,
+        completed_at_utc=now,
+    )
+
+    return {
+        "status": review["status"],
+        "benchmark_passage": focal_reference,
+        "topic": f"{focal_reference} - {brief.focus_clause}",
+        "exposition_text": exposition_text,
+        "evaluation": review,
+    }
 
 
 def run_llm_exposition_trainer_review(repo_root: Path, *, artifact: dict[str, Any]) -> dict[str, Any]:
@@ -373,13 +468,25 @@ def log_exposition_training_cycle(repo_root: Path) -> dict[str, Any]:
                 completed_at_utc=now,
             )
 
-        # ── LLM trainer review: evaluate the deterministic exposition writer's actual output ──
-        # This is the primary training signal — the LLM trainer reads what the deterministic
-        # writer produced and scores it for passage faithfulness and scaffold avoidance.
+        # ── Fresh benchmark: regenerate exposition from current templates and score immediately ──
+        # The deterministic writer is code — same input → same output. Fresh benchmark
+        # means template improvements show up in scores immediately without waiting for
+        # new production runs. This is the primary training signal for the deterministic writer.
+        fresh_benchmark = run_fresh_exposition_benchmark(repo_root)
+        payload["fresh_benchmark"] = fresh_benchmark
+        fresh_score = int((fresh_benchmark.get("evaluation") or {}).get("score", 0) or 0)
+        fresh_status = str(fresh_benchmark.get("status") or "blocked")
+
+        # ── Artifact benchmark: evaluate exposition from an approved production artifact ──
+        # Secondary signal — reflects historical quality of past production runs.
         llm_benchmark = run_llm_exposition_trainer_review(repo_root, artifact=payload["artifact"])
         payload["llm_benchmark"] = llm_benchmark
         llm_score = int((llm_benchmark.get("evaluation") or {}).get("score", 0) or 0)
         llm_status = str(llm_benchmark.get("status") or "blocked")
+
+        # Primary gate uses fresh benchmark (current template quality)
+        llm_score = fresh_score
+        llm_status = fresh_status
 
         strong_assignments = [
             item for item in payload["assignments"] if str(item.get("resource_strength", "")).lower() == "strong"
