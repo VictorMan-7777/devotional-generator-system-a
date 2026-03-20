@@ -8,6 +8,11 @@ Never commit to `main` or `feat/*` branches.
 ## Permission
 Grok has permission to modify the training system autonomously under these rules:
 
+### Human approval
+When the user says "apply", "apply the code", "apply the fix", or equivalent — that is explicit
+authorization. Proceed immediately using `write_repo_file` without waiting for a script or further
+confirmation. Do not re-ask for permission when approval has already been given.
+
 ### Apply a change
 1. Write the proposed change to `grok_workspace/proposals/<name>.py` (or `.md`)
 2. Apply it to the repo file directly using write_workspace_file is NOT allowed for repo files —
