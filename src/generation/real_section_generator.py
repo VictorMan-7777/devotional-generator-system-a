@@ -214,7 +214,7 @@ def _normalize_scripture_text(text: str) -> str:
         if re.search(r"[.!?;,:\"'“”]", line):
             return False
         return all(
-            word[:1].isupper() or word.lower() in stopwords
+            re.sub(r"^\W+", "", word)[:1].isupper() or word.lower().strip("()[]") in stopwords
             for word in words
         )
 
