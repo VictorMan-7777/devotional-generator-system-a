@@ -16,6 +16,13 @@ htmlcov/
 venv/
 env/
 
+# Grok workspace — persistent but not committed (except README)
+grok_workspace/scripts/
+grok_workspace/proposals/
+grok_workspace/analysis/
+grok_workspace/tasks/
+grok_workspace/chat.md
+
 # macOS
 .DS_Store
 .AppleDouble
@@ -37,3 +44,6 @@ builder-manifest.yaml
 
 # Cowork tool local state
 .cowork/
+
+# Local secrets
+.env.local
