@@ -616,8 +616,27 @@ def build_assignment_queue(repo_root: Path, *, limit: int = 3) -> list[OutlineTr
     # If the static recommendation pool is empty (exhausted or never populated),
     # call the trainer LLM directly to select new passages from its biblical knowledge.
     trainer_selected = _latest_trainer_recommendations(repo_root)
-    if not trainer_selected:
-        print("[build_assignment_queue] no cached recommendations — calling trainer LLM refresh")
+
+    # Also trigger refresh when all cached passages are blocked (deferred or fully tried),
+    # not just when the list is empty — the March-16 JSON fallback always returns 5 passages
+    # but they may all be exhausted, causing a silent no_assignments loop.
+    def _all_blocked(passages: list[HarnessPassage]) -> bool:
+        if not passages:
+            return True
+        for p in passages:
+            if _passage_is_deferred_for_now(p.reference):
+                continue
+            teaching_method = _teaching_mode_for_passage(p.slug)
+            restricted = _templates_for_teaching_mode(teaching_method)
+            if any(_experiment_key(p.slug, t) not in tried for t in restricted):
+                return False  # at least one unblocked combo exists
+        return True
+
+    if not trainer_selected or _all_blocked(trainer_selected):
+        print(
+            f"[build_assignment_queue] {'no cached recommendations' if not trainer_selected else 'all cached passages blocked'}"
+            " — calling trainer LLM refresh"
+        )
         trainer_selected = _refresh_trainer_recommendations(repo_root)
         if not trainer_selected:
             print("[build_assignment_queue] trainer LLM refresh returned empty — will return no_assignments")

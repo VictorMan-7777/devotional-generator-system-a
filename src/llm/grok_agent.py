@@ -90,6 +90,38 @@ def _write_workspace_file(path: str, content: str) -> str:
         return f"ERROR: {exc}"
 
 
+_ALLOWED_WRITE_PREFIXES = (
+    "src/autoresearch/",
+    "src/rag/",
+    "src/llm/",
+    "src/generation/",
+    "scripts/autoresearch/",
+)
+
+
+def _write_repo_file(path: str, content: str) -> str:
+    """Write content to an allowed repo file. Scoped to Grok's autonomous change directories."""
+    p = Path(path)
+    # Normalise — strip leading slash or project root prefix
+    rel = str(p)
+    if rel.startswith(str(_PROJECT_ROOT)):
+        rel = rel[len(str(_PROJECT_ROOT)):].lstrip("/")
+    target = (_PROJECT_ROOT / rel).resolve()
+    if not str(target).startswith(str(_PROJECT_ROOT)):
+        return "ERROR: write blocked — path outside project root"
+    if not any(rel.startswith(prefix) for prefix in _ALLOWED_WRITE_PREFIXES):
+        return (
+            f"ERROR: write blocked — {rel!r} is outside Grok's autonomous scope. "
+            f"Allowed: {', '.join(_ALLOWED_WRITE_PREFIXES)}"
+        )
+    try:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(content, encoding="utf-8")
+        return f"OK: wrote {len(content)} bytes to {rel}"
+    except Exception as exc:
+        return f"ERROR: {exc}"
+
+
 def _list_files(pattern: str) -> str:
     """List files matching a glob pattern relative to the project root, or absolute."""
     p = Path(pattern)
@@ -107,6 +139,7 @@ _TOOL_HANDLERS = {
         args["path"], int(args.get("offset", 0)), int(args.get("limit", 100))
     ),
     "write_workspace_file": lambda args: _write_workspace_file(args["path"], args["content"]),
+    "write_repo_file": lambda args: _write_repo_file(args["path"], args["content"]),
     "search_file": lambda args: _search_file(args["path"], args["pattern"]),
     "list_files": lambda args: _list_files(args["pattern"]),
 }
@@ -148,6 +181,25 @@ _TOOL_SCHEMAS = [
                 "type": "object",
                 "properties": {
                     "path": {"type": "string", "description": "Path within grok_workspace/, e.g. 'proposals/fix_density_check.py' or 'tasks/todo.md'"},
+                    "content": {"type": "string", "description": "Full file content to write"},
+                },
+                "required": ["path", "content"],
+            },
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "write_repo_file",
+            "description": (
+                "Write a file directly to the repository. Scoped to Grok's autonomous change directories: "
+                "src/autoresearch/, src/rag/, src/llm/, src/generation/, scripts/autoresearch/. "
+                "Use this to apply fixes directly. Always verify via a supervisor cycle after writing."
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "path": {"type": "string", "description": "Path relative to project root, e.g. 'src/autoresearch/outliner_training_agent.py'"},
                     "content": {"type": "string", "description": "Full file content to write"},
                 },
                 "required": ["path", "content"],
