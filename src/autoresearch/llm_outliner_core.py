@@ -584,7 +584,12 @@ def _summarise_experiments(experiment_history: list[dict[str, Any]]) -> str:
         elif status == "revise":
             by_passage[slug]["revise"] += 1
     if not by_passage:
-        return "No experiments recorded yet."
+        return (
+            "No experiments recorded yet. "
+            "This is the bootstrap phase. "
+            "Select fresh beginner-friendly passages (short clear narratives with strong movement) "
+            "from your biblical knowledge for an absolute novice outliner."
+        )
     lines = []
     for slug, counts in sorted(by_passage.items(), key=lambda kv: -kv[1]["pass"]):
         ref = counts["reference"]
