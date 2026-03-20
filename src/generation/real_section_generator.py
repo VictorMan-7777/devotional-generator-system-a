@@ -1057,7 +1057,7 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         larger_movement = "in which God's purposes, covenant faithfulness, and human response are being displayed through events"
     if christological:
         presence_sentence = (
-            f"What {brief.scripture_reference} puts before the reader is not abstract: {focus.lower()}. "
+            f"What {brief.scripture_reference} puts before the reader is not abstract. "
             "The text does not explain the scene from a distance — it names what people do when Jesus is near."
         )
     elif brief.genre == "wisdom":
@@ -1249,24 +1249,24 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
             f"{opening_sentence} "
             f"The passage puts one scene before us: \"{focus_quote}.\" "
             f"That phrase — not a general principle, but those specific words — sets the day's register. "
-            f"What {brief.scripture_reference} shows through {key_terms} must be received before it is applied. "
-            "That specificity keeps the reading grounded in this text."
+            f"What {brief.scripture_reference} shows here must be received before it is applied. "
+            f"The text's particularity is its pastoral authority — what {brief.scripture_reference} says is what the reader must face."
         ),
         (
             f"{(brief.theological_lane or '')[:1].upper()}{(brief.theological_lane or '')[1:]}. "
             f"The text stays concrete: \"{focus_quote}\" — "
-            f"the language of {key_terms} carries the day's theological weight before any principle is named. "
+            "those specific words carry the day's theological weight before any principle is named. "
             f"{theme_sentence}".strip()
         ),
         (
             f"{presence_sentence} "
             "The point is not bare information. "
             f"It presses into {emphasis}. "
-            f"{drift_sentence} "
-            "We should let the passage name the pressure point for the day."
+            "Scripture names the pressure point before we apply it — the text does that work, not a principle imported from elsewhere. "
+            "We should receive what it shows before reaching for application."
         ),
         (
-            f"If the scene is shaped by {focus}, then obedience today should answer that same pressure point. "
+            f"What {brief.scripture_reference} reveals calls for concrete response, not abstract agreement. "
             f"Where the text exposes fear, we should {practice_move}. "
             f"Where it honors devotion, we should practice {communal_application}. "
             f"{closing_reference} "
@@ -1281,23 +1281,23 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
     # Deterministic fallback padding if wording drifts below validator minimum.
     # These sentences reference the passage's specific quote and terms — not generic devotional filler.
     addenda = [
-        f"The language of \"{focus_quote}\" is not decorative — it carries the specific weight of {brief.scripture_reference}'s claim.",
-        f"An exposition that replaces \"{focus_quote}\" with a general theological concept loses what {brief.scripture_reference} actually says.",
-        f"The details {key_terms} represent do their work on the conscience precisely because they are this passage's particulars.",
-        f"Careful attention to \"{focus_quote}\" before reaching for application keeps the day tethered to this text.",
+        f"The language of this scene is not decorative — it carries the specific weight of {brief.scripture_reference}'s claim.",
+        f"An exposition that replaces what {brief.scripture_reference} actually says with a general theological concept loses the particularity the text demands.",
+        f"This passage does its work on the conscience precisely because its words are particular, not borrowed from another text or another scene.",
+        f"Careful attention to the passage's specific language before reaching for application keeps the day tethered to what God has actually said.",
     ]
     if christological:
         addenda.extend(
             [
-                f"The passage fixes courage to the specific scene of \"{focus_quote}\" — not to a general confidence in Jesus detached from this text.",
+                f"The passage fixes courage to this specific scene — not to a general confidence in Jesus detached from what {brief.scripture_reference} says.",
                 f"Where {brief.scripture_reference} names what faithfulness costs, the reader is trained by that cost, not by a principle imported from elsewhere.",
             ]
         )
     else:
         addenda.extend(
             [
-                f"When {brief.scripture_reference} gives us \"{focus_quote},\" that phrase sets the pastoral work for the day.",
-                f"The exposition honors \"{focus_quote}\" when it reads those words on their own terms before drawing any lesson from them.",
+                f"What {brief.scripture_reference} names sets the pastoral work for the day before any application is drawn.",
+                f"The exposition honors this passage when it reads these specific words on their own terms before drawing any lesson from them.",
             ]
         )
     theme_addenda = {
