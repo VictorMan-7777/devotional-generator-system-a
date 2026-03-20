@@ -1475,12 +1475,14 @@ def _scripture_image(scripture_text: str) -> str:
     # Strip ASCII quotes, backtick, and Unicode curly/smart quotes that appear in NASB text
     cleaned = re.sub(r"[\"\u201c\u201d\u2018\u2019'`\u2032\u2033]+", "", str(scripture_text or "")).strip()
     cleaned = re.sub(r"\s+", " ", cleaned)
-    clauses = [part.strip(" ,;:-") for part in re.split(r"[.!?]", cleaned) if part.strip()]
-    # Skip short heading/title clauses (e.g. "The Lord, the Psalmist's Shepherd", "A Psalm of David")
-    # to reach actual verse content. Use the first clause with >= 7 words.
+    # Split by sentence-ending punctuation AND semicolons so "The Lord is my shepherd;
+    # I shall not want" yields "The Lord is my shepherd" as a complete sub-clause.
+    clauses = [part.strip(" ,;:-") for part in re.split(r"[.!?;]", cleaned) if part.strip()]
+    # Skip short heading/title clauses (e.g. "The Lord, the Psalmist's Shepherd", "A Psalm of David").
+    # Use the first clause with >= 5 words to capture complete sub-clauses like "The Lord is my shepherd".
     chosen = ""
     for clause in clauses:
-        if len(clause.split()) >= 7:
+        if len(clause.split()) >= 5:
             chosen = clause
             break
     if not chosen and clauses:
@@ -1715,7 +1717,12 @@ def _build_prayer(
             scripture_reference=scripture_reference,
             scripture_text=scripture_text,
         )
-    focus = _communalize_focus(brief.focus_clause)
+    _prayer_passage_lower = (scripture_text or "").lower()
+    _prayer_focus_lower = (brief.focus_clause or "").lower().strip().rstrip(".,;:")
+    _focus_in_passage = bool(
+        _prayer_focus_lower and len(_prayer_focus_lower) >= 6 and _prayer_focus_lower in _prayer_passage_lower
+    )
+    focus = _communalize_focus(brief.focus_clause) if _focus_in_passage else ""
     exposition_sentence = _first_exposition_sentence(exposition_text)
     theme_key = _theme_key(brief, scripture_text)
     christological = _christological_frame(brief)
@@ -1780,7 +1787,11 @@ def _build_prayer(
     _prayer_image = _scripture_image(scripture_text)
     sentences = [
         f"Father, thank You for speaking clearly in {brief.scripture_reference}.",
-        f"In this passage You bring {brief.pastoral_burden} into the open through {focus}.",
+        (
+            f"In this passage You bring {brief.pastoral_burden} into the open through {focus}."
+            if focus
+            else f"In this passage You bring {brief.pastoral_burden} into the open."
+        ),
         (
             f"Lord Jesus, let the words \"{_prayer_image}\" press into our obedience today, not only our understanding."
             if christological
