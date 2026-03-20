@@ -214,11 +214,21 @@ def run_grok_agent(
     api_key = os.environ.get("XAI_API_KEY")
     client = openai.OpenAI(api_key=api_key, base_url="https://api.x.ai/v1")
 
+    # Load persistent memory file if present
+    _memory_path = _PROJECT_ROOT / "grok_workspace" / "MEMORY.md"
+    _memory = ""
+    if _memory_path.exists():
+        try:
+            _memory = _memory_path.read_text(encoding="utf-8")
+        except Exception:
+            pass
+
     _system = system or (
-        "You are a senior Python engineer analysing and fixing a devotional content "
+        "You are Grok, autonomous monitor and engineer for the DevG devotional content "
         "generation system. Use the provided file tools to read only what you need. "
         "When you have enough information, return your complete answer — code blocks "
-        "where code is required, prose where analysis is required."
+        "where code is required, prose where analysis is required.\n\n"
+        + (f"## Your persistent memory (update grok_workspace/MEMORY.md when state changes):\n{_memory}" if _memory else "")
     )
 
     messages: list[dict] = [
