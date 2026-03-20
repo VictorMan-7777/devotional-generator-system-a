@@ -1030,6 +1030,28 @@ def _theme_variant(brief: EditorialDayBrief, scripture_text: str) -> str:
     return ""
 
 
+def _focus_clause_in_passage(focus_clause: str, passage_text: str) -> bool:
+    """Return True if focus_clause (or any of its sub-clauses) appears in passage_text.
+
+    Handles multi-sentence focus_clauses (e.g. "He said. Go.") by checking each
+    sub-clause independently against the passage. Requires at least 6 characters to
+    avoid trivial single-word matches.
+    """
+    passage_lower = (passage_text or "").lower()
+    full_lower = (focus_clause or "").lower().strip().rstrip(".,;:")
+    if not full_lower or len(full_lower) < 6:
+        return False
+    # Full-phrase match first (most precise)
+    if full_lower in passage_lower:
+        return True
+    # Try each sub-clause split by sentence-ending punctuation
+    for part in re.split(r"[.!?;]", full_lower):
+        part = part.strip().rstrip(".,;:")
+        if len(part) >= 6 and part in passage_lower:
+            return True
+    return False
+
+
 def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
     focus = _communalize_focus(brief.focus_clause)
     burden = brief.pastoral_burden
@@ -1235,9 +1257,7 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
     # in the supplied passage text. The outliner may derive focus_clause from adjacent verses
     # (e.g. Philippians 2:11 when the passage ends at 2:8). Validate before using it;
     # fall back to the image (which is always extracted directly from scripture_text).
-    _passage_lower = (scripture_text or "").lower()
-    _focus_lower = (brief.focus_clause or "").lower().strip().rstrip(".,;:")
-    if _focus_lower and len(_focus_lower) >= 6 and _focus_lower in _passage_lower:
+    if _focus_clause_in_passage(brief.focus_clause, scripture_text):
         focus_quote = brief.focus_clause
     else:
         # focus_clause fell outside the focal passage (outliner used adjacent verse).
@@ -1717,12 +1737,11 @@ def _build_prayer(
             scripture_reference=scripture_reference,
             scripture_text=scripture_text,
         )
-    _prayer_passage_lower = (scripture_text or "").lower()
-    _prayer_focus_lower = (brief.focus_clause or "").lower().strip().rstrip(".,;:")
-    _focus_in_passage = bool(
-        _prayer_focus_lower and len(_prayer_focus_lower) >= 6 and _prayer_focus_lower in _prayer_passage_lower
+    focus = (
+        _communalize_focus(brief.focus_clause)
+        if _focus_clause_in_passage(brief.focus_clause, scripture_text)
+        else ""
     )
-    focus = _communalize_focus(brief.focus_clause) if _focus_in_passage else ""
     exposition_sentence = _first_exposition_sentence(exposition_text)
     theme_key = _theme_key(brief, scripture_text)
     christological = _christological_frame(brief)
