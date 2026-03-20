@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 
 from src.models.pipeline import PassageResourceBundle, PassageResourceRecord
 from src.rag.exposition import ExpositionRAG
-from src.rag.library_catalog import chapter_window, scripture_book, select_catalog_resources
+from src.rag.acquisition_librarian import escalate_for_passage
+from src.rag.library_catalog import scripture_book, select_catalog_resources
+from src.rag.reference_librarian import lookup_resources as _catalog_lookup
 from src.rag.library_requests import (
     list_resource_acquisition_requests,
     request_resource_acquisition,
@@ -73,6 +76,9 @@ def prepare_passage_resource_bundle(
     topic: str,
     scripture_reference: str,
     db_path: Path,
+    num_days: int = 1,
+    day_plan: list[dict] | None = None,
+    _skip_escalation: bool = False,
 ) -> PassageResourceBundle:
     reference = str(scripture_reference or "").strip()
     if not reference:
@@ -195,6 +201,131 @@ def prepare_passage_resource_bundle(
             shared_seen.add(key)
             shared_resources.append(hint)
 
+    # --- Seminary librarian curation (LLM) ---
+    # Ask the LLM to evaluate the bundle, annotate each resource with passage-
+    # specific notes, and identify gaps.  Disabled when API key is absent or
+    # when explicitly skipped (e.g., on the rebuild pass after acquisition).
+    all_exposition = context_entries + theological_entries
+    librarian_assessment: dict | None = None
+    if not _skip_escalation and os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("OPENAI_API_KEY"):
+        try:
+            from src.rag.llm_research_librarian_core import curate_passage_bundle
+            raw_excerpts = [
+                {
+                    "source_title": r.source_title,
+                    "author": r.author,
+                    "text": r.excerpt_text or "",
+                    "source_type": r.source_type,
+                    "relevance_score": r.relevance_score or 0.0,
+                }
+                for r in all_exposition
+            ]
+            hint_texts = [h.excerpt_text or "" for h in reading_note_hints if h.excerpt_text]
+            librarian_assessment = curate_passage_bundle(
+                passage_reference=reference,
+                topic=topic or reference,
+                candidate_excerpts=raw_excerpts,
+                reading_note_hints=hint_texts,
+            )
+            # Annotate resources with the librarian's passage-specific notes
+            annotation_map = {
+                a["source_title"]: a
+                for a in librarian_assessment.get("resource_annotations", [])
+            }
+            for record in all_exposition:
+                ann = annotation_map.get(record.source_title)
+                if ann:
+                    record = PassageResourceRecord(
+                        purpose=record.purpose,
+                        role_targets=record.role_targets,
+                        source_title=record.source_title,
+                        author=record.author,
+                        source_type=record.source_type,
+                        excerpt_text=record.excerpt_text,
+                        note=ann.get("passage_relevance") or record.note,
+                        relevance_score=(
+                            record.relevance_score + (0.1 if ann.get("priority") == "primary" else 0)
+                        ),
+                    )
+            # Surface suggested search terms as additional queries if bundle is thin
+            if librarian_assessment.get("bundle_assessment") == "thin":
+                extra_queries = librarian_assessment.get("suggested_search_terms", [])
+                seen_extra: set[tuple] = {
+                    (r.source_title, r.author, r.source_type, r.excerpt_text)
+                    for r in all_exposition
+                }
+                for extra_q in extra_queries[:2]:
+                    for purpose, bucket in (
+                        ("context", context_entries),
+                        ("theological", theological_entries),
+                    ):
+                        for excerpt in rag.retrieve_for_paragraph(
+                            paragraph_type=purpose,
+                            passage_reference=reference,
+                            topic=extra_q,
+                            source_types=["commentary", "reference"],
+                        ):
+                            key = (purpose, excerpt.source_title, excerpt.author, excerpt.text)
+                            if key not in seen:
+                                seen.add(key)
+                                seen_extra.add(key)
+                                bucket.append(
+                                    PassageResourceRecord(
+                                        purpose=purpose,
+                                        role_targets=["outliner", "exposition_writer"],
+                                        source_title=excerpt.source_title,
+                                        author=excerpt.author,
+                                        source_type=excerpt.source_type,
+                                        excerpt_text=excerpt.text,
+                                        note=f"Librarian supplemental search ({extra_q!r}).",
+                                        relevance_score=float(excerpt.relevance_score),
+                                    )
+                                )
+                            if len(bucket) >= 10:
+                                break
+        except Exception:
+            pass  # LLM unavailable — fall back to deterministic bundle silently
+
+    # --- Per-day exposition packages for the writer ---
+    # When a day_plan is supplied the research librarian curates a focused set
+    # of exposition resources for each day's specific passage.  The outliner
+    # always receives the full-arc outliner_resources (no per-day split).
+    exposition_resources_by_day: dict[int, list[PassageResourceRecord]] = {}
+    if day_plan:
+        for day_num, day_row in enumerate(day_plan, start=1):
+            day_ref = str(day_row.get("scripture_reference") or reference).strip() or reference
+            day_topic = str(day_row.get("topic") or topic).strip() or topic
+            day_entries: list[PassageResourceRecord] = []
+            day_seen: set[tuple[str, str, str, str]] = set()
+            for purpose in ("context", "theological"):
+                for excerpt in rag.retrieve_for_paragraph(
+                    paragraph_type=purpose,
+                    passage_reference=day_ref,
+                    topic=day_topic,
+                    source_types=["commentary", "reference"],
+                ):
+                    key = (purpose, excerpt.source_title, excerpt.author, excerpt.text)
+                    if key in day_seen:
+                        continue
+                    day_seen.add(key)
+                    day_entries.append(
+                        PassageResourceRecord(
+                            purpose=purpose,
+                            role_targets=["exposition_writer"],
+                            source_title=excerpt.source_title,
+                            author=excerpt.author,
+                            source_type=excerpt.source_type,
+                            excerpt_text=excerpt.text,
+                            note=f"Day {day_num} exposition resource for {day_ref}.",
+                            relevance_score=float(excerpt.relevance_score),
+                        )
+                    )
+                    if len(day_entries) >= 6:
+                        break
+                if len(day_entries) >= 6:
+                    break
+            exposition_resources_by_day[day_num] = day_entries
+
     bundle = PassageResourceBundle(
         topic=topic,
         scripture_reference=reference,
@@ -202,9 +333,62 @@ def prepare_passage_resource_bundle(
         shared_resources=shared_resources,
         outliner_resources=outliner_resources,
         exposition_resources=context_entries + theological_entries,
+        exposition_resources_by_day=exposition_resources_by_day,
     )
-    _request_trainer_review_if_thin(bundle)
+
+    acquired = False if _skip_escalation else _escalate_if_thin(bundle)
+    if acquired:
+        # New material was indexed — rebuild the bundle so this generation
+        # run benefits from it rather than waiting until the next run.
+        print(
+            f"[Research Librarian] New resources acquired for {reference} — "
+            "rebuilding bundle with fresh catalog...",
+            flush=True,
+        )
+        return prepare_passage_resource_bundle(
+            topic=topic,
+            scripture_reference=reference,
+            db_path=db_path,
+            num_days=num_days,
+            day_plan=day_plan,
+            _skip_escalation=True,
+        )
+
     return bundle
+
+
+def request_more_research(
+    *,
+    scripture_reference: str,
+    topic: str,
+    reason: str,
+    requested_by: str = "exposition_writer",
+    missing_kinds: list[str] | None = None,
+) -> dict:
+    """Called by any worker that is unhappy with its research bundle.
+
+    Triggers a full acquisition escalation so the librarian can source
+    additional materials.  Safe to call multiple times for the same passage —
+    escalate_for_passage() is idempotent.
+
+    Args:
+        scripture_reference: The passage the worker needs more material on.
+        topic: The devotional topic context.
+        reason: Why the current bundle was insufficient (shown in logs/DB).
+        requested_by: Which worker is requesting (e.g. 'exposition_writer').
+        missing_kinds: Which resource types are thin ('exposition', 'outline').
+    """
+    kinds = missing_kinds or ["exposition"]
+    print(
+        f"\n[Research Librarian] {requested_by} requested more research for "
+        f"{scripture_reference}: {reason}",
+        flush=True,
+    )
+    return escalate_for_passage(
+        scripture_reference=scripture_reference,
+        topic=topic,
+        missing_kinds=kinds,
+    )
 
 
 def clear_requests_satisfied_by_current_holdings(
@@ -247,6 +431,8 @@ def clear_stale_requests_when_shelf_is_sufficient(
                 worker_name=worker_name,
                 requested_needs=list(request.requested_resource_kinds or ["background"]),
             )
+            # Note: select_catalog_resources is still used here (not reference_librarian)
+            # because this path counts catalog entries directly (not PassageResourceRecord objs).
             if len(matches) < minimum_matches:
                 continue
             update_resource_acquisition_request(
@@ -298,30 +484,43 @@ def apply_library_trainer_review(
     return {"cleared_request_ids": cleared, "approved_request_ids": approved}
 
 
-def _request_trainer_review_if_thin(bundle: PassageResourceBundle) -> None:
+def _escalate_if_thin(bundle: PassageResourceBundle) -> bool:
+    """Run the acquisition pipeline if the bundle is thin.
+
+    Returns True if new material was indexed (caller should rebuild the bundle).
+    Returns False if nothing was needed or nothing new was found.
+    """
     missing_kinds: list[str] = []
     if len(bundle.exposition_resources) < 4:
         missing_kinds.append("exposition")
     if len(bundle.outliner_resources) < 2:
         missing_kinds.append("outline")
     if not missing_kinds:
-        return
+        return False
+    # Record a trainer-review request so the library trainer can assess the gap.
+    # This call uses the local import so it can be observed/intercepted by callers.
     request_resource_acquisition(
         requested_by="research_librarian",
         scripture_reference=bundle.scripture_reference,
-        topic=bundle.topic,
-        worker_name="research_librarian",
+        topic=bundle.topic or "",
         reason=(
-            "Shared passage bundle is too thin for reliable worker use. "
-            f"Missing strength in: {', '.join(missing_kinds)}."
+            f"Research librarian bundle thin for {bundle.scripture_reference}. "
+            f"Missing: {', '.join(missing_kinds)}."
         ),
         requested_resource_kinds=missing_kinds,
         status="trainer_review",
-        notes=(
-            "Trainer review required before this can become a general-librarian acquisition request. "
-            "Research librarian is still in shelf-identification training."
-        ),
     )
+    # Trigger the full acquisition pipeline — downloads any cataloged holdings
+    # missing source.txt, indexes them, drafts library cards, and searches
+    # archive.org if still insufficient.
+    result = escalate_for_passage(
+        scripture_reference=bundle.scripture_reference,
+        topic=bundle.topic or "",
+        missing_kinds=missing_kinds,
+    )
+    # Return True only if new rows were actually indexed — tells the caller
+    # to rebuild the bundle from the now-richer catalog.
+    return any(idx.get("rows_added", 0) > 0 for idx in result.get("indexed", []))
 
 
 def _catalog_records_for_worker(
@@ -331,37 +530,13 @@ def _catalog_records_for_worker(
     requested_needs: list[str],
     purpose: str,
 ) -> list[PassageResourceRecord]:
-    book = scripture_book(scripture_reference)
-    _window_start, _window_end, window_label = chapter_window(scripture_reference)
-    window_note = (
-        f"Research window for {scripture_reference}: chapters {window_label}."
-        if window_label
-        else f"Research window for {scripture_reference}."
-    )
-    records: list[PassageResourceRecord] = []
-    for entry in select_catalog_resources(
+    """Delegate catalog lookups to the deterministic reference librarian."""
+    return _catalog_lookup(
         scripture_reference=scripture_reference,
         worker_name=worker_name,
         requested_needs=requested_needs,
-    ):
-        contains = ", ".join(entry.contains)
-        records.append(
-            PassageResourceRecord(
-                purpose=purpose,
-                role_targets=[worker_name],
-                source_title=entry.title,
-                author=entry.author_or_editor,
-                source_type=entry.resource_type,
-                excerpt_text=contains,
-                note=(
-                    f"{window_note} Book coverage: {book or 'unknown'}. "
-                    f"Catalog says this resource contains: {contains}. "
-                    f"{entry.notes}".strip()
-                ),
-                relevance_score=float(max(0, 100 - entry.preferred_order)),
-            )
-        )
-    return records
+        purpose=purpose,
+    )
 
 
 def _dedupe_resource_records(

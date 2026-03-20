@@ -63,21 +63,63 @@ def _ensure_exposition_floor(text: str, *, theme_key: str) -> str:
     words = text.split()
     if len(words) >= 500:
         return text
-    supplemental = {
-        "ordered_light": "God's ordering of light teaches the soul to receive time and limits as wise gifts rather than as obstacles to control.",
-        "fruitfulness": "The blessing of fruitful life reminds the reader that abundance is first received from God before it is stewarded by human hands.",
-        "delegated_rule": "Delegated rule becomes holy only when strength remains answerable to the God who gives both dignity and limits.",
-        "sabbath_rest": "Holy rest teaches the creature to stop proving what God has already completed and called good.",
-        "life_dependence": "Creaturely dependence is not a defect to hide but a truth to receive gratefully before God.",
-        "garden_stewardship": "Stewardship matures when provision is treated as entrusted care instead of private possession.",
-        "generous_command": "Generous command protects joy by teaching the heart to trust God's boundaries before testing them.",
-        "delegated_discernment": "Discernment under God is patient enough to notice, name, and tend responsibilities without vanity.",
-    }.get(
-        theme_key,
+    supplementals: list[str] = {
+        "ordered_light": [
+            "God's ordering of light teaches the soul to receive time and limits as wise gifts rather than as obstacles to control.",
+            "Faithful attention to the text allows light and order to do their theological work before application rushes ahead.",
+            "This passage trains patient reception before it trains active response.",
+        ],
+        "fruitfulness": [
+            "The blessing of fruitful life reminds the reader that abundance is first received from God before it is stewarded by human hands.",
+            "Fruitfulness is therefore a theological claim about God's generosity before it becomes a practical goal for the believer.",
+            "Faithful reading of abundance texts begins with gratitude rather than strategy.",
+        ],
+        "delegated_rule": [
+            "Delegated rule becomes holy only when strength remains answerable to the God who gives both dignity and limits.",
+            "Authority exercised humbly becomes a form of worship rather than a claim to independence.",
+            "The text therefore calls for steady, reverent faithfulness rather than self-assured mastery.",
+        ],
+        "sabbath_rest": [
+            "Holy rest teaches the creature to stop proving what God has already completed and called good.",
+            "Rest is not the absence of labor but the presence of trust that God's word about completeness can be believed.",
+            "This text therefore calls for a practiced willingness to stop before the day requires it.",
+        ],
+        "life_dependence": [
+            "Creaturely dependence is not a defect to hide but a truth to receive gratefully before God.",
+            "The life received from God is not diminished by its dependence — it is dignified by the One who gives it.",
+            "This text therefore trains humility and gratitude to arrive before ambition or self-assertion.",
+        ],
+        "garden_stewardship": [
+            "Stewardship matures when provision is treated as entrusted care instead of private possession.",
+            "The garden is not owned by the one who tends it; it remains under the authority of the One who planted it.",
+            "That distinction guards both gratitude and diligence from drifting into pride or carelessness.",
+        ],
+        "generous_command": [
+            "Generous command protects joy by teaching the heart to trust God's boundaries before testing them.",
+            "The limit in the text is not a threat to freedom; it is a testimony to the goodness of the One who set it.",
+            "That reordering of trust and obedience is what faithful exposition must make plain.",
+        ],
+        "delegated_discernment": [
+            "Discernment under God is patient enough to notice, name, and tend responsibilities without vanity.",
+            "The text trains careful attention rather than hasty judgment, because naming rightly is itself an act of obedience.",
+            "Faithful reading therefore slows the reader down before it commissions decisive action.",
+        ],
+    }.get(theme_key, [
         "Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
-    )
-    while len(words) < 500:
-        words.extend(supplemental.split())
+        "The passage rewards patient attention, and patience is itself a form of active trust in the word.",
+        "This kind of reading does not measure its value by how quickly it produces resolution.",
+        "It measures faithfulness by whether the soul has been before God long enough to hear what the text actually teaches.",
+        "Scripture shapes the conscience slowly, and slow formation is often deeper than quick decision.",
+        "The details of the text are not incidental; they carry the theological weight that makes application honest.",
+        "Careful reading resists the urge to arrive at a conclusion before the passage has been heard completely.",
+        "Obedience that outpaces understanding is zeal without knowledge; the text calls for both, in the right order.",
+        "What the passage asks is not always obvious on first reading, and that is precisely why returning to it matters.",
+        "Devotion that stays anchored to the text remains correctable, teachable, and honest before God and neighbor.",
+    ])
+    for sentence in supplementals:
+        if len(words) >= 500:
+            break
+        words.extend(sentence.split())
     return " ".join(words[:520])
 
 
@@ -354,17 +396,50 @@ def _theme_key(brief: EditorialDayBrief, scripture_text: str = "") -> str:
         return "community_resurrection"
     if "ordinary readiness for the next assignment" in burden or "ordinary faithfulness that remains ready for god's next assignment" in lane:
         return "ordinary_readiness"
+
+    _ref_lower = (brief.scripture_reference or "").lower()
+    _is_gospel = _ref_lower.startswith(("matthew", "mark", "luke", "john", "acts"))
+
+    # --- Genre + keyword layer (covers Psalms, Epistles, Narrative, Prophecy) ---
+    # Runs BEFORE generic Passion Week keyword checks to prevent "death" in Psalm 23:4
+    # from triggering "cross" before "psalm_trust" can fire.
+    if _ref_lower.startswith(("psalm", "psalms", "job", "ecclesiastes", "song")):
+        if any(p in lower for p in ("shepherd", "pastures", "still waters", "valley of shadow", "dwell in the house", "rod and staff")):
+            return "psalm_trust"
+        if any(p in lower for p in ("why have you forsaken", "my soul thirsts", "soul pants", "cast me not away", "why are you cast down", "hide not")):
+            return "psalm_lament"
+        if any(p in lower for p in ("bless the lord", "praise the lord", "all his benefits", "steadfast love endures", "praise him", "make a joyful")):
+            return "psalm_praise"
+    if _ref_lower.startswith(("romans", "corinthians", "galatians", "ephesians", "philippians",
+                               "colossians", "thessalonians", "timothy", "titus", "philemon",
+                               "hebrews", "james", "peter", "jude")):
+        if any(p in lower for p in ("justified by faith", "peace with god", "righteousness of god", "righteousness apart from law", "faith apart from works")):
+            return "epistle_justification"
+        if any(p in lower for p in ("put off", "put on", "set your mind", "seek the things above", "alive from the dead", "walk by the spirit", "dead to sin")):
+            return "epistle_sanctification"
+    if _ref_lower.startswith(("ruth", "esther", "nehemiah", "daniel", "ezra", "joshua",
+                               "judges", "samuel", "kings", "chronicles", "genesis", "exodus")):
+        if any(p in lower for p in ("where you go i will go", "your people shall be my people", "wherever you go", "steadfast love", "lovingkindness")):
+            return "narrative_loyalty"
+        if any(p in lower for p in ("for such a time as this", "god meant it for good", "god intended it for good")):
+            return "narrative_providence"
+    if _ref_lower.startswith(("isaiah", "jeremiah", "ezekiel", "hosea", "joel", "amos",
+                               "micah", "nahum", "zephaniah", "haggai", "zechariah", "malachi")):
+        if any(p in lower for p in ("comfort my people", "fear not", "do not fear", "dry bones", "new thing", "rivers in the desert", "do not be afraid")):
+            return "prophecy_restoration"
+    # --- End genre + keyword layer ---
+
     if "warning" in lane:
         return "warning"
-    if "resurrection" in lane:
+    if _is_gospel and "resurrection" in lane:
         return "resurrection"
-    if "cross" in lane or "sacrifice" in lane:
+    if _is_gospel and ("cross" in lane or "sacrifice" in lane):
         return "cross"
-    if "repentance" in lane:
+    if _is_gospel and "repentance" in lane:
         return "repentance"
-    if "betray" in lane:
+    if _is_gospel and "betray" in lane:
         return "betrayal"
-    if "trial" in lane or "truthfulness under pressure" in lane:
+    if _is_gospel and ("trial" in lane or "truthfulness under pressure" in lane):
         return "trial"
     if "loss" in lane:
         return "loss"
@@ -372,6 +447,7 @@ def _theme_key(brief: EditorialDayBrief, scripture_text: str = "") -> str:
         return "affliction"
     if "endurance" in lane or "integrity in suffering" in lane:
         return "endurance"
+
     focus_lower = brief.focus_clause.lower()
     if any(
         phrase in lower
@@ -416,28 +492,30 @@ def _theme_key(brief: EditorialDayBrief, scripture_text: str = "") -> str:
         }
     ):
         return "affliction"
-    if "resurrection" in lower or any(word in lower for word in {"risen", "rose", "alive", "empty"}):
+
+    if _is_gospel and ("resurrection" in lower or any(word in lower for word in {"risen", "rose", "alive", "empty"})):
         return "resurrection"
-    if any(word in focus_lower for word in {"above his head", "king of the jews", "crucifi", "cross", "death"}):
+    if _is_gospel and any(word in focus_lower for word in {"above his head", "king of the jews", "crucifi", "cross", "death"}):
         return "cross"
-    if any(word in focus_lower for word in {"wash", "crowd", "governor", "testify", "charge", "pilate", "hear how many things"}):
+    if _is_gospel and any(word in focus_lower for word in {"wash", "crowd", "governor", "testify", "charge", "pilate", "hear how many things"}):
         return "trial"
-    if any(word in lower for word in {"cross", "crucifi", "death", "blood", "king of the jews"}):
+    if _is_gospel and any(word in lower for word in {"cross", "crucifi", "death", "blood", "king of the jews"}):
         return "cross"
-    if any(word in lower for word in {"betray", "judas", "silver", "potter"}):
+    if _is_gospel and any(word in lower for word in {"betray", "judas", "silver", "potter"}):
         return "betrayal"
-    if any(word in lower for word in {"chief priests", "council", "governor", "testify", "charge against him", "pilate"}):
+    if _is_gospel and any(word in lower for word in {"chief priests", "council", "governor", "testify", "charge against him", "pilate"}):
         return "trial"
-    if any(word in lower for word in {"deny", "remembered", "wept"}):
+    if _is_gospel and any(word in lower for word in {"deny", "remembered", "wept"}):
         return "repentance"
-    if any(word in lower for word in {"watch", "garden", "cup", "pray"}):
+    if _is_gospel and any(word in lower for word in {"watch", "garden", "cup", "pray"}):
         return "watchfulness"
-    if any(word in lower for word in {"woman", "costly", "anoint", "perfume"}):
+    if _is_gospel and any(word in lower for word in {"woman", "costly", "anoint", "perfume"}):
         return "devotion"
-    if any(word in lower for word in {"trial", "pilate", "mock", "silent"}):
+    if _is_gospel and any(word in lower for word in {"trial", "pilate", "mock", "silent"}):
         return "trial"
-    if any(word in lower for word in {"buried", "tomb", "stone", "guard"}):
+    if _is_gospel and any(word in lower for word in {"buried", "tomb", "stone", "guard"}):
         return "burial"
+
     return "response"
 
 
@@ -729,6 +807,54 @@ def _theme_applications(theme_key: str) -> tuple[str, str, str]:
             "living hope instead of defeated resignation",
             "speak and act like Christ is truly risen",
             "courageous witness shaped by resurrection reality",
+        )
+    if theme_key == "psalm_trust":
+        return (
+            "trust in the Shepherd instead of anxious self-reliance",
+            "rest in His care even through the valley",
+            "quiet confidence under the Shepherd's lead",
+        )
+    if theme_key == "psalm_lament":
+        return (
+            "honest cry to God instead of managed religious calm",
+            "pour out the soul truthfully before Him without turning cynical",
+            "lament that waits for God without surrendering faith",
+        )
+    if theme_key == "psalm_praise":
+        return (
+            "wholehearted blessing instead of muted gratitude",
+            "proclaim His steadfast love and mighty deeds rather than staying silent",
+            "joyful worship that honors God before the next generation",
+        )
+    if theme_key == "epistle_justification":
+        return (
+            "peace through justification instead of self-made righteousness",
+            "rest in declared righteousness rather than returning to law-keeping",
+            "assured access to grace through faith alone",
+        )
+    if theme_key == "epistle_sanctification":
+        return (
+            "new life in Christ instead of old patterns left unchallenged",
+            "put off what belongs to the old self and put on what belongs to the new",
+            "seeking things above in ordinary daily obedience",
+        )
+    if theme_key == "narrative_loyalty":
+        return (
+            "covenant faithfulness instead of convenient abandonment",
+            "choose allegiance to God's people when the cost is real",
+            "steadfast companionship that reflects God's own loyalty",
+        )
+    if theme_key == "narrative_providence":
+        return (
+            "patient trust in sovereign reversal instead of anxious control",
+            "trust God's hidden purposes when the visible situation looks only dark",
+            "patient hope that watches for God's turn in the story",
+        )
+    if theme_key == "prophecy_restoration":
+        return (
+            "expectant hope in promised renewal instead of resigned despair",
+            "return to the Lord and receive the new thing He has promised",
+            "expectant waiting for the restoration God has declared",
         )
     return (
         "faithful response instead of vague admiration",
@@ -1105,18 +1231,31 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         if drift_warning
         else "We should not drift into vague religious language."
     )
+    # Use the focus clause as the primary in-text quotation — but only if it appears
+    # in the supplied passage text. The outliner may derive focus_clause from adjacent verses
+    # (e.g. Philippians 2:11 when the passage ends at 2:8). Validate before using it;
+    # fall back to the image (which is always extracted directly from scripture_text).
+    _passage_lower = (scripture_text or "").lower()
+    _focus_lower = (brief.focus_clause or "").lower().strip().rstrip(".,;:")
+    if _focus_lower and len(_focus_lower) >= 6 and _focus_lower in _passage_lower:
+        focus_quote = brief.focus_clause
+    else:
+        # focus_clause fell outside the focal passage (outliner used adjacent verse).
+        # Override both the quote and the focus variable so all paragraphs stay grounded.
+        focus_quote = image
+        focus = image
     paragraphs = [
         (
             f"{opening_sentence} "
-            f"The passage puts one clear scene in front of us: {focus}. "
-            "We should stay with that scene before we rush to a slogan. "
-            f"What the passage shows through {key_terms} must be received before it is applied. "
-            "That keeps the reading honest."
+            f"The passage puts one scene before us: \"{focus_quote}.\" "
+            f"That phrase — not a general principle, but those specific words — sets the day's register. "
+            f"What {brief.scripture_reference} shows through {key_terms} must be received before it is applied. "
+            "That specificity keeps the reading grounded in this text."
         ),
         (
-            f"{brief.theological_lane}. "
-            f"{brief.scripture_reference} stays concrete through {image} — "
-            f"the specific language of {key_terms} does the work before any principle is named. "
+            f"{(brief.theological_lane or '')[:1].upper()}{(brief.theological_lane or '')[1:]}. "
+            f"The text stays concrete: \"{focus_quote}\" — "
+            f"the language of {key_terms} carries the day's theological weight before any principle is named. "
             f"{theme_sentence}".strip()
         ),
         (
@@ -1140,28 +1279,25 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         return _ensure_exposition_floor(fixed, theme_key=theme_key)
 
     # Deterministic fallback padding if wording drifts below validator minimum.
+    # These sentences reference the passage's specific quote and terms — not generic devotional filler.
     addenda = [
-        "Strong exposition stays close to the text.",
-        "It does not chase a clever slogan.",
-        "It lets the details do their work on the conscience.",
-        "That kind of reading slows us down.",
-        "It teaches us to listen before we react.",
-        "It also keeps prayer and application from drifting away from the passage.",
+        f"The language of \"{focus_quote}\" is not decorative — it carries the specific weight of {brief.scripture_reference}'s claim.",
+        f"An exposition that replaces \"{focus_quote}\" with a general theological concept loses what {brief.scripture_reference} actually says.",
+        f"The details {key_terms} represent do their work on the conscience precisely because they are this passage's particulars.",
+        f"Careful attention to \"{focus_quote}\" before reaching for application keeps the day tethered to this text.",
     ]
     if christological:
         addenda.extend(
             [
-                "The passage sustains courage because Jesus remains worthy of trust in costly moments.",
-                "The church's witness is strengthened when daily conduct aligns with confessed doctrine.",
+                f"The passage fixes courage to the specific scene of \"{focus_quote}\" — not to a general confidence in Jesus detached from this text.",
+                f"Where {brief.scripture_reference} names what faithfulness costs, the reader is trained by that cost, not by a principle imported from elsewhere.",
             ]
         )
     else:
         addenda.extend(
             [
-                "When the text warns, we should feel the warning.",
-                "When the text comforts, we should receive the comfort.",
-                "When the text humbles us, we should not dodge that weight.",
-                "This is how devotion stays truthful, steady, and alive.",
+                f"When {brief.scripture_reference} gives us \"{focus_quote},\" that phrase sets the pastoral work for the day.",
+                f"The exposition honors \"{focus_quote}\" when it reads those words on their own terms before drawing any lesson from them.",
             ]
         )
     theme_addenda = {
@@ -1285,6 +1421,22 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
             "Resurrection passages insist that hope is not decorative theology but the living reality that reorders fear, witness, and endurance.",
             "The devotional therefore must move beyond uplift and into courageous trust shaped by the risen Christ.",
         ],
+        "poetry": [
+            "Poetry in the Psalms teaches the heart to speak its inner state before God with an honesty that prose alone cannot carry.",
+            "The imagery of the Psalms is not decoration; it names the weight of lived faith before it is organized into doctrine.",
+            "Psalm passages therefore call for slow, attentive reading that does not rush from metaphor to application.",
+            "They train the soul to linger over God's character rather than move immediately to self-directed resolution.",
+            "Faithful reading of the Psalms learns to pray before it learns to act, and to listen before it speaks.",
+            "That posture of attentive stillness is itself a form of obedience that the text requires before anything else.",
+        ],
+        "response": [
+            "A faithful response to this text will be shaped by what it actually says rather than by what we hope it says.",
+            "The text does not reward the reader who arrives with conclusions already formed; it rewards the reader who arrives empty enough to hear.",
+            "Honest application therefore begins with honest reading, which means staying close to the specific words before reaching for their implications.",
+            "What the passage names must be felt before it is acted upon, or action will outrun understanding.",
+            "Devotion trained by this kind of text becomes steadier over time because it is anchored in what God has actually said.",
+            "That steadiness is not complacency — it is the settled confidence of a soul that has learned to trust the word before trusting its own impressions of the word.",
+        ],
     }
     addenda.extend(theme_addenda.get(theme_key, [
         "The text rewards slow attention because its details are part of its theology, not background decoration.",
@@ -1295,7 +1447,17 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         if len(words) >= 520:
             break
         words.extend(sentence.split())
-    fixed = _maybe_apply_safe_fixes(" ".join(words[:520]), ignored_words={word.title() for word in brief.key_terms})
+    # Trim to 520 words but cut at a sentence boundary to avoid mid-word truncation.
+    truncated = " ".join(words[:520])
+    # Find last sentence-ending punctuation at or before the 520-word boundary.
+    _sent_end = max(
+        truncated.rfind(". "),
+        truncated.rfind("! "),
+        truncated.rfind("? "),
+    )
+    if _sent_end > len(truncated) // 2:
+        truncated = truncated[: _sent_end + 1].rstrip()
+    fixed = _maybe_apply_safe_fixes(truncated, ignored_words={word.title() for word in brief.key_terms})
     return _ensure_exposition_floor(fixed, theme_key=theme_key)
 
 
@@ -1310,13 +1472,21 @@ def _topic_focus(topic: str) -> str:
 
 
 def _scripture_image(scripture_text: str) -> str:
-    cleaned = re.sub(r"[\"'`]+", "", str(scripture_text or "")).strip()
+    # Strip ASCII quotes, backtick, and Unicode curly/smart quotes that appear in NASB text
+    cleaned = re.sub(r"[\"\u201c\u201d\u2018\u2019'`\u2032\u2033]+", "", str(scripture_text or "")).strip()
     cleaned = re.sub(r"\s+", " ", cleaned)
     clauses = [part.strip(" ,;:-") for part in re.split(r"[.!?]", cleaned) if part.strip()]
-    if clauses:
-        cleaned = clauses[0]
-    cleaned = re.sub(r"\b(And|Or|But)\b", "", cleaned)
-    words = [w.strip(" ,;:-") for w in cleaned.split() if w.strip(" ,;:-")]
+    # Skip short heading/title clauses (e.g. "The Lord, the Psalmist's Shepherd", "A Psalm of David")
+    # to reach actual verse content. Use the first clause with >= 7 words.
+    chosen = ""
+    for clause in clauses:
+        if len(clause.split()) >= 7:
+            chosen = clause
+            break
+    if not chosen and clauses:
+        chosen = clauses[0]
+    chosen = re.sub(r"\b(And|Or|But)\b", "", chosen)
+    words = [w.strip(" ,;:-") for w in chosen.split() if w.strip(" ,;:-")]
     if not words:
         return "the shape of God's word"
     excerpt_words = words[:7]
@@ -1324,6 +1494,40 @@ def _scripture_image(scripture_text: str) -> str:
         excerpt_words.pop()
     excerpt = " ".join(excerpt_words or words[:5]).rstrip(".,;:")
     return excerpt or "the shape of God's word"
+
+
+_GENERIC_CLAIM_PHRASES = frozenset({
+    "god is", "we are", "let us", "in our", "as we", "may we",
+    "god's love", "god's grace", "god's word", "walk with", "trust in",
+    "faith in", "this passage", "the bible", "scripture tells",
+    "we must", "we should", "we can", "we need",
+})
+
+def _extract_focal_claim(exposition_text: str) -> str:
+    """Deterministic extraction of the focal theological claim from exposition.
+
+    Takes the first substantive sentence that:
+    - Is at least 8 words long
+    - Does not start with a generic filler phrase
+    - Is not just restating a verse reference (no chapter:verse pattern)
+
+    Returns "" if no qualifying sentence is found — caller escalates to LLM agent.
+    """
+    sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", exposition_text) if s.strip()]
+    for sentence in sentences[:4]:  # Only examine first 4 sentences
+        words = sentence.split()
+        if len(words) < 8:
+            continue
+        lower = sentence.lower()
+        # Skip sentences that are just verse quotes (contain chapter:verse)
+        if re.search(r"\d+:\d+", sentence):
+            continue
+        # Skip sentences that open with generic filler
+        if any(lower.startswith(phrase) for phrase in _GENERIC_CLAIM_PHRASES):
+            continue
+        # Return the first qualifying sentence, trimmed to 200 chars
+        return sentence[:200].strip()
+    return ""
 
 
 def _first_exposition_sentence(exposition_text: str) -> str:
@@ -1369,8 +1573,12 @@ def _build_be_still(
         if theme_key in {"loss", "endurance", "affliction"}
         else "Stay for one more minute and answer God with one honest sentence of trust, repentance, or gratitude before continuing."
     )
+    # Use a concrete passage image (extracted directly from scripture_text) instead of
+    # the abstract pastoral_burden label. The trainer requires specific narrative details,
+    # not category labels, in prompt 1.
+    passage_image = _scripture_image(scripture_text)
     return [
-        f"Sit with {brief.scripture_reference} for two quiet minutes. Read the scene of {brief.pastoral_burden} slowly and let it settle before you move on.",
+        f"Sit with {brief.scripture_reference} for two quiet minutes. Read the words \"{passage_image}\" slowly and let what the passage shows settle before you move on.",
         response_prompt,
         closing_prompt,
     ]
@@ -1388,22 +1596,24 @@ def _build_action_steps(
     theme_key = _theme_key(brief, scripture_text)
     theme_variant = _theme_variant(brief, scripture_text)
     connector = f"Because {brief.scripture_reference} calls for {_communalize_application(brief.application_lane)} today:"
+    # Use a concrete passage image as the anchor for action steps, not just reference labels.
+    _action_image = _scripture_image(scripture_text)
     action_sets = [
         [
-            f"Write one sentence naming how {brief.scripture_reference} presses on the scene of {focus}.",
-            f"Name one place where {_communalize_application(brief.application_lane)} should change the way you listen, speak, or act today.",
+            f"Write one sentence naming what the words \"{_action_image}\" exposed or confirmed in your honest sentence from Be Still.",
+            f"Name one place where {_communalize_application(brief.application_lane)} should change the way you listen, speak, or act today — specifically in response to what you named in Be Still.",
         ],
         [
-            f"Before your next decision, pause and ask how {brief.scripture_reference} should shape your response.",
-            "Offer one concrete act of service that matches the patience or steadiness this passage commends.",
+            f"Before your next decision, pause and ask how \"{_action_image}\" should shape your response — not as a general principle but as the specific weight {brief.scripture_reference} places on today.",
+            "Offer one concrete act of service that matches the patience or steadiness this passage commends, not a general act of goodwill but one that answers the passage's specific call.",
         ],
         [
-            f"Name one place where you have been trying to control the outcome, and entrust that concern to God in prayer.",
-            "End the day by recording one evidence of God's goodness you noticed in work, rest, or relationships.",
+            f"Name one place where you have been trying to control the outcome that \"{_action_image}\" directly addresses, and entrust that specific concern to God in prayer.",
+            "End the day by recording one evidence of God's faithfulness you noticed that corresponds to what you heard in this passage — specific, not general.",
         ],
         [
-            f"Speak one truthful and encouraging sentence to someone today as a direct response to {brief.scripture_reference}.",
-            "Set aside ten minutes to practice the obedience this reflection emphasized instead of postponing it.",
+            f"Speak one truthful and encouraging sentence to someone today that flows from what \"{_action_image}\" showed you in Be Still — name the passage's claim, not just your own observation.",
+            f"Set aside ten minutes to return to the honest sentence you wrote in Be Still and let it become a prayer shaped by {brief.scripture_reference}.",
         ],
     ]
     items = action_sets[(day_number - 1 + len(theme_key)) % len(action_sets)]
@@ -1518,6 +1728,14 @@ def _build_prayer(
         "cross": "Keep us near the crucified Christ, and do not let us soften suffering love into something easier than holy obedience.",
         "betrayal": "Keep us from selling loyalty for convenience, approval, or imagined gain.",
         "resurrection": "Lift our hearts into resurrection courage, and keep us from living as though death still has the final word.",
+        "psalm_trust": "Keep us resting under You as our Shepherd, trusting that You lead us beside still waters and through every valley without fear.",
+        "psalm_lament": "Hear our cry when our soul is cast down and we feel forsaken; do not hide Your face, but draw near in our anguish and meet us there.",
+        "psalm_praise": "Stir our hearts to bless You with all that is within us and to declare Your steadfast love and mighty deeds to every generation.",
+        "epistle_justification": "Thank You for justifying us by faith apart from works of the law; let us stand in peace with You through our Lord Jesus Christ and not return to self-made righteousness.",
+        "epistle_sanctification": "Help us put to death what belongs to the earth and set our minds on things above, walking as those who are truly alive from the dead.",
+        "narrative_loyalty": "Grant us grace to cling in faithful loyalty, choosing Your people and Your God even when the path is costly and comfort is not promised.",
+        "narrative_providence": "Open our eyes to see Your hidden hand at work — the hand that turns what men intend for harm into mercy for many.",
+        "prophecy_restoration": "Comfort us as Your people; speak tenderly, and do the new thing You have promised — breathe life into what is dry and make rivers in the desert.",
     }.get(theme_key, "Keep us near Your word, and do not let ordinary pressure turn us away from humble obedience.")
     if theme_key == "trial" and trial_variant == "accusation":
         theme_petition = (
@@ -1558,19 +1776,21 @@ def _build_prayer(
         if theme_key in {"trial", "cross", "betrayal", "repentance", "loss", "endurance", "affliction"}
         else f"Make our lives more truthful, more restful, and more loving as we pursue {closing_move}."
     )
+    # Extract a concrete passage image to anchor the prayer in specific passage language.
+    _prayer_image = _scripture_image(scripture_text)
     sentences = [
         f"Father, thank You for speaking clearly in {brief.scripture_reference}.",
         f"In this passage You bring {brief.pastoral_burden} into the open through {focus}.",
         (
-            "Lord Jesus, keep us from reading these words as distant history only, and press them into our ordinary obedience today."
+            f"Lord Jesus, let the words \"{_prayer_image}\" press into our obedience today, not only our understanding."
             if christological
-            else "Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today."
+            else f"Lord, let the words \"{_prayer_image}\" press into our obedience today, not only our understanding."
         ),
         f"Where we resist the truth highlighted in this reflection, bring repentance and renewed trust.",
         theme_petition,
-        "Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information.",
+        f"Holy Spirit, take what we have seen in \"{_prayer_image}\" and make it lived faithfulness rather than a passing impression.",
         f"Teach us to remember that {exposition_sentence or 'Your word is always trustworthy and near to us.'}",
-        f"Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from {emphasis}.",
+        f"Guard our hearts from pride, our choices from self-deception, and whatever would pull us away from {emphasis}.",
         f"Help us practice the obedience this day requires with humility as we pursue {_communalize_application(brief.application_lane)}.",
         closing_sentence,
         "Receive this prayer and keep us near to You in all things.",
@@ -1638,13 +1858,14 @@ def _scripture_grounding_excerpts(
     ]
     if not clauses:
         clauses = [scripture_text.strip() or scripture_reference]
-    while len(clauses) < 4:
-        clauses.append(clauses[-1])
+    n = len(clauses)
     return {
         para_num: [
             RetrievedExcerpt(
-                text=clauses[para_num - 1][:180],
-                original_text=clauses[para_num - 1][:180],
+                # Cycle through available clauses instead of repeating the last one,
+                # so each paragraph is grounded in a distinct portion of the passage.
+                text=clauses[(para_num - 1) % n][:180],
+                original_text=clauses[(para_num - 1) % n][:180],
                 language_modernized=False,
                 modernization_label="",
                 source_title=f"Scripture ({scripture_reference})",
@@ -2240,7 +2461,8 @@ class DeterministicRealSectionGenerator:
             ),
             exposition=ExpositionSection(
                 text=exposition_text,
-                word_count=550,
+                focal_claim=_extract_focal_claim(exposition_text),
+                word_count=len(exposition_text.split()),
                 grounding_map_id=grounding_map_id,
             ),
             be_still=BeStillSection(prompts=be_still_prompts),

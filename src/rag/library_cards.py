@@ -173,6 +173,46 @@ def evaluate_draft_card(card: dict[str, Any], holding: dict[str, Any], holding_p
     }
 
 
+def _upsert_card_to_db(card: dict[str, Any]) -> None:
+    """Write an accepted card into the resource_catalog DB table."""
+    try:
+        from src.persistence.paths import default_registry_db_path
+        db_path = default_registry_db_path()
+        conn = sqlite3.connect(str(db_path))
+        conn.execute(
+            """INSERT OR REPLACE INTO resource_catalog
+               (resource_id, title, author_or_editor, resource_type, scope,
+                covered_books, covered_topics, supports_workers, contains, serves_needs,
+                source_form, source_locator, citation_quality, approved_for_validator,
+                preferred_order, acquisition_status, catalog_status, notes)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+            (
+                str(card.get("resource_id") or "").strip(),
+                str(card.get("title") or "").strip(),
+                str(card.get("author_or_editor") or "").strip(),
+                str(card.get("resource_type") or "reference_work").strip(),
+                str(card.get("scope") or "whole_bible").strip(),
+                json.dumps(card.get("covered_books") or []),
+                json.dumps(card.get("covered_topics") or []),
+                json.dumps(card.get("supports_workers") or []),
+                json.dumps(card.get("contains") or []),
+                json.dumps(card.get("serves_needs") or []),
+                str(card.get("source_form") or "local").strip(),
+                str(card.get("source_locator") or "").strip(),
+                str(card.get("citation_quality") or "unknown").strip(),
+                1 if card.get("approved_for_validator") else 0,
+                int(card.get("preferred_order") or 100),
+                str(card.get("acquisition_status") or "acquired").strip(),
+                str(card.get("catalog_status") or "draft").strip(),
+                str(card.get("notes") or "").strip(),
+            ),
+        )
+        conn.commit()
+        conn.close()
+    except Exception:
+        pass  # DB write failure must not block card acceptance
+
+
 def draft_and_evaluate_card(holding_path: Path) -> dict[str, Any]:
     holding = _load_json(holding_path)
     card = build_draft_card_from_holding(holding_path)
@@ -190,10 +230,13 @@ def draft_and_evaluate_card(holding_path: Path) -> dict[str, Any]:
         },
     )
     if evaluation["decision"] == "accepted":
-        live_cards = _load_json(LIVE_CATALOG_PATH)
-        existing = [row for row in live_cards if row.get("resource_id") != card["resource_id"]]
         card["catalog_status"] = "verified"
         card["acquisition_status"] = "cataloged"
+        # Write to DB (primary store)
+        _upsert_card_to_db(card)
+        # Keep JSON in sync as a read-only backup
+        live_cards = _load_json(LIVE_CATALOG_PATH)
+        existing = [row for row in live_cards if row.get("resource_id") != card["resource_id"]]
         existing.append(card)
         _write_json(LIVE_CATALOG_PATH, existing)
     return {

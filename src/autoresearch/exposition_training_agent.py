@@ -102,8 +102,13 @@ def run_fresh_exposition_benchmark(repo_root: Path) -> dict[str, Any]:
     hour_index = datetime.now(timezone.utc).hour % len(_FRESH_BENCHMARK_PASSAGES)
     focal_reference, context_reference = _FRESH_BENCHMARK_PASSAGES[hour_index]
 
-    scripture_text = _scripture_text(retriever, context_reference)
-    if not scripture_text or scripture_text == context_reference:
+    # Retrieve both focal passage (for focus_clause derivation) and context passage (for LLM evaluation).
+    # Using the focal text for brief/exposition ensures focus_clause stays within the assigned verses.
+    focal_scripture_text = _scripture_text(retriever, focal_reference)
+    context_scripture_text = _scripture_text(retriever, context_reference)
+    # Fall back to context text if focal retrieval fails; use whichever succeeded for evaluation.
+    scripture_text = focal_scripture_text or context_scripture_text
+    if not scripture_text or scripture_text in (focal_reference, context_reference):
         return {
             "status": "blocked",
             "benchmark_passage": focal_reference,
@@ -114,15 +119,18 @@ def run_fresh_exposition_benchmark(repo_root: Path) -> dict[str, Any]:
     brief = build_editorial_day_brief(
         day_number=1,
         scripture_reference=focal_reference,
-        scripture_text=scripture_text,
+        scripture_text=focal_scripture_text or scripture_text,
         study_window_reference=context_reference,
     )
-    exposition_text = _build_exposition(brief=brief, scripture_text=scripture_text)
+    # Use focal text for exposition so image and quote grounding stay within the assigned verses.
+    exposition_text = _build_exposition(brief=brief, scripture_text=focal_scripture_text or scripture_text)
+    # Evaluation uses the context passage text so the LLM can verify the passage was faithfully handled.
+    eval_passage_text = context_scripture_text or scripture_text
 
     try:
         review = build_llm_exposition_trainer_review(
             exposition_text,
-            passage_text=scripture_text,
+            passage_text=eval_passage_text,
             focal_reference=focal_reference,
             topic=f"{focal_reference} - {brief.focus_clause}",
         )

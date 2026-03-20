@@ -9,7 +9,9 @@ from typing import Any
 from src.autoresearch.llm_library_trainer_core import evaluate_notes_batch
 from src.autoresearch.store import log_experiment
 from src.rag.exposition import ExpositionRAG
+from src.rag.library_catalog import load_library_catalog
 from src.rag.library_requests import list_resource_acquisition_requests
+from src.rag.reference_librarian import catalog_is_thin
 
 
 def _utc_now() -> str:
@@ -27,9 +29,13 @@ class LibraryTrainerFinding:
 LIBRARY_TRAINER_PROFILE = {
     "role": "expert_library_trainer",
     "mission": (
-        "Train the research librarian to understand what shelf resources actually contain, "
-        "use current holdings before asking for acquisition, and write notes that improve future "
-        "research selection without treating the catalog as the source of deep content knowledge."
+        "Train two distinct library roles: "
+        "(1) The deterministic reference librarian — responsible for catalog lookups and escalation "
+        "when the shelf is thin. Its correctness is evaluated by catalog integrity: are entries current, "
+        "accurate, and does escalation fire when it should? "
+        "(2) The RAG agent (research librarian) — responsible only for excerpt retrieval from the indexed "
+        "corpus. Its quality is evaluated by excerpt relevance: are cuttings passage-specific, not blank, "
+        "not metadata-shaped, and returned in ranked order?"
     ),
     "junior_worker_assumption": (
         "The original failure mode was escalating everything without using the shelf. "
@@ -288,6 +294,62 @@ def _pending_requests_review() -> tuple[list[dict[str, Any]], list[LibraryTraine
     return pending, findings, actionable_requests
 
 
+def _catalog_integrity_review() -> tuple[dict[str, int], list[LibraryTrainerFinding]]:
+    """Audit the DB-backed resource_catalog for integrity issues.
+
+    Checks: total entries, how many are verified vs draft, whether any
+    cataloged resources are thin in the RAG index, and whether entries
+    have required metadata fields.
+    """
+    findings: list[LibraryTrainerFinding] = []
+    summary: dict[str, int] = {
+        "total": 0,
+        "verified": 0,
+        "draft": 0,
+        "missing_author": 0,
+        "missing_serves_needs": 0,
+    }
+    try:
+        entries = load_library_catalog()
+    except Exception:
+        entries = []
+    summary["total"] = len(entries)
+    for entry in entries:
+        if entry.catalog_status == "verified":
+            summary["verified"] += 1
+        else:
+            summary["draft"] += 1
+        if not str(entry.author_or_editor or "").strip():
+            summary["missing_author"] += 1
+        if not entry.serves_needs:
+            summary["missing_serves_needs"] += 1
+    if summary["missing_author"] > 0:
+        findings.append(
+            LibraryTrainerFinding(
+                title="Catalog entries missing author metadata",
+                severity="medium",
+                rationale=(
+                    f"{summary['missing_author']} catalog entries have no author_or_editor field. "
+                    "Workers cannot cite these resources correctly."
+                ),
+                recommendation="Update holdings and re-run card evaluation to fill author fields.",
+            )
+        )
+    if summary["missing_serves_needs"] > 0:
+        findings.append(
+            LibraryTrainerFinding(
+                title="Catalog entries missing serves_needs metadata",
+                severity="medium",
+                rationale=(
+                    f"{summary['missing_serves_needs']} entries have empty serves_needs. "
+                    "The reference librarian cannot route them to the right workers."
+                ),
+                recommendation="Review these cards and assign appropriate serves_needs values.",
+            )
+        )
+    return summary, findings
+
+
 def build_library_trainer_review(repo_root: Path, *, run_llm_note_review: bool = False) -> dict[str, Any]:
     note_evaluations = _load_note_evaluations(repo_root)
 
@@ -314,8 +376,9 @@ def build_library_trainer_review(repo_root: Path, *, run_llm_note_review: bool =
     revise = sum(1 for item in note_evaluations if item.get("decision") == "revise")
     pending_requests, request_findings, actionable_requests = _pending_requests_review()
     packet_findings, packet_summary = _resource_packet_review(repo_root)
+    catalog_summary, catalog_findings = _catalog_integrity_review()
 
-    findings = list(request_findings) + list(packet_findings)
+    findings = list(request_findings) + list(packet_findings) + list(catalog_findings)
     if revise:
         findings.append(
             LibraryTrainerFinding(
@@ -340,6 +403,7 @@ def build_library_trainer_review(repo_root: Path, *, run_llm_note_review: bool =
             "accepted_count": accepted,
             "revise_count": revise,
         },
+        "catalog_summary": catalog_summary,
         "pending_request_count": len(pending_requests),
         "actionable_request_count": len(actionable_requests),
         "actionable_requests": actionable_requests,
@@ -374,6 +438,9 @@ def log_library_trainer_review(repo_root: Path) -> dict[str, Any]:
             "actionable_request_count": payload["actionable_request_count"],
             "blank_excerpt_count": payload["packet_summary"]["blank_excerpt_count"],
             "metadata_excerpt_count": payload["packet_summary"]["metadata_excerpt_count"],
+            "catalog_total": payload.get("catalog_summary", {}).get("total", 0),
+            "catalog_verified": payload.get("catalog_summary", {}).get("verified", 0),
+            "catalog_missing_author": payload.get("catalog_summary", {}).get("missing_author", 0),
             "finding_count": len(payload["findings"]),
         },
         learning_note="Expert library trainer reviewed note quality and whether current holdings were used before acquisition escalation.",
