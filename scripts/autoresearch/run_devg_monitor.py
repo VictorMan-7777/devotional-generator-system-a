@@ -144,6 +144,7 @@ IMPORTANT:
 - Sort cycles by timestamp DESC (newest first) to check CONSECUTIVE (recent-most).
 - code_changes_required = true ONLY for clear, specific code bugs causing failures/stalls.
 - urgency=blocking ONLY for hard crashes (returncode !=0). Use high/medium for persistent stalls.
+- ALWAYS finish by updating grok_workspace/MEMORY.md via write_workspace_file with current state.
 """
 
 

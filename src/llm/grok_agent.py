@@ -280,7 +280,10 @@ def run_grok_agent(
         "generation system. Use the provided file tools to read only what you need. "
         "When you have enough information, return your complete answer — code blocks "
         "where code is required, prose where analysis is required.\n\n"
-        + (f"## Your persistent memory (update grok_workspace/MEMORY.md when state changes):\n{_memory}" if _memory else "")
+        "IMPORTANT: At the end of every session, update grok_workspace/MEMORY.md using "
+        "write_workspace_file with the latest system state (outliner status, graduated workers, "
+        "bottleneck, library count, any fixes applied). This is your only persistent memory.\n\n"
+        + (f"## Your persistent memory:\n{_memory}" if _memory else "")
     )
 
     messages: list[dict] = [
