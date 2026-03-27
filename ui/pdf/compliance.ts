@@ -46,8 +46,8 @@ export interface KDPComplianceInput {
   fontsEmbedded: boolean;
   /** Whether offer page is the final page. */
   offerPagePresent: boolean;
-  /** Output mode: 'personal' is advisory; 'publish-ready' blocks on violations. */
-  outputMode: 'personal' | 'publish-ready';
+  /** Output mode: personal/reviewed-proof are advisory; publish-ready blocks on violations. */
+  outputMode: 'personal' | 'reviewed-proof' | 'publish-ready';
 }
 
 export interface KDPComplianceResult {
@@ -128,7 +128,7 @@ export function checkCompliance(input: KDPComplianceInput): KDPComplianceResult 
   }
 
   // --- Offer page (publish-ready only) ---
-  const offerPagePresent = input.outputMode === 'personal'
+  const offerPagePresent = input.outputMode !== 'publish-ready'
     ? true  // not enforced in personal mode
     : input.offerPagePresent;
   if (input.outputMode === 'publish-ready' && !input.offerPagePresent) {

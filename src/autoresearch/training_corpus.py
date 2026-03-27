@@ -15,6 +15,18 @@ def _load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+PSALM23_EXCLUSION_PATTERNS = [
+    'psalm 23',
+    'psalm-23',
+    'psalms 23',
+    'ps 23',
+]
+
+
+def _is_psalm23_excluded(run_slug: str) -> bool:
+    return any(pattern in run_slug.lower() for pattern in PSALM23_EXCLUSION_PATTERNS)
+
+
 def _decision_counts(path: Path) -> dict[str, int]:
     if not path.exists():
         return {}
@@ -65,11 +77,31 @@ def _candidate_meta_paths(repo_root: Path) -> list[Path]:
     return [Path(p) for p in all_paths]
 
 
+def _book_contains_psalm23(book_path: Path) -> bool:
+    """Return True if the book.json days contain Psalm 23 scripture references."""
+    if not book_path.exists():
+        return False
+    try:
+        book = _load_json(book_path)
+        for day in book.get("days", []):
+            scripture = day.get("scripture") or {}
+            ref = str(scripture.get("reference", "") if isinstance(scripture, dict) else "").lower()
+            if _is_psalm23_excluded(ref):
+                return True
+    except Exception:
+        pass
+    return False
+
+
 def ensure_approved_training_artifact(repo_root: Path) -> dict[str, Any] | None:
     for meta_path in _candidate_meta_paths(repo_root):
         meta = _load_json(meta_path)
+        if _is_psalm23_excluded(str(meta.get("run_slug", ""))):
+            continue
         report_path = repo_root / str(meta.get("approval_report_path") or "")
         book_path = repo_root / str(meta.get("book_json_path") or "")
+        if _book_contains_psalm23(book_path):
+            continue
         decisions_path = repo_root / str(meta.get("approval_decisions_path") or "")
         if not report_path.exists() or not book_path.exists() or not decisions_path:
             continue

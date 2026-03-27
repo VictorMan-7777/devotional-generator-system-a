@@ -1,0 +1,664 @@
+{
+  "id": "67ba6bc6-ed00-40d6-915f-4e53fedeca2e",
+  "input": {
+    "topic": "Genesis 1 & 2",
+    "num_days": 12,
+    "scripture_version": "NASB",
+    "output_mode": "personal",
+    "title": "Genesis 1-2 Devotional (12-Day / 2-Week)",
+    "day_focus": null
+  },
+  "days": [
+    {
+      "day_number": 1,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 1",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "catalog_verified",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:1-5",
+        "text": "In the beginning God created the heavens and the earth. The earth was formless and void, and darkness was over the surface of the deep, and the Spirit of God was moving over the surface of the waters. Then God said, 'Let there be light'; and there was light. God saw that the light was good; and God separated the light from the darkness. God called the light day, and the darkness He called night. And there was evening and there was morning, one day.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "verified",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 1 in the Genesis 1 & 2 journey opens with Genesis 1:1-5. The passage states: In the beginning God created the heavens and the earth. The earth was formless and void, and darkness was over the surface of the deep, and the Spirit of God was moving over the surface of the waters. Then God. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 1 in the Genesis 1 & 2 journey opens with Genesis 1:1-5. The passage states: In the beginning God created the heavens and the earth. The earth was formless and void, and darkness was over the surface of the deep, and the Spirit of God was moving over the surface of the waters. Then God. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 1 in the Genesis 1 & 2 journey opens with Genesis 1:1-5. The passage states: In the beginning God created the heavens and the earth. The earth was formless and void, and darkness was over the surface of the deep, and the Spirit of God was moving over the surface of the waters. Then God. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 1 in the Genesis 1 & 2 journey opens with Genesis 1:1-5. The passage states: In the beginning God created the heavens and the earth. The earth was formless and void, and darkness was over the surface of the deep, and the Spirit of God was moving over the surface of the waters. Then God. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_210bc548",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:1-5 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:1-5 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:04.622543Z",
+      "last_modified": "2026-03-07T23:02:04.622543Z"
+    },
+    {
+      "day_number": 2,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 2",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:6-8",
+        "text": "Then God said, 'Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.' God made the expanse, and separated the waters which were below the expanse from the waters which were above the expanse; and it was so. God called the expanse heaven. And there was evening and there was morning, a second day.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 2 in the Genesis 1 & 2 journey opens with Genesis 1:6-8. The passage states: Then God said, 'Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.' God made the expanse, and separated the waters which were below the expanse from the waters which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 2 in the Genesis 1 & 2 journey opens with Genesis 1:6-8. The passage states: Then God said, 'Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.' God made the expanse, and separated the waters which were below the expanse from the waters which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 2 in the Genesis 1 & 2 journey opens with Genesis 1:6-8. The passage states: Then God said, 'Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.' God made the expanse, and separated the waters which were below the expanse from the waters which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 2 in the Genesis 1 & 2 journey opens with Genesis 1:6-8. The passage states: Then God said, 'Let there be an expanse in the midst of the waters, and let it separate the waters from the waters.' God made the expanse, and separated the waters which were below the expanse from the waters which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_5b26a884",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:6-8 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:6-8 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:06.046475Z",
+      "last_modified": "2026-03-07T23:02:06.046475Z"
+    },
+    {
+      "day_number": 3,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 3",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:9-13",
+        "text": "Then God said, 'Let the waters below the heavens be gathered into one place, and let the dry land appear'; and it was so. God called the dry land earth, and the gathering of the waters He called seas; and God saw that it was good. Then God said, 'Let the earth sprout vegetation: plants yielding seed, [and] fruit trees on the earth bearing fruit after their kind with seed in them'; and it was so. The earth brought forth vegetation, plants yielding seed after their kind, and trees bearing fruit with seed in them, after their kind; and God saw that it was good. There was evening and there was morning, a third day.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 3 in the Genesis 1 & 2 journey opens with Genesis 1:9-13. The passage states: Then God said, 'Let the waters below the heavens be gathered into one place, and let the dry land appear'; and it was so. God called the dry land earth, and the gathering of the waters He called seas; and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 3 in the Genesis 1 & 2 journey opens with Genesis 1:9-13. The passage states: Then God said, 'Let the waters below the heavens be gathered into one place, and let the dry land appear'; and it was so. God called the dry land earth, and the gathering of the waters He called seas; and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 3 in the Genesis 1 & 2 journey opens with Genesis 1:9-13. The passage states: Then God said, 'Let the waters below the heavens be gathered into one place, and let the dry land appear'; and it was so. God called the dry land earth, and the gathering of the waters He called seas; and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 3 in the Genesis 1 & 2 journey opens with Genesis 1:9-13. The passage states: Then God said, 'Let the waters below the heavens be gathered into one place, and let the dry land appear'; and it was so. God called the dry land earth, and the gathering of the waters He called seas; and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_d3523290",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:9-13 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:9-13 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:07.705226Z",
+      "last_modified": "2026-03-07T23:02:07.705226Z"
+    },
+    {
+      "day_number": 4,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 4",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:14-19",
+        "text": "Then God said, 'Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs and for seasons and for days and years; and let them be for lights in the expanse of the heavens to give light on the earth'; and it was so. God made the two great lights, the greater light to govern the day, and the lesser light to govern the night; [He made] the stars also. God placed them in the expanse of the heavens to give light on the earth, and to govern the day and the night, and to separate the light from the darkness; and God saw that it was good. There was evening and there was morning, a fourth day.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 4 in the Genesis 1 & 2 journey opens with Genesis 1:14-19. The passage states: Then God said, 'Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs and for seasons and for days and years; and let them be for lights. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 4 in the Genesis 1 & 2 journey opens with Genesis 1:14-19. The passage states: Then God said, 'Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs and for seasons and for days and years; and let them be for lights. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 4 in the Genesis 1 & 2 journey opens with Genesis 1:14-19. The passage states: Then God said, 'Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs and for seasons and for days and years; and let them be for lights. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 4 in the Genesis 1 & 2 journey opens with Genesis 1:14-19. The passage states: Then God said, 'Let there be lights in the expanse of the heavens to separate the day from the night, and let them be for signs and for seasons and for days and years; and let them be for lights. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_3350223e",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:14-19 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:14-19 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:09.322241Z",
+      "last_modified": "2026-03-07T23:02:09.322241Z"
+    },
+    {
+      "day_number": 5,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 5",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:20-23",
+        "text": "Then God said, 'Let the waters teem with swarms of living creatures, and let birds fly above the earth in the open expanse of the heavens.' God created the great sea monsters and every living creature that moves, with which the waters swarmed after their kind, and every winged bird after its kind; and God saw that it was good. God blessed them, saying, 'Be fruitful and multiply, and fill the waters in the seas, and let birds multiply on the earth.' There was evening and there was morning, a fifth day.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 5 in the Genesis 1 & 2 journey opens with Genesis 1:20-23. The passage states: Then God said, 'Let the waters teem with swarms of living creatures, and let birds fly above the earth in the open expanse of the heavens.' God created the great sea monsters and every living creature that moves, with which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 5 in the Genesis 1 & 2 journey opens with Genesis 1:20-23. The passage states: Then God said, 'Let the waters teem with swarms of living creatures, and let birds fly above the earth in the open expanse of the heavens.' God created the great sea monsters and every living creature that moves, with which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 5 in the Genesis 1 & 2 journey opens with Genesis 1:20-23. The passage states: Then God said, 'Let the waters teem with swarms of living creatures, and let birds fly above the earth in the open expanse of the heavens.' God created the great sea monsters and every living creature that moves, with which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 5 in the Genesis 1 & 2 journey opens with Genesis 1:20-23. The passage states: Then God said, 'Let the waters teem with swarms of living creatures, and let birds fly above the earth in the open expanse of the heavens.' God created the great sea monsters and every living creature that moves, with which. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_dc224a50",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:20-23 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:20-23 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:10.576688Z",
+      "last_modified": "2026-03-07T23:02:10.576688Z"
+    },
+    {
+      "day_number": 6,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 6",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:24-25",
+        "text": "Then God said, 'Let the earth bring forth living creatures after their kind: cattle and creeping things and beasts of the earth after their kind'; and it was so. God made the beasts of the earth after their kind, and the cattle after their kind, and everything that creeps on the ground after its kind; and God saw that it was good.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 6 in the Genesis 1 & 2 journey opens with Genesis 1:24-25. The passage states: Then God said, 'Let the earth bring forth living creatures after their kind: cattle and creeping things and beasts of the earth after their kind'; and it was so. God made the beasts of the earth after their kind, and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 6 in the Genesis 1 & 2 journey opens with Genesis 1:24-25. The passage states: Then God said, 'Let the earth bring forth living creatures after their kind: cattle and creeping things and beasts of the earth after their kind'; and it was so. God made the beasts of the earth after their kind, and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 6 in the Genesis 1 & 2 journey opens with Genesis 1:24-25. The passage states: Then God said, 'Let the earth bring forth living creatures after their kind: cattle and creeping things and beasts of the earth after their kind'; and it was so. God made the beasts of the earth after their kind, and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 6 in the Genesis 1 & 2 journey opens with Genesis 1:24-25. The passage states: Then God said, 'Let the earth bring forth living creatures after their kind: cattle and creeping things and beasts of the earth after their kind'; and it was so. God made the beasts of the earth after their kind, and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_7f09b8f0",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:24-25 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:24-25 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:11.579635Z",
+      "last_modified": "2026-03-07T23:02:11.579635Z"
+    },
+    {
+      "day_number": 7,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 7",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:26-28",
+        "text": "Then God said, 'Let Us make man in Our image, according to Our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the earth, and over every creeping thing that creeps on the earth.' God created man in His own image, in the image of God He created him; male and female He created them. God blessed them; and God said to them, 'Be fruitful and multiply, and fill the earth, and subdue it; and rule over the fish of the sea and over the birds of the sky and over every living thing that moves on the earth.'",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 7 in the Genesis 1 & 2 journey opens with Genesis 1:26-28. The passage states: Then God said, 'Let Us make man in Our image, according to Our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the earth,. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 7 in the Genesis 1 & 2 journey opens with Genesis 1:26-28. The passage states: Then God said, 'Let Us make man in Our image, according to Our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the earth,. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 7 in the Genesis 1 & 2 journey opens with Genesis 1:26-28. The passage states: Then God said, 'Let Us make man in Our image, according to Our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the earth,. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 7 in the Genesis 1 & 2 journey opens with Genesis 1:26-28. The passage states: Then God said, 'Let Us make man in Our image, according to Our likeness; and let them rule over the fish of the sea and over the birds of the sky and over the cattle and over all the earth,. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_c1bead46",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:26-28 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:26-28 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:12.798332Z",
+      "last_modified": "2026-03-07T23:02:12.798332Z"
+    },
+    {
+      "day_number": 8,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 8",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 1:29-31",
+        "text": "Then God said, 'Behold, I have given you every plant yielding seed that is on the surface of all the earth, and every tree which has fruit yielding seed; it shall be food for you; and to every beast of the earth and to every bird of the sky and to every thing that moves on the earth which has life, [I have given] every green plant for food'; and it was so. God saw all that He had made, and behold, it was very good. And there was evening and there was morning, the sixth day.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 8 in the Genesis 1 & 2 journey opens with Genesis 1:29-31. The passage states: Then God said, 'Behold, I have given the reader every plant yielding seed that is on the surface of all the earth, and every tree which has fruit yielding seed; it shall be food for the reader; and to every beast of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 8 in the Genesis 1 & 2 journey opens with Genesis 1:29-31. The passage states: Then God said, 'Behold, I have given the reader every plant yielding seed that is on the surface of all the earth, and every tree which has fruit yielding seed; it shall be food for the reader; and to every beast of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 8 in the Genesis 1 & 2 journey opens with Genesis 1:29-31. The passage states: Then God said, 'Behold, I have given the reader every plant yielding seed that is on the surface of all the earth, and every tree which has fruit yielding seed; it shall be food for the reader; and to every beast of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 8 in the Genesis 1 & 2 journey opens with Genesis 1:29-31. The passage states: Then God said, 'Behold, I have given the reader every plant yielding seed that is on the surface of all the earth, and every tree which has fruit yielding seed; it shall be food for the reader; and to every beast of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader",
+        "word_count": 550,
+        "grounding_map_id": "gm_9f788aa3",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 1:29-31 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 1:29-31 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:13.889274Z",
+      "last_modified": "2026-03-07T23:02:13.889274Z"
+    },
+    {
+      "day_number": 9,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 9",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 2:1-3",
+        "text": "Thus the heavens and the earth were completed, and all their hosts. By the seventh day God completed His work which He had done, and He rested on the seventh day from all His work which He had done. Then God blessed the seventh day and sanctified it, because in it He rested from all His work which God had created and made.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 9 in the Genesis 1 & 2 journey opens with Genesis 2:1-3. The passage states: Thus the heavens and the earth were completed, and all their hosts. By the seventh day God completed His work which He had done, and He rested on the seventh day from all His work which He had done. Then. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 9 in the Genesis 1 & 2 journey opens with Genesis 2:1-3. The passage states: Thus the heavens and the earth were completed, and all their hosts. By the seventh day God completed His work which He had done, and He rested on the seventh day from all His work which He had done. Then. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 9 in the Genesis 1 & 2 journey opens with Genesis 2:1-3. The passage states: Thus the heavens and the earth were completed, and all their hosts. By the seventh day God completed His work which He had done, and He rested on the seventh day from all His work which He had done. Then. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 9 in the Genesis 1 & 2 journey opens with Genesis 2:1-3. The passage states: Thus the heavens and the earth were completed, and all their hosts. By the seventh day God completed His work which He had done, and He rested on the seventh day from all His work which He had done. Then. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_6404a5f0",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 2:1-3 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 2:1-3 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:15.068628Z",
+      "last_modified": "2026-03-07T23:02:15.068628Z"
+    },
+    {
+      "day_number": 10,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 10",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 2:4-7",
+        "text": "This is the account of the heavens and the earth when they were created, in the day that the LORD God made earth and heaven. Now no shrub of the field was yet in the earth, and no plant of the field had yet sprouted, for the LORD God had not sent rain upon the earth, and there was no man to cultivate the ground. But a mist used to rise from the earth and water the whole surface of the ground. Then the LORD God formed man of dust from the ground, and breathed into his nostrils the breath of life; and man became a living being.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 10 in the Genesis 1 & 2 journey opens with Genesis 2:4-7. The passage states: This is the account of the heavens and the earth when they were created, in the day that the LORD God made earth and heaven. Now no shrub of the field was yet in the earth, and no plant of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 10 in the Genesis 1 & 2 journey opens with Genesis 2:4-7. The passage states: This is the account of the heavens and the earth when they were created, in the day that the LORD God made earth and heaven. Now no shrub of the field was yet in the earth, and no plant of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 10 in the Genesis 1 & 2 journey opens with Genesis 2:4-7. The passage states: This is the account of the heavens and the earth when they were created, in the day that the LORD God made earth and heaven. Now no shrub of the field was yet in the earth, and no plant of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 10 in the Genesis 1 & 2 journey opens with Genesis 2:4-7. The passage states: This is the account of the heavens and the earth when they were created, in the day that the LORD God made earth and heaven. Now no shrub of the field was yet in the earth, and no plant of. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_f3a89f19",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 2:4-7 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 2:4-7 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:16.428105Z",
+      "last_modified": "2026-03-07T23:02:16.428105Z"
+    },
+    {
+      "day_number": 11,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 11",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 2:8-17",
+        "text": "The LORD God planted a garden toward the east, in Eden; and there He placed the man whom He had formed. Out of the ground the LORD God caused to grow every tree that is pleasing to the sight and good for food; the tree of life also in the midst of the garden, and the tree of the knowledge of good and evil. Now a river flowed out of Eden to water the garden; and from there it divided and became four rivers. The name of the first is Pishon; it flows around the whole land of Havilah, where there is gold. The gold of that land is good; the bdellium and the onyx stone are there. The name of the second river is Gihon; it flows around the whole land of Cush. The name of the third river is Tigris; it flows east of Assyria. And the fourth river is the Euphrates. Then the LORD God took the man and put him into the garden of Eden to cultivate it and keep it. The LORD God commanded the man, saying, 'From any tree of the garden you may eat freely; but from the tree of the knowledge of good and evil you shall not eat, for in the day that you eat from it you will surely die.'",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 11 in the Genesis 1 & 2 journey opens with Genesis 2:8-17. The passage states: The LORD God planted a garden toward the east, in Eden; and there He placed the man whom He had formed. Out of the ground the LORD God caused to grow every tree that is pleasing to the sight and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 11 in the Genesis 1 & 2 journey opens with Genesis 2:8-17. The passage states: The LORD God planted a garden toward the east, in Eden; and there He placed the man whom He had formed. Out of the ground the LORD God caused to grow every tree that is pleasing to the sight and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 11 in the Genesis 1 & 2 journey opens with Genesis 2:8-17. The passage states: The LORD God planted a garden toward the east, in Eden; and there He placed the man whom He had formed. Out of the ground the LORD God caused to grow every tree that is pleasing to the sight and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 11 in the Genesis 1 & 2 journey opens with Genesis 2:8-17. The passage states: The LORD God planted a garden toward the east, in Eden; and there He placed the man whom He had formed. Out of the ground the LORD God caused to grow every tree that is pleasing to the sight and. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_a6e1afb9",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 2:8-17 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 2:8-17 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:18.688135Z",
+      "last_modified": "2026-03-07T23:02:18.688135Z"
+    },
+    {
+      "day_number": 12,
+      "day_focus": null,
+      "timeless_wisdom": {
+        "quote_text": "The steadfast love of the Lord endures forever. Day 12",
+        "author": "Charles Spurgeon",
+        "source_title": "Morning and Evening",
+        "publication_year": null,
+        "page_or_url": "p.1",
+        "public_domain": true,
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Genesis 2:18-25",
+        "text": "Then the LORD God said, 'It is not good for the man to be alone; I will make him a helper suitable for him.' Out of the ground the LORD God formed every beast of the field and every bird of the sky, and brought [them] to the man to see what he would call them; and whatever the man called a living creature, that was its name. The man gave names to all the cattle, and to the birds of the sky, and to every beast of the field, but for Adam there was not found a helper suitable for him. So the LORD God caused a deep sleep to fall upon the man, and he slept; then He took one of his ribs and closed up the flesh at that place. The LORD God fashioned into a woman the rib which He had taken from the man, and brought her to the man. The man said, 'This is now bone of my bones, And flesh of my flesh; She shall be called Woman, Because she was taken out of Man.' For this reason a man shall leave his father and his mother, and be joined to his wife; and they shall become one flesh. And the man and his wife were both naked and were not ashamed.",
+        "translation": "NASB",
+        "retrieval_source": "bolls_life",
+        "verification_status": "agent_validated",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Day 12 in the Genesis 1 & 2 journey opens with Genesis 2:18-25. The passage states: Then the LORD God said, 'It is not good for the man to be alone; I will make him a helper suitable for him.' Out of the ground the LORD God formed every beast of the field and every bird. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 12 in the Genesis 1 & 2 journey opens with Genesis 2:18-25. The passage states: Then the LORD God said, 'It is not good for the man to be alone; I will make him a helper suitable for him.' Out of the ground the LORD God formed every beast of the field and every bird. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 12 in the Genesis 1 & 2 journey opens with Genesis 2:18-25. The passage states: Then the LORD God said, 'It is not good for the man to be alone; I will make him a helper suitable for him.' Out of the ground the LORD God formed every beast of the field and every bird. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest with the pattern of God's word. Day 12 in the Genesis 1 & 2 journey opens with Genesis 2:18-25. The passage states: Then the LORD God said, 'It is not good for the man to be alone; I will make him a helper suitable for him.' Out of the ground the LORD God formed every beast of the field and every bird. This anchors the devotional in revealed text. The context of creation clarifies that God speaks with intention and goodness. Human identity is received from divine initiative rather than earned through performance. The theological center remains the character of God: wise, orderly, and faithful. Because the Creator is trustworthy, obedience emerges as grateful response rather than fear. The bridge into daily practice is grounded in worship and neighbor-love. The reader is invited to align speech, work, and rest",
+        "word_count": 550,
+        "grounding_map_id": "gm_ff417c7e",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit in silence and reflect on this passage.",
+          "What is stirring within your heart today?",
+          "Rest in this stillness before moving on."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Spend five minutes in silent prayer each morning.",
+          "Offer one act of kindness to someone today."
+        ],
+        "connector_phrase": "This week, practice this:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, we thank You for the truth of Genesis 2:18-25 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the truth of Genesis 2:18-25 and for the steady mercy revealed throughout Genesis 1 & 2. Lord Jesus, shape the inner life so that thoughts and actions agree with what You have spoken. Holy Spirit, expose pride, renew trust, and guide this day toward faithful love, honest work, and peace. God, teach endurance in small decisions, give wisdom in conversation, and keep the heart near Your word. Father, we thank You for the",
+        "word_count": 150,
+        "prayer_trace_map_id": "",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-07T23:02:20.526651Z",
+      "last_modified": "2026-03-07T23:02:20.526651Z"
+    }
+  ],
+  "series_id": "series-genesis12-loop-20260307-180152",
+  "volume_number": 1,
+  "volume_id": "vol-4ba5edc0"
+}

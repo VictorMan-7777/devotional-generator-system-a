@@ -1,0 +1,1166 @@
+]0;Orchestrator ▶ DevG
+════════════════════════════════════════════════════════════════════════
+  Codex-Claude Orchestrator starting
+════════════════════════════════════════════════════════════════════════
+  Started     : 2026-03-13 01:36:46
+  Log         : /Volumes/claude-projects/projects/devotional-generator-system-a/logs/run_20260313_013646.log
+  Prompt file : /Volumes/claude-projects/projects/orchestrator-prompts/ready/DevG.txt
+  State file  : session-state.json
+  Work dir    : /Volumes/claude-projects/projects/devotional-generator-system-a  [extracted from prompt file]
+  Max steps   : 50
+  Timeout/turn: 3600s
+  Skip perms  : True  (default)
+  Phase mode  : single-phase (PASS → COMPLETION)
+  Preflight   : OK
+  Prompts repo : /Volumes/claude-projects/projects/orchestrator-prompts
+  Notifications: ntfy → https://ntfy.sh/VictorMans-ideas
+  Prompt mode  : standard
+  Planner      : none
+  Worker       : codex
+
+────────────────────────────────────────────────────────────────────────
+  Turn 1  ·  elapsed 0m 0s  ·  started 01:36:46
+────────────────────────────────────────────────────────────────────────
+
+  Artifact ID : 2026-03-13__02  (pre-assigned)
+
+  Calling codex worker (work_dir=/Volumes/claude-projects/projects/devotional-generator-system-a, timeout=3600s)…
+  [codex] OpenAI Codex v0.107.0 (research preview)
+  [codex] --------
+  [codex] workdir: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] model: gpt-5.4
+  [codex] provider: openai
+  [codex] approval: never
+  [codex] sandbox: danger-full-access
+  [codex] reasoning effort: none
+  [codex] reasoning summaries: none
+  [codex] session id: 019ce5b2-870a-7c73-bd74-f3a396bc44d8
+  [codex] --------
+  [codex] user
+  [codex] Target Repo: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] Worker: codex
+  [codex] 
+  [codex] =========================================================================
+  [codex] SECTION 1 — SECOND-EYES REVIEW: HARNESS SET B FAILURES
+  [codex] =========================================================================
+  [codex] 
+  [codex] CONTEXT
+  [codex] You are operating as the ORCH worker reviewing DevG (Devotional Generator)
+  [codex] output on behalf of the DevG team. DevG is a pipeline that generates
+  [codex] multi-day devotional content from scripture passages. It is not a code
+  [codex] project — the "repo" contains the generator pipeline, harness test
+  [codex] infrastructure, and output artifacts. Do not attempt to run the pipeline.
+  [codex] Your task is analytical: review failing cases, diagnose root causes, and
+  [codex] recommend the smallest defensible repair path.
+  [codex] 
+  [codex] You have two inputs:
+  [codex]   1. Review methodology:
+  [codex]        docs/system/second_eyes_review_prompt.md
+  [codex]   2. Failing cases packet:
+  [codex]        docs/system/outputs/2026-03-13__*__devg__second-eyes-set-b-packet.md
+  [codex]        (resolve the exact filename by glob — there is exactly one match)
+  [codex] 
+  [codex] Read both files in full before beginning your analysis.
+  [codex] 
+  [codex] TASK
+  [codex] Apply the second-eyes review methodology to all three failing cases in the
+  [codex] packet:
+  [codex] 
+  [codex]   - Case 1: Exodus 19-20 (run slug: 2026-03-13__043121__competition-volume-1__12-day__vol-1)
+  [codex]     Failed checks: BOOK_DAY_PROGRESS (×2), BOOK_WEEK_TRANSITION
+  [codex]     Target days: 3, 4, 5, 6, 8
+  [codex] 
+  [codex]   - Case 2: Proverbs 1-2 (run slug: 2026-03-13__043207__competition-volume-1__12-day__vol-1)
+  [codex]     Failed checks: BOOK_DAY_PROGRESS, BOOK_WEEK_TRANSITION
+  [codex]     Target days: 6, 7, 8
+  [codex] 
+  [codex]   - Case 3: Acts 9 (run slug: 2026-03-13__043408__competition-volume-1__12-day__vol-1)
+  [codex]     Failed checks: BOOK_THEOLOGICAL_BOUNDARY (×2), BOOK_DAY_PROGRESS (×2)
+  [codex]     Target days: 2, 3, 5, 9, 11, 12
+  [codex] 
+  [codex] For each case produce the full structured output required by the review
+  [codex] methodology:
+  [codex]   - Executive Judgment
+  [codex]   - Failure Map (per affected day or cluster)
+  [codex]   - Repair Plan (minimum targeted changes, concrete)
+  [codex]   - Confidence level with reason
+  [codex] 
+  [codex] REPAIR PLAN REQUIREMENTS
+  [codex] - Identify whether each failure is structural, interpretive, theological,
+  [codex]   research-depth related, validator-threshold related, or mixed.
+  [codex] - For each affected day cluster, state explicitly:
+  [codex]     * What the passage is actually doing
+  [codex]     * What the correct theological burden is
+  [codex]     * What devotional move is warranted
+  [codex]     * What devotional move is not warranted
+  [codex] - Recommend the smallest repair — targeted changes, not broad rewrites.
+  [codex] - If adjacent-day sameness is the root cause, recommend a change in burden
+  [codex]   assignment or scene emphasis, not superficial word changes.
+  [codex] - If exposition template lock-in is occurring (same opening sentence
+  [codex]   structure across multiple days), call it out by name as the pattern.
+  [codex] - If genre misapplication is present (narrative framing on non-narrative
+  [codex]   material), flag it explicitly.
+  [codex] - If scene summary and theological lane conflict within the same day,
+  [codex]   identify which one is wrong and which should anchor the repair.
+  [codex] 
+  [codex] EVIDENCE REQUIRED
+  [codex] - Scan docs/system/outputs/ for existing files dated 2026-03-13. Compute NN
+  [codex]   as max existing NN for that date + 1.
+  [codex] - Write complete review to:
+  [codex]     docs/system/outputs/2026-03-13__NN__devg__second-eyes-setb-review.md
+  [codex] - All three case reviews must be in full. No truncation.
+  [codex] - End your final response with OUTCOME: CERTIFIED (all three cases reviewed,
+  [codex]   repair plans written, artifact saved) or OUTCOME: FAIL (reason).
+  [codex] 
+  [codex] mcp startup: no servers
+  [codex] codex
+  [codex] I’m reading the review methodology and the failing-cases packet first, then I’ll inspect the existing `2026-03-13` output files to assign the next artifact number before drafting the full review.
+  [codex] exec
+  [codex] /bin/zsh -lc "python - <<'PY'
+  [codex] import glob
+  [codex] for p in glob.glob('docs/system/outputs/2026-03-13__*__devg__second-eyes-set-b-packet.md'):
+  [codex]     print(p)
+  [codex] PY" in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "python - <<'PY'
+  [codex] import glob, os, re
+  [codex] paths=sorted(glob.glob('docs/system/outputs/2026-03-13__*'))
+  [codex] for p in paths:
+  [codex]     print(os.path.basename(p))
+  [codex] PY" in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "sed -n '1,260p' docs/system/second_eyes_review_prompt.md" in /Volumes/claude-projects/projects/devotional-generator-system-a exited 127 in 52ms:
+  [codex] zsh:1: command not found: python
+  [codex]  exited 127 in 50ms:
+  [codex] zsh:1: command not found: python
+  [codex]  succeeded in 52ms:
+  [codex] # DevG Second-Eyes Review Prompt
+  [codex] 
+  [codex] You are the second-eye reviewer for the Devotional Generator system.
+  [codex] 
+  [codex] Your job is not to rewrite the devotional directly. Your job is to review a failed or questionable generation case, diagnose why it is weak, and recommend the most defensible repair path.
+  [codex] 
+  [codex] ## Review stance
+  [codex] 
+  [codex] - Be precise, not polite for its own sake.
+  [codex] - Do not assume the generator is correct.
+  [codex] - Do not assume the validator is correct.
+  [codex] - Treat the passage as authoritative.
+  [codex] - Prefer passage-faithful specificity over generic devotional language.
+  [codex] - Distinguish structural failures from interpretive failures.
+  [codex] 
+  [codex] ## Inputs you may be given
+  [codex] 
+  [codex] You may receive any combination of the following:
+  [codex] 
+  [codex] - passage and period
+  [codex] codex
+  [codex] The methodology is clear. The shell doesn’t have `python`; I’m switching to `python3`, then I’ll open the packet and compute the next dated output slot.
+  [codex] exec
+  [codex] /bin/zsh -lc "python3 - <<'PY'
+  [codex] import glob
+  [codex] for p in glob.glob('docs/system/outputs/2026-03-13__*__devg__second-eyes-set-b-packet.md'):
+  [codex]     print(p)
+  [codex] PY" in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "python3 - <<'PY'
+  [codex] import glob, os
+  [codex] for p in sorted(glob.glob('docs/system/outputs/2026-03-13__*')):
+  [codex]     print(os.path.basename(p))
+  [codex] PY" in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 51ms:
+  [codex] docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md
+  [codex]  succeeded in 51ms:
+  [codex] 2026-03-13__01__devg__second-eyes-set-b-packet.md
+  [codex] 2026-03-13__second-eyes__set-b-current-issues.md
+  [codex] exec
+  [codex] /bin/zsh -lc 'wc -l docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md' in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "sed -n '1,260p' docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md" in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 51ms:
+  [codex]      391 docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md
+  [codex]  succeeded in 51ms:
+  [codex] # DevG Second-Eyes Review Packet — Harness Set B
+  [codex] 
+  [codex] This packet collects the current failing Harness Set B cases for a second-eye review. All cases are 12-day / 2-week runs using the normal DevG pipeline.
+  [codex] 
+  [codex] ## Case: Exodus 19-20
+  [codex] 
+  [codex] - Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] - Failed checks: `BOOK_DAY_PROGRESS, BOOK_DAY_PROGRESS, BOOK_WEEK_TRANSITION`
+  [codex] - Target days: `[3, 4, 5, 6, 8]`
+  [codex] 
+  [codex] ### Day 3
+  [codex] - Passage: `Exodus 19:9-12`
+  [codex] - Day topic: `Exodus 19:9-12 - ” Then Moses told the words of the people to the Lord`
+  [codex] - Genre: `narrative`
+  [codex] - Scene summary: Exodus 19:9-12 opens with a scene marked by truthfulness under pressure.
+  [codex] - Theological lane: `truthfulness under pressure`
+  [codex] - Application lane: `concrete obedience under the authority of the passage`
+  [codex] - Forbidden drift: `generic encouragement detached from the scene, applications that ignore the specific burden of the passage, explicit Jesus language not warranted by the passage`
+  [codex] - Key terms: `moses, told, words, people, lord, said`
+  [codex] 
+  [codex] codex
+  [codex] The packet shows a strong pattern already: repeated template lock-in, misassigned burdens, and at least one clear genre error. I’m reading the remainder of the Acts case now so I can anchor the repairs to the actual day clusters rather than just the validator labels.
+  [codex] exec
+  [codex] /bin/zsh -lc "sed -n '261,391p' docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md" in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc 'rg -n "Acts 9" docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md' in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 51ms:
+  [codex] ### Day 3
+  [codex] - Passage: `Acts 9:8-10`
+  [codex] - Day topic: `Acts 9:8-10 - There was a disciple at Damascus named Ananias`
+  [codex] - Genre: `narrative`
+  [codex] - Scene summary: Acts 9:8-10 opens with a scene marked by faithful response to God's word.
+  [codex] - Theological lane: `faithful response to God's word`
+  [codex] - Application lane: `concrete obedience under the authority of the passage`
+  [codex] - Forbidden drift: `generic encouragement detached from the scene, applications that ignore the specific burden of the passage, explicit Jesus language not warranted by the passage`
+  [codex] - Key terms: `disciple, damascus, named, ananias, saul, got`
+  [codex] 
+  [codex] Exposition excerpt:
+  [codex] ```text
+  [codex] Acts 9:8-10 opens with a scene marked by faithful response to God's word. The text does not ask the reader to admire the moment from a distance. It brings a concrete moment into view: There was a disciple at Damascus named Ananias. The first task of reflection is therefore to stay with what the text actually presents in this scene instead of rushing to a broad religious slogan. Because this is narrative material, the theology arrives through events, actions, and speech rather than detached maxims. When Scripture is allowed to set the terms, devotion becomes clearer, steadier, and more truthful. The surrounding context sharpens that reading. Acts 9:8-10 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. That is why the pastoral burden here is faithful response to God's word, and the theological lane is faithful response to God's word...
+  [codex] ```
+  [codex] 
+  [codex] Action steps:
+  [codex] ```text
+  [codex] - Name one place where you have been trying to control the outcome, and entrust that concern to God in prayer.
+  [codex] - End the day by recording one evidence of God's goodness you noticed in work, rest, or relationships.
+  [codex] ```
+  [codex]  succeeded in 50ms:
+  [codex] Total output lines: 36
+  [codex] 
+  [codex] 229:## Case: Acts 9
+  [codex] 236:- Passage: `Acts 9:4-7`
+  [codex] 237:- Day topic: `Acts 9:4-7 - He fell to the ground and heard a voice saying to him`
+  [codex] 239:- Scene summary: Acts 9:4-7 opens with a scene marked by faithful response to God's word.
+  [codex] 247:Acts 9:4-7 opens with a scene marked by faithful response to God's word. The text does not ask the reader to admire the moment from a distance. It brings a concrete moment into view: He fell to the ground and heard a voice saying to him. The first task of reflection is therefore to stay with what the text actually presents in this scene instead of rushing to a broad religious slogan. Because this is narrative material, the theology arrives through events, actions, and speech rather than detached maxims. When Scripture is allowed to set the terms, devotion becomes clearer, steadier, and more truthful. The surrounding context sharpens that reading. Acts 9:4-7 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. That is why the pastoral burden here is faithful response to God's word, and the theological lane is faithful response to God's...
+  [codex] 252:- Before your next decision, pause and ask how Acts 9:4-7 should shape your response.
+  [codex] 258:Father, thank You for speaking clearly in Acts 9:4-7. In this passage You bring faithful response to God's word into the open through He fell to the ground and heard a voice saying to him. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us near Your word, and do not let ordinary pressure turn us away from humble obedience. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Acts 9:4-7 opens with a scene marked by faithful response to God's word. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from faithful response instead of vague admiration. Help us practice the obedience this day requires wit...
+  [codex] 262:- Passage: `Acts 9:8-10`
+  [codex] 263:- Day topic: `Acts 9:8-10 - There was a disciple at Damascus named Ananias`
+  [codex] 265:- Scene summary: Acts 9:8-10 opens with a scene marked by faithful response to God's word.
+  [codex] 273:Acts 9:8-10 opens with a scene marked by faithful response to God's word. The text does not ask the reader to admire the moment from a distance. It brings a concrete moment into view: There was a disciple at Damascus named Ananias. The first task of reflection is therefore to stay with what the text actually presents in this scene instead of rushing to a broad religious slogan. Because this is narrative material, the theology arrives through events, actions, and speech rather than detached maxims. When Scripture is allowed to set the terms, devotion becomes clearer, steadier, and more truthful. The surrounding context sharpens that reading. Acts 9:8-10 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. That is why the pastoral burden here is faithful response to God's word, and the theological lane is faithful response to God's word...
+  [codex] 284:Father, thank You for speaking clearly in Acts 9:8-10. In this passage You bring faithful response to God's word into the open through There was a disciple at Damascus named Ananias. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us near Your word, and do not let ordinary pressure turn us away from humble obedience. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Acts 9:8-10 opens with a scene marked by faithful response to God's word. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from faithful response instead of vague admiration. Help us practice the obedience this day requires with hum...
+  [codex] 288:- Passage: `Acts 9:15-17`
+  [codex] 289:- Day topic: `Acts 9:15-17 - To bear My name before the Gentiles and kings and the sons of Israel`
+  [codex] 291:- Scene summary: Acts 9:15-17 opens with a scene marked by prepared obedience.
+  [codex] 299:Acts 9:15-17 opens with a scene marked by prepared obedience. The text does not ask the reader to admire the moment from a distance. It brings a concrete moment into view: To bear My name before the Gentiles and kings and the sons of Israel. The first task of reflection is therefore to stay with what the text actually presents in this scene instead of rushing to a broad religious slogan. Because this is narrative material, the theology arrives through events, actions, and speech rather than detached maxims. When Scripture is allowed to set the terms, devotion becomes clearer, steadier, and more truthful. The surrounding context sharpens that reading. Acts 9:15-17 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. That is why the pastoral burden here is prepared obedience, and the theological lane is prepared obedience. The reader ne...
+  [codex] 304:- Write one sentence naming how Acts 9:15-17 presses on the scene of To bear My name before the Gentiles and kings and the sons of Israel.
+  [codex] 310:Father, thank You for speaking clearly in Acts 9:15-17. In this passage You bring prepared obedience into the open through To bear My name before the Gentiles and kings and the sons of Israel. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us near Your word, and do not let ordinary pressure turn us away from humble obedience. Holy Spirit, take what we have seen in the exposition and turn it into worship in…172 tokens truncated…lness looks like when public voices distort what is right. It brings a concrete moment into view: The church throughout all Judea and Galilee and Samaria enjoyed peace. The first task of reflection is therefore to stay with what the text actually presents in this scene instead of rushing to a broad religious slogan. Because this is narrative material, the theology arrives through events, actions, and speech rather than detached maxims. When Scripture is allowed to set the terms, devotion becomes clearer, steadier, and more truthful. The surrounding context sharpens that reading. Acts 9:29-32 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. That is why the pastoral burden here is truthfulness under pressu...
+  [codex] codex
+  [codex] I have enough of the packet to see the root causes, but I’m checking whether there’s a companion issue summary for these same runs so I don’t miss a validator-specific nuance before I write the repair recommendations.
+  [codex] exec
+  [codex] /bin/zsh -lc "sed -n '1,260p' docs/system/outputs/2026-03-13__second-eyes__set-b-current-issues.md" in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 51ms:
+  [codex] # DevG Second-Eyes Review Packet
+  [codex] 
+  [codex] - Run scope: `Harness Set B`
+  [codex] - Cases needing second-eye diagnosis: `Exodus 19-20`, `Proverbs 1-2`, `Acts 9`
+  [codex] - Goal: diagnose book-level composition failures before continuing to fresh review generation
+  [codex] 
+  [codex] ## Human-Review Escalations
+  [codex] 
+  [codex] - Scope: `book` | Failed checks: `BOOK_DAY_PROGRESS`, `BOOK_WEEK_TRANSITION` | Passage: `Exodus 19-20` | Target days: `3, 4, 5, 6, 8`
+  [codex] - Scope: `book` | Failed checks: `BOOK_DAY_PROGRESS`, `BOOK_WEEK_TRANSITION` | Passage: `Proverbs 1-2` | Target days: `6, 7, 8`
+  [codex] - Scope: `book` | Failed checks: `BOOK_THEOLOGICAL_BOUNDARY`, `BOOK_DAY_PROGRESS` | Passage: `Acts 9` | Target days: `2, 3, 5, 9, 11, 12`
+  [codex] 
+  [codex] ## Failure Map
+  [codex] 
+  [codex] ### Exodus 19-20
+  [codex] - Day/Cluster: `3-4`
+  [codex] - Passage: `Exodus 19:9-17`
+  [codex] - Failure type: `adjacent-day sameness`
+  [codex] - Primary cause: both days are assigned `truthfulness under pressure`
+  [codex] - What the passage is doing: Sinai preparation is moving from mediated speech toward holy encounter and boundary-setting
+  [codex] exec
+  [codex] /bin/zsh -lc 'rg -n "2026-03-13__043121__competition-volume-1__12-day__vol-1|2026-03-13__043207__competition-volume-1__12-day__vol-1|2026-03-13__043408__competition-volume-1__12-day__vol-1" docs/system -S' in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 109ms:
+  [codex] docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md:7:- Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md:145:- Run slug: `2026-03-13__043207__competition-volume-1__12-day__vol-1`
+  [codex] docs/system/outputs/2026-03-13__01__devg__second-eyes-set-b-packet.md:231:- Run slug: `2026-03-13__043408__competition-volume-1__12-day__vol-1`
+  [codex] codex
+  [codex] I’ve confirmed the next artifact slot is `02`, and the existing issue summary aligns with the packet: these are burden-assignment failures, with one clear genre misapplication in Exodus 20 and two theological-boundary misses in Acts.
+  [codex] 
+  [codex] Plan:
+  [codex] 1. Draft a full second-eyes review for each case using the required structure.
+  [codex] 2. Anchor each cluster to the passage’s actual movement and name the minimum repair, including failure category and what is and is not warranted.
+  [codex] 3. Save the completed review to `docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md`.
+  [codex] codex
+  [codex] I’m writing the review artifact now. The edits are limited to a new output file; no pipeline files or generation artifacts are being changed.
+  [codex] file update
+  [codex] A /Volumes/claude-projects/projects/devotional-generator-system-a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] # DevG Second-Eyes Review — Harness Set B
+  [codex] 
+  [codex] ## Case 1: Exodus 19-20
+  [codex] 
+  [codex] Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] 
+  [codex] ### Executive Judgment
+  [codex] The first-eye system is in the wrong lane on these target days. The core problem is structural and interpretive burden misassignment, compounded by exposition template lock-in and one explicit genre misapplication. Days 3-6 flatten distinct Sinai movements into two generic lanes, and day 8 wrongly treats commandment material as narrative while carrying the same obedience frame across the week boundary. This is not a wording problem. The repair is to reassign burdens by scene and covenant movement, then lightly rewrite exposition, action, and prayer around those new anchors.
+  [codex] 
+  [codex] ### Failure Map
+  [codex] - Day/Cluster: `3-4`
+  [codex] - Passage: `Exodus 19:9-17`
+  [codex] - Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] - Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] - What the passage is doing: `19:9-12` is about the Lord establishing mediated hearing and protective boundaries so the people learn to trust the Lord's speaking through Moses. `19:13-17` shifts to consecrated approach and trembling preparation as the people are brought out to meet God at the mountain.
+  [codex] - Warranted devotional burden: Day 3 should stress covenant mediation, hearing, and the seriousness of drawing near on God's terms. Day 4 should stress consecrated approach to holy presence and the sobering privilege of meeting God.
+  [codex] - Unwarranted drift: `truthfulness under pressure` is not the passage's burden on either day. Pilate/crowd pressure language is imported from another lane and obscures Sinai preparation.
+  [codex] 
+  [codex] - Day/Cluster: `5-6`
+  [codex] - Passage: `Exodus 19:18-25`
+  [codex] - Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] - Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] - What the passage is doing: `19:18-21` foregrounds the Lord's terrifying descent, smoke, trumpet blast, and trembling encounter. `19:22-25` intensifies guarded nearness: even priests must consecrate themselves and the people must not break through.
+  [codex] - Warranted devotional burden: Day 5 should carry holy descent and trembling encounter before divine majesty. Day 6 should carry guarded nearness, consecration, and the danger of approaching casually.
+  [codex] - Unwarranted drift: a broad `faithful response to God's word` lane is too thin for both scenes. On day 6 the scene itself is about boundary and consecration, not generic steadiness. Where scene summary and theological lane conflict, the theological lane is wrong and the scene should anchor the repair.
+  [codex] 
+  [codex] - Day/Cluster: `6-8`
+  [codex] - Passage: `Exodus 19:22-20:9`
+  [codex] - Failure type: `weak week transition; genre misapplication; burden carryover`
+  [codex] - Primary cause: `mixed` (`structural`, `interpretive`, and `validator-threshold related` only secondarily because the validator is correctly detecting a real continuity failure)
+  [codex] - What the passage is doing: the book moves from mountain-boundary and consecration material into covenant command, especially exclusive worship, the Lord's name, and Sabbath holiness.
+  [codex] - Warranted devotional burden: the week turn should move from guarded approach to holy presence into holy speech and covenant obedience. Day 8 especially should emphasize the sanctity of God's name and ordered worshipful life under covenant command.
+  [codex] - Unwarranted drift: carrying the same generic obedience frame into commandment material, and calling `Exodus 20:5-9` `narrative`, is a genre misapplication. This day should not be framed as a scene summary at all.
+  [codex] 
+  [codex] ### Repair Plan
+  [codex] - Reassign day burdens before rewriting prose:
+  [codex]   - Day 3: `mediated hearing under covenant trust`
+  [codex]   - Day 4: `consecrated approach to holy presence`
+  [codex]   - Day 5: `holy descent and trembling encounter`
+  [codex]   - Day 6: `guarded nearness under consecration`
+  [codex]   - Day 8: `holy speech and covenant obedience`
+  [codex] - Remove the repeated opening pattern `opens with a scene marked by...` across these days. That is exposition template lock-in, and it is driving sameness more than syntax choices.
+  [codex] - Rewrite day 3 action/prayer away from justice-pressure language and toward hearing, trust, and reverent obedience under mediated revelation.
+  [codex] - Rewrite day 4 around preparation to meet God, not public pressure or truth-telling.
+  [codex] - Rewrite day 5 around divine holiness and human trembling, not generic obedience.
+  [codex] - Rewrite day 6 so the warning/boundary material governs the devotional move. The correct move is reverent consecration and refusal of casual nearness; the unwarranted move is generalized `be steady` application.
+  [codex] - Change day 8 genre handling from narrative framing to command/instruction framing. Do not summarize it as a scene. Anchor exposition, action, and prayer in the third commandment/Sabbath cluster: God's name is not to be trivialized, and life is ordered around holy allegiance.
+  [codex] - Keep surrounding days intact unless they depend on the same lane labels. This can be repaired with targeted day-level burden reassignment and short downstream rewrites, not a broad rerun.
+  [codex] 
+  [codex] ### Confidence
+  [codex] - High
+  [codex] - The validator failures correspond to obvious composition errors in the packet itself: repeated burdens, repeated opening structure, and a clear narrative/non-narrative mismatch on day 8.
+  [codex] 
+  [codex] ## Case 2: Proverbs 1-2
+  [codex] 
+  [codex] Run slug: `2026-03-13__043207__competition-volume-1__12-day__vol-1`
+  [codex] 
+  [codex] ### Executive Judgment
+  [codex] The first-eye system is mostly in the right textual neighborhood but still fails the late-week sequence because it flattens a wisdom-warning escalation into one repeated frame. This is primarily a structural and interpretive problem, not a theological one. Days 6 and 7 repeat the same `truthfulness under pressure` lane even though the passage is moving from threatened calamity to the exposed culpability of refusing wisdom, and day 8 does not turn sharply enough into the calm security of listening. The smallest repair is burden reassignment plus narrow rewrites of exposition, action, and prayer.
+  [codex] 
+  [codex] ### Failure Map
+  [codex] - Day/Cluster: `6-7`
+  [codex] - Passage: `Proverbs 1:23-32`
+  [codex] - Failure type: `adjacent-day sameness; burden misassigned; genre misfit`
+  [codex] - Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] - What the passage is doing: `1:23-27` voices wisdom's warning that ignored rebuke will ripen into unavoidable calamity. `1:28-32` then explains why judgment falls: they hated knowledge, refused the fear of the Lord, and are given over to the fruit of their own way.
+  [codex] - Warranted devotional burden: Day 6 should carry urgent warning before calamity. Day 7 should carry culpable refusal of wisdom and the moral seriousness of rejecting the fear of the Lord.
+  [codex] - Unwarranted drift: `truthfulness under pressure` imports a narrative/public-conflict frame into wisdom literature. This is genre misapplication. The passage is not about social pressure dynamics or appearing innocent; it is about wisdom rejected and judgment deserved.
+  [codex] 
+  [codex] - Day/Cluster: `7-8`
+  [codex] - Passage: `Proverbs 1:28-33`
+  [codex] - Failure type: `weak week transition; tonal flattening; exposition template lock-in`
+  [codex] - Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] - What the passage is doing: after exposing the refusal of wisdom and its consequences, `1:33` turns to the settled promise that the one who listens will dwell secure and undisturbed by dread.
+  [codex] - Warranted devotional burden: Day 8 should make a clean tonal turn into secure listening under wisdom's shelter. The devotional move is receptive trust, teachability, and restful obedience.
+  [codex] - Unwarranted drift: carrying warning-heavy cadence, generic obedience language, or pressure/conflict imagery into `1:33` mutes the passage's resolution and weakens the week transition.
+  [codex] 
+  [codex] ### Repair Plan
+  [codex] - Reassign burdens:
+  [codex]   - Day 6: `wisdom warning before calamity`
+  [codex]   - Day 7: `culpable refusal of the fear of the Lord`
+  [codex]   - Day 8: `secure listening under wisdom's shelter`
+  [codex] - Remove the recurring sentence pattern `opens with a scene marked by...` and any pseudo-scene phrasing. Proverbs here is not narrative; the reflections should sound like wisdom address, warning, and promise.
+  [codex] - Rewrite day 6 application away from `honest responsibility instead of symbolic distance`. The warranted move is to heed rebuke before consequences harden.
+  [codex] - Rewrite day 7 around repentance for despising knowledge and refusing the fear of the Lord. The unwarranted move is generic public-pressure courage.
+  [codex] - Rewrite day 8 so it feels like a release into security rather than one more warning paragraph with softened wording. The smallest defensible change is a new opening paragraph and corresponding action/prayer that stress listening, security, and freedom from dread.
+  [codex] - No deeper research pass is required unless the generator cannot produce distinct wisdom-lane prose after burden reassignment. This does not look like a source-depth failure.
+  [codex] 
+  [codex] ### Confidence
+  [codex] - High
+  [codex] - The packet shows a clean three-step movement already. The failures are caused by flattening that movement, not by ambiguity in Proverbs 1.
+  [codex] 
+  [codex] ## Case 3: Acts 9
+  [codex] 
+  [codex] Run slug: `2026-03-13__043408__competition-volume-1__12-day__vol-1`
+  [codex] 
+  [codex] ### Executive Judgment
+  [codex] The first-eye system is partly on the right track in recognizing major Acts 9 units, but several target days are in the wrong theological lane. This case combines structural failure, interpretive drift, and real theological-boundary problems. Days 2 and 3 collapse distinct narrative roles into one generic response frame, day 5 reduces a commission-to-bear-Christ's-name scene to thin preparedness, day 9 wrongly imports confrontation language into a peace-and-growth summary, and days 11-12 split the Tabitha arc with mismatched burdens that do not track the miracle's witness function. The repair is targeted lane reassignment with brief day-level rewrites; only minimal additional research is needed.
+  [codex] 
+  [codex] ### Failure Map
+  [codex] - Day/Cluster: `2-3`
+  [codex] - Passage: `Acts 9:4-10`
+  [codex] - Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] - Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] - What the passage is doing: `9:4-7` is Saul's confrontation by the risen Jesus, his collapse, and the exposure of his opposition to the Lord. `9:8-10` slows into blindness, dependence, and then the introduction and summons of Ananias.
+  [codex] - Warranted devotional burden: Day 2 should emphasize conversion confrontation under the risen Lord's authority. Day 3 should emphasize obedient hesitation answered by divine call in Ananias's introduction and Saul's humbled dependence.
+  [codex] - Unwarranted drift: using the same `faithful response to God's word` lane for both days erases the difference between being overthrown by Christ and being called to obey Christ in costly service.
+  [codex] 
+  [codex] - Day/Cluster: `5`
+  [codex] - Passage: `Acts 9:15-17`
+  [codex] - Failure type: `theological boundary; burden misassigned`
+  [codex] - Primary cause: `mixed` (`theological` and `interpretive`)
+  [codex] - What the passage is doing: the risen Lord explicitly names Saul as His chosen instrument to bear His name before Gentiles, kings, and Israel, and ties that calling to coming suffering.
+  [codex] - Warranted devotional burden: costly commission under divine election and mission in Christ's name.
+  [codex] - Unwarranted drift: `prepared obedience` is too thin and too generic. It loses the Christological and missional burden that the passage itself makes explicit.
+  [codex] 
+  [codex] - Day/Cluster: `9`
+  [codex] - Passage: `Acts 9:29-32`
+  [codex] - Failure type: `theological boundary; passage misread`
+  [codex] - Primary cause: `mixed` (`theological`, `interpretive`, and `structural`)
+  [codex] - What the passage is doing: after Saul's conflict and transfer, the church across Judea, Galilee, and Samaria experiences peace, edification, fear of the Lord, and the comfort of the Holy Spirit, with resulting growth.
+  [codex] - Warranted devotional burden: church peace and Spirit-strengthened growth after threat; communal strengthening under the Lord's care.
+  [codex] - Unwarranted drift: `truthfulness under pressure` is the wrong anchor entirely. The scene summary is wrong, and the theological lane should be rebuilt from the church-peace summary rather than patched.
+  [codex] 
+  [codex] - Day/Cluster: `11-12`
+  [codex] - Passage: `Acts 9:36-43`
+  [codex] - Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] - Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] - What the passage is doing: `9:36-39` presents Tabitha's merciful life, death, and the grieving witness of the community. `9:40-43` presents Peter's prayer, Tabitha's raising, many believing in the Lord, and Peter's lingering stay in Joppa.
+  [codex] - Warranted devotional burden: Day 11 should stress mercy-shaped witness and the communal testimony of a life full of good works. Day 12 should stress resurrection witness and enduring gospel presence after the visible miracle.
+  [codex] - Unwarranted drift: day 11's `truthfulness under pressure` is a direct mismatch; day 12's `watchful surrender` undershoots the text by centering inward posture rather than resurrection witness and mission aftermath. Where scene summary and theological lane conflict, day 11's theological lane is wrong; on day 12 the quoted scene hook is wrong because the devotional anchor should not be Peter's lodging but the raising and resulting belief.
+  [codex] 
+  [codex] ### Repair Plan
+  [codex] - Reassign burdens:
+  [codex]   - Day 2: `conversion confrontation under the risen Lord`
+  [codex]   - Day 3: `obedient hesitation answered by divine call`
+  [codex]   - Day 5: `costly commission to bear Christ's name`
+  [codex]   - Day 9: `church peace and Spirit-strengthened growth`
+  [codex]   - Day 11: `mercy-shaped witness in the household of faith`
+  [codex]   - Day 12: `resurrection witness and enduring gospel presence`
+  [codex] - Remove exposition template lock-in from these days, especially the repeated `opens with a scene marked by...` opening. The sameness is structural, not merely lexical.
+  [codex] - Rewrite day 2 so the devotional move is submission after confrontation, not generic obedience. The unwarranted move is treating Saul as an example of steady responsiveness rather than a man stopped and exposed by Christ.
+  [codex] - Rewrite day 3 so Ananias, not generic response, governs the day. The warranted move is obedience despite understandable hesitation.
+  [codex] - Rewrite day 5 with explicit Christological and missional content: chosen instrument, bearing Christ's name, suffering included. This is the smallest repair that addresses the theological-boundary failure.
+  [codex] - Rewrite day 9 from the church-summary outward. Do not preserve the current scene summary; it is the wrong anchor. The devotional move should be gratitude for peace, reverent walking, and dependence on the Spirit's comfort in corporate life.
+  [codex] - Split the Tabitha material by narrative burden, not by superficial tone:
+  [codex]   - Day 11 should focus on the visible mercy of Tabitha's life and the grieving community's testimony.
+  [codex]   - Day 12 should focus on Peter's prayer, raised life, many believing, and Peter's continued presence in Joppa as aftermath of gospel witness.
+  [codex] - No broad chapter rewrite is necessary. These are targeted day repairs. Research-depth is a secondary issue only for day 12, where a better choice of focal verse movement may be needed to keep the raising, belief, and lingering stay in right proportion.
+  [codex] 
+  [codex] ### Confidence
+  [codex] - High
+  [codex] - The theological-boundary failures are substantive and easy to locate, and the day-progress failures follow from the same burden-collapse pattern. The packet gives enough evidence to recommend a narrow repair path without rerunning the broader project.
+  [codex] apply_patch(auto_approved=true) exited 0 in 181ms:
+  [codex] Success. Updated the following files:
+  [codex] A /Volumes/claude-projects/projects/devotional-generator-system-a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] file update:
+  [codex] diff --git a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] new file mode 100644
+  [codex] index 0000000000000000000000000000000000000000..b97f19bc2a579e2270181f28fb7fdf68660cc35b
+  [codex] --- /dev/null
+  [codex] +++ b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] @@ -0,0 +1,153 @@
+  [codex] +# DevG Second-Eyes Review — Harness Set B
+  [codex] +
+  [codex] +## Case 1: Exodus 19-20
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is in the wrong lane on these target days. The core problem is structural and interpretive burden misassignment, compounded by exposition template lock-in and one explicit genre misapplication. Days 3-6 flatten distinct Sinai movements into two generic lanes, and day 8 wrongly treats commandment material as narrative while carrying the same obedience frame across the week boundary. This is not a wording problem. The repair is to reassign burdens by scene and covenant movement, then lightly rewrite exposition, action, and prayer around those new anchors.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `3-4`
+  [codex] +- Passage: `Exodus 19:9-17`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `19:9-12` is about the Lord establishing mediated hearing and protective boundaries so the people learn to trust the Lord's speaking through Moses. `19:13-17` shifts to consecrated approach and trembling preparation as the people are brought out to meet God at the mountain.
+  [codex] +- Warranted devotional burden: Day 3 should stress covenant mediation, hearing, and the seriousness of drawing near on God's terms. Day 4 should stress consecrated approach to holy presence and the sobering privilege of meeting God.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is not the passage's burden on either day. Pilate/crowd pressure language is imported from another lane and obscures Sinai preparation.
+  [codex] +
+  [codex] +- Day/Cluster: `5-6`
+  [codex] +- Passage: `Exodus 19:18-25`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `19:18-21` foregrounds the Lord's terrifying descent, smoke, trumpet blast, and trembling encounter. `19:22-25` intensifies guarded nearness: even priests must consecrate themselves and the people must not break through.
+  [codex] +- Warranted devotional burden: Day 5 should carry holy descent and trembling encounter before divine majesty. Day 6 should carry guarded nearness, consecration, and the danger of approaching casually.
+  [codex] +- Unwarranted drift: a broad `faithful response to God's word` lane is too thin for both scenes. On day 6 the scene itself is about boundary and consecration, not generic steadiness. Where scene summary and theological lane conflict, the theological lane is wrong and the scene should anchor the repair.
+  [codex] +
+  [codex] +- Day/Cluster: `6-8`
+  [codex] +- Passage: `Exodus 19:22-20:9`
+  [codex] +- Failure type: `weak week transition; genre misapplication; burden carryover`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and `validator-threshold related` only secondarily because the validator is correctly detecting a real continuity failure)
+  [codex] +- What the passage is doing: the book moves from mountain-boundary and consecration material into covenant command, especially exclusive worship, the Lord's name, and Sabbath holiness.
+  [codex] +- Warranted devotional burden: the week turn should move from guarded approach to holy presence into holy speech and covenant obedience. Day 8 especially should emphasize the sanctity of God's name and ordered worshipful life under covenant command.
+  [codex] +- Unwarranted drift: carrying the same generic obedience frame into commandment material, and calling `Exodus 20:5-9` `narrative`, is a genre misapplication. This day should not be framed as a scene summary at all.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign day burdens before rewriting prose:
+  [codex] +  - Day 3: `mediated hearing under covenant trust`
+  [codex] +  - Day 4: `consecrated approach to holy presence`
+  [codex] +  - Day 5: `holy descent and trembling encounter`
+  [codex] +  - Day 6: `guarded nearness under consecration`
+  [codex] +  - Day 8: `holy speech and covenant obedience`
+  [codex] +- Remove the repeated opening pattern `opens with a scene marked by...` across these days. That is exposition template lock-in, and it is driving sameness more than syntax choices.
+  [codex] +- Rewrite day 3 action/prayer away from justice-pressure language and toward hearing, trust, and reverent obedience under mediated revelation.
+  [codex] +- Rewrite day 4 around preparation to meet God, not public pressure or truth-telling.
+  [codex] +- Rewrite day 5 around divine holiness and human trembling, not generic obedience.
+  [codex] +- Rewrite day 6 so the warning/boundary material governs the devotional move. The correct move is reverent consecration and refusal of casual nearness; the unwarranted move is generalized `be steady` application.
+  [codex] +- Change day 8 genre handling from narrative framing to command/instruction framing. Do not summarize it as a scene. Anchor exposition, action, and prayer in the third commandment/Sabbath cluster: God's name is not to be trivialized, and life is ordered around holy allegiance.
+  [codex] +- Keep surrounding days intact unless they depend on the same lane labels. This can be repaired with targeted day-level burden reassignment and short downstream rewrites, not a broad rerun.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The validator failures correspond to obvious composition errors in the packet itself: repeated burdens, repeated opening structure, and a clear narrative/non-narrative mismatch on day 8.
+  [codex] +
+  [codex] +## Case 2: Proverbs 1-2
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043207__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is mostly in the right textual neighborhood but still fails the late-week sequence because it flattens a wisdom-warning escalation into one repeated frame. This is primarily a structural and interpretive problem, not a theological one. Days 6 and 7 repeat the same `truthfulness under pressure` lane even though the passage is moving from threatened calamity to the exposed culpability of refusing wisdom, and day 8 does not turn sharply enough into the calm security of listening. The smallest repair is burden reassignment plus narrow rewrites of exposition, action, and prayer.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `6-7`
+  [codex] +- Passage: `Proverbs 1:23-32`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; genre misfit`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `1:23-27` voices wisdom's warning that ignored rebuke will ripen into unavoidable calamity. `1:28-32` then explains why judgment falls: they hated knowledge, refused the fear of the Lord, and are given over to the fruit of their own way.
+  [codex] +- Warranted devotional burden: Day 6 should carry urgent warning before calamity. Day 7 should carry culpable refusal of wisdom and the moral seriousness of rejecting the fear of the Lord.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` imports a narrative/public-conflict frame into wisdom literature. This is genre misapplication. The passage is not about social pressure dynamics or appearing innocent; it is about wisdom rejected and judgment deserved.
+  [codex] +
+  [codex] +- Day/Cluster: `7-8`
+  [codex] +- Passage: `Proverbs 1:28-33`
+  [codex] +- Failure type: `weak week transition; tonal flattening; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: after exposing the refusal of wisdom and its consequences, `1:33` turns to the settled promise that the one who listens will dwell secure and undisturbed by dread.
+  [codex] +- Warranted devotional burden: Day 8 should make a clean tonal turn into secure listening under wisdom's shelter. The devotional move is receptive trust, teachability, and restful obedience.
+  [codex] +- Unwarranted drift: carrying warning-heavy cadence, generic obedience language, or pressure/conflict imagery into `1:33` mutes the passage's resolution and weakens the week transition.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 6: `wisdom warning before calamity`
+  [codex] +  - Day 7: `culpable refusal of the fear of the Lord`
+  [codex] +  - Day 8: `secure listening under wisdom's shelter`
+  [codex] +- Remove the recurring sentence pattern `opens with a scene marked by...` and any pseudo-scene phrasing. Proverbs here is not narrative; the reflections should sound like wisdom address, warning, and promise.
+  [codex] +- Rewrite day 6 application away from `honest responsibility instead of symbolic distance`. The warranted move is to heed rebuke before consequences harden.
+  [codex] +- Rewrite day 7 around repentance for despising knowledge and refusing the fear of the Lord. The unwarranted move is generic public-pressure courage.
+  [codex] +- Rewrite day 8 so it feels like a release into security rather than one more warning paragraph with softened wording. The smallest defensible change is a new opening paragraph and corresponding action/prayer that stress listening, security, and freedom from dread.
+  [codex] +- No deeper research pass is required unless the generator cannot produce distinct wisdom-lane prose after burden reassignment. This does not look like a source-depth failure.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The packet shows a clean three-step movement already. The failures are caused by flattening that movement, not by ambiguity in Proverbs 1.
+  [codex] +
+  [codex] +## Case 3: Acts 9
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043408__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is partly on the right track in recognizing major Acts 9 units, but several target days are in the wrong theological lane. This case combines structural failure, interpretive drift, and real theological-boundary problems. Days 2 and 3 collapse distinct narrative roles into one generic response frame, day 5 reduces a commission-to-bear-Christ's-name scene to thin preparedness, day 9 wrongly imports confrontation language into a peace-and-growth summary, and days 11-12 split the Tabitha arc with mismatched burdens that do not track the miracle's witness function. The repair is targeted lane reassignment with brief day-level rewrites; only minimal additional research is needed.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `2-3`
+  [codex] +- Passage: `Acts 9:4-10`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `9:4-7` is Saul's confrontation by the risen Jesus, his collapse, and the exposure of his opposition to the Lord. `9:8-10` slows into blindness, dependence, and then the introduction and summons of Ananias.
+  [codex] +- Warranted devotional burden: Day 2 should emphasize conversion confrontation under the risen Lord's authority. Day 3 should emphasize obedient hesitation answered by divine call in Ananias's introduction and Saul's humbled dependence.
+  [codex] +- Unwarranted drift: using the same `faithful response to God's word` lane for both days erases the difference between being overthrown by Christ and being called to obey Christ in costly service.
+  [codex] +
+  [codex] +- Day/Cluster: `5`
+  [codex] +- Passage: `Acts 9:15-17`
+  [codex] +- Failure type: `theological boundary; burden misassigned`
+  [codex] +- Primary cause: `mixed` (`theological` and `interpretive`)
+  [codex] +- What the passage is doing: the risen Lord explicitly names Saul as His chosen instrument to bear His name before Gentiles, kings, and Israel, and ties that calling to coming suffering.
+  [codex] +- Warranted devotional burden: costly commission under divine election and mission in Christ's name.
+  [codex] +- Unwarranted drift: `prepared obedience` is too thin and too generic. It loses the Christological and missional burden that the passage itself makes explicit.
+  [codex] +
+  [codex] +- Day/Cluster: `9`
+  [codex] +- Passage: `Acts 9:29-32`
+  [codex] +- Failure type: `theological boundary; passage misread`
+  [codex] +- Primary cause: `mixed` (`theological`, `interpretive`, and `structural`)
+  [codex] +- What the passage is doing: after Saul's conflict and transfer, the church across Judea, Galilee, and Samaria experiences peace, edification, fear of the Lord, and the comfort of the Holy Spirit, with resulting growth.
+  [codex] +- Warranted devotional burden: church peace and Spirit-strengthened growth after threat; communal strengthening under the Lord's care.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is the wrong anchor entirely. The scene summary is wrong, and the theological lane should be rebuilt from the church-peace summary rather than patched.
+  [codex] +
+  [codex] +- Day/Cluster: `11-12`
+  [codex] +- Passage: `Acts 9:36-43`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `9:36-39` presents Tabitha's merciful life, death, and the grieving witness of the community. `9:40-43` presents Peter's prayer, Tabitha's raising, many believing in the Lord, and Peter's lingering stay in Joppa.
+  [codex] +- Warranted devotional burden: Day 11 should stress mercy-shaped witness and the communal testimony of a life full of good works. Day 12 should stress resurrection witness and enduring gospel presence after the visible miracle.
+  [codex] +- Unwarranted drift: day 11's `truthfulness under pressure` is a direct mismatch; day 12's `watchful surrender` undershoots the text by centering inward posture rather than resurrection witness and mission aftermath. Where scene summary and theological lane conflict, day 11's theological lane is wrong; on day 12 the quoted scene hook is wrong because the devotional anchor should not be Peter's lodging but the raising and resulting belief.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 2: `conversion confrontation under the risen Lord`
+  [codex] +  - Day 3: `obedient hesitation answered by divine call`
+  [codex] +  - Day 5: `costly commission to bear Christ's name`
+  [codex] +  - Day 9: `church peace and Spirit-strengthened growth`
+  [codex] +  - Day 11: `mercy-shaped witness in the household of faith`
+  [codex] +  - Day 12: `resurrection witness and enduring gospel presence`
+  [codex] +- Remove exposition template lock-in from these days, especially the repeated `opens with a scene marked by...` opening. The sameness is structural, not merely lexical.
+  [codex] +- Rewrite day 2 so the devotional move is submission after confrontation, not generic obedience. The unwarranted move is treating Saul as an example of steady responsiveness rather than a man stopped and exposed by Christ.
+  [codex] +- Rewrite day 3 so Ananias, not generic response, governs the day. The warranted move is obedience despite understandable hesitation.
+  [codex] +- Rewrite day 5 with explicit Christological and missional content: chosen instrument, bearing Christ's name, suffering included. This is the smallest repair that addresses the theological-boundary failure.
+  [codex] +- Rewrite day 9 from the church-summary outward. Do not preserve the current scene summary; it is the wrong anchor. The devotional move should be gratitude for peace, reverent walking, and dependence on the Spirit's comfort in corporate life.
+  [codex] +- Split the Tabitha material by narrative burden, not by superficial tone:
+  [codex] +  - Day 11 should focus on the visible mercy of Tabitha's life and the grieving community's testimony.
+  [codex] +  - Day 12 should focus on Peter's prayer, raised life, many believing, and Peter's continued presence in Joppa as aftermath of gospel witness.
+  [codex] +- No broad chapter rewrite is necessary. These are targeted day repairs. Research-depth is a secondary issue only for day 12, where a better choice of focal verse movement may be needed to keep the raising, belief, and lingering stay in right proportion.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The theological-boundary failures are substantive and easy to locate, and the day-progress failures follow from the same burden-collapse pattern. The packet gives enough evidence to recommend a narrow repair path without rerunning the broader project.
+  [codex] 
+  [codex] file update:
+  [codex] diff --git a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] new file mode 100644
+  [codex] index 0000000000000000000000000000000000000000..b97f19bc2a579e2270181f28fb7fdf68660cc35b
+  [codex] --- /dev/null
+  [codex] +++ b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] @@ -0,0 +1,153 @@
+  [codex] +# DevG Second-Eyes Review — Harness Set B
+  [codex] +
+  [codex] +## Case 1: Exodus 19-20
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is in the wrong lane on these target days. The core problem is structural and interpretive burden misassignment, compounded by exposition template lock-in and one explicit genre misapplication. Days 3-6 flatten distinct Sinai movements into two generic lanes, and day 8 wrongly treats commandment material as narrative while carrying the same obedience frame across the week boundary. This is not a wording problem. The repair is to reassign burdens by scene and covenant movement, then lightly rewrite exposition, action, and prayer around those new anchors.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `3-4`
+  [codex] +- Passage: `Exodus 19:9-17`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `19:9-12` is about the Lord establishing mediated hearing and protective boundaries so the people learn to trust the Lord's speaking through Moses. `19:13-17` shifts to consecrated approach and trembling preparation as the people are brought out to meet God at the mountain.
+  [codex] +- Warranted devotional burden: Day 3 should stress covenant mediation, hearing, and the seriousness of drawing near on God's terms. Day 4 should stress consecrated approach to holy presence and the sobering privilege of meeting God.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is not the passage's burden on either day. Pilate/crowd pressure language is imported from another lane and obscures Sinai preparation.
+  [codex] +
+  [codex] +- Day/Cluster: `5-6`
+  [codex] +- Passage: `Exodus 19:18-25`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `19:18-21` foregrounds the Lord's terrifying descent, smoke, trumpet blast, and trembling encounter. `19:22-25` intensifies guarded nearness: even priests must consecrate themselves and the people must not break through.
+  [codex] +- Warranted devotional burden: Day 5 should carry holy descent and trembling encounter before divine majesty. Day 6 should carry guarded nearness, consecration, and the danger of approaching casually.
+  [codex] +- Unwarranted drift: a broad `faithful response to God's word` lane is too thin for both scenes. On day 6 the scene itself is about boundary and consecration, not generic steadiness. Where scene summary and theological lane conflict, the theological lane is wrong and the scene should anchor the repair.
+  [codex] +
+  [codex] +- Day/Cluster: `6-8`
+  [codex] +- Passage: `Exodus 19:22-20:9`
+  [codex] +- Failure type: `weak week transition; genre misapplication; burden carryover`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and `validator-threshold related` only secondarily because the validator is correctly detecting a real continuity failure)
+  [codex] +- What the passage is doing: the book moves from mountain-boundary and consecration material into covenant command, especially exclusive worship, the Lord's name, and Sabbath holiness.
+  [codex] +- Warranted devotional burden: the week turn should move from guarded approach to holy presence into holy speech and covenant obedience. Day 8 especially should emphasize the sanctity of God's name and ordered worshipful life under covenant command.
+  [codex] +- Unwarranted drift: carrying the same generic obedience frame into commandment material, and calling `Exodus 20:5-9` `narrative`, is a genre misapplication. This day should not be framed as a scene summary at all.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign day burdens before rewriting prose:
+  [codex] +  - Day 3: `mediated hearing under covenant trust`
+  [codex] +  - Day 4: `consecrated approach to holy presence`
+  [codex] +  - Day 5: `holy descent and trembling encounter`
+  [codex] +  - Day 6: `guarded nearness under consecration`
+  [codex] +  - Day 8: `holy speech and covenant obedience`
+  [codex] +- Remove the repeated opening pattern `opens with a scene marked by...` across these days. That is exposition template lock-in, and it is driving sameness more than syntax choices.
+  [codex] +- Rewrite day 3 action/prayer away from justice-pressure language and toward hearing, trust, and reverent obedience under mediated revelation.
+  [codex] +- Rewrite day 4 around preparation to meet God, not public pressure or truth-telling.
+  [codex] +- Rewrite day 5 around divine holiness and human trembling, not generic obedience.
+  [codex] +- Rewrite day 6 so the warning/boundary material governs the devotional move. The correct move is reverent consecration and refusal of casual nearness; the unwarranted move is generalized `be steady` application.
+  [codex] +- Change day 8 genre handling from narrative framing to command/instruction framing. Do not summarize it as a scene. Anchor exposition, action, and prayer in the third commandment/Sabbath cluster: God's name is not to be trivialized, and life is ordered around holy allegiance.
+  [codex] +- Keep surrounding days intact unless they depend on the same lane labels. This can be repaired with targeted day-level burden reassignment and short downstream rewrites, not a broad rerun.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The validator failures correspond to obvious composition errors in the packet itself: repeated burdens, repeated opening structure, and a clear narrative/non-narrative mismatch on day 8.
+  [codex] +
+  [codex] +## Case 2: Proverbs 1-2
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043207__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is mostly in the right textual neighborhood but still fails the late-week sequence because it flattens a wisdom-warning escalation into one repeated frame. This is primarily a structural and interpretive problem, not a theological one. Days 6 and 7 repeat the same `truthfulness under pressure` lane even though the passage is moving from threatened calamity to the exposed culpability of refusing wisdom, and day 8 does not turn sharply enough into the calm security of listening. The smallest repair is burden reassignment plus narrow rewrites of exposition, action, and prayer.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `6-7`
+  [codex] +- Passage: `Proverbs 1:23-32`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; genre misfit`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `1:23-27` voices wisdom's warning that ignored rebuke will ripen into unavoidable calamity. `1:28-32` then explains why judgment falls: they hated knowledge, refused the fear of the Lord, and are given over to the fruit of their own way.
+  [codex] +- Warranted devotional burden: Day 6 should carry urgent warning before calamity. Day 7 should carry culpable refusal of wisdom and the moral seriousness of rejecting the fear of the Lord.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` imports a narrative/public-conflict frame into wisdom literature. This is genre misapplication. The passage is not about social pressure dynamics or appearing innocent; it is about wisdom rejected and judgment deserved.
+  [codex] +
+  [codex] +- Day/Cluster: `7-8`
+  [codex] +- Passage: `Proverbs 1:28-33`
+  [codex] +- Failure type: `weak week transition; tonal flattening; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: after exposing the refusal of wisdom and its consequences, `1:33` turns to the settled promise that the one who listens will dwell secure and undisturbed by dread.
+  [codex] +- Warranted devotional burden: Day 8 should make a clean tonal turn into secure listening under wisdom's shelter. The devotional move is receptive trust, teachability, and restful obedience.
+  [codex] +- Unwarranted drift: carrying warning-heavy cadence, generic obedience language, or pressure/conflict imagery into `1:33` mutes the passage's resolution and weakens the week transition.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 6: `wisdom warning before calamity`
+  [codex] +  - Day 7: `culpable refusal of the fear of the Lord`
+  [codex] +  - Day 8: `secure listening under wisdom's shelter`
+  [codex] +- Remove the recurring sentence pattern `opens with a scene marked by...` and any pseudo-scene phrasing. Proverbs here is not narrative; the reflections should sound like wisdom address, warning, and promise.
+  [codex] +- Rewrite day 6 application away from `honest responsibility instead of symbolic distance`. The warranted move is to heed rebuke before consequences harden.
+  [codex] +- Rewrite day 7 around repentance for despising knowledge and refusing the fear of the Lord. The unwarranted move is generic public-pressure courage.
+  [codex] +- Rewrite day 8 so it feels like a release into security rather than one more warning paragraph with softened wording. The smallest defensible change is a new opening paragraph and corresponding action/prayer that stress listening, security, and freedom from dread.
+  [codex] +- No deeper research pass is required unless the generator cannot produce distinct wisdom-lane prose after burden reassignment. This does not look like a source-depth failure.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The packet shows a clean three-step movement already. The failures are caused by flattening that movement, not by ambiguity in Proverbs 1.
+  [codex] +
+  [codex] +## Case 3: Acts 9
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043408__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is partly on the right track in recognizing major Acts 9 units, but several target days are in the wrong theological lane. This case combines structural failure, interpretive drift, and real theological-boundary problems. Days 2 and 3 collapse distinct narrative roles into one generic response frame, day 5 reduces a commission-to-bear-Christ's-name scene to thin preparedness, day 9 wrongly imports confrontation language into a peace-and-growth summary, and days 11-12 split the Tabitha arc with mismatched burdens that do not track the miracle's witness function. The repair is targeted lane reassignment with brief day-level rewrites; only minimal additional research is needed.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `2-3`
+  [codex] +- Passage: `Acts 9:4-10`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `9:4-7` is Saul's confrontation by the risen Jesus, his collapse, and the exposure of his opposition to the Lord. `9:8-10` slows into blindness, dependence, and then the introduction and summons of Ananias.
+  [codex] +- Warranted devotional burden: Day 2 should emphasize conversion confrontation under the risen Lord's authority. Day 3 should emphasize obedient hesitation answered by divine call in Ananias's introduction and Saul's humbled dependence.
+  [codex] +- Unwarranted drift: using the same `faithful response to God's word` lane for both days erases the difference between being overthrown by Christ and being called to obey Christ in costly service.
+  [codex] +
+  [codex] +- Day/Cluster: `5`
+  [codex] +- Passage: `Acts 9:15-17`
+  [codex] +- Failure type: `theological boundary; burden misassigned`
+  [codex] +- Primary cause: `mixed` (`theological` and `interpretive`)
+  [codex] +- What the passage is doing: the risen Lord explicitly names Saul as His chosen instrument to bear His name before Gentiles, kings, and Israel, and ties that calling to coming suffering.
+  [codex] +- Warranted devotional burden: costly commission under divine election and mission in Christ's name.
+  [codex] +- Unwarranted drift: `prepared obedience` is too thin and too generic. It loses the Christological and missional burden that the passage itself makes explicit.
+  [codex] +
+  [codex] +- Day/Cluster: `9`
+  [codex] +- Passage: `Acts 9:29-32`
+  [codex] +- Failure type: `theological boundary; passage misread`
+  [codex] +- Primary cause: `mixed` (`theological`, `interpretive`, and `structural`)
+  [codex] +- What the passage is doing: after Saul's conflict and transfer, the church across Judea, Galilee, and Samaria experiences peace, edification, fear of the Lord, and the comfort of the Holy Spirit, with resulting growth.
+  [codex] +- Warranted devotional burden: church peace and Spirit-strengthened growth after threat; communal strengthening under the Lord's care.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is the wrong anchor entirely. The scene summary is wrong, and the theological lane should be rebuilt from the church-peace summary rather than patched.
+  [codex] +
+  [codex] +- Day/Cluster: `11-12`
+  [codex] +- Passage: `Acts 9:36-43`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `9:36-39` presents Tabitha's merciful life, death, and the grieving witness of the community. `9:40-43` presents Peter's prayer, Tabitha's raising, many believing in the Lord, and Peter's lingering stay in Joppa.
+  [codex] +- Warranted devotional burden: Day 11 should stress mercy-shaped witness and the communal testimony of a life full of good works. Day 12 should stress resurrection witness and enduring gospel presence after the visible miracle.
+  [codex] +- Unwarranted drift: day 11's `truthfulness under pressure` is a direct mismatch; day 12's `watchful surrender` undershoots the text by centering inward posture rather than resurrection witness and mission aftermath. Where scene summary and theological lane conflict, day 11's theological lane is wrong; on day 12 the quoted scene hook is wrong because the devotional anchor should not be Peter's lodging but the raising and resulting belief.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 2: `conversion confrontation under the risen Lord`
+  [codex] +  - Day 3: `obedient hesitation answered by divine call`
+  [codex] +  - Day 5: `costly commission to bear Christ's name`
+  [codex] +  - Day 9: `church peace and Spirit-strengthened growth`
+  [codex] +  - Day 11: `mercy-shaped witness in the household of faith`
+  [codex] +  - Day 12: `resurrection witness and enduring gospel presence`
+  [codex] +- Remove exposition template lock-in from these days, especially the repeated `opens with a scene marked by...` opening. The sameness is structural, not merely lexical.
+  [codex] +- Rewrite day 2 so the devotional move is submission after confrontation, not generic obedience. The unwarranted move is treating Saul as an example of steady responsiveness rather than a man stopped and exposed by Christ.
+  [codex] +- Rewrite day 3 so Ananias, not generic response, governs the day. The warranted move is obedience despite understandable hesitation.
+  [codex] +- Rewrite day 5 with explicit Christological and missional content: chosen instrument, bearing Christ's name, suffering included. This is the smallest repair that addresses the theological-boundary failure.
+  [codex] +- Rewrite day 9 from the church-summary outward. Do not preserve the current scene summary; it is the wrong anchor. The devotional move should be gratitude for peace, reverent walking, and dependence on the Spirit's comfort in corporate life.
+  [codex] +- Split the Tabitha material by narrative burden, not by superficial tone:
+  [codex] +  - Day 11 should focus on the visible mercy of Tabitha's life and the grieving community's testimony.
+  [codex] +  - Day 12 should focus on Peter's prayer, raised life, many believing, and Peter's continued presence in Joppa as aftermath of gospel witness.
+  [codex] +- No broad chapter rewrite is necessary. These are targeted day repairs. Research-depth is a secondary issue only for day 12, where a better choice of focal verse movement may be needed to keep the raising, belief, and lingering stay in right proportion.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The theological-boundary failures are substantive and easy to locate, and the day-progress failures follow from the same burden-collapse pattern. The packet gives enough evidence to recommend a narrow repair path without rerunning the broader project.
+  [codex] 
+  [codex] codex
+  [codex] The review artifact is written. I’m doing a quick verification pass on the saved file to make sure all three cases are complete and the structure matches the review methodology.
+  [codex] exec
+  [codex] /bin/zsh -lc 'wc -l docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md' in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "sed -n '1,260p' docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md" in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 51ms:
+  [codex]      153 docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex]  succeeded in 52ms:
+  [codex] # DevG Second-Eyes Review — Harness Set B
+  [codex] 
+  [codex] ## Case 1: Exodus 19-20
+  [codex] 
+  [codex] Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] 
+  [codex] ### Executive Judgment
+  [codex] The first-eye system is in the wrong lane on these target days. The core problem is structural and interpretive burden misassignment, compounded by exposition template lock-in and one explicit genre misapplication. Days 3-6 flatten distinct Sinai movements into two generic lanes, and day 8 wrongly treats commandment material as narrative while carrying the same obedience frame across the week boundary. This is not a wording problem. The repair is to reassign burdens by scene and covenant movement, then lightly rewrite exposition, action, and prayer around those new anchors.
+  [codex] 
+  [codex] ### Failure Map
+  [codex] - Day/Cluster: `3-4`
+  [codex] - Passage: `Exodus 19:9-17`
+  [codex] - Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] - Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] - What the passage is doing: `19:9-12` is about the Lord establishing mediated hearing and protective boundaries so the people learn to trust the Lord's speaking through Moses. `19:13-17` shifts to consecrated approach and trembling preparation as the people are brought out to meet God at the mountain.
+  [codex] - Warranted devotional burden: Day 3 should stress covenant mediation, hearing, and the seriousness of drawing near on God's terms. Day 4 should stress consecrated approach to holy presence and the sobering privilege of meeting God.
+  [codex] - Unwarranted drift: `truthfulness under pressure` is not the passage's burden on either day. Pilate/crowd pressure language is imported from another lane and obscures Sinai preparation.
+  [codex] 
+  [codex] - Day/Cluster: `5-6`
+  [codex] - Passage: `Exodus 19:18-25`
+  [codex] file update:
+  [codex] diff --git a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] new file mode 100644
+  [codex] index 0000000000000000000000000000000000000000..b97f19bc2a579e2270181f28fb7fdf68660cc35b
+  [codex] --- /dev/null
+  [codex] +++ b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] @@ -0,0 +1,153 @@
+  [codex] +# DevG Second-Eyes Review — Harness Set B
+  [codex] +
+  [codex] +## Case 1: Exodus 19-20
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is in the wrong lane on these target days. The core problem is structural and interpretive burden misassignment, compounded by exposition template lock-in and one explicit genre misapplication. Days 3-6 flatten distinct Sinai movements into two generic lanes, and day 8 wrongly treats commandment material as narrative while carrying the same obedience frame across the week boundary. This is not a wording problem. The repair is to reassign burdens by scene and covenant movement, then lightly rewrite exposition, action, and prayer around those new anchors.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `3-4`
+  [codex] +- Passage: `Exodus 19:9-17`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `19:9-12` is about the Lord establishing mediated hearing and protective boundaries so the people learn to trust the Lord's speaking through Moses. `19:13-17` shifts to consecrated approach and trembling preparation as the people are brought out to meet God at the mountain.
+  [codex] +- Warranted devotional burden: Day 3 should stress covenant mediation, hearing, and the seriousness of drawing near on God's terms. Day 4 should stress consecrated approach to holy presence and the sobering privilege of meeting God.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is not the passage's burden on either day. Pilate/crowd pressure language is imported from another lane and obscures Sinai preparation.
+  [codex] +
+  [codex] +- Day/Cluster: `5-6`
+  [codex] +- Passage: `Exodus 19:18-25`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `19:18-21` foregrounds the Lord's terrifying descent, smoke, trumpet blast, and trembling encounter. `19:22-25` intensifies guarded nearness: even priests must consecrate themselves and the people must not break through.
+  [codex] +- Warranted devotional burden: Day 5 should carry holy descent and trembling encounter before divine majesty. Day 6 should carry guarded nearness, consecration, and the danger of approaching casually.
+  [codex] +- Unwarranted drift: a broad `faithful response to God's word` lane is too thin for both scenes. On day 6 the scene itself is about boundary and consecration, not generic steadiness. Where scene summary and theological lane conflict, the theological lane is wrong and the scene should anchor the repair.
+  [codex] +
+  [codex] +- Day/Cluster: `6-8`
+  [codex] +- Passage: `Exodus 19:22-20:9`
+  [codex] +- Failure type: `weak week transition; genre misapplication; burden carryover`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and `validator-threshold related` only secondarily because the validator is correctly detecting a real continuity failure)
+  [codex] +- What the passage is doing: the book moves from mountain-boundary and consecration material into covenant command, especially exclusive worship, the Lord's name, and Sabbath holiness.
+  [codex] +- Warranted devotional burden: the week turn should move from guarded approach to holy presence into holy speech and covenant obedience. Day 8 especially should emphasize the sanctity of God's name and ordered worshipful life under covenant command.
+  [codex] +- Unwarranted drift: carrying the same generic obedience frame into commandment material, and calling `Exodus 20:5-9` `narrative`, is a genre misapplication. This day should not be framed as a scene summary at all.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign day burdens before rewriting prose:
+  [codex] +  - Day 3: `mediated hearing under covenant trust`
+  [codex] +  - Day 4: `consecrated approach to holy presence`
+  [codex] +  - Day 5: `holy descent and trembling encounter`
+  [codex] +  - Day 6: `guarded nearness under consecration`
+  [codex] +  - Day 8: `holy speech and covenant obedience`
+  [codex] +- Remove the repeated opening pattern `opens with a scene marked by...` across these days. That is exposition template lock-in, and it is driving sameness more than syntax choices.
+  [codex] +- Rewrite day 3 action/prayer away from justice-pressure language and toward hearing, trust, and reverent obedience under mediated revelation.
+  [codex] +- Rewrite day 4 around preparation to meet God, not public pressure or truth-telling.
+  [codex] +- Rewrite day 5 around divine holiness and human trembling, not generic obedience.
+  [codex] +- Rewrite day 6 so the warning/boundary material governs the devotional move. The correct move is reverent consecration and refusal of casual nearness; the unwarranted move is generalized `be steady` application.
+  [codex] +- Change day 8 genre handling from narrative framing to command/instruction framing. Do not summarize it as a scene. Anchor exposition, action, and prayer in the third commandment/Sabbath cluster: God's name is not to be trivialized, and life is ordered around holy allegiance.
+  [codex] +- Keep surrounding days intact unless they depend on the same lane labels. This can be repaired with targeted day-level burden reassignment and short downstream rewrites, not a broad rerun.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The validator failures correspond to obvious composition errors in the packet itself: repeated burdens, repeated opening structure, and a clear narrative/non-narrative mismatch on day 8.
+  [codex] +
+  [codex] +## Case 2: Proverbs 1-2
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043207__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is mostly in the right textual neighborhood but still fails the late-week sequence because it flattens a wisdom-warning escalation into one repeated frame. This is primarily a structural and interpretive problem, not a theological one. Days 6 and 7 repeat the same `truthfulness under pressure` lane even though the passage is moving from threatened calamity to the exposed culpability of refusing wisdom, and day 8 does not turn sharply enough into the calm security of listening. The smallest repair is burden reassignment plus narrow rewrites of exposition, action, and prayer.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `6-7`
+  [codex] +- Passage: `Proverbs 1:23-32`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; genre misfit`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `1:23-27` voices wisdom's warning that ignored rebuke will ripen into unavoidable calamity. `1:28-32` then explains why judgment falls: they hated knowledge, refused the fear of the Lord, and are given over to the fruit of their own way.
+  [codex] +- Warranted devotional burden: Day 6 should carry urgent warning before calamity. Day 7 should carry culpable refusal of wisdom and the moral seriousness of rejecting the fear of the Lord.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` imports a narrative/public-conflict frame into wisdom literature. This is genre misapplication. The passage is not about social pressure dynamics or appearing innocent; it is about wisdom rejected and judgment deserved.
+  [codex] +
+  [codex] +- Day/Cluster: `7-8`
+  [codex] +- Passage: `Proverbs 1:28-33`
+  [codex] +- Failure type: `weak week transition; tonal flattening; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: after exposing the refusal of wisdom and its consequences, `1:33` turns to the settled promise that the one who listens will dwell secure and undisturbed by dread.
+  [codex] +- Warranted devotional burden: Day 8 should make a clean tonal turn into secure listening under wisdom's shelter. The devotional move is receptive trust, teachability, and restful obedience.
+  [codex] +- Unwarranted drift: carrying warning-heavy cadence, generic obedience language, or pressure/conflict imagery into `1:33` mutes the passage's resolution and weakens the week transition.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 6: `wisdom warning before calamity`
+  [codex] +  - Day 7: `culpable refusal of the fear of the Lord`
+  [codex] +  - Day 8: `secure listening under wisdom's shelter`
+  [codex] +- Remove the recurring sentence pattern `opens with a scene marked by...` and any pseudo-scene phrasing. Proverbs here is not narrative; the reflections should sound like wisdom address, warning, and promise.
+  [codex] +- Rewrite day 6 application away from `honest responsibility instead of symbolic distance`. The warranted move is to heed rebuke before consequences harden.
+  [codex] +- Rewrite day 7 around repentance for despising knowledge and refusing the fear of the Lord. The unwarranted move is generic public-pressure courage.
+  [codex] +- Rewrite day 8 so it feels like a release into security rather than one more warning paragraph with softened wording. The smallest defensible change is a new opening paragraph and corresponding action/prayer that stress listening, security, and freedom from dread.
+  [codex] +- No deeper research pass is required unless the generator cannot produce distinct wisdom-lane prose after burden reassignment. This does not look like a source-depth failure.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The packet shows a clean three-step movement already. The failures are caused by flattening that movement, not by ambiguity in Proverbs 1.
+  [codex] +
+  [codex] +## Case 3: Acts 9
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043408__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is partly on the right track in recognizing major Acts 9 units, but several target days are in the wrong theological lane. This case combines structural failure, interpretive drift, and real theological-boundary problems. Days 2 and 3 collapse distinct narrative roles into one generic response frame, day 5 reduces a commission-to-bear-Christ's-name scene to thin preparedness, day 9 wrongly imports confrontation language into a peace-and-growth summary, and days 11-12 split the Tabitha arc with mismatched burdens that do not track the miracle's witness function. The repair is targeted lane reassignment with brief day-level rewrites; only minimal additional research is needed.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `2-3`
+  [codex] +- Passage: `Acts 9:4-10`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `9:4-7` is Saul's confrontation by the risen Jesus, his collapse, and the exposure of his opposition to the Lord. `9:8-10` slows into blindness, dependence, and then the introduction and summons of Ananias.
+  [codex] +- Warranted devotional burden: Day 2 should emphasize conversion confrontation under the risen Lord's authority. Day 3 should emphasize obedient hesitation answered by divine call in Ananias's introduction and Saul's humbled dependence.
+  [codex] +- Unwarranted drift: using the same `faithful response to God's word` lane for both days erases the difference between being overthrown by Christ and being called to obey Christ in costly service.
+  [codex] +
+  [codex] +- Day/Cluster: `5`
+  [codex] +- Passage: `Acts 9:15-17`
+  [codex] +- Failure type: `theological boundary; burden misassigned`
+  [codex] +- Primary cause: `mixed` (`theological` and `interpretive`)
+  [codex] +- What the passage is doing: the risen Lord explicitly names Saul as His chosen instrument to bear His name before Gentiles, kings, and Israel, and ties that calling to coming suffering.
+  [codex] +- Warranted devotional burden: costly commission under divine election and mission in Christ's name.
+  [codex] +- Unwarranted drift: `prepared obedience` is too thin and too generic. It loses the Christological and missional burden that the passage itself makes explicit.
+  [codex] +
+  [codex] +- Day/Cluster: `9`
+  [codex] +- Passage: `Acts 9:29-32`
+  [codex] +- Failure type: `theological boundary; passage misread`
+  [codex] +- Primary cause: `mixed` (`theological`, `interpretive`, and `structural`)
+  [codex] +- What the passage is doing: after Saul's conflict and transfer, the church across Judea, Galilee, and Samaria experiences peace, edification, fear of the Lord, and the comfort of the Holy Spirit, with resulting growth.
+  [codex] +- Warranted devotional burden: church peace and Spirit-strengthened growth after threat; communal strengthening under the Lord's care.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is the wrong anchor entirely. The scene summary is wrong, and the theological lane should be rebuilt from the church-peace summary rather than patched.
+  [codex] +
+  [codex] +- Day/Cluster: `11-12`
+  [codex] +- Passage: `Acts 9:36-43`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `9:36-39` presents Tabitha's merciful life, death, and the grieving witness of the community. `9:40-43` presents Peter's prayer, Tabitha's raising, many believing in the Lord, and Peter's lingering stay in Joppa.
+  [codex] +- Warranted devotional burden: Day 11 should stress mercy-shaped witness and the communal testimony of a life full of good works. Day 12 should stress resurrection witness and enduring gospel presence after the visible miracle.
+  [codex] +- Unwarranted drift: day 11's `truthfulness under pressure` is a direct mismatch; day 12's `watchful surrender` undershoots the text by centering inward posture rather than resurrection witness and mission aftermath. Where scene summary and theological lane conflict, day 11's theological lane is wrong; on day 12 the quoted scene hook is wrong because the devotional anchor should not be Peter's lodging but the raising and resulting belief.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 2: `conversion confrontation under the risen Lord`
+  [codex] +  - Day 3: `obedient hesitation answered by divine call`
+  [codex] +  - Day 5: `costly commission to bear Christ's name`
+  [codex] +  - Day 9: `church peace and Spirit-strengthened growth`
+  [codex] +  - Day 11: `mercy-shaped witness in the household of faith`
+  [codex] +  - Day 12: `resurrection witness and enduring gospel presence`
+  [codex] +- Remove exposition template lock-in from these days, especially the repeated `opens with a scene marked by...` opening. The sameness is structural, not merely lexical.
+  [codex] +- Rewrite day 2 so the devotional move is submission after confrontation, not generic obedience. The unwarranted move is treating Saul as an example of steady responsiveness rather than a man stopped and exposed by Christ.
+  [codex] +- Rewrite day 3 so Ananias, not generic response, governs the day. The warranted move is obedience despite understandable hesitation.
+  [codex] +- Rewrite day 5 with explicit Christological and missional content: chosen instrument, bearing Christ's name, suffering included. This is the smallest repair that addresses the theological-boundary failure.
+  [codex] +- Rewrite day 9 from the church-summary outward. Do not preserve the current scene summary; it is the wrong anchor. The devotional move should be gratitude for peace, reverent walking, and dependence on the Spirit's comfort in corporate life.
+  [codex] +- Split the Tabitha material by narrative burden, not by superficial tone:
+  [codex] +  - Day 11 should focus on the visible mercy of Tabitha's life and the grieving community's testimony.
+  [codex] +  - Day 12 should focus on Peter's prayer, raised life, many believing, and Peter's continued presence in Joppa as aftermath of gospel witness.
+  [codex] +- No broad chapter rewrite is necessary. These are targeted day repairs. Research-depth is a secondary issue only for day 12, where a better choice of focal verse movement may be needed to keep the raising, belief, and lingering stay in right proportion.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The theological-boundary failures are substantive and easy to locate, and the day-progress failures follow from the same burden-collapse pattern. The packet gives enough evidence to recommend a narrow repair path without rerunning the broader project.
+  [codex] 
+  [codex] codex
+  [codex] Review completed and saved to [2026-03-13__02__devg__second-eyes-setb-review.md](/Volumes/claude-projects/projects/devotional-generator-system-a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md).
+  [codex] 
+  [codex] The artifact covers all three cases in full with the required structure:
+  [codex] - Executive Judgment
+  [codex] - Failure Map by affected cluster
+  [codex] - Minimum targeted Repair Plan
+  [codex] - Confidence with reason
+  [codex] 
+  [codex] Key conclusions:
+  [codex] - `Exodus 19-20`: structural/interpretive burden collapse, plus explicit genre misapplication on `Exodus 20:5-9`.
+  [codex] - `Proverbs 1-2`: structural/interpretive flattening of a clear warning-to-security progression; no broad rewrite needed.
+  [codex] - `Acts 9`: mixed structural, interpretive, and real theological-boundary failures, especially on days 5 and 9.
+  [codex] 
+  [codex] OUTCOME: CERTIFIED (all three cases reviewed, repair plans written, artifact saved)
+  [codex] file update:
+  [codex] diff --git a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] new file mode 100644
+  [codex] index 0000000000000000000000000000000000000000..b97f19bc2a579e2270181f28fb7fdf68660cc35b
+  [codex] --- /dev/null
+  [codex] +++ b/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md
+  [codex] @@ -0,0 +1,153 @@
+  [codex] +# DevG Second-Eyes Review — Harness Set B
+  [codex] +
+  [codex] +## Case 1: Exodus 19-20
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043121__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is in the wrong lane on these target days. The core problem is structural and interpretive burden misassignment, compounded by exposition template lock-in and one explicit genre misapplication. Days 3-6 flatten distinct Sinai movements into two generic lanes, and day 8 wrongly treats commandment material as narrative while carrying the same obedience frame across the week boundary. This is not a wording problem. The repair is to reassign burdens by scene and covenant movement, then lightly rewrite exposition, action, and prayer around those new anchors.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `3-4`
+  [codex] +- Passage: `Exodus 19:9-17`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `19:9-12` is about the Lord establishing mediated hearing and protective boundaries so the people learn to trust the Lord's speaking through Moses. `19:13-17` shifts to consecrated approach and trembling preparation as the people are brought out to meet God at the mountain.
+  [codex] +- Warranted devotional burden: Day 3 should stress covenant mediation, hearing, and the seriousness of drawing near on God's terms. Day 4 should stress consecrated approach to holy presence and the sobering privilege of meeting God.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is not the passage's burden on either day. Pilate/crowd pressure language is imported from another lane and obscures Sinai preparation.
+  [codex] +
+  [codex] +- Day/Cluster: `5-6`
+  [codex] +- Passage: `Exodus 19:18-25`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `19:18-21` foregrounds the Lord's terrifying descent, smoke, trumpet blast, and trembling encounter. `19:22-25` intensifies guarded nearness: even priests must consecrate themselves and the people must not break through.
+  [codex] +- Warranted devotional burden: Day 5 should carry holy descent and trembling encounter before divine majesty. Day 6 should carry guarded nearness, consecration, and the danger of approaching casually.
+  [codex] +- Unwarranted drift: a broad `faithful response to God's word` lane is too thin for both scenes. On day 6 the scene itself is about boundary and consecration, not generic steadiness. Where scene summary and theological lane conflict, the theological lane is wrong and the scene should anchor the repair.
+  [codex] +
+  [codex] +- Day/Cluster: `6-8`
+  [codex] +- Passage: `Exodus 19:22-20:9`
+  [codex] +- Failure type: `weak week transition; genre misapplication; burden carryover`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and `validator-threshold related` only secondarily because the validator is correctly detecting a real continuity failure)
+  [codex] +- What the passage is doing: the book moves from mountain-boundary and consecration material into covenant command, especially exclusive worship, the Lord's name, and Sabbath holiness.
+  [codex] +- Warranted devotional burden: the week turn should move from guarded approach to holy presence into holy speech and covenant obedience. Day 8 especially should emphasize the sanctity of God's name and ordered worshipful life under covenant command.
+  [codex] +- Unwarranted drift: carrying the same generic obedience frame into commandment material, and calling `Exodus 20:5-9` `narrative`, is a genre misapplication. This day should not be framed as a scene summary at all.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign day burdens before rewriting prose:
+  [codex] +  - Day 3: `mediated hearing under covenant trust`
+  [codex] +  - Day 4: `consecrated approach to holy presence`
+  [codex] +  - Day 5: `holy descent and trembling encounter`
+  [codex] +  - Day 6: `guarded nearness under consecration`
+  [codex] +  - Day 8: `holy speech and covenant obedience`
+  [codex] +- Remove the repeated opening pattern `opens with a scene marked by...` across these days. That is exposition template lock-in, and it is driving sameness more than syntax choices.
+  [codex] +- Rewrite day 3 action/prayer away from justice-pressure language and toward hearing, trust, and reverent obedience under mediated revelation.
+  [codex] +- Rewrite day 4 around preparation to meet God, not public pressure or truth-telling.
+  [codex] +- Rewrite day 5 around divine holiness and human trembling, not generic obedience.
+  [codex] +- Rewrite day 6 so the warning/boundary material governs the devotional move. The correct move is reverent consecration and refusal of casual nearness; the unwarranted move is generalized `be steady` application.
+  [codex] +- Change day 8 genre handling from narrative framing to command/instruction framing. Do not summarize it as a scene. Anchor exposition, action, and prayer in the third commandment/Sabbath cluster: God's name is not to be trivialized, and life is ordered around holy allegiance.
+  [codex] +- Keep surrounding days intact unless they depend on the same lane labels. This can be repaired with targeted day-level burden reassignment and short downstream rewrites, not a broad rerun.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The validator failures correspond to obvious composition errors in the packet itself: repeated burdens, repeated opening structure, and a clear narrative/non-narrative mismatch on day 8.
+  [codex] +
+  [codex] +## Case 2: Proverbs 1-2
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043207__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is mostly in the right textual neighborhood but still fails the late-week sequence because it flattens a wisdom-warning escalation into one repeated frame. This is primarily a structural and interpretive problem, not a theological one. Days 6 and 7 repeat the same `truthfulness under pressure` lane even though the passage is moving from threatened calamity to the exposed culpability of refusing wisdom, and day 8 does not turn sharply enough into the calm security of listening. The smallest repair is burden reassignment plus narrow rewrites of exposition, action, and prayer.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `6-7`
+  [codex] +- Passage: `Proverbs 1:23-32`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; genre misfit`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `1:23-27` voices wisdom's warning that ignored rebuke will ripen into unavoidable calamity. `1:28-32` then explains why judgment falls: they hated knowledge, refused the fear of the Lord, and are given over to the fruit of their own way.
+  [codex] +- Warranted devotional burden: Day 6 should carry urgent warning before calamity. Day 7 should carry culpable refusal of wisdom and the moral seriousness of rejecting the fear of the Lord.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` imports a narrative/public-conflict frame into wisdom literature. This is genre misapplication. The passage is not about social pressure dynamics or appearing innocent; it is about wisdom rejected and judgment deserved.
+  [codex] +
+  [codex] +- Day/Cluster: `7-8`
+  [codex] +- Passage: `Proverbs 1:28-33`
+  [codex] +- Failure type: `weak week transition; tonal flattening; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: after exposing the refusal of wisdom and its consequences, `1:33` turns to the settled promise that the one who listens will dwell secure and undisturbed by dread.
+  [codex] +- Warranted devotional burden: Day 8 should make a clean tonal turn into secure listening under wisdom's shelter. The devotional move is receptive trust, teachability, and restful obedience.
+  [codex] +- Unwarranted drift: carrying warning-heavy cadence, generic obedience language, or pressure/conflict imagery into `1:33` mutes the passage's resolution and weakens the week transition.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 6: `wisdom warning before calamity`
+  [codex] +  - Day 7: `culpable refusal of the fear of the Lord`
+  [codex] +  - Day 8: `secure listening under wisdom's shelter`
+  [codex] +- Remove the recurring sentence pattern `opens with a scene marked by...` and any pseudo-scene phrasing. Proverbs here is not narrative; the reflections should sound like wisdom address, warning, and promise.
+  [codex] +- Rewrite day 6 application away from `honest responsibility instead of symbolic distance`. The warranted move is to heed rebuke before consequences harden.
+  [codex] +- Rewrite day 7 around repentance for despising knowledge and refusing the fear of the Lord. The unwarranted move is generic public-pressure courage.
+  [codex] +- Rewrite day 8 so it feels like a release into security rather than one more warning paragraph with softened wording. The smallest defensible change is a new opening paragraph and corresponding action/prayer that stress listening, security, and freedom from dread.
+  [codex] +- No deeper research pass is required unless the generator cannot produce distinct wisdom-lane prose after burden reassignment. This does not look like a source-depth failure.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The packet shows a clean three-step movement already. The failures are caused by flattening that movement, not by ambiguity in Proverbs 1.
+  [codex] +
+  [codex] +## Case 3: Acts 9
+  [codex] +
+  [codex] +Run slug: `2026-03-13__043408__competition-volume-1__12-day__vol-1`
+  [codex] +
+  [codex] +### Executive Judgment
+  [codex] +The first-eye system is partly on the right track in recognizing major Acts 9 units, but several target days are in the wrong theological lane. This case combines structural failure, interpretive drift, and real theological-boundary problems. Days 2 and 3 collapse distinct narrative roles into one generic response frame, day 5 reduces a commission-to-bear-Christ's-name scene to thin preparedness, day 9 wrongly imports confrontation language into a peace-and-growth summary, and days 11-12 split the Tabitha arc with mismatched burdens that do not track the miracle's witness function. The repair is targeted lane reassignment with brief day-level rewrites; only minimal additional research is needed.
+  [codex] +
+  [codex] +### Failure Map
+  [codex] +- Day/Cluster: `2-3`
+  [codex] +- Passage: `Acts 9:4-10`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; exposition template lock-in`
+  [codex] +- Primary cause: `mixed` (`structural` and `interpretive`)
+  [codex] +- What the passage is doing: `9:4-7` is Saul's confrontation by the risen Jesus, his collapse, and the exposure of his opposition to the Lord. `9:8-10` slows into blindness, dependence, and then the introduction and summons of Ananias.
+  [codex] +- Warranted devotional burden: Day 2 should emphasize conversion confrontation under the risen Lord's authority. Day 3 should emphasize obedient hesitation answered by divine call in Ananias's introduction and Saul's humbled dependence.
+  [codex] +- Unwarranted drift: using the same `faithful response to God's word` lane for both days erases the difference between being overthrown by Christ and being called to obey Christ in costly service.
+  [codex] +
+  [codex] +- Day/Cluster: `5`
+  [codex] +- Passage: `Acts 9:15-17`
+  [codex] +- Failure type: `theological boundary; burden misassigned`
+  [codex] +- Primary cause: `mixed` (`theological` and `interpretive`)
+  [codex] +- What the passage is doing: the risen Lord explicitly names Saul as His chosen instrument to bear His name before Gentiles, kings, and Israel, and ties that calling to coming suffering.
+  [codex] +- Warranted devotional burden: costly commission under divine election and mission in Christ's name.
+  [codex] +- Unwarranted drift: `prepared obedience` is too thin and too generic. It loses the Christological and missional burden that the passage itself makes explicit.
+  [codex] +
+  [codex] +- Day/Cluster: `9`
+  [codex] +- Passage: `Acts 9:29-32`
+  [codex] +- Failure type: `theological boundary; passage misread`
+  [codex] +- Primary cause: `mixed` (`theological`, `interpretive`, and `structural`)
+  [codex] +- What the passage is doing: after Saul's conflict and transfer, the church across Judea, Galilee, and Samaria experiences peace, edification, fear of the Lord, and the comfort of the Holy Spirit, with resulting growth.
+  [codex] +- Warranted devotional burden: church peace and Spirit-strengthened growth after threat; communal strengthening under the Lord's care.
+  [codex] +- Unwarranted drift: `truthfulness under pressure` is the wrong anchor entirely. The scene summary is wrong, and the theological lane should be rebuilt from the church-peace summary rather than patched.
+  [codex] +
+  [codex] +- Day/Cluster: `11-12`
+  [codex] +- Passage: `Acts 9:36-43`
+  [codex] +- Failure type: `adjacent-day sameness; burden misassigned; scene-summary/theological-lane conflict`
+  [codex] +- Primary cause: `mixed` (`structural`, `interpretive`, and lightly `theological`)
+  [codex] +- What the passage is doing: `9:36-39` presents Tabitha's merciful life, death, and the grieving witness of the community. `9:40-43` presents Peter's prayer, Tabitha's raising, many believing in the Lord, and Peter's lingering stay in Joppa.
+  [codex] +- Warranted devotional burden: Day 11 should stress mercy-shaped witness and the communal testimony of a life full of good works. Day 12 should stress resurrection witness and enduring gospel presence after the visible miracle.
+  [codex] +- Unwarranted drift: day 11's `truthfulness under pressure` is a direct mismatch; day 12's `watchful surrender` undershoots the text by centering inward posture rather than resurrection witness and mission aftermath. Where scene summary and theological lane conflict, day 11's theological lane is wrong; on day 12 the quoted scene hook is wrong because the devotional anchor should not be Peter's lodging but the raising and resulting belief.
+  [codex] +
+  [codex] +### Repair Plan
+  [codex] +- Reassign burdens:
+  [codex] +  - Day 2: `conversion confrontation under the risen Lord`
+  [codex] +  - Day 3: `obedient hesitation answered by divine call`
+  [codex] +  - Day 5: `costly commission to bear Christ's name`
+  [codex] +  - Day 9: `church peace and Spirit-strengthened growth`
+  [codex] +  - Day 11: `mercy-shaped witness in the household of faith`
+  [codex] +  - Day 12: `resurrection witness and enduring gospel presence`
+  [codex] +- Remove exposition template lock-in from these days, especially the repeated `opens with a scene marked by...` opening. The sameness is structural, not merely lexical.
+  [codex] +- Rewrite day 2 so the devotional move is submission after confrontation, not generic obedience. The unwarranted move is treating Saul as an example of steady responsiveness rather than a man stopped and exposed by Christ.
+  [codex] +- Rewrite day 3 so Ananias, not generic response, governs the day. The warranted move is obedience despite understandable hesitation.
+  [codex] +- Rewrite day 5 with explicit Christological and missional content: chosen instrument, bearing Christ's name, suffering included. This is the smallest repair that addresses the theological-boundary failure.
+  [codex] +- Rewrite day 9 from the church-summary outward. Do not preserve the current scene summary; it is the wrong anchor. The devotional move should be gratitude for peace, reverent walking, and dependence on the Spirit's comfort in corporate life.
+  [codex] +- Split the Tabitha material by narrative burden, not by superficial tone:
+  [codex] +  - Day 11 should focus on the visible mercy of Tabitha's life and the grieving community's testimony.
+  [codex] +  - Day 12 should focus on Peter's prayer, raised life, many believing, and Peter's continued presence in Joppa as aftermath of gospel witness.
+  [codex] +- No broad chapter rewrite is necessary. These are targeted day repairs. Research-depth is a secondary issue only for day 12, where a better choice of focal verse movement may be needed to keep the raising, belief, and lingering stay in right proportion.
+  [codex] +
+  [codex] +### Confidence
+  [codex] +- High
+  [codex] +- The theological-boundary failures are substantive and easy to locate, and the day-progress failures follow from the same burden-collapse pattern. The packet gives enough evidence to recommend a narrow repair path without rerunning the broader project.
+  [codex] 
+  [codex] tokens used
+  [codex] 28,312
+Review completed and saved to [2026-03-13__02__devg__second-eyes-setb-review.md](/Volumes/claude-projects/projects/devotional-generator-system-a/docs/system/outputs/2026-03-13__02__devg__second-eyes-setb-review.md).
+
+The artifact covers all three cases in full with the required structure:
+- Executive Judgment
+- Failure Map by affected cluster
+- Minimum targeted Repair Plan
+- Confidence with reason
+
+Key conclusions:
+- `Exodus 19-20`: structural/interpretive burden collapse, plus explicit genre misapplication on `Exodus 20:5-9`.
+- `Proverbs 1-2`: structural/interpretive flattening of a clear warning-to-security progression; no broad rewrite needed.
+- `Acts 9`: mixed structural, interpretive, and real theological-boundary failures, especially on days 5 and 9.
+
+OUTCOME: CERTIFIED (all three cases reviewed, repair plans written, artifact saved)
+  Exit code: 0
+  Stderr:    OpenAI Codex v0.107.0 (research preview)
+--------
+workdir: /Volumes/claude-projects/projects/devotional-generator-system-a
+model: gpt-5.4
+provider: openai
+approval: never
+sandbox: danger-full-access
+r
+
+  Orchestrator → state=SUCCEEDED  action=completion
+  Reason: yaml-anchor fallback: exit_code=0, OUTCOME=CERTIFIED in stdout
+]0;Orchestrator ✅ DevG
+════════════════════════════════════════════════════════════════════════
+  PHASE COMPLETE — SUCCEEDED
+════════════════════════════════════════════════════════════════════════
+[CODEX ORCHESTRATOR — TASK COMPLETE (YAML-anchor fallback)]
+YAML parsing failed due to markdown in envelope (e.g. **bold**).
+OUTCOME: CERTIFIED detected in raw output  |  exit_code: 0
+Session: 647dae84-297d-4e73-a7cc-cfde59b78eb1
+
+
+  Prompt archived (step 1) → /Volumes/claude-projects/projects/orchestrator-prompts/archive/2026-03-13_DevG.txt
+  [warn] notification failed to send
+
+  Returning to prompt selection…

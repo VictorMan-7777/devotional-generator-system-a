@@ -18,6 +18,10 @@ _STOPWORDS = {
     "before", "because", "through", "those", "these", "very", "then", "than", "unto",
 }
 
+# The evaluator's _meaningful_tokens also excludes "lord" and "god" — using them as anchors
+# produces zero overlap in the evaluator check (lane_unanchored / burden_unanchored).
+_EVALUATOR_STOPWORDS = _STOPWORDS | {"lord", "god"}
+
 _CLAUSE_SPLIT_RE = re.compile(r"[.;:?!]|\s+-\s+|,\s+")
 
 
@@ -72,11 +76,14 @@ def key_terms(scripture_text: str, limit: int = 6) -> list[str]:
     """Extract distinctive terms, prioritizing proper nouns (names, places) over common words."""
     text = scripture_text or ""
     found: list[str] = []
-    # First pass: proper nouns (capitalized mid-sentence tokens — names, places, titles)
+    # First pass: proper nouns (capitalized mid-sentence tokens — names, places, titles).
+    # Require 4+ chars to avoid treating short capitalized pronouns/conjunctions (His, Him,
+    # Nor, But, Yet) as proper nouns — this is especially important for poetic texts where
+    # divine pronouns are capitalized but have zero distinctiveness.
     words = text.split()
     for idx, word in enumerate(words):
         clean = re.sub(r"[^A-Za-z'-]", "", word)
-        if len(clean) < 3:
+        if len(clean) < 4:
             continue
         # A proper noun is capitalized but not the first word of the text
         if clean[0].isupper() and idx > 0:
@@ -107,24 +114,35 @@ def scene_summary(reference: str, focus: str, genre: str) -> str:
 
 
 def _term_anchor(terms: Iterable[str], *, fallback: str = "", limit: int = 2) -> str:
-    """Return the most distinctive terms joined, falling back to a truncated string."""
-    distinctive = [t for t in list(terms)[:limit * 2] if len(t) >= 4][:limit]
+    """Return the most distinctive terms joined, falling back to a truncated string.
+
+    Scans ALL terms (not just the first few) and excludes evaluator stopwords ("lord",
+    "god") which produce zero overlap when the evaluator runs _meaningful_tokens on the
+    generated burden/lane text.
+    """
+    term_list = list(terms)
+    # First pass: 4+ char terms that aren't evaluator stopwords
+    distinctive = [t for t in term_list if len(t) >= 4 and t.lower() not in _EVALUATOR_STOPWORDS][:limit]
+    if not distinctive:
+        # Second pass: any non-stopword terms (3+ chars)
+        distinctive = [t for t in term_list if len(t) >= 3 and t.lower() not in _EVALUATOR_STOPWORDS][:limit]
     return ", ".join(distinctive).strip() if distinctive else (fallback[:40].strip())
 
 
 def pastoral_burden(reference: str, focus: str, genre: str, terms: Iterable[str]) -> str:
     term_list = list(terms)
     anchor = _term_anchor(term_list, fallback=focus)
+    # All genres include the specific reference so adjacent days with the same anchor
+    # (e.g., "abraham" across consecutive Genesis 22 days) still produce distinct burdens.
     if genre == "narrative":
-        return f"The passage moves through {anchor} — attend to the scene before naming the burden"
+        return f"The passage at {reference} moves through {anchor} — attend to the scene before naming the burden"
     if genre == "gospel_discourse":
-        return f"Christ's word presses on {anchor} — hold the claim before drawing application"
+        return f"Christ's word in {reference} presses on {anchor} — hold the claim before drawing application"
     if genre == "epistle":
-        # Include the specific reference so adjacent days with similar key_terms still differ.
         return f"The argument of {reference} rests on {anchor}"
     if genre in {"poetry", "wisdom"}:
-        return f"The text lingers at {anchor} — let the movement hold before moving further"
-    return f"The passage anchors itself in {anchor} — attend carefully before applying"
+        return f"{reference} lingers at {anchor} — let the movement hold before moving further"
+    return f"{reference} anchors itself in {anchor} — attend carefully before applying"
 
 
 def theological_lane(focus: str, genre: str, burden: str, terms: Iterable[str] = (), reference: str = "") -> str:
@@ -133,17 +151,17 @@ def theological_lane(focus: str, genre: str, burden: str, terms: Iterable[str] =
     if not anchor:
         meaningful = [w for w in focus.lower().split() if len(w) >= 4 and w not in _STOPWORDS]
         anchor = " ".join(meaningful[:3]).strip() or focus.lower()[:40]
+    ref_label = reference or "this passage"
+    # All genres include the specific reference so adjacent days differ even when anchor overlaps.
     if genre == "narrative":
-        return f"The text's theological weight sits at {anchor}"
+        return f"The theological weight of {ref_label} sits at {anchor}"
     if genre == "gospel_discourse":
-        return f"The Lord's word turns on {anchor}"
+        return f"The Lord's word in {ref_label} turns on {anchor}"
     if genre == "epistle":
-        # Include the specific reference so adjacent days with similar key_terms still differ.
-        ref_label = reference or "this passage"
         return f"The doctrinal movement of {ref_label} turns on {anchor}"
     if genre in {"poetry", "wisdom"}:
-        return f"The passage's wisdom opens through {anchor}"
-    return f"The text's burden is rooted in {anchor}"
+        return f"The wisdom of {ref_label} opens through {anchor}"
+    return f"The burden of {ref_label} is rooted in {anchor}"
 
 
 _APP_FILTER = _STOPWORDS | {"passage", "text", "moves", "through", "rests", "turns", "opens", "sits", "rooted"}

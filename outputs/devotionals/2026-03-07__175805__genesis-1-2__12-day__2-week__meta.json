@@ -1,0 +1,14 @@
+{
+  "topic": "Genesis 1-2",
+  "days": 12,
+  "mode": "publish-ready",
+  "kdp_export_engine": "ui/pdf/engine.ts",
+  "export_gate_exportable": true,
+  "warnings": [],
+  "blocked_reason": null,
+  "pdf_path": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/devotionals/2026-03-07__175805__genesis-1-2__12-day__2-week__kdp-publish-ready.pdf",
+  "pdf_size_bytes": 1067085,
+  "pdf_magic": "%PDF",
+  "generated_at_utc": "2026-03-07T17:58:18.273478+00:00",
+  "note": "Built via direct renderer/export path because generate_devotional currently enforces max 7 days."
+}

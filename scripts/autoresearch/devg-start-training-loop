@@ -1,0 +1,56 @@
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+PYTHON_BIN="$REPO_ROOT/.venv/bin/python"
+LOOP_SCRIPT="$REPO_ROOT/scripts/autoresearch/run_training_loop.py"
+OUT_LOG="${DEVG_TRAINING_LOOP_OUT:-/tmp/devg-training-loop.out}"
+PID_FILE="${DEVG_TRAINING_LOOP_PID:-/tmp/devg-training-loop.pid}"
+SESSION_NAME="${DEVG_TRAINING_SESSION:-devg-training}"
+INTERVAL="${1:-20}"
+
+mkdir -p "$(dirname "$OUT_LOG")"
+
+# Use VibeTunnel if running — makes the training loop output visible remotely.
+# Skip vt prefix if we are already inside a VibeTunnel session (recursive sessions not supported).
+_vt_running() {
+  [[ -z "${VIBETUNNEL_SESSION_ID:-}" ]] \
+    && command -v vt >/dev/null 2>&1 \
+    && vt status 2>/dev/null | grep -q "Running: Yes"
+}
+
+# Prefer tmux — it survives terminal closure without SIGHUP/SIGTERM issues.
+if command -v tmux >/dev/null 2>&1; then
+  if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+    echo "training loop already running in tmux session: $SESSION_NAME"
+    exit 0
+  fi
+  if _vt_running; then
+    tmux new-session -d -s "$SESSION_NAME" \
+      "cd '$REPO_ROOT' && vt '$PYTHON_BIN' '$LOOP_SCRIPT' --interval-seconds '$INTERVAL' >> '$OUT_LOG' 2>&1"
+    echo "started training loop in tmux+VibeTunnel session: $SESSION_NAME (interval=${INTERVAL}s)"
+  else
+    tmux new-session -d -s "$SESSION_NAME" \
+      "cd '$REPO_ROOT' && '$PYTHON_BIN' '$LOOP_SCRIPT' --interval-seconds '$INTERVAL' >> '$OUT_LOG' 2>&1"
+    echo "started training loop in tmux session: $SESSION_NAME (interval=${INTERVAL}s)"
+  fi
+  echo "  monitor: tmux attach -t $SESSION_NAME"
+  echo "  stop:    scripts/autoresearch/devg-stop-training-loop"
+  exit 0
+fi
+
+# Fallback: nohup background process.
+if [[ -f "$PID_FILE" ]]; then
+  old_pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+  if [[ -n "${old_pid:-}" ]] && kill -0 "$old_pid" 2>/dev/null; then
+    echo "training loop already running: pid=$old_pid"
+    exit 0
+  fi
+fi
+
+nohup "$PYTHON_BIN" "$LOOP_SCRIPT" --interval-seconds "$INTERVAL" >>"$OUT_LOG" 2>&1 < /dev/null &
+loop_pid=$!
+echo "$loop_pid" > "$PID_FILE"
+echo "started training loop (nohup fallback): pid=$loop_pid interval=${INTERVAL}s"
+echo "  note: nohup may not survive terminal closure — install tmux for persistence"

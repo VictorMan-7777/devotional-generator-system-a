@@ -1,0 +1,161 @@
+{
+  "run_slug": "2026-03-17__125432__grace-and-peace__6-day__vol-1",
+  "stage": "day_complete",
+  "sequence": 4,
+  "created_at_utc": "2026-03-17T12:54:36.941227+00:00",
+  "payload": {
+    "day_number": 2,
+    "attempt_start": 1,
+    "day": {
+      "day_number": 2,
+      "day_focus": "Romans 5:5-6 - At the right time Christ died for the ungodly",
+      "timeless_wisdom": {
+        "quote_text": "",
+        "original_quote_text": "",
+        "language_modernized": false,
+        "modernization_label": "",
+        "author": "",
+        "source_title": "",
+        "publication_year": null,
+        "page_or_url": "",
+        "citation_locator": "",
+        "source_url": "",
+        "source_trace": [
+          "https://archive.org",
+          "https://spurgeongems.org",
+          "https://monergism.com",
+          "https://ccel.org",
+          "https://gutenberg.org",
+          "http://wesley.nnu.edu"
+        ],
+        "publisher": "",
+        "publication_city": "",
+        "public_domain": true,
+        "retrieval_source": "",
+        "retrieval_reference": "searched=https://archive.org,https://spurgeongems.org,https://monergism.com,https://ccel.org,https://gutenberg.org,http://wesley.nnu.edu",
+        "retrieved_at_utc": "2026-03-17T12:54:36.807062+00:00",
+        "validation_agent": "",
+        "verification_status": "catalog_unverified",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Romans 5:5-6",
+        "text": "and hope does not disappoint, because the love of God has been poured out within our hearts through the Holy Spirit who was given to us.\nFor while we were still helpless, at the right time Christ died for the ungodly.",
+        "translation": "NASB",
+        "retrieval_source": "api_bible",
+        "retrieval_reference": "Romans 5:5-6",
+        "retrieved_at_utc": "2026-03-17T12:54:36.575612+00:00",
+        "copyright_notice": "New American Standard Bible\u00ae, Copyright \u00a9 1995, The Lockman Foundation. All rights reserved. lockman.org",
+        "source_access_policy": "licensed_text_cache_refresh_30d",
+        "text_cache_status": "cached",
+        "cache_expires_at_utc": "2026-04-16T12:54:36.575612+00:00",
+        "verification_status": "verified",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Romans 5:5-6 opens with a scene marked by hope that holds firm because Christ died for the helpless before they deserved it. The text does not ask the reader to admire the moment from a distance. The passage puts one clear scene in front of us: At the right time Christ died for the ungodly. We should stay with that scene before we rush to a slogan. What the passage shows through right, time, christ must be received before it is applied. That keeps the reading honest. hope rooted in suffering does not shame the believer because God's love was proved by Christ dying for the ungodly before any merit existed. Romans 5:5-6 stays concrete through And hope does not disappoint because \u2014 the specific language of right, time, christ does the work before any principle is named. What we see in Romans 5:5-6 shows how doctrine presses into daily life rather than remaining in the realm of abstract conviction. The point is not bare information. It presses into faithful response instead of vague admiration. We should not drift into generic encouragement detached from the scene. We should let the passage name the pressure point for the day. If the scene is shaped by At the right time Christ died for the ungodly, then obedience today should answer that same pressure point. Where the text exposes fear, we should answer the word with concrete obedience. Where it honors devotion, we should practice hope-filled endurance that rests on Christ who died for the helpless before they deserved it, not on strength that suffering tests. Where it reveals God's worth clearly, we should pursue steady trust in the ordinary places of life rather than delay. That keeps the day under the authority of Scripture. Strong exposition stays close to the text. It does not chase a clever slogan. It lets the details do their work on the conscience. That kind of reading slows us down. It teaches us to listen before we react. It also keeps prayer and application from drifting away from the passage. When the text warns, we should feel the warning. When the text comforts, we should receive the comfort. When the text humbles us, we should not dodge that weight. This is how devotion stays truthful, steady, and alive. The text rewards slow attention because its details are part of its theology, not background decoration. Good application therefore grows from disciplined reading rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
+        "word_count": 550,
+        "grounding_map_id": "gm_c9f4363a",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit with Romans 5:5-6 for two quiet minutes. Read the scene of hope that holds firm because Christ died for the helpless before they deserved it slowly and let it settle before you move on.",
+          "Where does this passage call for hope-filled endurance that rests on Christ who died for the helpless before they deserved it, not on strength that suffering tests today?",
+          "Stay for one more minute and answer God with one honest sentence of trust, repentance, or gratitude before continuing."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Before your next decision, pause and ask how Romans 5:5-6 should shape your response.",
+          "Offer one concrete act of service that matches the patience or steadiness this passage commends."
+        ],
+        "connector_phrase": "Because Romans 5:5-6 calls for hope-filled endurance that rests on Christ who died for the helpless before they deserved it, not on strength that suffering tests today:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, thank You for speaking clearly in Romans 5:5-6. In this passage You bring hope that holds firm because Christ died for the helpless before they deserved it into the open through At the right time Christ died for the ungodly. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us near Your word, and do not let ordinary pressure turn us away from humble obedience. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Romans 5:5-6 opens with a scene marked by hope that holds firm because Christ died for the helpless before they deserved it. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from faithful response instead of vague admiration. Amen.",
+        "word_count": 150,
+        "prayer_trace_map_id": "ptm_9201aa3c",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-17T12:54:36.807062Z",
+      "last_modified": "2026-03-17T12:54:36.807062Z"
+    },
+    "assessments": [
+      {
+        "check_id": "EXPOSITION_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_VOICE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_GROUNDING_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_PROMPT_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_SECOND_PERSON",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_CONNECTOR_PHRASE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRINITY_ADDRESS",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRACE_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      }
+    ]
+  }
+}

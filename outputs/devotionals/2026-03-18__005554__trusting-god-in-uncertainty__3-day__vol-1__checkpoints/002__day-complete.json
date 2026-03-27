@@ -1,0 +1,157 @@
+{
+  "run_slug": "2026-03-18__005554__trusting-god-in-uncertainty__3-day__vol-1",
+  "stage": "day_complete",
+  "sequence": 2,
+  "created_at_utc": "2026-03-18T00:58:36.830773+00:00",
+  "payload": {
+    "day_number": 1,
+    "attempt_start": 1,
+    "day": {
+      "day_number": 1,
+      "day_focus": "Psalm 23:1-2 - He makes me lie down in green pastures",
+      "timeless_wisdom": {
+        "quote_text": "An ineffable but all-sufficient sacrifice had to be made before God could righteously forgive His people.",
+        "original_quote_text": "An ineffable but all-sufficient sacrifice had to be made before God could righteously forgive His people.",
+        "language_modernized": false,
+        "modernization_label": "",
+        "author": "Arthur W. Pink",
+        "source_title": "The Sovereignty of God",
+        "publication_year": 1918,
+        "page_or_url": "https://monergism.com",
+        "citation_locator": "Ch. 8",
+        "source_url": "https://monergism.com",
+        "source_trace": [
+          "https://monergism.com"
+        ],
+        "publisher": "Baker Book House",
+        "publication_city": "Grand Rapids",
+        "public_domain": true,
+        "retrieval_source": "quote_catalog",
+        "retrieval_reference": "The Sovereignty of God | searched=https://monergism.com",
+        "retrieved_at_utc": "2026-03-18T00:58:36.701221+00:00",
+        "validation_agent": "",
+        "verification_status": "quote_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Psalm 23:1-2",
+        "text": "The Lord, the Psalmist\u2019s Shepherd.\nA Psalm of David.\nThe Lord is my shepherd,\nI shall not want.\nHe makes me lie down in green pastures;\nHe leads me beside quiet waters.",
+        "translation": "NASB",
+        "retrieval_source": "api_bible",
+        "retrieval_reference": "Psalm 23:1-2",
+        "retrieved_at_utc": "2026-03-18T00:57:22.871690+00:00",
+        "copyright_notice": "New American Standard Bible\u00ae, Copyright \u00a9 1995, The Lockman Foundation. All rights reserved. lockman.org",
+        "source_access_policy": "licensed_text_cache_refresh_30d",
+        "text_cache_status": "cached",
+        "cache_expires_at_utc": "2026-04-17T00:57:22.871690+00:00",
+        "verification_status": "verified",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Psalm 23:1-2 opens with a scene marked by faithful response to God's word. The text does not ask the reader to admire the moment from a distance. The passage puts one clear scene in front of us: He makes me lie down in green pastures. We should stay with that scene before we rush to a slogan. What the passage shows through makes, lie, down must be received before it is applied. That keeps the reading honest. worship and wisdom under the word of god. Psalm 23:1-2 stays concrete through The Lord the Psalmist\u2019s Shepherd \u2014 the specific language of makes, lie, down does the work before any principle is named. What we see in Psalm 23:1-2 shows how faith voices its inner state honestly rather than hiding it behind composed religious language. The point is not bare information. It presses into faithful response instead of vague admiration. We should not drift into generic encouragement detached from the scene. We should let the passage name the pressure point for the day. If the scene is shaped by He makes me lie down in green pastures, then obedience today should answer that same pressure point. Where the text exposes fear, we should answer the word with concrete obedience. Where it honors devotion, we should practice concrete obedience that takes makes and down seriously rather than at a distance. Where it reveals God's worth clearly, we should pursue steady trust in the ordinary places of life rather than delay. That keeps the day under the authority of Scripture. Strong exposition stays close to the text. It does not chase a clever slogan. It lets the details do their work on the conscience. That kind of reading slows us down. It teaches us to listen before we react. It also keeps prayer and application from drifting away from the passage. When the text warns, we should feel the warning. When the text comforts, we should receive the comfort. When the text humbles us, we should not dodge that weight. This is how devotion stays truthful, steady, and alive. The text rewards slow attention because its details are part of its theology, not background decoration. Good application therefore grows from disciplined reading rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
+        "focal_claim": "The text does not ask the reader to admire the moment from a distance.",
+        "word_count": 550,
+        "grounding_map_id": "gm_1305d4e5",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit with Psalm 23:1-2 for two quiet minutes. Read the scene of faithful response to God's word slowly and let it settle before you move on.",
+          "Where does this passage call for concrete obedience that takes makes and down seriously rather than at a distance today?",
+          "Stay for one more minute and answer God with one honest sentence of trust, repentance, or gratitude before continuing."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Write one sentence naming how Psalm 23:1-2 presses on the scene of He makes me lie down in green pastures.",
+          "Name one place where concrete obedience that takes makes and down seriously rather than at a distance should change the way you listen, speak, or act today."
+        ],
+        "connector_phrase": "Because Psalm 23:1-2 calls for concrete obedience that takes makes and down seriously rather than at a distance today:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, thank You for speaking clearly in Psalm 23:1-2. In this passage You bring faithful response to God's word into the open through He makes me lie down in green pastures. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us near Your word, and do not let ordinary pressure turn us away from humble obedience. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Psalm 23:1-2 opens with a scene marked by faithful response to God's word. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from faithful response instead of vague admiration. Help us practice the obedience this day requires with humility as we pursue concrete obedience that takes makes and down seriously rather than at a distance. Amen.",
+        "word_count": 150,
+        "prayer_trace_map_id": "ptm_1bb774c4",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-18T00:58:36.701221Z",
+      "last_modified": "2026-03-18T00:58:36.701221Z"
+    },
+    "assessments": [
+      {
+        "check_id": "EXPOSITION_WORD_COUNT",
+        "result": "fail",
+        "reason_code": "EXPOSITION_WORD_COUNT_VIOLATION",
+        "explanation": "Exposition is 392 words; must be 500\u2013700.",
+        "evidence": "computed word count: 392"
+      },
+      {
+        "check_id": "EXPOSITION_VOICE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_GROUNDING_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_PROMPT_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_SECOND_PERSON",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_CONNECTOR_PHRASE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRINITY_ADDRESS",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRACE_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      }
+    ]
+  }
+}

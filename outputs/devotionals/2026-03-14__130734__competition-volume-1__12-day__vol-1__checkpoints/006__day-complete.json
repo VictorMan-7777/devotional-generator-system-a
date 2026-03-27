@@ -1,0 +1,156 @@
+{
+  "run_slug": "2026-03-14__130734__competition-volume-1__12-day__vol-1",
+  "stage": "day_complete",
+  "sequence": 6,
+  "created_at_utc": "2026-03-14T13:07:41.534115+00:00",
+  "payload": {
+    "day_number": 3,
+    "attempt_start": 1,
+    "day": {
+      "day_number": 3,
+      "day_focus": "Proverbs 1:14-19 - Their feet run to evil And they hasten to shed blood",
+      "timeless_wisdom": {
+        "quote_text": "Men will never find a remedy for their miseries until, forgetting their own merits, by trusting to which they only deceive themselves, they have learned to betake themselves to the free mercy of God.",
+        "original_quote_text": "Men will never find a remedy for their miseries until, forgetting their own merits, by trusting to which they only deceive themselves, they have learned to betake themselves to the free mercy of God.",
+        "language_modernized": false,
+        "modernization_label": "",
+        "author": "John Calvin",
+        "source_title": "Commentary on Psalms - Volume 1",
+        "publication_year": 1845,
+        "page_or_url": "https://www.ccel.org/ccel/calvin/calcom08.all.html",
+        "citation_locator": "Psalm 6:4",
+        "source_url": "https://www.ccel.org/ccel/calvin/calcom08.all.html",
+        "source_trace": [
+          "https://www.ccel.org/ccel/calvin/calcom08.all.html"
+        ],
+        "publisher": "Christian Classics Ethereal Library",
+        "publication_city": "Grand Rapids, MI",
+        "public_domain": true,
+        "retrieval_source": "quote_catalog",
+        "retrieval_reference": "Commentary on Psalms - Volume 1 | searched=https://www.ccel.org/ccel/calvin/calcom08.all.html",
+        "retrieved_at_utc": "2026-03-14T13:07:41.470108+00:00",
+        "validation_agent": "",
+        "verification_status": "quote_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Proverbs 1:14-19",
+        "text": "Throw in your lot with us,\nWe shall all have one purse,\u201d\nMy son, do not walk in the way with them.\nKeep your feet from their path,\nFor their feet run to evil\nAnd they hasten to shed blood.\nIndeed, it is useless to spread the baited net\nIn the sight of any bird;\nBut they lie in wait for their own blood;\nThey ambush their own lives.\nSo are the ways of everyone who gains by violence;\nIt takes away the life of its possessors.",
+        "translation": "NASB",
+        "retrieval_source": "api_bible",
+        "retrieval_reference": "Proverbs 1:14-19",
+        "retrieved_at_utc": "2026-03-14T13:07:41.318575+00:00",
+        "copyright_notice": "New American Standard Bible\u00ae, Copyright \u00a9 1995, The Lockman Foundation. All rights reserved. lockman.org",
+        "source_access_policy": "licensed_text_cache_refresh_30d",
+        "text_cache_status": "cached",
+        "cache_expires_at_utc": "2026-04-13T13:07:41.318575+00:00",
+        "verification_status": "verified",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Proverbs 1:14-19 opens with a scene marked by seeing the self-destruction hidden inside greedy violence. The text brings costly obedience into view and refuses every attempt to make sacrifice feel decorative. The passage puts one clear scene in front of us: Their feet run to evil And they hasten to shed blood. We should stay with that scene before we rush to a slogan. The literary shape of the passage helps determine the kind of obedience it requires. That keeps the reading honest. The wider context matters too. Proverbs 1:14-19 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. So the burden here is seeing the self-destruction hidden inside greedy violence. The theological lane is violent greed becomes a trap that turns back on those who love it. The passage stays concrete through Throw in the lot with us We and feet, run, evil. The crucifixion scene forces attention on shame, suffering, and the holy cost of redemption rather than sentimental encouragement. What we see in Proverbs 1:14-19 shows how faith responds when suffering, loss, and accusation make reverence costly. The point is not bare information. It presses into obedient love instead of self-saving instinct. We should not drift into generic encouragement detached from the scene. We should let the passage name the pressure point for the day. If the scene is shaped by Their feet run to evil And they hasten to shed blood, then obedience today should answer that same pressure point. Where the text exposes fear, we should carry costly obedience without bitterness. Where it honors devotion, we should practice discernment that looks past the thrill of gain and sees the ruin that greedy paths finally bring. Where it reveals God's worth clearly, we should pursue the cross-shaped path of faithfulness rather than delay. That keeps the day under the authority of Scripture. Strong exposition stays close to the text. It does not chase a clever slogan. It lets the details do their work on the conscience. That kind of reading slows us down. It teaches us to listen before we react. It also keeps prayer and application from drifting away from the passage. When the text warns, we should feel the warning. When the text comforts, we should receive the comfort. When the text humbles us, we should not dodge that weight. This is how devotion stays truthful, steady, and alive. Cross-shaped passages keep obedience from becoming sentimental by showing that love remains holy, costly, and concrete. They teach the reader that discipleship is measured not by admiration alone but by costly conformity to the way of Christ. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
+        "word_count": 550,
+        "grounding_map_id": "gm_b2904549",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit with Proverbs 1:14-19 for two quiet minutes. Read the scene of seeing the self-destruction hidden inside greedy violence slowly and let it settle before you move on.",
+          "Where does this passage call for discernment that looks past the thrill of gain and sees the ruin that greedy paths finally bring today?",
+          "Stay for one more minute and answer God with one honest sentence of confession, courage, or repentance before continuing."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Name one costly act of obedience that Proverbs 1:14-19 places before you today.",
+          "Accept one inconvenience without complaint as a small act of cross-shaped faithfulness."
+        ],
+        "connector_phrase": "Because Proverbs 1:14-19 calls for discernment that looks past the thrill of gain and sees the ruin that greedy paths finally bring today:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, thank You for speaking clearly in Proverbs 1:14-19. In this passage You bring seeing the self-destruction hidden inside greedy violence into the open through Their feet run to evil And they hasten to shed blood. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us near the crucified Christ, and do not let us soften suffering love into something easier than holy obedience. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Proverbs 1:14-19 opens with a scene marked by seeing the self-destruction hidden inside greedy violence. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from obedient love instead of self-saving instinct. Amen.",
+        "word_count": 150,
+        "prayer_trace_map_id": "ptm_a0d6868c",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-14T13:07:41.470108Z",
+      "last_modified": "2026-03-14T13:07:41.470108Z"
+    },
+    "assessments": [
+      {
+        "check_id": "EXPOSITION_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_VOICE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_GROUNDING_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_PROMPT_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_SECOND_PERSON",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_CONNECTOR_PHRASE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRINITY_ADDRESS",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRACE_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      }
+    ]
+  }
+}

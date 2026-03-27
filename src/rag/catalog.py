@@ -10,15 +10,68 @@ warnings.warn() message and returns all available candidates without raising.
 from __future__ import annotations
 
 import json
+import os
 import warnings
 from pathlib import Path
 from typing import Dict, List, Optional
+from urllib.parse import urlparse
 
+from src.citations.quote_citations import (
+    is_url,
+    normalize_quote_citation_fields,
+    quote_citation_completeness,
+)
 from src.interfaces.rag import QuoteCandidate
+from src.persistence.paths import default_registry_db_path
+from src.rag.sqlite_catalog import load_quote_rows
 
 _DEFAULT_CATALOG_PATH = (
     Path(__file__).parent.parent.parent / "data" / "quotes" / "seed-quotes.json"
 )
+
+_APPROVED_AUTHORS = {
+    "Martin Luther",
+    "John Calvin",
+    "Richard Sibbes",
+    "Samuel Rutherford",
+    "Richard Baxter",
+    "John Owen",
+    "Thomas Watson",
+    "John Bunyan",
+    "Matthew Henry",
+    "William Law",
+    "Samuel Hopkins",
+    "George Whitefield",
+    "John Wesley",
+    "Jonathan Edwards",
+    "John Fletcher",
+    "Charles H. Spurgeon",
+    "Arthur W. Pink",
+}
+
+_APPROVED_SOURCE_DOMAINS = {
+    "ccel.org",
+    "archive.org",
+    "gutenberg.org",
+    "monergism.com",
+    "spurgeongems.org",
+    "grace-ebooks.com",
+    "classicchristianlibrary.com",
+    "wesley.nnu.edu",
+}
+
+
+def _approved_source_url(url: str) -> bool:
+    try:
+        parsed = urlparse(url.strip())
+    except Exception:
+        return False
+    host = (parsed.netloc or "").lower()
+    if not host:
+        return False
+    if host.startswith("www."):
+        host = host[4:]
+    return host in _APPROVED_SOURCE_DOMAINS
 
 
 class QuoteCatalog:
@@ -44,9 +97,42 @@ class QuoteCatalog:
     """
 
     def __init__(self, catalog_path: Path = _DEFAULT_CATALOG_PATH) -> None:
-        with catalog_path.open(encoding="utf-8") as fh:
-            raw = json.load(fh)
-        self._quotes: List[QuoteCandidate] = [QuoteCandidate(**entry) for entry in raw]
+        resolved_catalog = Path(catalog_path).resolve()
+        if resolved_catalog == _DEFAULT_CATALOG_PATH.resolve():
+            db_path = default_registry_db_path()
+            strict_db_only = os.getenv("DEVG_REQUIRE_DB_CATALOG", "").strip() == "1"
+            raw = load_quote_rows(
+                db_path=db_path,
+                seed_path=resolved_catalog,
+                strict_db_only=strict_db_only,
+            )
+        else:
+            with resolved_catalog.open(encoding="utf-8") as fh:
+                raw = json.load(fh)
+        self._quotes: List[QuoteCandidate] = [
+            QuoteCandidate(**normalize_quote_citation_fields(entry))
+            for entry in raw
+        ]
+        if resolved_catalog == _DEFAULT_CATALOG_PATH.resolve():
+            violations: list[str] = []
+            for i, q in enumerate(self._quotes, start=1):
+                if q.author not in _APPROVED_AUTHORS:
+                    violations.append(f"entry#{i}: author {q.author!r} not in approved whitelist")
+                if not (1483 <= int(q.publication_year or 0) <= 1952):
+                    violations.append(
+                        f"entry#{i}: publication_year {q.publication_year!r} outside 1483-1952"
+                    )
+                source_url = str(q.source_url or "").strip()
+                if not source_url and is_url(str(q.page_or_url)):
+                    source_url = str(q.page_or_url).strip()
+                if not _approved_source_url(source_url):
+                    violations.append(
+                        f"entry#{i}: source_url {source_url or q.page_or_url!r} is not an approved source URL"
+                    )
+            if violations:
+                raise ValueError(
+                    "Default quote catalog violates approved source policy: " + "; ".join(violations)
+                )
 
     def retrieve_quotes(
         self,
@@ -99,8 +185,18 @@ class QuoteCatalog:
 
         candidates: List[QuoteCandidate] = []
         for score, _, q in scored[:top_k]:
-            candidates.append(q.model_copy(update={"relevance_score": score}))
+            candidates.append(
+                q.model_copy(
+                    update={
+                        "relevance_score": score,
+                        "citation_completeness": quote_citation_completeness(
+                            citation_locator=q.citation_locator,
+                            publisher=q.publisher,
+                            publication_city=q.publication_city,
+                            source_url=q.source_url or (q.page_or_url if is_url(q.page_or_url) else ""),
+                        ),
+                    }
+                )
+            )
 
         return candidates
-
-

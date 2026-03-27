@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 class SectionApprovalStatus(str, Enum):
     PENDING = "pending"
     APPROVED = "approved"
+    REJECTED = "rejected"
 
 
 class OutputMode(str, Enum):
@@ -19,7 +20,7 @@ class OutputMode(str, Enum):
 
 class DevotionalInput(BaseModel):
     topic: str
-    num_days: int = Field(default=6, ge=1, le=7)
+    num_days: int = Field(default=6, ge=1, le=366)
     scripture_version: str = "NASB"
     output_mode: OutputMode = OutputMode.PUBLISH_READY
     title: Optional[str] = None
@@ -28,11 +29,23 @@ class DevotionalInput(BaseModel):
 
 class TimelessWisdomSection(BaseModel):
     quote_text: str
+    original_quote_text: str = ""
+    language_modernized: bool = False
+    modernization_label: str = ""
     author: str
     source_title: str
     publication_year: Optional[int] = None
     page_or_url: str
+    citation_locator: str = ""
+    source_url: str = ""
+    source_trace: List[str] = []
+    publisher: str = ""
+    publication_city: str = ""
     public_domain: bool
+    retrieval_source: str = ""  # e.g. "quote_catalog" | "operator_import"
+    retrieval_reference: str = ""  # stable citation/source locator when available
+    retrieved_at_utc: str = ""  # ISO timestamp for audit trail
+    validation_agent: str = ""  # agent id when independently validated
     verification_status: str  # "catalog_verified" | "human_approved"
     approval_status: SectionApprovalStatus = SectionApprovalStatus.PENDING
 
@@ -42,12 +55,19 @@ class ScriptureSection(BaseModel):
     text: str
     translation: str
     retrieval_source: str  # "bolls_life" | "api_bible" | "operator_import"
+    retrieval_reference: str = ""
+    retrieved_at_utc: str = ""
+    copyright_notice: str = ""
+    source_access_policy: str = ""
+    text_cache_status: str = "cached"
+    cache_expires_at_utc: str = ""
     verification_status: str
     approval_status: SectionApprovalStatus = SectionApprovalStatus.PENDING
 
 
 class ExpositionSection(BaseModel):
     text: str  # Full 500–700 word text
+    focal_claim: str = ""  # Single theological claim extracted from the opening; feeds quote selection
     word_count: int
     grounding_map_id: str  # FK to GroundingMap
     approval_status: SectionApprovalStatus = SectionApprovalStatus.PENDING
@@ -86,7 +106,7 @@ class Day7Section(BaseModel):  # Only when num_days == 7
 
 
 class DailyDevotional(BaseModel):
-    day_number: int = Field(ge=1, le=7)
+    day_number: int = Field(ge=1, le=366)
     day_focus: Optional[str] = None
     timeless_wisdom: TimelessWisdomSection
     scripture: ScriptureSection

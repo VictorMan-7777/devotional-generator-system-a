@@ -395,6 +395,27 @@ RESOURCES: list[dict] = [
         "source_type": "commentary",
         "skip_header_lines": 80,
     },
+    {
+        "slug": "matthew-henry-s-commentary-on-the-whole-bible",
+        "source_title": "Matthew Henry's Commentary on the Whole Bible",
+        "author": "Matthew Henry",
+        "source_type": "commentary",
+        "skip_header_lines": 60,
+    },
+    {
+        "slug": "keil-delitzsch-ruth",
+        "source_title": "Keil and Delitzsch Commentary: Joshua, Judges, Ruth",
+        "author": "C.F. Keil and F. Delitzsch",
+        "source_type": "commentary",
+        "skip_header_lines": 80,
+    },
+    {
+        "slug": "pulpit-commentary-ruth",
+        "source_title": "The Pulpit Commentary: Judges and Ruth",
+        "author": "H.D.M. Spence and Joseph Exell",
+        "source_type": "commentary",
+        "skip_header_lines": 80,
+    },
 ]
 
 # ---------------------------------------------------------------------------

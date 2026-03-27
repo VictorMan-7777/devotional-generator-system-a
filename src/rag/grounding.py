@@ -106,6 +106,18 @@ class GroundingMapBuilder:
                     paragraph_name=names[para_num],
                     sources_retrieved=sources,
                     excerpts_used=[e.text[:80] for e in excerpts],
+                    original_excerpts_used=[
+                        (e.original_text or e.text)[:80] for e in excerpts
+                    ],
+                    excerpts_modernized=[bool(getattr(e, "language_modernized", False)) for e in excerpts],
+                    modernization_label=next(
+                        (
+                            str(getattr(e, "modernization_label", "") or "").strip()
+                            for e in excerpts
+                            if str(getattr(e, "modernization_label", "") or "").strip()
+                        ),
+                        "",
+                    ),
                     how_retrieval_informed_paragraph=(
                         f"Retrieved {len(excerpts)} excerpt(s) "
                         f"from {len(sources)} source(s)."

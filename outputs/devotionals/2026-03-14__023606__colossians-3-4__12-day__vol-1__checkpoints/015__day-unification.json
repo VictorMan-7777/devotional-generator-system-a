@@ -1,0 +1,11 @@
+{
+  "run_slug": "2026-03-14__023606__colossians-3-4__12-day__vol-1",
+  "stage": "day_unification",
+  "sequence": 15,
+  "created_at_utc": "2026-03-14T02:36:12.185002+00:00",
+  "payload": {
+    "day_number": 7,
+    "status": "failed",
+    "findings": []
+  }
+}

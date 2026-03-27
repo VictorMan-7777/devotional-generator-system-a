@@ -9,7 +9,7 @@ escalate blocking issues to Grok 4.20 multi-agent for code suggestions.
 Enhanced for consecutive cycle stall detection and soft stall escalation reports.
 
 Output: docs/system/outputs/{timestamp}__devg__monitor-report.json
-Stall output: docs/system/outputs/{timestamp}__devg__stall-report.json (if persistent soft stalls)
+STALL output: docs/system/outputs/{timestamp}__devg__stall-report.json (if persistent soft stalls)
 
 Exit 0: healthy or low/medium issues only.
 Exit 1: blocking issues found (supervisor surfaces this).
@@ -55,29 +55,29 @@ You will monitor this system autonomously going forward.
 Read the following and build a complete mental map:
 
 ARCHITECTURE (read these files):
-- README.md (project overview)
-- scripts/autoresearch/run_training_supervisor.py (main orchestrator)
-- scripts/autoresearch/devg-watch (monitoring dashboard)
-- src/llm/router.py (AI provider routing)
-- src/autoresearch/training_manager.py (worker status + bottleneck logic)
-- src/autoresearch/outliner_training_agent.py (outliner — current bottleneck)
-- src/rag/acquisition_librarian.py (library acquisition pipeline)
-- src/rag/library_cards.py (card creation + indexing guard)
+ - README.md (project overview)
+ - scripts/autoresearch/run_training_supervisor.py (main orchestrator)
+ - scripts/autoresearch/devg-watch (monitoring dashboard)
+ - src/llm/router.py (AI provider routing)
+ - src/autoresearch/training_manager.py (worker status + bottleneck logic)
+ - src/autoresearch/outliner_training_agent.py (outliner — current bottleneck)
+ - src/rag/acquisition_librarian.py (library acquisition pipeline)
+ - src/rag/library_cards.py (card creation + indexing guard)
 
 DB SCHEMA (registry.db):
-- list_files("registry.db") to confirm path
-- Key tables: autoresearch_experiments (worker experiments), resource_acquisition_requests (library queue)
-- Query pattern (use search_file on a .py file that uses the table):
-  search_file("src/autoresearch/store.py", "CREATE TABLE|INSERT INTO|autoresearch_experiments")
+ - list_files("registry.db") to confirm path
+ - Key tables: autoresearch_experiments (worker experiments), resource_acquisition_requests (library queue)
+ - Query pattern (use search_file on a .py file that uses the table):
+   search_file("src/autoresearch/store.py", "CREATE TABLE|INSERT INTO|autoresearch_experiments")
 
 OUTPUT LOCATIONS:
-- list_files("docs/system/outputs/*.json") — see what kinds of cycle outputs exist
-- list_files("data/library") — see library structure
+ - list_files("docs/system/outputs/*.json") — see what kinds of cycle outputs exist
+ - list_files("data/library") — see library structure
 
 CURRENT STATE:
-- list_files("docs/system/outputs/*training-supervisor-cycle.json") newest 3 — read most recent
-- list_files("docs/system/outputs/*outliner-training-cycle.json") newest 3 — read most recent
-- list_files("data/library/resource-catalog.json") — read to count cards
+ - list_files("docs/system/outputs/*training-supervisor-cycle.json") newest 3 — read most recent
+ - list_files("docs/system/outputs/*outliner-training-cycle.json") newest 3 — read most recent
+ - list_files("data/library/resource-catalog.json") — read to count cards
 
 Return a JSON onboarding summary:
 {
@@ -140,11 +140,11 @@ Return ONLY valid JSON:
 }
 
 IMPORTANT:
-- Detect SOFT STALLS even if NO returncode !=0. E.g. no_assignments, 0 experiments added over 2+ cycles.
-- Sort cycles by timestamp DESC (newest first) to check CONSECUTIVE (recent-most).
-- code_changes_required = true ONLY for clear, specific code bugs causing failures/stalls.
-- urgency=blocking ONLY for hard crashes (returncode !=0). Use high/medium for persistent stalls.
-- ALWAYS finish by updating grok_workspace/MEMORY.md via write_workspace_file with current state.
+ - Detect SOFT STALLS even if NO returncode !=0. E.g. no_assignments, 0 experiments added over 2+ cycles.
+ - Sort cycles by timestamp DESC (newest first) to check CONSECUTIVE (recent-most).
+ - code_changes_required = true ONLY for clear, specific code bugs causing failures/stalls.
+ - urgency=blocking ONLY for hard crashes (returncode !=0). Use high/medium for persistent stalls.
+ - ALWAYS finish by updating grok_workspace/MEMORY.md via write_workspace_file with current state.
 """
 
 
@@ -188,7 +188,7 @@ def _escalate_to_grok42(diagnosis: dict[str, Any]) -> list[dict[str, Any]]:
     try:
         # Responses API — grok-4.20 multi-agent requires this endpoint
         response = client.responses.create(  # type: ignore[attr-defined]
-            model="grok-4.20-0309",
+            model="grok-4-20-0309",
             input=escalation_prompt,
             max_output_tokens=8000,
         )
@@ -262,7 +262,7 @@ def main() -> int:
 
     # Check for persistent soft stalls and write dedicated report
     stalls = payload.get("persistent_soft_stalls", [])
-    has_persistent_stalls = any(s.get("consecutive_cycles", 0) >= 2 for s in stalls)
+    has_persistent_stalls = any(s.get("consecutive_cycles", 0) >= 10 for s in stalls)
     if has_persistent_stalls:
         stall_report = {
             "generated_at_utc": payload["generated_at_utc"],
@@ -274,7 +274,7 @@ def main() -> int:
         stall_path.write_text(json.dumps(stall_report, indent=2) + "\n")
         print(f"🚨 Stall REPORT written: {stall_path}", flush=True)
 
-    # Escalate blocking issues to Grok 4.20 multi-agent
+    # Escalation to Grok 4.20 multi-agent
     fixes = payload.get("suggested_fixes", [])
     if payload.get("code_changes_required") and any(f.get("urgency") == "blocking" for f in fixes):
         print("🚨 Blocking issue — escalating to Grok 4.20 multi-agent...", flush=True)

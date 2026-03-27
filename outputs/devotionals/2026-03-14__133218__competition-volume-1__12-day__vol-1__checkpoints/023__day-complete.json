@@ -1,0 +1,156 @@
+{
+  "run_slug": "2026-03-14__133218__competition-volume-1__12-day__vol-1",
+  "stage": "day_complete",
+  "sequence": 23,
+  "created_at_utc": "2026-03-14T13:32:30.749599+00:00",
+  "payload": {
+    "day_number": 11,
+    "attempt_start": 1,
+    "day": {
+      "day_number": 11,
+      "day_focus": "Acts 9:36-39 - In Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas)",
+      "timeless_wisdom": {
+        "quote_text": "Resolved, never to do any thing, which I should be afraid to do if it were the last hour of my life.",
+        "original_quote_text": "Resolved, never to do any thing, which I should be afraid to do if it were the last hour of my life.",
+        "language_modernized": false,
+        "modernization_label": "",
+        "author": "Jonathan Edwards",
+        "source_title": "Resolutions",
+        "publication_year": 1722,
+        "page_or_url": "https://ccel.org/ccel/edwards/works1/works1.i.iii.html",
+        "citation_locator": "Resolution 7",
+        "source_url": "https://ccel.org/ccel/edwards/works1/works1.i.iii.html",
+        "source_trace": [
+          "https://ccel.org/ccel/edwards/works1/works1.i.iii.html"
+        ],
+        "publisher": "Christian Classics Ethereal Library",
+        "publication_city": "Grand Rapids, MI",
+        "public_domain": true,
+        "retrieval_source": "quote_catalog",
+        "retrieval_reference": "Resolutions | searched=https://ccel.org/ccel/edwards/works1/works1.i.iii.html",
+        "retrieved_at_utc": "2026-03-14T13:32:30.679371+00:00",
+        "validation_agent": "",
+        "verification_status": "quote_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Acts 9:36-39",
+        "text": "Now in Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas); this woman was abounding with deeds of kindness and charity which she continually did. And it happened at that time that she fell sick and died; and when they had washed her body, they laid it in an upper room. Since Lydda was near Joppa, the disciples, having heard that Peter was there, sent two men to him, imploring him, \u201cDo not delay in coming to us.\u201d So Peter arose and went with them. When he arrived, they brought him into the upper room; and all the widows stood beside him, weeping and showing all the tunics and garments that Dorcas used to make while she was with them.",
+        "translation": "NASB",
+        "retrieval_source": "api_bible",
+        "retrieval_reference": "Acts 9:36-39",
+        "retrieved_at_utc": "2026-03-14T13:32:30.480224+00:00",
+        "copyright_notice": "New American Standard Bible\u00ae, Copyright \u00a9 1995, The Lockman Foundation. All rights reserved. lockman.org",
+        "source_access_policy": "licensed_text_cache_refresh_30d",
+        "text_cache_status": "cached",
+        "cache_expires_at_utc": "2026-04-13T13:32:30.480224+00:00",
+        "verification_status": "verified",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Acts 9:36-39 opens with a scene marked by grief that remembers a life of embodied mercy. The text lets grief arrive in sequence so the heart feels how ordinary security is stripped away. The passage puts one clear scene in front of us: In Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas). We should stay with that scene before we rush to a slogan. Because this is narrative material, the theology arrives through events, actions, and speech rather than detached maxims. That keeps the reading honest. The wider context matters too. Acts 9:36-39 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. So the burden here is grief that remembers a life of embodied mercy. The theological lane is the fellowship of the church remembers mercy in concrete deeds and grieves the loss of faithful love. The passage stays concrete through Now in Joppa there was a disciple and joppa, disciple, named. Successive losses test whether reverence can survive when each new report removes another layer of ordinary security. What we see in Acts 9:36-39 shows how faith responds when suffering, loss, and accusation make reverence costly. The point is not bare information. It presses into endurance under repeated loss instead of panic or numb resignation. We should not drift into generic encouragement detached from the scene. We should let the passage name the pressure point for the day. If the scene is shaped by In Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas), then obedience today should answer that same pressure point. Where the text exposes fear, we should keep receiving hard providence without surrendering worship. Where it honors devotion, we should practice present-tense kindness that leaves behind visible mercy worth remembering when grief comes. Where it reveals God's worth clearly, we should pursue truthful lament joined to steady reverence rather than delay. That keeps the day under the authority of Scripture. Strong exposition stays close to the text. It does not chase a clever slogan. It lets the details do their work on the conscience. That kind of reading slows us down. It teaches us to listen before we react. It also keeps prayer and application from drifting away from the passage. When the text warns, we should feel the warning. When the text comforts, we should receive the comfort. When the text humbles us, we should not dodge that weight. This is how devotion stays truthful, steady, and alive. Loss passages are not merely records of pain; they train the church to name grief truthfully without surrendering reverence. In that way the text disciplines both despair and denial, teaching the reader to mourn without accusing God falsely. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
+        "word_count": 550,
+        "grounding_map_id": "gm_44c0ec40",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit with Acts 9:36-39 for two quiet minutes. Read the scene of grief that remembers a life of embodied mercy slowly and let it settle before you move on.",
+          "Where does this passage call for present-tense kindness that leaves behind visible mercy worth remembering when grief comes today?",
+          "Stay for one more minute and answer God with one honest sentence of trust, lament, or reverence before continuing."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Name the grief that feels most personal or irreversible right now.",
+          "Bring that sorrow before God honestly and refuse to let Acts 9:36-39 become a slogan instead of a lamenting act of worship."
+        ],
+        "connector_phrase": "Because Acts 9:36-39 calls for present-tense kindness that leaves behind visible mercy worth remembering when grief comes today:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, thank You for speaking clearly in Acts 9:36-39. In this passage You bring grief that remembers a life of embodied mercy into the open through In Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas). Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Keep us from treating devastating grief as proof that worship is pointless, and teach us reverence when sorrow becomes intensely personal. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Acts 9:36-39 opens with a scene marked by grief that remembers a life of embodied mercy. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from endurance under repeated loss instead of panic or numb resignation. Amen.",
+        "word_count": 150,
+        "prayer_trace_map_id": "ptm_19c02990",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-14T13:32:30.679371Z",
+      "last_modified": "2026-03-14T13:32:30.679371Z"
+    },
+    "assessments": [
+      {
+        "check_id": "EXPOSITION_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_VOICE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_GROUNDING_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_PROMPT_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_SECOND_PERSON",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_CONNECTOR_PHRASE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRINITY_ADDRESS",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRACE_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      }
+    ]
+  }
+}

@@ -23,6 +23,8 @@ export type BlockType =
 
 export type PageNumberStyle = 'roman' | 'arabic' | 'suppressed';
 
+export type PDFOutputMode = 'personal' | 'reviewed-proof' | 'publish-ready';
+
 export interface DocumentBlock {
   block_type: BlockType;
   content: string;

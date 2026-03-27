@@ -1,0 +1,11 @@
+{
+  "run_slug": "2026-03-14__130734__competition-volume-1__12-day__vol-1",
+  "stage": "day_unification",
+  "sequence": 20,
+  "created_at_utc": "2026-03-14T13:07:44.804174+00:00",
+  "payload": {
+    "day_number": 9,
+    "status": "passed",
+    "findings": []
+  }
+}

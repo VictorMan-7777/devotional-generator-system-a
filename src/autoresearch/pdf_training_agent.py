@@ -202,12 +202,30 @@ def review_current_pdf_work(repo_root: Path) -> dict[str, Any]:
 
 
 _LAYOUT_ENGINEER_GRADUATION_THRESHOLD = 10
+_ART_DIRECTOR_GRADUATION_THRESHOLD = 25
+
+
+def _art_director_pass_streak() -> int:
+    """Count most recent consecutive output-worker-review passes for pdf_art_director."""
+    try:
+        records = list_experiments(worker_name="pdf_art_director")
+    except Exception:
+        return 0
+    review_records = [r for r in records if r.benchmark_name == "output-worker-review"]
+    streak = 0
+    for record in reversed(review_records):
+        if record.status == "pass":
+            streak += 1
+        else:
+            break
+    return streak
 
 
 def build_pdf_assignment_queue(repo_root: Path) -> list[PDFTrainingAssignment]:
     corpus = collect_pdf_training_corpus(repo_root)
     approved_artifact = ensure_approved_training_artifact(repo_root)
     layout_engineer_graduated = _layout_engineer_pass_streak() >= _LAYOUT_ENGINEER_GRADUATION_THRESHOLD
+    art_director_graduated = _art_director_pass_streak() >= _ART_DIRECTOR_GRADUATION_THRESHOLD
     reject_heavy = next((item for item in corpus if item.get("rejected_count", 0) >= 50), None)
     approved_reference = (
         Path(str(approved_artifact["reviewed_proof_path"])).name
@@ -220,32 +238,38 @@ def build_pdf_assignment_queue(repo_root: Path) -> list[PDFTrainingAssignment]:
         else "reject-heavy-proof-missing"
     )
     return [
-        PDFTrainingAssignment(
-            assignment_id="pdf-art-director__front-matter-template",
-            trainer_name="expert_pdf_art_trainer",
-            worker_name="pdf_art_director",
-            benchmark_reference=reject_reference,
-            objective="Study one rejected/reject-heavy proof PDF and improve only the front-matter template: title page and introduction hierarchy.",
-            rationale="Start the art director with the smallest visible surface first so this worker learns one product-facing template at a time.",
-            files_in_scope=(
-                "src/rendering/front_matter.py",
-                "src/rendering/engine.py",
-                "ui/pdf/fonts.ts",
-            ),
-            review_focus=("title page", "introduction heading", "front matter hierarchy"),
-        ),
-        PDFTrainingAssignment(
-            assignment_id="pdf-art-director__day-start-template",
-            trainer_name="expert_pdf_art_trainer",
-            worker_name="pdf_art_director",
-            benchmark_reference=reject_reference,
-            objective="Improve only the repeated day-start template so every devotional day opens with the same clear, premium hierarchy.",
-            rationale="The daily template repeats across the whole book, so this is higher leverage than treating 45 days as separate design work.",
-            files_in_scope=(
-                "ui/pdf/blocks.ts",
-                "ui/pdf/fonts.ts",
-            ),
-            review_focus=("day title hierarchy", "scripture header", "section rhythm", "repeatable day template"),
+        *(
+            []
+            if art_director_graduated
+            else [
+                PDFTrainingAssignment(
+                    assignment_id="pdf-art-director__front-matter-template",
+                    trainer_name="expert_pdf_art_trainer",
+                    worker_name="pdf_art_director",
+                    benchmark_reference=reject_reference,
+                    objective="Study one rejected/reject-heavy proof PDF and improve only the front-matter template: title page and introduction hierarchy.",
+                    rationale="Start the art director with the smallest visible surface first so this worker learns one product-facing template at a time.",
+                    files_in_scope=(
+                        "src/rendering/front_matter.py",
+                        "src/rendering/engine.py",
+                        "ui/pdf/fonts.ts",
+                    ),
+                    review_focus=("title page", "introduction heading", "front matter hierarchy"),
+                ),
+                PDFTrainingAssignment(
+                    assignment_id="pdf-art-director__day-start-template",
+                    trainer_name="expert_pdf_art_trainer",
+                    worker_name="pdf_art_director",
+                    benchmark_reference=reject_reference,
+                    objective="Improve only the repeated day-start template so every devotional day opens with the same clear, premium hierarchy.",
+                    rationale="The daily template repeats across the whole book, so this is higher leverage than treating 45 days as separate design work.",
+                    files_in_scope=(
+                        "ui/pdf/blocks.ts",
+                        "ui/pdf/fonts.ts",
+                    ),
+                    review_focus=("day title hierarchy", "scripture header", "section rhythm", "repeatable day template"),
+                ),
+            ]
         ),
         *(
             []
@@ -277,6 +301,60 @@ def build_pdf_assignment_queue(repo_root: Path) -> list[PDFTrainingAssignment]:
                         "src/api/pdf_export.py",
                     ),
                     review_focus=("overflow control", "bottom margin safety", "KDP-safe layout", "repeatable day template"),
+                ),
+                PDFTrainingAssignment(
+                    assignment_id="pdf-layout-engineer__machine-readable-day-separators",
+                    trainer_name="expert_pdf_layout_trainer",
+                    worker_name="pdf_layout_engineer",
+                    benchmark_reference=approved_reference,
+                    objective=(
+                        "Add invisible machine-readable day separators to the PDF using pdf-lib named destinations. "
+                        "At the start of each day's content block, emit a named destination 'devg-day-01' through "
+                        "'devg-day-12' (or however many days the volume has). These must be invisible in all PDF viewers "
+                        "and print outputs — no text, no marks, no visual artifact. The harness at "
+                        "competition-2026/harness/ uses pypdf's named_destinations dict to locate each day's page range "
+                        "and extract per-day content for AC evaluation. The destination name format must be exactly "
+                        "'devg-day-NN' (zero-padded, e.g. devg-day-01)."
+                    ),
+                    rationale=(
+                        "The AC scoring harness evaluates each devotional day independently. Without page-level anchors, "
+                        "the harness processes the full PDF as one unit, which makes per-day AC tracking impossible. "
+                        "Named destinations are the standard PDF mechanism for this — zero visual impact, fully "
+                        "machine-readable, supported by pdf-lib and pypdf."
+                    ),
+                    files_in_scope=(
+                        "ui/pdf/engine.ts",
+                    ),
+                    review_focus=("named destinations present", "invisible in rendered PDF", "devg-day-NN naming convention", "destination count matches day count"),
+                ),
+                PDFTrainingAssignment(
+                    assignment_id="pdf-layout-engineer__day7-layout-template",
+                    trainer_name="expert_pdf_layout_trainer",
+                    worker_name="pdf_layout_engineer",
+                    benchmark_reference=approved_reference,
+                    objective=(
+                        "Implement the Day 7 Sunday Worship Integration page layout template (PRD v16 FR-96). "
+                        "Day 7 is structurally distinct from Days 1–6: no Quote, no Scripture, no Exposition, "
+                        "no Be Still, no Action Steps, no Prayer. It has two movements: "
+                        "Movement 1 (reader-facing header: 'Before the Service') — a brief orienting prompt; "
+                        "Movement 2 (reader-facing header: 'After the Service') — two equal-weight tracks: "
+                        "Track A (sermon converged with theme) and Track B (sermon diverged). "
+                        "Each track has 2–3 prompts and a closing question. After the Service total: 120–180 words. "
+                        "Day 6 also needs a typographic divider and sending prompt block appended after the Prayer "
+                        "(no section header, 40–80 words, FR-95). "
+                        "Both Track A and Track B must be visually equal — neither should appear primary."
+                    ),
+                    rationale=(
+                        "Day 7 is the final content worker to be built and requires a PDF layout template before "
+                        "content generation can be verified. The two-track Movement 2 structure has no equivalent "
+                        "elsewhere in the book and needs its own layout block. AC-41, AC-42, and AC-43 depend on "
+                        "this template being correct."
+                    ),
+                    files_in_scope=(
+                        "ui/pdf/engine.ts",
+                        "ui/pdf/blocks.ts",
+                    ),
+                    review_focus=("Movement 1 / Movement 2 headers", "Track A and Track B equal visual weight", "Day 6 sending prompt divider", "no standard sections on Day 7 page"),
                 ),
             ]
         ),

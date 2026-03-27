@@ -1,0 +1,152 @@
+{
+  "generated_at_utc": "2026-03-13T01:44:00.802955+00:00",
+  "generator": "real",
+  "cases": [
+    {
+      "slug": "genesis-1-2__12d_2w",
+      "passage": "Genesis 1-2",
+      "num_days": 12,
+      "num_weeks": 2
+    },
+    {
+      "slug": "job-1-3__12d_2w",
+      "passage": "Job 1-3",
+      "num_days": 12,
+      "num_weeks": 2
+    },
+    {
+      "slug": "matthew-1-2__12d_2w",
+      "passage": "Matthew 1-2",
+      "num_days": 12,
+      "num_weeks": 2
+    },
+    {
+      "slug": "psalms-1-3__12d_2w",
+      "passage": "Psalms 1-3",
+      "num_days": 12,
+      "num_weeks": 2
+    },
+    {
+      "slug": "ezekiel-37__12d_2w",
+      "passage": "Ezekiel 37",
+      "num_days": 12,
+      "num_weeks": 2
+    },
+    {
+      "slug": "ezekiel-38-39__12d_2w",
+      "passage": "Ezekiel 38-39",
+      "num_days": 12,
+      "num_weeks": 2
+    }
+  ],
+  "results": [
+    {
+      "case_slug": "genesis-1-2__12d_2w",
+      "passage": "Genesis 1-2",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/genesis-1-2__12d_2w__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/genesis-1-2__12d_2w__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 329, in generate_devotional\n    regenerated_day, regenerated_assessments = _generate_validated_day(\n                                               ~~~~~~~~~~~~~~~~~~~~~~~^\n        day_number,\n        ^^^^^^^^^^^\n    ...<2 lines>...\n        extra_forbidden_quotes={original_day.timeless_wisdom.quote_text},\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 249, in _generate_validated_day\n    day = _generator_generate_day(\n        generator=generator,\n    ...<5 lines>...\n        editorial_brief=editorial_briefs_by_day[day_num],\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 96, in _generator_generate_day\n    return generator.generate_day(**kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/generation/real_section_generator.py\", line 1212, in generate_day\n        )\n        ^\n    ...<5 lines>...\n            db_path=db_path,\n    \n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/research_memory.py\", line 82, in store_quote_candidates\n    conn.execute(\n    ~~~~~~~~~~~~^\n        \"\"\"\n        ^^^\n    ...<44 lines>...\n        ),\n        ^^\n    )\n    ^\nsqlite3.OperationalError: disk I/O error",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    },
+    {
+      "case_slug": "job-1-3__12d_2w",
+      "passage": "Job 1-3",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/job-1-3__12d_2w__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/job-1-3__12d_2w__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 293, in generate_devotional\n    final_day, final_assessments = _generate_validated_day(day_num)\n                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 249, in _generate_validated_day\n    day = _generator_generate_day(\n        generator=generator,\n    ...<5 lines>...\n        editorial_brief=editorial_briefs_by_day[day_num],\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 96, in _generator_generate_day\n    return generator.generate_day(**kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/generation/real_section_generator.py\", line 1112, in generate_day\n    store_exposition_candidates(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        db_path=db_path,\n        ^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n        selected_excerpts=selected_context,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/research_memory.py\", line 172, in store_exposition_candidates\n    _ensure_schema(conn)\n    ~~~~~~~~~~~~~~^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/research_memory.py\", line 43, in _ensure_schema\n    conn.execute(\n    ~~~~~~~~~~~~^\n        \"\"\"\n        ^^^\n    ...<14 lines>...\n        \"\"\"\n        ^^^\n    )\n    ^\nsqlite3.OperationalError: disk I/O error",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    },
+    {
+      "case_slug": "matthew-1-2__12d_2w",
+      "passage": "Matthew 1-2",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/matthew-1-2__12d_2w__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/matthew-1-2__12d_2w__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 293, in generate_devotional\n    final_day, final_assessments = _generate_validated_day(day_num)\n                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 249, in _generate_validated_day\n    day = _generator_generate_day(\n        generator=generator,\n    ...<5 lines>...\n        editorial_brief=editorial_briefs_by_day[day_num],\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 96, in _generator_generate_day\n    return generator.generate_day(**kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/generation/real_section_generator.py\", line 1033, in generate_day\n    live_quote_candidates = QuoteCatalog().retrieve_quotes(\n                            ~~~~~~~~~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/catalog.py\", line 103, in __init__\n    raw = load_quote_rows(\n        db_path=db_path,\n        seed_path=resolved_catalog,\n        strict_db_only=strict_db_only,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/sqlite_catalog.py\", line 95, in load_quote_rows\n    conn.commit()\n    ~~~~~~~~~~~^^\nsqlite3.OperationalError: disk I/O error",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    },
+    {
+      "case_slug": "psalms-1-3__12d_2w",
+      "passage": "Psalms 1-3",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/psalms-1-3__12d_2w__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/psalms-1-3__12d_2w__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 293, in generate_devotional\n    final_day, final_assessments = _generate_validated_day(day_num)\n                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 249, in _generate_validated_day\n    day = _generator_generate_day(\n        generator=generator,\n    ...<5 lines>...\n        editorial_brief=editorial_briefs_by_day[day_num],\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 96, in _generator_generate_day\n    return generator.generate_day(**kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/generation/real_section_generator.py\", line 1206, in generate_day\n    store_quote_candidates(\n    ~~~~~~~~~~~~~~~~~~~~~~^\n        db_path=db_path,\n        ^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n        selected=quote,\n        ^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/research_memory.py\", line 82, in store_quote_candidates\n    conn.execute(\n    ~~~~~~~~~~~~^\n        \"\"\"\n        ^^^\n    ...<44 lines>...\n        ),\n        ^^\n    )\n    ^\nsqlite3.OperationalError: disk I/O error",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    },
+    {
+      "case_slug": "ezekiel-37__12d_2w",
+      "passage": "Ezekiel 37",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/ezekiel-37__12d_2w__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/ezekiel-37__12d_2w__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 293, in generate_devotional\n    final_day, final_assessments = _generate_validated_day(day_num)\n                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 249, in _generate_validated_day\n    day = _generator_generate_day(\n        generator=generator,\n    ...<5 lines>...\n        editorial_brief=editorial_briefs_by_day[day_num],\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 96, in _generator_generate_day\n    return generator.generate_day(**kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/generation/real_section_generator.py\", line 1048, in generate_day\n    rag = ExpositionRAG()\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/exposition.py\", line 47, in __init__\n    self._raw = load_excerpt_rows(\n                ~~~~~~~~~~~~~~~~~^\n        db_path=db_path,\n        ^^^^^^^^^^^^^^^^\n        seed_path=resolved,\n        ^^^^^^^^^^^^^^^^^^^\n        strict_db_only=strict_db_only,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/sqlite_catalog.py\", line 162, in load_excerpt_rows\n    conn.execute(\n    ~~~~~~~~~~~~^\n        \"\"\"\n        ^^^\n    ...<7 lines>...\n        \"\"\"\n        ^^^\n    )\n    ^\nsqlite3.OperationalError: disk I/O error",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    },
+    {
+      "case_slug": "ezekiel-38-39__12d_2w",
+      "passage": "Ezekiel 38-39",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/ezekiel-38-39__12d_2w__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T013351+0000/ezekiel-38-39__12d_2w__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 293, in generate_devotional\n    final_day, final_assessments = _generate_validated_day(day_num)\n                                   ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 249, in _generate_validated_day\n    day = _generator_generate_day(\n        generator=generator,\n    ...<5 lines>...\n        editorial_brief=editorial_briefs_by_day[day_num],\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 96, in _generator_generate_day\n    return generator.generate_day(**kwargs)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/generation/real_section_generator.py\", line 1048, in generate_day\n    rag = ExpositionRAG()\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/exposition.py\", line 47, in __init__\n    self._raw = load_excerpt_rows(\n                ~~~~~~~~~~~~~~~~~^\n        db_path=db_path,\n        ^^^^^^^^^^^^^^^^\n        seed_path=resolved,\n        ^^^^^^^^^^^^^^^^^^^\n        strict_db_only=strict_db_only,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/rag/sqlite_catalog.py\", line 199, in load_excerpt_rows\n    rows = conn.execute(\n           ~~~~~~~~~~~~^\n        \"\"\"\n        ^^^\n    ...<2 lines>...\n        \"\"\"\n        ^^^\n    ).fetchall()\n    ^\nsqlite3.OperationalError: disk I/O error",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    }
+  ]
+}

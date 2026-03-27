@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import re
 
+MODERNIZATION_LABEL = "Language modernized by AI"
+
 # Modern negation/modal phrases protected before any substitution.
 # Archaic forms (shalt not, wilt not, hath not) are NOT protected here —
 # they pass through verb substitution (shalt→shall, wilt→will, hath→has),
@@ -100,3 +102,15 @@ def modernize(text: str) -> str:
         text = text.replace(placeholder, phrase)
 
     return text
+
+
+def modernization_changed(text: str) -> bool:
+    """Return True when FR-56 modernization would materially change the text."""
+    return modernize(text) != text
+
+
+def modernization_payload(text: str) -> tuple[str, str, bool, str]:
+    """Return display text, original text, flag, and disclosure label."""
+    display = modernize(text)
+    changed = display != text
+    return display, text, changed, (MODERNIZATION_LABEL if changed else "")

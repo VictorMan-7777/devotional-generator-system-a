@@ -1,0 +1,42 @@
+{
+  "run_slug": "2026-03-14__015005__exodus-19-20__12-day__vol-1",
+  "stage": "week_unification",
+  "sequence": 16,
+  "created_at_utc": "2026-03-14T01:50:15.224529+00:00",
+  "payload": {
+    "week_number": 1,
+    "day_numbers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "status": "failed",
+    "findings": [
+      {
+        "check_id": "BOOK_THEOLOGICAL_BOUNDARY",
+        "result": "fail",
+        "reason_code": "THEOLOGICAL_BOUNDARY_FLATTENING",
+        "explanation": "The day's application softens a severe passage into generic comfort language. Judgment, sin, repentance, suffering, or the cross should not be flattened away.",
+        "evidence": "passage_themes=['death'] comfort_terms=['comfort', 'gratitude', 'rest']",
+        "day_numbers": [
+          3
+        ]
+      },
+      {
+        "check_id": "BOOK_DAY_PROGRESS",
+        "result": "fail",
+        "reason_code": "DAY_PROGRESS_STALLED",
+        "explanation": "Adjacent days are too similar. The devotional should progress from day to day instead of repeating the same reflection pattern.",
+        "evidence": "similarity=0.92",
+        "day_numbers": [
+          6,
+          7
+        ]
+      }
+    ]
+  }
+}

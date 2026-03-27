@@ -1,0 +1,408 @@
+INFO:     Started server process [96883]
+INFO:     Waiting for application startup.
+[2026-03-20 13:34:18] Grok daemon onboarding...
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+[2026-03-20 13:34:55] Onboarded: **Boot Summary:** The Devotional Generator System A is a Python-based pipeline for producing KDP-ready devotional books from CSV inputs, featuring modular AI workers (e.g., outliner, exposition_writer...
+[2026-03-20 13:34:55] Grok daemon running (model=grok-4-1-fast-reasoning)
+[2026-03-20 13:40:00] Queued library OK: 2026-03-20__173607__devg__library-trainer-review.json
+[2026-03-20 13:40:00] Monitor: 1 new cycle(s)
+[2026-03-20 13:45:07] Queued supervisor OK: 2026-03-20__174033__devg__training-supervisor-cycle.json
+[2026-03-20 13:45:16] Monitor: 1 new cycle(s)
+[2026-03-20 13:55:40] Queued exposition OK: 2026-03-20__175101__devg__exposition-training-cycle.json
+[2026-03-20 13:55:44] Monitor: 1 new cycle(s)
+[2026-03-20 14:00:50] Queued library OK: 2026-03-20__175953__devg__library-trainer-review.json
+[2026-03-20 14:00:50] Monitor: 1 new cycle(s)
+[2026-03-20 14:05:55] Queued supervisor OK: 2026-03-20__180400__devg__training-supervisor-cycle.json
+[2026-03-20 14:06:04] Monitor: 1 new cycle(s)
+INFO:     192.168.1.8:50288 - "GET /health HTTP/1.1" 200 OK
+INFO:     192.168.1.8:50365 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-20 14:27:07] Queued exposition OK: 2026-03-20__182545__devg__exposition-training-cycle.json
+[2026-03-20 14:27:09] Monitor: 1 new cycle(s)
+[2026-03-20 14:37:25] Queued library OK: 2026-03-20__183439__devg__library-trainer-review.json
+[2026-03-20 14:37:25] Monitor: 1 new cycle(s)
+[2026-03-20 14:42:30] Queued supervisor OK: 2026-03-20__183941__devg__training-supervisor-cycle.json
+[2026-03-20 14:42:38] Monitor: 1 new cycle(s)
+[2026-03-20 14:58:08] Queued outliner OK: 2026-03-20__185739__devg__outliner-training-cycle.json
+[2026-03-20 14:58:10] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:50722 - "GET /health HTTP/1.1" 200 OK
+[2026-03-20 15:08:28] Queued library OK: 2026-03-20__190556__devg__library-trainer-review.json
+[2026-03-20 15:08:28] Monitor: 1 new cycle(s)
+[2026-03-20 15:13:33] Queued supervisor OK: 2026-03-20__191042__devg__training-supervisor-cycle.json
+[2026-03-20 15:13:42] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:51112 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51149 - "GET /health HTTP/1.1" 200 OK
+[2026-03-20 15:34:32] Queued outliner OK: 2026-03-20__193237__devg__outliner-training-cycle.json
+[2026-03-20 15:34:37] Monitor: 1 new cycle(s)
+[2026-03-20 15:39:43] Queued exposition OK: 2026-03-20__193844__devg__exposition-training-cycle.json
+[2026-03-20 15:39:47] Monitor: 1 new cycle(s)
+[2026-03-20 16:37:25] Queued library OK: 2026-03-20__203354__devg__library-trainer-review.json
+[2026-03-20 16:37:25] Monitor: 1 new cycle(s)
+[2026-03-20 16:42:31] Queued supervisor OK: 2026-03-20__203818__devg__training-supervisor-cycle.json
+[2026-03-20 16:42:40] Monitor: 1 new cycle(s)
+[2026-03-20 16:58:16] Queued outliner OK: 2026-03-20__205403__devg__outliner-training-cycle.json
+[2026-03-20 16:58:22] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:52289 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52294 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52308 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+[2026-03-20 17:25:57] Queued exposition OK: 2026-03-20__212212__devg__exposition-training-cycle.json
+[2026-03-20 17:26:01] Monitor: 1 new cycle(s)
+[2026-03-20 17:57:24] Queued library OK: 2026-03-20__215355__devg__library-trainer-review.json
+[2026-03-20 17:57:24] Monitor: 1 new cycle(s)
+[2026-03-20 18:02:29] Queued supervisor OK: 2026-03-20__215816__devg__training-supervisor-cycle.json
+[2026-03-20 18:02:38] Monitor: 1 new cycle(s)
+[2026-03-20 18:18:24] Queued exposition OK: 2026-03-20__221715__devg__exposition-training-cycle.json
+[2026-03-20 18:18:27] Monitor: 1 new cycle(s)
+[2026-03-20 18:34:04] Queued library OK: 2026-03-20__223105__devg__library-trainer-review.json
+[2026-03-20 18:34:04] Monitor: 1 new cycle(s)
+[2026-03-20 18:39:09] Queued supervisor OK: 2026-03-20__223531__devg__training-supervisor-cycle.json
+[2026-03-20 18:39:18] Monitor: 1 new cycle(s)
+[2026-03-20 19:15:51] Queued exposition OK: 2026-03-20__231218__devg__exposition-training-cycle.json
+[2026-03-20 19:15:54] Monitor: 1 new cycle(s)
+[2026-03-20 19:31:40] Queued library OK: 2026-03-20__233123__devg__library-trainer-review.json
+[2026-03-20 19:31:40] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:53724 - "GET /health HTTP/1.1" 200 OK
+[2026-03-20 19:36:40] Queued supervisor OK: 2026-03-20__233603__devg__training-supervisor-cycle.json
+[2026-03-20 19:36:46] Monitor: 1 new cycle(s)
+[2026-03-20 20:34:52] Queued library OK: 2026-03-21__003121__devg__library-trainer-review.json
+[2026-03-20 20:34:52] Monitor: 1 new cycle(s)
+[2026-03-20 20:39:58] Queued supervisor OK: 2026-03-21__003554__devg__training-supervisor-cycle.json
+[2026-03-20 20:40:08] Monitor: 1 new cycle(s)
+[2026-03-20 21:01:07] Queued outliner OK: 2026-03-21__005619__devg__outliner-training-cycle.json
+[2026-03-20 21:01:14] Monitor: 1 new cycle(s)
+[2026-03-20 21:22:08] Queued exposition OK: 2026-03-21__011753__devg__exposition-training-cycle.json
+[2026-03-20 21:22:11] Monitor: 1 new cycle(s)
+[2026-03-20 21:48:21] Queued library OK: 2026-03-21__014354__devg__library-trainer-review.json
+[2026-03-20 21:48:21] Monitor: 1 new cycle(s)
+[2026-03-20 21:53:21] Queued supervisor OK: 2026-03-21__014822__devg__training-supervisor-cycle.json
+[2026-03-20 21:53:28] Monitor: 1 new cycle(s)
+[2026-03-20 22:08:55] Queued outliner OK: 2026-03-21__020820__devg__outliner-training-cycle.json
+[2026-03-20 22:09:05] Monitor: 1 new cycle(s)
+[2026-03-20 22:29:58] Queued exposition OK: 2026-03-21__022929__devg__exposition-training-cycle.json
+[2026-03-20 22:30:01] Monitor: 1 new cycle(s)
+[2026-03-20 22:50:44] Queued library OK: 2026-03-21__024926__devg__library-trainer-review.json
+[2026-03-20 22:50:45] Monitor: 1 new cycle(s)
+[2026-03-20 22:55:50] Queued supervisor OK: 2026-03-21__025415__devg__training-supervisor-cycle.json
+[2026-03-20 22:55:59] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55474 - "GET /health HTTP/1.1" 200 OK
+[2026-03-20 23:16:50] Queued outliner OK: 2026-03-21__031240__devg__outliner-training-cycle.json
+[2026-03-20 23:16:56] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55493 - "GET /health HTTP/1.1" 200 OK
+[2026-03-20 23:37:48] Queued exposition OK: 2026-03-21__033440__devg__exposition-training-cycle.json
+[2026-03-20 23:37:51] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55544 - "GET /health HTTP/1.1" 200 OK
+[2026-03-20 23:58:44] Queued library OK: 2026-03-21__035724__devg__library-trainer-review.json
+[2026-03-20 23:58:44] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55581 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 00:03:50] Queued supervisor OK: 2026-03-21__040152__devg__training-supervisor-cycle.json
+[2026-03-21 00:03:59] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55614 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 00:24:52] Queued outliner OK: 2026-03-21__041940__devg__outliner-training-cycle.json
+[2026-03-21 00:24:59] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55627 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55656 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 00:45:45] Queued exposition OK: 2026-03-21__044204__devg__exposition-training-cycle.json
+[2026-03-21 00:45:48] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55701 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 01:01:32] Queued library OK: 2026-03-21__045816__devg__library-trainer-review.json
+[2026-03-21 01:01:32] Monitor: 1 new cycle(s)
+[2026-03-21 01:06:41] Queued supervisor OK: 2026-03-21__050249__devg__training-supervisor-cycle.json
+[2026-03-21 01:06:51] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55730 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55750 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 01:38:10] Queued outliner OK: 2026-03-21__053542__devg__outliner-training-cycle.json
+[2026-03-21 01:38:16] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55776 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 01:59:07] Queued exposition OK: 2026-03-21__055758__devg__exposition-training-cycle.json
+[2026-03-21 01:59:10] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55800 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 02:14:45] Queued library OK: 2026-03-21__061157__devg__library-trainer-review.json
+[2026-03-21 02:14:45] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55839 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 02:19:45] Queued supervisor OK: 2026-03-21__061631__devg__training-supervisor-cycle.json
+[2026-03-21 02:19:51] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55852 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55885 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 02:51:11] Queued outliner OK: 2026-03-21__064939__devg__outliner-training-cycle.json
+[2026-03-21 02:51:17] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55899 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 03:12:13] Queued exposition OK: 2026-03-21__071109__devg__exposition-training-cycle.json
+[2026-03-21 03:12:16] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55937 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 03:27:56] Queued library OK: 2026-03-21__072515__devg__library-trainer-review.json
+[2026-03-21 03:27:56] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55955 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 03:33:01] Queued supervisor OK: 2026-03-21__072943__devg__training-supervisor-cycle.json
+[2026-03-21 03:33:09] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:55972 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55997 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 04:09:57] Queued outliner OK: 2026-03-21__080442__devg__outliner-training-cycle.json
+[2026-03-21 04:10:03] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56027 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56049 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 04:30:55] Queued exposition OK: 2026-03-21__082612__devg__exposition-training-cycle.json
+[2026-03-21 04:30:58] Monitor: 1 new cycle(s)
+[2026-03-21 04:41:20] Queued library OK: 2026-03-21__084028__devg__library-trainer-review.json
+[2026-03-21 04:41:20] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56078 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 04:46:26] Queued supervisor OK: 2026-03-21__084503__devg__training-supervisor-cycle.json
+[2026-03-21 04:46:37] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56089 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56123 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56132 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 05:23:09] Queued outliner OK: 2026-03-21__092018__devg__outliner-training-cycle.json
+[2026-03-21 05:23:15] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56147 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 05:44:11] Queued exposition OK: 2026-03-21__094159__devg__exposition-training-cycle.json
+[2026-03-21 05:44:14] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56178 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 05:59:49] Queued library OK: 2026-03-21__095708__devg__library-trainer-review.json
+[2026-03-21 05:59:49] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56199 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 06:04:51] Queued supervisor OK: 2026-03-21__100139__devg__training-supervisor-cycle.json
+[2026-03-21 06:04:59] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56225 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56248 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 06:36:16] Queued outliner OK: 2026-03-21__103540__devg__outliner-training-cycle.json
+[2026-03-21 06:36:22] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56273 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56291 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 07:02:34] Queued exposition OK: 2026-03-21__105730__devg__exposition-training-cycle.json
+[2026-03-21 07:02:37] Monitor: 1 new cycle(s)
+[2026-03-21 07:12:57] Queued library OK: 2026-03-21__111139__devg__library-trainer-review.json
+[2026-03-21 07:12:57] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56329 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 07:18:02] Queued supervisor OK: 2026-03-21__111613__devg__training-supervisor-cycle.json
+[2026-03-21 07:18:11] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56344 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56374 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 07:54:47] Queued outliner OK: 2026-03-21__115134__devg__outliner-training-cycle.json
+[2026-03-21 07:54:53] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56388 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56418 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 08:15:40] Queued exposition OK: 2026-03-21__121352__devg__exposition-training-cycle.json
+[2026-03-21 08:15:43] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56441 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 08:31:09] Queued library OK: 2026-03-21__122908__devg__library-trainer-review.json
+[2026-03-21 08:31:09] Monitor: 1 new cycle(s)
+[2026-03-21 08:36:14] Queued supervisor OK: 2026-03-21__123343__devg__training-supervisor-cycle.json
+[2026-03-21 08:36:22] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56465 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56491 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 09:12:48] Queued outliner OK: 2026-03-21__130752__devg__outliner-training-cycle.json
+[2026-03-21 09:12:55] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56520 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56533 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 09:33:43] Queued exposition OK: 2026-03-21__132932__devg__exposition-training-cycle.json
+[2026-03-21 09:33:46] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56578 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 09:49:24] Queued library OK: 2026-03-21__134420__devg__library-trainer-review.json
+[2026-03-21 09:49:24] Monitor: 1 new cycle(s)
+[2026-03-21 09:54:29] Queued supervisor OK: 2026-03-21__134926__devg__training-supervisor-cycle.json
+[2026-03-21 09:54:39] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56625 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56659 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56680 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 10:31:15] Queued outliner OK: 2026-03-21__142603__devg__outliner-training-cycle.json
+[2026-03-21 10:31:25] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56699 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 10:52:20] Queued exposition OK: 2026-03-21__144843__devg__exposition-training-cycle.json
+[2026-03-21 10:52:23] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56729 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 11:08:05] Queued library OK: 2026-03-21__150329__devg__library-trainer-review.json
+[2026-03-21 11:08:05] Monitor: 1 new cycle(s)
+[2026-03-21 11:13:10] Queued supervisor OK: 2026-03-21__150755__devg__training-supervisor-cycle.json
+[2026-03-21 11:13:19] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56774 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 11:28:47] Queued outliner OK: 2026-03-21__152818__devg__outliner-training-cycle.json
+[2026-03-21 11:28:53] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:56792 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56810 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:56815 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 11:54:57] Queued exposition OK: 2026-03-21__155011__devg__exposition-training-cycle.json
+[2026-03-21 11:55:01] Monitor: 1 new cycle(s)
+[2026-03-21 12:05:21] Queued library OK: 2026-03-21__160350__devg__library-trainer-review.json
+[2026-03-21 12:05:21] Monitor: 1 new cycle(s)
+[2026-03-21 12:10:29] Queued supervisor OK: 2026-03-21__160825__devg__training-supervisor-cycle.json
+[2026-03-21 12:10:40] Queued stall ⚠️ STALL: 2026-03-21__160824__devg__stall-report.json
+[2026-03-21 12:10:40] Monitor: 2 new cycle(s)
+[2026-03-21 12:10:40] ⚠️  Stall detected — triggering proactive assessment
+[2026-03-21 12:11:17] Proactive assessment complete. Response: ### Diagnosis
+**Root cause (outliner exps frozen @814, sup-trainer mismatch):**
+- **Outliner agent (outliner_training_agent.py):** All HARNESS combos ...
+[2026-03-21 12:27:03] Intervention outcome: resolved
+[2026-03-21 12:48:03] Queued outliner OK: 2026-03-21__164448__devg__outliner-training-cycle.json
+[2026-03-21 12:48:10] Monitor: 1 new cycle(s)
+[2026-03-21 13:08:59] Queued exposition OK: 2026-03-21__170634__devg__exposition-training-cycle.json
+[2026-03-21 13:09:02] Monitor: 1 new cycle(s)
+[2026-03-21 13:24:27] Queued library OK: 2026-03-21__172106__devg__library-trainer-review.json
+[2026-03-21 13:24:27] Monitor: 1 new cycle(s)
+[2026-03-21 13:29:32] Queued supervisor OK: 2026-03-21__172532__devg__training-supervisor-cycle.json
+[2026-03-21 13:29:41] Monitor: 1 new cycle(s)
+[2026-03-21 14:06:15] Queued outliner OK: 2026-03-21__180532__devg__outliner-training-cycle.json
+[2026-03-21 14:06:22] Monitor: 1 new cycle(s)
+[2026-03-21 14:27:21] Queued exposition OK: 2026-03-21__182701__devg__exposition-training-cycle.json
+[2026-03-21 14:27:24] Monitor: 1 new cycle(s)
+[2026-03-21 14:42:59] Queued library OK: 2026-03-21__184158__devg__library-trainer-review.json
+[2026-03-21 14:42:59] Monitor: 1 new cycle(s)
+[2026-03-21 14:48:04] Queued supervisor OK: 2026-03-21__184649__devg__training-supervisor-cycle.json
+[2026-03-21 14:48:14] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:57076 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57146 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57166 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57168 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57183 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 15:14:27] Queued exposition OK: 2026-03-21__191405__devg__exposition-training-cycle.json
+[2026-03-21 15:14:31] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:57259 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 15:30:15] Queued library OK: 2026-03-21__193003__devg__library-trainer-review.json
+[2026-03-21 15:30:15] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:57372 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 15:35:17] Queued supervisor OK: 2026-03-21__193453__devg__training-supervisor-cycle.json
+[2026-03-21 15:35:22] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:57413 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57416 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57418 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57420 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57424 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57454 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57484 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57502 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57506 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57514 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57517 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57533 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57539 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57548 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57563 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57569 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57574 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57582 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57585 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57593 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57599 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57607 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57623 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57628 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57650 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57657 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57664 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57674 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57692 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57709 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 16:29:46] Queued outliner OK: 2026-03-21__202630__devg__outliner-training-cycle.json
+[2026-03-21 16:30:07] Monitor: 1 new cycle(s)
+[2026-03-21 17:02:41] Queued exposition OK: 2026-03-21__205757__devg__exposition-training-cycle.json
+[2026-03-21 17:02:46] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:58188 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58195 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58209 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58217 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58224 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58233 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58242 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58250 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58256 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58263 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58270 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58288 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58295 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58306 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58312 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58320 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 17:23:34] Queued library OK: 2026-03-21__212039__devg__library-trainer-review.json
+[2026-03-21 17:23:34] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:58327 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58336 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58343 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58350 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58355 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58361 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58365 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58370 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58375 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58380 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58385 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 17:34:01] Queued supervisor OK: 2026-03-21__212903__devg__training-supervisor-cycle.json
+INFO:     127.0.0.1:58391 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 17:34:08] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:58395 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58405 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58411 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58416 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58421 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58426 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58431 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58436 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58439 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58595 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58599 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58604 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58620 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58625 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58630 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58635 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58639 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58654 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58660 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58667 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58684 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58691 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58694 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58705 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58714 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58721 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58728 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58742 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58750 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 18:33:36] Queued outliner OK: 2026-03-21__222902__devg__outliner-training-cycle.json
+[2026-03-21 18:33:40] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:58764 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58770 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58781 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58783 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58789 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58801 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58806 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58811 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58827 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58835 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58846 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58849 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58856 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58858 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58871 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58877 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58885 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58891 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58899 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58911 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58914 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58921 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58928 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58932 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58935 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58943 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58950 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58956 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58962 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58965 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58974 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58987 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58991 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58998 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59002 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59006 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59021 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59026 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59019 - "POST /v1/chat/completions HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59035 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59041 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59049 - "GET /health HTTP/1.1" 200 OK
+[2026-03-21 18:54:27] Queued exposition OK: 2026-03-21__225229__devg__exposition-training-cycle.json
+[2026-03-21 18:54:30] Monitor: 1 new cycle(s)
+INFO:     127.0.0.1:59056 - "GET /health HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [96883]

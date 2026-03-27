@@ -1,0 +1,46 @@
+{
+  "generated_at_utc": "2026-03-07T22:42:39.961153+00:00",
+  "overall_passed": true,
+  "agents": [
+    {
+      "agent": "agent:validator-1",
+      "decision_source": "independent_validator_bundle",
+      "passed": true,
+      "total_checks": 16,
+      "failed_checks": 0,
+      "days": [
+        {
+          "day_number": 1,
+          "failed_count": 0,
+          "failed_check_ids": []
+        },
+        {
+          "day_number": 2,
+          "failed_count": 0,
+          "failed_check_ids": []
+        }
+      ],
+      "validated_at_utc": "2026-03-07T22:42:39.959767+00:00"
+    },
+    {
+      "agent": "agent:validator-2",
+      "decision_source": "independent_validator_bundle",
+      "passed": true,
+      "total_checks": 16,
+      "failed_checks": 0,
+      "days": [
+        {
+          "day_number": 1,
+          "failed_count": 0,
+          "failed_check_ids": []
+        },
+        {
+          "day_number": 2,
+          "failed_count": 0,
+          "failed_check_ids": []
+        }
+      ],
+      "validated_at_utc": "2026-03-07T22:42:39.961148+00:00"
+    }
+  ]
+}

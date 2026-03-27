@@ -5,6 +5,7 @@ relative to this file's location (src/rendering/ → three levels up to project 
 """
 
 from pathlib import Path
+import re
 from typing import List, Optional
 
 from src.models.devotional import DailyDevotional
@@ -34,18 +35,45 @@ def _block(
     )
 
 
-def render_title_page(title: str, subtitle: Optional[str] = None) -> DocumentPage:
+def render_title_page(title: str, subtitle: Optional[str] = None, tagline: Optional[str] = None) -> DocumentPage:
     """
     Title page: TITLE block, optional SUBTITLE block.
     Page number style: SUPPRESSED (title page carries no number).
     """
     blocks: List[DocumentBlock] = [
-        _block(BlockType.TITLE, title, page_number_style=PageNumberStyle.SUPPRESSED),
+        _block(
+            BlockType.TITLE,
+            title,
+            page_number_style=PageNumberStyle.SUPPRESSED,
+            metadata={"align": "center"},
+        ),
     ]
     if subtitle is not None:
         blocks.append(
-            _block(BlockType.SUBTITLE, subtitle, page_number_style=PageNumberStyle.SUPPRESSED)
+            _block(
+                BlockType.SUBTITLE,
+                subtitle,
+                page_number_style=PageNumberStyle.SUPPRESSED,
+                metadata={"align": "center"},
+            )
         )
+    if tagline is not None:
+        blocks.append(
+            _block(
+                BlockType.BODY_TEXT,
+                tagline,
+                page_number_style=PageNumberStyle.SUPPRESSED,
+                metadata={"align": "center"},
+            )
+        )
+    blocks.append(
+        _block(
+            BlockType.IMPRINT,
+            "Sacred Whispers Publishers",
+            page_number_style=PageNumberStyle.SUPPRESSED,
+            metadata={"align": "center"},
+        )
+    )
     return DocumentPage(
         blocks=blocks,
         starts_new_page=True,
@@ -64,9 +92,9 @@ def render_copyright_page(publication_year: int) -> DocumentPage:
         "All rights reserved. No part of this publication may be reproduced, "
         "distributed, or transmitted in any form or by any means without prior "
         "written permission from the publisher.\n\n"
-        "Scripture quotations marked NASB are taken from the New American Standard "
-        "Bible\u00ae, Copyright \u00a9 1960, 1971, 1977, 1995, 2020 by The Lockman "
-        "Foundation. Used by permission. All rights reserved. www.lockman.org"
+        "Scripture quotations marked NASB are taken from the New American "
+        "Standard Bible\u00ae, Copyright \u00a9 1995, The Lockman Foundation. "
+        "All rights reserved. lockman.org"
     )
     blocks: List[DocumentBlock] = [
         _block(BlockType.IMPRINT, "Sacred Whispers Publishers"),
@@ -86,6 +114,7 @@ def render_introduction(has_day7: bool, introduction_text: str) -> DocumentPage:
     Page number style: ROMAN.
     """
     blocks: List[DocumentBlock] = [
+        _block(BlockType.HEADING, "How to Use This Devotional"),
         _block(BlockType.BODY_TEXT, introduction_text),
     ]
     if has_day7:
@@ -106,10 +135,24 @@ def render_toc(days: List[DailyDevotional]) -> List[DocumentPage]:
     TOC_ENTRY blocks carry page_placeholder=True in metadata; the PDF engine
     replaces placeholders with actual page numbers after layout.
     """
+    def _toc_label(day: DailyDevotional) -> str:
+        focus = (day.day_focus or "").strip()
+        day_tag = f"Day {day.day_number}"
+        if not focus:
+            return day_tag
+        # Avoid duplicated labels like "Day 1: Day 1" or "Day 1: Day 1: Grace".
+        prefix_pattern = re.compile(
+            rf"^day\s+{day.day_number}\b(?:\s*[:\-—]\s*|\s+)?",
+            re.IGNORECASE,
+        )
+        normalized_focus = prefix_pattern.sub("", focus).strip()
+        if not normalized_focus:
+            return day_tag
+        return f"{day_tag}: {normalized_focus}"
+
     blocks: List[DocumentBlock] = []
     for day in days:
-        label = day.day_focus or f"Day {day.day_number}"
-        entry = f"Day {day.day_number}: {label}"
+        entry = _toc_label(day)
         blocks.append(
             _block(
                 BlockType.TOC_ENTRY,

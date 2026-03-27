@@ -29,9 +29,11 @@ from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 from src.rag.library_acquisition import (
+    AcquisitionCandidate,
     LIBRARY_ROOT,
     RESOURCES_ROOT,
     search_archive_candidates,
+    search_gutenberg_candidates,
 )
 from src.rag.library_cards import draft_and_evaluate_card
 from src.rag.library_requests import (
@@ -228,22 +230,94 @@ def _draft_card_for_slug(slug: str) -> dict[str, Any]:
 # Step 5 — Search archive.org for new resources (if existing holdings insufficient)
 # ---------------------------------------------------------------------------
 
-def search_and_acquire_new_resource(
+# ---------------------------------------------------------------------------
+# CCEL known-resources table (no search API — use direct URLs by Bible book)
+# ---------------------------------------------------------------------------
+
+_CCEL_KNOWN_RESOURCES: list[dict[str, Any]] = [
+    {
+        "title": "Adam Clarke's Commentary on the Bible",
+        "author": "Clarke, Adam, 1760-1832",
+        "download_url": "https://www.ccel.org/ccel/clarke/commentary_ot_gen.txt",
+        "source_url": "https://www.ccel.org/ccel/clarke/commentary_ot_gen.html",
+        "covers": "whole_bible",
+    },
+    {
+        "title": "Barnes' Notes on the New Testament",
+        "author": "Barnes, Albert, 1798-1870",
+        "download_url": "https://www.ccel.org/ccel/barnes/ephesians.txt",
+        "source_url": "https://www.ccel.org/ccel/barnes/ephesians.html",
+        "covers": "new_testament",
+    },
+    {
+        "title": "Matthew Henry's Concise Commentary",
+        "author": "Henry, Matthew, 1662-1714",
+        "download_url": "https://www.ccel.org/ccel/henry/mhcc.txt",
+        "source_url": "https://www.ccel.org/ccel/henry/mhcc.html",
+        "covers": "whole_bible",
+    },
+    {
+        "title": "Jamieson-Fausset-Brown Bible Commentary",
+        "author": "Jamieson, Robert; Fausset, A.R.; Brown, David",
+        "download_url": "https://www.ccel.org/ccel/jamieson/jfb.txt",
+        "source_url": "https://www.ccel.org/ccel/jamieson/jfb.html",
+        "covers": "whole_bible",
+    },
+    {
+        "title": "Calvin's Commentaries",
+        "author": "Calvin, John, 1509-1564",
+        "download_url": "https://www.ccel.org/ccel/calvin/calcom.txt",
+        "source_url": "https://www.ccel.org/ccel/calvin/calcom.html",
+        "covers": "whole_bible",
+    },
+]
+
+_NT_BOOKS = {
+    "Matthew", "Mark", "Luke", "John", "Acts", "Romans",
+    "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians",
+    "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians",
+    "1 Timothy", "2 Timothy", "Titus", "Philemon", "Hebrews",
+    "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John",
+    "Jude", "Revelation",
+}
+
+
+def get_ccel_candidates(bible_book: str) -> list[AcquisitionCandidate]:
+    """Return CCEL known-resource candidates for bible_book as AcquisitionCandidate objects."""
+    is_nt = bible_book in _NT_BOOKS
+    candidates = []
+    for resource in _CCEL_KNOWN_RESOURCES:
+        covers = resource["covers"]
+        if covers == "whole_bible":
+            pass  # always include
+        elif covers == "new_testament" and not is_nt:
+            continue  # skip NT-only resources for OT books
+        slug = _slug(resource["title"])[:50]
+        if (RESOURCES_ROOT / slug / "source.txt").exists():
+            continue  # already downloaded
+        candidates.append(
+            AcquisitionCandidate(
+                provider="ccel",
+                identifier=f"ccel-{slug}",
+                title=resource["title"],
+                author=resource["author"],
+                score=60.0,
+                source_url=resource["source_url"],
+                metadata_url=resource["source_url"],
+                download_url=resource["download_url"],
+                match_type="exact",
+                format_label="text/plain",
+            )
+        )
+    return candidates
+
+
+def _try_acquire_from_candidates(
+    candidates: list,
     bible_book: str,
-) -> dict[str, Any]:
-    """Search archive.org for a public-domain commentary covering bible_book.
-
-    Tries up to _MAX_CANDIDATES search results.  Downloads the first accessible
-    DjVuTXT/OCR text.  Returns acquisition result dict.
-    """
-    # Build search terms targeting Bible commentary for this book
-    search_title = f"Commentary on the Book of {bible_book}"
-    search_author = ""  # open search — any author
-    try:
-        candidates = search_archive_candidates(search_title, search_author)
-    except Exception as exc:
-        return {"status": "blocked", "reason": f"archive.org search failed: {exc}"}
-
+) -> dict[str, Any] | None:
+    """Try to download and save the first accessible candidate.  Returns result dict on
+    success, None if all candidates failed or were already present."""
     for candidate in candidates[:_MAX_CANDIDATES]:
         if not candidate.download_url:
             continue
@@ -253,7 +327,6 @@ def search_and_acquire_new_resource(
             continue  # already have it
         ok, msg = download_source_text(slug, candidate.download_url)
         if ok:
-            # Save a minimal holding.json so card-drafting works
             holding = {
                 "title": candidate.title,
                 "author_or_editor": candidate.author,
@@ -271,14 +344,54 @@ def search_and_acquire_new_resource(
                 "slug": slug,
                 "title": candidate.title,
                 "author": candidate.author,
+                "provider": candidate.provider,
                 "message": msg,
             }
+    return None
+
+
+def search_and_acquire_new_resource(
+    bible_book: str,
+) -> dict[str, Any]:
+    """Search multiple repositories for a public-domain commentary covering bible_book.
+
+    Tries archive.org first, then Project Gutenberg as fallback.
+    Returns acquisition result dict.
+    """
+    # --- Source 1: archive.org ---
+    search_title = f"Commentary on the Book of {bible_book}"
+    try:
+        archive_candidates = search_archive_candidates(search_title, "")
+    except Exception as exc:
+        archive_candidates = []
+        print(f"  [Acquisition] archive.org search failed for {bible_book}: {exc}", flush=True)
+
+    result = _try_acquire_from_candidates(archive_candidates, bible_book)
+    if result:
+        return result
+
+    # --- Source 2: Project Gutenberg (Gutendex API) ---
+    try:
+        gutenberg_candidates = search_gutenberg_candidates(bible_book)
+    except Exception as exc:
+        gutenberg_candidates = []
+        print(f"  [Acquisition] Gutenberg search failed for {bible_book}: {exc}", flush=True)
+
+    result = _try_acquire_from_candidates(gutenberg_candidates, bible_book)
+    if result:
+        return result
+
+    # --- Source 3: CCEL known-resources (whole-Bible and NT commentaries) ---
+    ccel_candidates = get_ccel_candidates(bible_book)
+    result = _try_acquire_from_candidates(ccel_candidates, bible_book)
+    if result:
+        return result
 
     return {
         "status": "blocked",
         "reason": (
             f"No accessible public-domain commentary found for '{bible_book}' "
-            f"on archive.org. Manual acquisition needed."
+            f"on archive.org, Project Gutenberg, or CCEL. Manual acquisition needed."
         ),
     }
 

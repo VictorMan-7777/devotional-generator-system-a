@@ -1,0 +1,207 @@
+{
+  "mode": "advisory",
+  "enabled": true,
+  "advisory_count": 22,
+  "advisories": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "surrection-shaped witness in community. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "MISSING_TO_BEFORE_A_VERB",
+      "message": "The verb \"become\" needs to be in the to-infinitive form.",
+      "category": "GRAMMAR",
+      "context": "ssages show that mercy and resurrection hope become public encouragement for many, not just",
+      "replacements": [
+        "hope to become"
+      ]
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": ", So He told them this parable, saying, \u201cWhat and hundred, sheep, lost keep the r",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "ience within God's generous boundaries. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "e language of the passage, And He said, \u201cA man had two sons and younger, son, gat",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u2019' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "It brings a concrete moment into view: \u2018How many of my father\u2019s hired men have m",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u2019' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ain specific. If the scene is shaped by \u2018How many of my father\u2019s hired men have m",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "prayer",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u2019' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "nse to God's word into the open through \u2018How many of my father\u2019s hired men have m",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u2019' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "age, But the father said to his slaves, \u2018Quickly and put, ring, his keep the refl",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "essure. In the language of the passage, \u201cNow his older son was in the field and s",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "ience within God's generous boundaries. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u2019' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "age of the passage, And he said to him, \u2018the brother has and many, years, been ke",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals Jesus clearly, we should pur",
+      "replacements": []
+    }
+  ]
+}

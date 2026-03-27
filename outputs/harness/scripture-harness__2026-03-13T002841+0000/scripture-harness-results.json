@@ -1,0 +1,32 @@
+{
+  "generated_at_utc": "2026-03-13T00:30:57.493126+00:00",
+  "generator": "real",
+  "cases": [
+    {
+      "slug": "ezekiel-38-39__12d_2w_review_fix2",
+      "passage": "Ezekiel 38-39",
+      "num_days": 12,
+      "num_weeks": 2
+    }
+  ],
+  "results": [
+    {
+      "case_slug": "ezekiel-38-39__12d_2w_review_fix2",
+      "passage": "Ezekiel 38-39",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T002841+0000/ezekiel-38-39__12d_2w_review_fix2__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T002841+0000/ezekiel-38-39__12d_2w_review_fix2__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 1,
+      "stdout": "",
+      "stderr": "Traceback (most recent call last):\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 818, in <module>\n    raise SystemExit(main())\n                     ~~~~^^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py\", line 665, in main\n    result = generate_devotional(\n        topic=run_input.topic,\n    ...<10 lines>...\n        require_planned_scripture=True,\n    )\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/generation_pipeline.py\", line 359, in generate_devotional\n    registry.record_quote_use(\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^\n        volume_id=active_volume_id,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<4 lines>...\n        publication_year=tw.publication_year,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/persistence/adapters/sqlite_adapter.py\", line 57, in record_quote_use\n    return self._registry.record_quote_use(\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        volume_id=volume_id,\n        ^^^^^^^^^^^^^^^^^^^^\n    ...<5 lines>...\n        override_reason=override_reason,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Volumes/claude-projects/projects/devotional-generator-system-a/src/registry/registry.py\", line 523, in record_quote_use\n    raise DuplicateQuoteError(\n    ...<2 lines>...\n    )\nsrc.registry.registry.DuplicateQuoteError: Quote already used in volume 'vol-8fa5c687'. Provide override_reason to record despite duplication.",
+      "run_slug": "",
+      "book_json": "",
+      "editorial_build": "",
+      "approval_report": "",
+      "agent_validation": "",
+      "audit_linkage": "",
+      "meta": ""
+    }
+  ]
+}

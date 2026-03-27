@@ -62,6 +62,18 @@ class TestRenderTitlePage:
         assert len(subtitle_blocks) == 1
         assert subtitle_blocks[0].content == "A Six-Day Journey"
 
+    def test_tagline_present_when_provided(self):
+        page = render_title_page("My Devotional", subtitle="A Six-Day Journey", tagline="Scripture-shaped reflection.")
+        body_blocks = [b for b in page.blocks if b.block_type == BlockType.BODY_TEXT]
+        assert len(body_blocks) == 1
+        assert body_blocks[0].content == "Scripture-shaped reflection."
+
+    def test_title_page_includes_imprint(self):
+        page = render_title_page("My Devotional")
+        imprint_blocks = [b for b in page.blocks if b.block_type == BlockType.IMPRINT]
+        assert len(imprint_blocks) == 1
+        assert "Sacred Whispers Publishers" in imprint_blocks[0].content
+
     def test_subtitle_also_suppressed(self):
         page = render_title_page("Title", subtitle="Subtitle")
         subtitle_block = next(b for b in page.blocks if b.block_type == BlockType.SUBTITLE)
@@ -118,6 +130,11 @@ class TestRenderIntroduction:
         page = render_introduction(has_day7=False, introduction_text=self._INTRO_TEXT)
         body_blocks = [b for b in page.blocks if b.block_type == BlockType.BODY_TEXT]
         assert any(self._INTRO_TEXT in b.content for b in body_blocks)
+
+    def test_introduction_has_heading(self):
+        page = render_introduction(has_day7=False, introduction_text=self._INTRO_TEXT)
+        heading_blocks = [b for b in page.blocks if b.block_type == BlockType.HEADING]
+        assert any(b.content == "How to Use This Devotional" for b in heading_blocks)
 
     def test_no_sunday_text_when_day7_disabled(self):
         page = render_introduction(has_day7=False, introduction_text=self._INTRO_TEXT)
@@ -176,6 +193,18 @@ class TestRenderToc:
         pages = render_toc(days)
         toc_blocks = [b for b in pages[0].blocks if b.block_type == BlockType.TOC_ENTRY]
         assert "Grace and Freedom" in toc_blocks[0].content
+
+    def test_day_focus_does_not_duplicate_day_prefix(self):
+        days = [_DayStub(day_number=1, day_focus="Day 1: Grace and Freedom")]
+        pages = render_toc(days)
+        toc_blocks = [b for b in pages[0].blocks if b.block_type == BlockType.TOC_ENTRY]
+        assert toc_blocks[0].content == "Day 1: Grace and Freedom"
+
+    def test_day_focus_equal_day_label_renders_once(self):
+        days = [_DayStub(day_number=4, day_focus="Day 4")]
+        pages = render_toc(days)
+        toc_blocks = [b for b in pages[0].blocks if b.block_type == BlockType.TOC_ENTRY]
+        assert toc_blocks[0].content == "Day 4"
 
     def test_starts_new_page(self):
         pages = render_toc(_make_days(12))

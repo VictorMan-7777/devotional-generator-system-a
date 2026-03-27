@@ -1,0 +1,23 @@
+{
+  "run_slug": "2026-03-14__040004__luke-15__12-day__vol-1",
+  "stage": "day_unification",
+  "sequence": 20,
+  "created_at_utc": "2026-03-14T04:00:11.885219+00:00",
+  "payload": {
+    "day_number": 9,
+    "status": "failed",
+    "findings": [
+      {
+        "check_id": "BOOK_DAY_PROGRESS",
+        "result": "fail",
+        "reason_code": "DAY_PROGRESS_STALLED",
+        "explanation": "Adjacent days are too similar. The devotional should progress from day to day instead of repeating the same reflection pattern.",
+        "evidence": "similarity=0.91",
+        "day_numbers": [
+          8,
+          9
+        ]
+      }
+    ]
+  }
+}

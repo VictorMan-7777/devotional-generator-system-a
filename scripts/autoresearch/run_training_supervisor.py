@@ -3,9 +3,11 @@ from __future__ import annotations
 import json
 import os
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 
+from src.autoresearch.store import check_worker_alerts
 from src.autoresearch.training_manager import build_training_manager_review
 
 
@@ -93,117 +95,128 @@ def _run_step(repo_root: Path, label: str, script_name: str) -> dict[str, object
     }
 
 
-def _monitoring_only_plan() -> list[tuple[str, str]]:
-    """Steps that run even when training is suspended — quality monitors only, no generation."""
+def _run_steps_parallel(repo_root: Path, steps: list[tuple[str, str]]) -> list[dict[str, object]]:
+    """Run a group of independent steps concurrently and return all results."""
+    with ThreadPoolExecutor(max_workers=len(steps)) as executor:
+        futures = {
+            executor.submit(_run_step, repo_root, label, script): (label, script)
+            for label, script in steps
+        }
+        return [future.result() for future in as_completed(futures)]
+
+
+# Plan format: list of groups. Each group is a list of (label, script) tuples.
+# Single-item groups run alone. Multi-item groups run in parallel.
+StepGroup = list[tuple[str, str]]
+
+
+def _monitoring_only_plan() -> list[StepGroup]:
+    """Groups that run even when training is suspended — quality monitors only."""
     return [
-        ("gate_reviews", "run_gate_reviews.py"),
-        ("theological_reviewer", "run_theological_reviewer.py"),
-        ("library_trainer", "run_library_trainer_review.py"),
-        ("policy_guardian", "run_policy_guardian.py"),
-        ("proposal_reviewer", "run_proposal_reviewer.py"),
-        ("cross_evaluator", "run_cross_evaluator.py"),
+        [("grok_chat", "run_grok_chat.py")],
+        [("health_check", "run_health_check.py")],
+        [("gate_reviews", "run_gate_reviews.py")],
+        [
+            ("theological_reviewer", "run_theological_reviewer.py"),
+            ("library_trainer", "run_library_trainer_review.py"),
+            ("policy_guardian", "run_policy_guardian.py"),
+        ],
+        [
+            ("proposal_reviewer", "run_proposal_reviewer.py"),
+            ("cross_evaluator", "run_cross_evaluator.py"),
+        ],
     ]
 
 
-def _step_plan(review: dict[str, object], *, repo_root: Path) -> list[tuple[str, str]]:
+def _step_plan(review: dict[str, object], *, repo_root: Path) -> list[StepGroup]:
     if SUPERVISOR_SUSPENDED["enabled"]:
         return _monitoring_only_plan()
 
     if OUTLINER_EVALUATION_LOCK["enabled"]:
         return [
-            ("training_manager", "run_training_manager_review.py"),
-            ("outliner", "run_outliner_training_cycle.py"),
-            ("library_trainer", "run_library_trainer_review.py"),
-            ("theological_reviewer", "run_theological_reviewer.py"),
-            ("policy_guardian", "run_policy_guardian.py"),
+            [("grok_chat", "run_grok_chat.py")],
+            [("training_manager", "run_training_manager_review.py")],
+            [("outliner", "run_outliner_training_cycle.py")],
+            [
+                ("library_trainer", "run_library_trainer_review.py"),
+                ("theological_reviewer", "run_theological_reviewer.py"),
+                ("policy_guardian", "run_policy_guardian.py"),
+            ],
         ]
 
     bottleneck = str(review.get("current_bottleneck_worker") or "").strip()
-    reviews = review.get("reviews", []) if isinstance(review, dict) else []
-    active_training = {
-        str(item.get("worker_name") or "").strip()
-        for item in reviews
-        if str(item.get("status") or "").strip() == "active_training"
-    }
 
-    plan: list[tuple[str, str]] = [
-        ("training_manager", "run_training_manager_review.py"),
-        # Gate reviews run before worker cycles so verdicts are visible to trainer agents.
-        ("gate_reviews", "run_gate_reviews.py"),
+    # --- Group 0: Grok reads feedback BEFORE making any decisions this cycle ---
+    groups: list[StepGroup] = [
+        [("grok_chat", "run_grok_chat.py")],
     ]
 
-    # Bottleneck worker always runs first.
-    if bottleneck == "outliner" and not OUTLINER_TRAINING_PAUSED["enabled"]:
-        plan.append(("outliner", "run_outliner_training_cycle.py"))
-    elif bottleneck == "exposition_writer":
-        plan.append(("exposition_writer", "run_exposition_training_cycle.py"))
-    elif bottleneck == "be_still_writer":
-        plan.append(("be_still_writer", "run_be_still_training_cycle.py"))
-    elif bottleneck == "action_writer":
-        plan.append(("action_writer", "run_action_writer_training_cycle.py"))
-    elif bottleneck == "prayer_writer":
-        plan.append(("prayer_writer", "run_prayer_writer_training_cycle.py"))
+    # --- Group 1: Health + infrastructure ---
+    groups.append([("health_check", "run_health_check.py")])
+    groups.append([("training_manager", "run_training_manager_review.py")])
+    groups.append([("gate_reviews", "run_gate_reviews.py")])
 
-    # Exposition writer always runs in parallel with any bottleneck so the
-    # fixed template can accumulate LLM-verified passes without waiting for
-    # the outliner to graduate.
-    if ("exposition_writer", "run_exposition_training_cycle.py") not in plan:
-        plan.append(("exposition_writer", "run_exposition_training_cycle.py"))
-
-    # Downstream workers train in parallel regardless of bottleneck — they are
-    # independent of the outliner and should not wait for it to graduate.
-    if ("be_still_writer", "run_be_still_training_cycle.py") not in plan:
-        plan.append(("be_still_writer", "run_be_still_training_cycle.py"))
-    if ("action_writer", "run_action_writer_training_cycle.py") not in plan:
-        plan.append(("action_writer", "run_action_writer_training_cycle.py"))
-
-    # Prayer writer runs when its training script is available.
+    # --- Group 2: Content workers — all independent, run in parallel ---
     _prayer_script = repo_root / "scripts" / "autoresearch" / "run_prayer_writer_training_cycle.py"
-    if _prayer_script.exists() and ("prayer_writer", "run_prayer_writer_training_cycle.py") not in plan:
-        plan.append(("prayer_writer", "run_prayer_writer_training_cycle.py"))
+    content_workers: StepGroup = []
 
-    plan.extend(
-        [
-            ("output_training_manager", "run_output_training_manager_review.py"),
-            ("pdf_workers", "run_pdf_training_cycle.py"),
-            ("research_librarian", "run_research_librarian_training_cycle.py"),
-            # Acquisition librarian — processes ALL pending requests (research_librarian,
-            # outliner, and any other requester) so the library expands proactively.
-            ("acquisition_librarian", "run_acquisition_librarian_cycle.py"),
-            # Grok outliner monitor — reads recent outliner experiments via file tools,
-            # identifies failure patterns, and flags code changes required for human review.
-            ("grok_outliner_monitor", "run_grok_outliner_monitor.py"),
-            ("library_trainer", "run_library_trainer_review.py"),
-            ("theological_reviewer", "run_theological_reviewer.py"),
-            ("policy_guardian", "run_policy_guardian.py"),
-            # Proposal reviewer — aggregates proposed_code_changes from all trainer cycles.
-            ("proposal_reviewer", "run_proposal_reviewer.py"),
-            # Cross-evaluator — independent assessment using the OPPOSITE AI provider.
-            # Runs last so it has access to all cycle outputs from this supervisor run.
-            ("cross_evaluator", "run_cross_evaluator.py"),
-            # DevG monitor — Grok reads system state, diagnoses issues, escalates blocking
-            # bugs to Grok 4.20 multi-agent for code suggestions shown to the human.
-            ("devg_monitor", "run_devg_monitor.py"),
-            # Grok chat — checks grok_workspace/chat.md for [Q] questions and answers inline.
-            ("grok_chat", "run_grok_chat.py"),
-        ]
-    )
-    return plan
+    if not OUTLINER_TRAINING_PAUSED["enabled"]:
+        content_workers.append(("outliner", "run_outliner_training_cycle.py"))
+    content_workers.append(("exposition_writer", "run_exposition_training_cycle.py"))
+    content_workers.append(("be_still_writer", "run_be_still_training_cycle.py"))
+    content_workers.append(("action_writer", "run_action_writer_training_cycle.py"))
+    if _prayer_script.exists():
+        content_workers.append(("prayer_writer", "run_prayer_writer_training_cycle.py"))
+
+    groups.append(content_workers)
+
+    # --- Group 3: Output managers + PDF + librarian — independent, run in parallel ---
+    groups.append([
+        ("output_training_manager", "run_output_training_manager_review.py"),
+        ("pdf_workers", "run_pdf_training_cycle.py"),
+        ("research_librarian", "run_research_librarian_training_cycle.py"),
+    ])
+
+    # --- Group 4: Acquisition librarian — sequential (modifies shared library catalog) ---
+    groups.append([("acquisition_librarian", "run_acquisition_librarian_cycle.py")])
+
+    # --- Group 5: Monitors — all read-only, run in parallel ---
+    groups.append([
+        ("grok_outliner_monitor", "run_grok_outliner_monitor.py"),
+        ("library_trainer", "run_library_trainer_review.py"),
+        ("theological_reviewer", "run_theological_reviewer.py"),
+        ("policy_guardian", "run_policy_guardian.py"),
+    ])
+
+    # --- Group 6: Final reporters — run in parallel ---
+    groups.append([
+        ("proposal_reviewer", "run_proposal_reviewer.py"),
+        ("cross_evaluator", "run_cross_evaluator.py"),
+        ("devg_monitor", "run_devg_monitor.py"),
+    ])
+
+    return groups
 
 
 def main() -> int:
     repo_root = Path(__file__).resolve().parents[2]
     initial_review = build_training_manager_review(repo_root)
-    steps = _step_plan(initial_review, repo_root=repo_root)
+    groups = _step_plan(initial_review, repo_root=repo_root)
 
     results: list[dict[str, object]] = []
-    for label, script_name in steps:
-        results.append(_run_step(repo_root, label, script_name))
+    for group in groups:
+        if len(group) == 1:
+            results.append(_run_step(repo_root, group[0][0], group[0][1]))
+        else:
+            results.extend(_run_steps_parallel(repo_root, group))
+
+    worker_alerts = check_worker_alerts()
 
     payload = {
         "started_at_utc": _utc_now(),
         "initial_training_manager_review": initial_review,
         "outliner_evaluation_lock": OUTLINER_EVALUATION_LOCK,
+        "worker_alerts": worker_alerts,
         "executed_steps": results,
     }
     stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d__%H%M%S")

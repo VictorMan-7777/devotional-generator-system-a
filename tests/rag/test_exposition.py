@@ -89,6 +89,26 @@ class TestReturnType:
             assert e.author.strip()
             assert e.source_type.strip()
 
+    def test_archaic_excerpt_is_modernized_for_display(self, tmp_path: Path):
+        p = _write_excerpts(
+            tmp_path,
+            [
+                {
+                    "text": "thou hast known the mercy of God",
+                    "source_title": "Old Commentary",
+                    "author": "Older Writer",
+                    "source_type": "commentary",
+                    "paragraph_type": "context",
+                }
+            ],
+        )
+        result = ExpositionRAG(p).retrieve_for_paragraph(
+            "context", "Psalm 23:1", "mercy", ["commentary"]
+        )
+        assert result[0].text == "you have known the mercy of God"
+        assert result[0].original_text == "thou hast known the mercy of God"
+        assert result[0].language_modernized is True
+
 
 # ---------------------------------------------------------------------------
 # Paragraph type filtering
@@ -160,6 +180,33 @@ class TestEdgeCases:
             "context", "John 1:1", "grace", ["commentary"]
         )
         assert result == []
+
+    def test_excludes_cross_book_excerpts_when_target_book_differs(self, tmp_path: Path):
+        p = _write_excerpts(
+            tmp_path,
+            [
+                {
+                    "text": "Genesis introduces Eden as the garden sanctuary of God's presence.",
+                    "source_title": "Easton's Bible Dictionary",
+                    "author": "Easton",
+                    "source_type": "reference",
+                    "paragraph_type": "context",
+                },
+                {
+                    "text": "Habakkuk cries out over violence and waits for the Lord's answer.",
+                    "source_title": "Habakkuk Commentary",
+                    "author": "Commentator",
+                    "source_type": "commentary",
+                    "paragraph_type": "context",
+                },
+            ],
+        )
+        result = ExpositionRAG(p).retrieve_for_paragraph(
+            "context", "Habakkuk 1:1-4", "violence and justice", ["commentary", "reference"]
+        )
+        texts = [entry.text for entry in result]
+        assert any("Habakkuk cries out" in text for text in texts)
+        assert all("Genesis introduces Eden" not in text for text in texts)
 
 
 # ---------------------------------------------------------------------------

@@ -8,13 +8,14 @@ Available tools Grok can call:
     read_file(path, offset=0, limit=100)   — read N lines from a file
     search_file(path, pattern)             — grep for a regex pattern (returns matches + line numbers)
     list_files(pattern)                    — glob for files matching a pattern
+    write_workspace_file(path, content)    — write to grok_workspace/ or competition-pivot/
 
 Usage:
     from src.llm.grok_agent import run_grok_agent
 
     result = run_grok_agent(
         task="Analyze _theme_key() in real_section_generator.py and describe the ordering issue.",
-        model="grok-4.20-0309-reasoning",
+        model="grok-4-1-fast-reasoning",
         max_tool_rounds=10,
     )
     print(result)
@@ -30,6 +31,7 @@ from pathlib import Path
 
 _PROJECT_ROOT = Path(__file__).resolve().parents[2]
 _WORKSPACE_ROOT = _PROJECT_ROOT / "grok_workspace"  # Grok's write sandbox
+_COMPETITION_PIVOT_ROOT = _PROJECT_ROOT / "competition-pivot"  # competition-pivot docs
 _MAX_LINE_LIMIT = 300  # Grok cannot request more than this many lines at once
 
 
@@ -73,14 +75,30 @@ def _search_file(path: str, pattern: str) -> str:
 
 
 def _write_workspace_file(path: str, content: str) -> str:
-    """Write content to a file inside grok_workspace/. Creates parent dirs as needed."""
+    """Write content to a file inside grok_workspace/ or competition-pivot/. Creates parent dirs as needed."""
     p = Path(path)
-    # Strip leading grok_workspace/ if Grok includes it
+    # Strip leading path prefixes if Grok includes them
     if str(p).startswith("grok_workspace/"):
         p = Path(str(p)[len("grok_workspace/"):])
-    target = (_WORKSPACE_ROOT / p).resolve()
-    if not str(target).startswith(str(_WORKSPACE_ROOT)):
-        return "ERROR: write blocked — path outside grok_workspace/"
+        target = (_WORKSPACE_ROOT / p).resolve()
+    elif str(p).startswith("competition-pivot/"):
+        p = Path(str(p)[len("competition-pivot/"):])
+        target = (_COMPETITION_PIVOT_ROOT / p).resolve()
+    else:
+        # Default: try workspace first, then competition-pivot based on resolved path
+        ws_target = (_WORKSPACE_ROOT / p).resolve()
+        cp_target = (_COMPETITION_PIVOT_ROOT / p).resolve()
+        if str(ws_target).startswith(str(_WORKSPACE_ROOT)):
+            target = ws_target
+        elif str(cp_target).startswith(str(_COMPETITION_PIVOT_ROOT)):
+            target = cp_target
+        else:
+            return "ERROR: write blocked — path outside grok_workspace/ and competition-pivot/"
+
+    in_workspace = str(target).startswith(str(_WORKSPACE_ROOT))
+    in_pivot = str(target).startswith(str(_COMPETITION_PIVOT_ROOT))
+    if not (in_workspace or in_pivot):
+        return "ERROR: write blocked — path outside grok_workspace/ and competition-pivot/"
     try:
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(content, encoding="utf-8")
@@ -100,24 +118,74 @@ _ALLOWED_WRITE_PREFIXES = (
 
 
 def _write_repo_file(path: str, content: str) -> str:
-    """Write content to an allowed repo file. Scoped to Grok's autonomous change directories."""
+    """
+    DISABLED — direct repo writes require Claude Code CLI authorization.
+
+    Grok must use the proposal flow instead:
+      1. Write full file content to grok_workspace/proposals/<name>.py
+      2. Write justification to grok_workspace/proposals/<name>.md
+      3. Write grok_workspace/notifications/pending_approval.md
+      4. Stop — Claude Code CLI will review and apply.
+
+    This rule exists because Grok's Fix4 and Fix5 both wrote invalid Python,
+    silently breaking the outliner for 258 minutes.
+    """
     p = Path(path)
-    # Normalise — strip leading slash or project root prefix
     rel = str(p)
     if rel.startswith(str(_PROJECT_ROOT)):
         rel = rel[len(str(_PROJECT_ROOT)):].lstrip("/")
-    target = (_PROJECT_ROOT / rel).resolve()
-    if not str(target).startswith(str(_PROJECT_ROOT)):
-        return "ERROR: write blocked — path outside project root"
-    if not any(rel.startswith(prefix) for prefix in _ALLOWED_WRITE_PREFIXES):
-        return (
-            f"ERROR: write blocked — {rel!r} is outside Grok's autonomous scope. "
-            f"Allowed: {', '.join(_ALLOWED_WRITE_PREFIXES)}"
-        )
+
+    return (
+        f"BLOCKED: write_repo_file is disabled. Direct repo writes require Claude Code CLI authorization.\n"
+        f"To propose a change to '{rel}':\n"
+        f"  1. write_workspace_file('proposals/{Path(rel).stem}.py', <full file content>)\n"
+        f"  2. write_workspace_file('proposals/{Path(rel).stem}.md', <justification>)\n"
+        f"  3. write_workspace_file('notifications/pending_approval.md', "
+        f"'PROPOSAL READY: {Path(rel).stem}\\nFile: {rel}\\nSummary: <one sentence>')\n"
+        f"Claude Code CLI will review, validate syntax, and apply if safe."
+    )
+
+
+def _query_db(sql: str, db_path: str | None = None) -> str:
+    """
+    Run a read-only SQL SELECT query against a project SQLite database.
+    Only SELECT statements are allowed. Returns tab-separated rows with a header.
+    """
+    import sqlite3
+    sql_stripped = sql.strip()
+    if not sql_stripped.upper().startswith("SELECT"):
+        return "ERROR: only SELECT queries are permitted"
+
+    # Default to registry.db at project root; allow explicit path within project
+    if db_path:
+        target = (_PROJECT_ROOT / db_path).resolve()
+        if not str(target).startswith(str(_PROJECT_ROOT)):
+            return "ERROR: db_path outside project root"
+    else:
+        target = _PROJECT_ROOT / "registry.db"
+
+    if not target.exists():
+        # Try alternate location
+        alt = Path.home() / "Library" / "Application Support" / "DevG" / "devg_registry.sqlite3"
+        if alt.exists():
+            target = alt
+        else:
+            return f"ERROR: database not found at {target} or {alt}"
+
     try:
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content, encoding="utf-8")
-        return f"OK: wrote {len(content)} bytes to {rel}"
+        con = sqlite3.connect(str(target), timeout=10)
+        con.row_factory = sqlite3.Row
+        cur = con.execute(sql_stripped)
+        rows = cur.fetchall()
+        if not rows:
+            return "0 rows returned"
+        header = "\t".join(rows[0].keys())
+        lines = [header, "-" * len(header)]
+        for row in rows[:200]:  # cap at 200 rows
+            lines.append("\t".join(str(v) if v is not None else "NULL" for v in row))
+        if len(rows) == 200:
+            lines.append("... (truncated at 200 rows)")
+        return "\n".join(lines)
     except Exception as exc:
         return f"ERROR: {exc}"
 
@@ -142,6 +210,7 @@ _TOOL_HANDLERS = {
     "write_repo_file": lambda args: _write_repo_file(args["path"], args["content"]),
     "search_file": lambda args: _search_file(args["path"], args["pattern"]),
     "list_files": lambda args: _list_files(args["pattern"]),
+    "query_db": lambda args: _query_db(args["sql"], args.get("db_path")),
 }
 
 _TOOL_SCHEMAS = [
@@ -169,18 +238,18 @@ _TOOL_SCHEMAS = [
         "function": {
             "name": "write_workspace_file",
             "description": (
-                "Write a file to grok_workspace/ — your persistent working directory. "
-                "Use this to save scripts, proposals, analysis notes, and tasks you want to keep. "
-                "Subdirs: scripts/ (runnable scripts), proposals/ (code changes for human review), "
-                "analysis/ (findings/notes), tasks/ (your own task list). "
-                "You can organise these however you like — create new subdirs freely. "
-                "Path is relative to grok_workspace/ (e.g. 'proposals/fix_outliner.py'). "
-                "This is the ONLY location you can write to."
+                "Write a file to grok_workspace/ or competition-pivot/. "
+                "grok_workspace/ is your persistent working directory for proposals, analysis, tasks, and scripts. "
+                "competition-pivot/ is the shared competition planning directory for tracking docs, "
+                "gate results, design briefs, and audit entries. "
+                "To write to grok_workspace/: use paths like 'proposals/fix_outliner.py' or prefix with 'grok_workspace/'. "
+                "To write to competition-pivot/: prefix path with 'competition-pivot/', e.g. 'competition-pivot/stage1-design-brief.md'. "
+                "These are the ONLY locations you can write to."
             ),
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "path": {"type": "string", "description": "Path within grok_workspace/, e.g. 'proposals/fix_density_check.py' or 'tasks/todo.md'"},
+                    "path": {"type": "string", "description": "Path within grok_workspace/ or competition-pivot/, e.g. 'proposals/fix_density_check.py', 'grok_workspace/tasks/todo.md', or 'competition-pivot/stage-gate-tracker.md'"},
                     "content": {"type": "string", "description": "Full file content to write"},
                 },
                 "required": ["path", "content"],
@@ -235,13 +304,42 @@ _TOOL_SCHEMAS = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "query_db",
+            "description": (
+                "Run a read-only SELECT query against the project SQLite database (registry.db). "
+                "Use this to get raw experiment counts, pass rates, streaks, and status buckets "
+                "directly from the source of truth. Only SELECT is allowed — no writes. "
+                "Returns tab-separated rows with a header row. "
+                "Key table: autoresearch_experiments (cols: worker_name, status, passage_reference, "
+                "score, created_at_utc, completed_at_utc). "
+                "Status values: 'pass', 'fail', 'assigned' (in-flight). "
+                "Example: SELECT worker_name, COUNT(*) as total, "
+                "SUM(CASE WHEN status='pass' THEN 1 ELSE 0 END) as passes "
+                "FROM autoresearch_experiments GROUP BY worker_name;"
+            ),
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "sql": {"type": "string", "description": "SELECT query to run"},
+                    "db_path": {
+                        "type": "string",
+                        "description": "Optional path to database file relative to project root (default: registry.db)",
+                    },
+                },
+                "required": ["sql"],
+            },
+        },
+    },
 ]
 
 
 def run_grok_agent(
     task: str,
     *,
-    model: str = "grok-4.20-0309-reasoning",
+    model: str = "grok-4-1-fast-reasoning",
     max_tokens: int = 8000,
     max_tool_rounds: int = 15,
     system: str | None = None,
@@ -280,6 +378,10 @@ def run_grok_agent(
         "generation system. Use the provided file tools to read only what you need. "
         "When you have enough information, return your complete answer — code blocks "
         "where code is required, prose where analysis is required.\n\n"
+        "CRITICAL — file writing: When calling write_workspace_file, the content field "
+        "must be raw text exactly as it should appear on disk. Never HTML-encode content. "
+        "Write `\"` not `&quot;`, `>` not `&gt;`, `&` not `&amp;`. Python source files "
+        "written with HTML entities are not valid Python and will be rejected.\n\n"
         "IMPORTANT: At the end of every session, update grok_workspace/MEMORY.md using "
         "write_workspace_file with the latest system state (outliner status, graduated workers, "
         "bottleneck, library count, any fixes applied). This is your only persistent memory.\n\n"

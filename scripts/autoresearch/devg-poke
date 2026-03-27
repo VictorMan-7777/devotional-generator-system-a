@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+ACTIVE_LOG="${DEVG_ACTIVE_LOG:-/tmp/devg-active.log}"
+STAMP="$(date '+%Y-%m-%d %H:%M:%S %Z')"
+MESSAGE="${1:-Operator poke: monitor looked stale; please verify active process health.}"
+
+mkdir -p "$(dirname "$ACTIVE_LOG")"
+printf 'POKE %s :: %s\n' "$STAMP" "$MESSAGE" >> "$ACTIVE_LOG"
+osascript >/dev/null 2>&1 <<OSA || true
+display notification "$(printf '%s' "$MESSAGE" | sed 's/"/\\"/g')" with title "DevG Poke"
+OSA
+echo "Poke recorded at $STAMP"
+echo "Message: $MESSAGE"

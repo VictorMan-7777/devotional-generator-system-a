@@ -1,0 +1,45 @@
+{
+  "source_report": "outputs/devotionals/2026-03-07__175840__genesis-1-2__12-day__2-week__approval-gate-report.json",
+  "topic": "Genesis 1-2",
+  "days": 12,
+  "mode": "web",
+  "generated_at_utc": "2026-03-07T22:04:27.575431+00:00",
+  "summary": {
+    "approved": 0,
+    "rejected": 4,
+    "skipped": 0,
+    "completed": 4,
+    "remaining": 68,
+    "total_pending": 72
+  },
+  "decisions": [
+    {
+      "day": 1,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "reviewed_at_utc": "2026-03-07T21:57:59.034220+00:00"
+    },
+    {
+      "day": 1,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "reviewed_at_utc": "2026-03-07T21:57:54.213339+00:00"
+    },
+    {
+      "day": 1,
+      "section": "timeless_wisdom",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "reviewed_at_utc": "2026-03-07T21:40:39.305316+00:00"
+    },
+    {
+      "day": 12,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:04:27.575400+00:00",
+      "reviewed_by": "Victor"
+    }
+  ]
+}

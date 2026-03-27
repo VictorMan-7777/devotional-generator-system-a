@@ -1,0 +1,16 @@
+{
+  "source_report": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/devotionals/2026-03-12__014816__matthew-26-28__12-day__vol-1__approval-gate-report.json",
+  "topic": "Matthew 26-28",
+  "days": 12,
+  "mode": "studio-web",
+  "generated_at_utc": "2026-03-12T05:55:02.742541+00:00",
+  "summary": {
+    "approved": 0,
+    "rejected": 0,
+    "skipped": 0,
+    "completed": 0,
+    "remaining": 72,
+    "total_pending": 72
+  },
+  "decisions": []
+}

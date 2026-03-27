@@ -1,0 +1,335 @@
+{
+  "mode": "advisory",
+  "enabled": true,
+  "advisory_count": 36,
+  "advisories": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "s gift rather than personal possession. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "ous before it hardens into shared evil. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "PRP_COMMA",
+      "message": "Consider adding a comma here to clarify the structure of the sentence.",
+      "category": "PUNCTUATION",
+      "context": "concrete through Throw in the lot with us We and feet, run, evil. The crucifixion",
+      "replacements": [
+        "us,"
+      ]
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "e ruin that greedy paths finally bring. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "delay turning while wisdom still calls. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "COMMA_COMPOUND_SENTENCE_2",
+      "message": "Use a comma before \"and\" if it connects two independent clauses (unless they are closely connected and short).",
+      "category": "PUNCTUATION",
+      "context": "stays concrete through Because I called and the hearer refused I and dread, comes,",
+      "replacements": [
+        ", and"
+      ]
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "stubbornness becomes its own judgment. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "e than the counterfeit safety of folly. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "e than the counterfeit safety of folly. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "walks under the Lord's guarding wisdom. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "walks under the Lord's guarding wisdom. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "es and keep the feet among the upright. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "es and keep the feet among the upright. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "es and keep the feet among the upright. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    }
+  ]
+}

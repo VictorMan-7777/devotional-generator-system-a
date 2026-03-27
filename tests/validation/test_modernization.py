@@ -1,7 +1,12 @@
 """Tests for src/validation/modernization.py — FR-56 archaic modernization."""
 import pytest
 
-from src.validation.modernization import modernize
+from src.validation.modernization import (
+    MODERNIZATION_LABEL,
+    modernize,
+    modernization_changed,
+    modernization_payload,
+)
 
 
 class TestArchaicPronouns:
@@ -114,3 +119,25 @@ class TestNegationModalityPreservation:
         assert "your" in result
         assert "has" in result
         assert "will" in result
+
+
+class TestModernizationMetadata:
+    def test_detects_changed_text(self):
+        assert modernization_changed("thou hast spoken") is True
+
+    def test_detects_unchanged_text(self):
+        assert modernization_changed("God is faithful.") is False
+
+    def test_payload_returns_label_when_changed(self):
+        display, original, changed, label = modernization_payload("thy servant hath spoken")
+        assert display == "your servant has spoken"
+        assert original == "thy servant hath spoken"
+        assert changed is True
+        assert label == MODERNIZATION_LABEL
+
+    def test_payload_has_empty_label_when_unchanged(self):
+        display, original, changed, label = modernization_payload("God is faithful.")
+        assert display == "God is faithful."
+        assert original == "God is faithful."
+        assert changed is False
+        assert label == ""

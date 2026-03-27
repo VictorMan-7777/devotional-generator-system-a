@@ -1,0 +1,161 @@
+{
+  "source_report": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/devotionals/2026-03-18__013932__trusting-god-in-uncertainty__3-day__vol-1__approval-gate-report.json",
+  "topic": "Trusting God in Uncertainty",
+  "days": 3,
+  "mode": "approve-all",
+  "generated_at_utc": "2026-03-18T01:47:25.255415+00:00",
+  "summary": {
+    "approved": 18,
+    "rejected": 0,
+    "skipped": 0,
+    "completed": 18,
+    "remaining": 0,
+    "total_pending": 18
+  },
+  "decisions": [
+    {
+      "day": 1,
+      "section": "action_steps",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 1,
+      "section": "be_still",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 1,
+      "section": "exposition",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 1,
+      "section": "prayer",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 1,
+      "section": "scripture",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 1,
+      "section": "timeless_wisdom",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 2,
+      "section": "action_steps",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 2,
+      "section": "be_still",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 2,
+      "section": "exposition",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 2,
+      "section": "prayer",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 2,
+      "section": "scripture",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 2,
+      "section": "timeless_wisdom",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 3,
+      "section": "action_steps",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 3,
+      "section": "be_still",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 3,
+      "section": "exposition",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 3,
+      "section": "prayer",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 3,
+      "section": "scripture",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    },
+    {
+      "day": 3,
+      "section": "timeless_wisdom",
+      "decision": "approved",
+      "reviewed_at_utc": "2026-03-18T01:47:25.255343+00:00",
+      "reviewed_by": "agent:training-bootstrap",
+      "decision_source": "training_corpus_bootstrap"
+    }
+  ]
+}

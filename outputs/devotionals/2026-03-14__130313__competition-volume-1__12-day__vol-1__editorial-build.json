@@ -1,0 +1,873 @@
+{
+  "topic": "Competition Volume 1",
+  "num_days": 12,
+  "source_reference": null,
+  "week_count": 2,
+  "passage_resources": {
+    "topic": "Competition Volume 1",
+    "scripture_reference": "Exodus 19:1-4",
+    "prepared_at_utc": "2026-03-14T13:03:17Z",
+    "shared_resources": [
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "The Pulpit Commentary",
+        "author": "H.D.M. Spence and Joseph Exell",
+        "source_type": "commentary",
+        "excerpt_text": "",
+        "note": "Shared library resource prepositioned for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+        "author": "Jamieson, Fausset, and Brown",
+        "source_type": "commentary",
+        "excerpt_text": "",
+        "note": "Shared library resource prepositioned for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "Strong's Hebrew Dictionary",
+        "author": "James Strong",
+        "source_type": "reference",
+        "excerpt_text": "",
+        "note": "Shared library resource prepositioned for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "Smith's Bible Dictionary",
+        "author": "William Smith",
+        "source_type": "reference",
+        "excerpt_text": "",
+        "note": "Shared library resource prepositioned for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "exposition_writer"
+        ],
+        "source_title": "A Discourse on Prayer",
+        "author": "John Bunyan",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "exposition_writer"
+        ],
+        "source_title": "Easton's Bible Dictionary",
+        "author": "M.G. Easton",
+        "source_type": "dictionary",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "exposition_writer"
+        ],
+        "source_title": "Institutes of the Christian Religion",
+        "author": "John Calvin",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "exposition_writer"
+        ],
+        "source_title": "International Standard Bible Encyclopedia (1915)",
+        "author": "ISBE Editorial Board",
+        "source_type": "encyclopedia",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "exposition_writer"
+        ],
+        "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+        "author": "Jamieson, Fausset, and Brown",
+        "source_type": "whole_bible_commentary",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "shared",
+        "role_targets": [
+          "exposition_writer"
+        ],
+        "source_title": "John Gill's Exposition of the Bible",
+        "author": "John Gill",
+        "source_type": "whole_bible_commentary",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      }
+    ],
+    "outliner_resources": [
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Exodus 19-20",
+        "author": "",
+        "source_type": "curated_harness_outline",
+        "excerpt_text": "Remembered mercy before covenant demand",
+        "note": "Harness-curated devotional arc for quality testing.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "A Discourse on Prayer",
+        "author": "John Bunyan",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Easton's Bible Dictionary",
+        "author": "M.G. Easton",
+        "source_type": "dictionary",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Institutes of the Christian Religion",
+        "author": "John Calvin",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "International Standard Bible Encyclopedia (1915)",
+        "author": "ISBE Editorial Board",
+        "source_type": "encyclopedia",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+        "author": "Jamieson, Fausset, and Brown",
+        "source_type": "whole_bible_commentary",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "John Gill's Exposition of the Bible",
+        "author": "John Gill",
+        "source_type": "whole_bible_commentary",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Journals of George Whitefield",
+        "author": "George Whitefield",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Letters of Samuel Rutherford",
+        "author": "Samuel Rutherford",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Luther's Works (Prayer Selections)",
+        "author": "Martin Luther",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Matthew Henry's Commentary on the Whole Bible",
+        "author": "Matthew Henry",
+        "source_type": "whole_bible_commentary",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Metropolitan Tabernacle Pulpit",
+        "author": "Charles H. Spurgeon",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Of the Mortification of Sin",
+        "author": "John Owen",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Profiting from the Word",
+        "author": "Arthur W. Pink",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Sermons and Letters",
+        "author": "John Calvin",
+        "source_type": "sermon_collection",
+        "excerpt_text": "publication_metadata",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Sermons and Tracts",
+        "author": "John Wesley",
+        "source_type": "sermon_collection",
+        "excerpt_text": "publication_metadata, public_domain_text",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Smith's Bible Dictionary",
+        "author": "William Smith",
+        "source_type": "dictionary",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Strong's Hebrew Dictionary",
+        "author": "James Strong",
+        "source_type": "dictionary",
+        "excerpt_text": "publication_metadata, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "Table Talk",
+        "author": "Martin Luther",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "The Bruised Reed",
+        "author": "Richard Sibbes",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "The Doctrine of Repentance",
+        "author": "Thomas Watson",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "The Pulpit Commentary",
+        "author": "H.D.M. Spence and Joseph Exell",
+        "source_type": "whole_bible_commentary",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      },
+      {
+        "purpose": "outline",
+        "role_targets": [
+          "outliner"
+        ],
+        "source_title": "The Sovereignty of God",
+        "author": "Arthur W. Pink",
+        "source_type": "reference_work",
+        "excerpt_text": "publication_metadata, public_domain_text, page_images",
+        "note": "Research window for Exodus 19:1-4: chapters 3-20. Book coverage: Exodus. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+        "relevance_score": 0.0
+      }
+    ],
+    "exposition_resources": [
+      {
+        "purpose": "context",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "The Pulpit Commentary",
+        "author": "H.D.M. Spence and Joseph Exell",
+        "source_type": "commentary",
+        "excerpt_text": "The Pulpit Commentary notes that the creation account frames Israel's worship by grounding all life and time in the Lord's sovereign initiative.",
+        "note": "Research librarian prepared context support for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "theological",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+        "author": "Jamieson, Fausset, and Brown",
+        "source_type": "commentary",
+        "excerpt_text": "Jamieson-Fausset-Brown observes that each creative act is presented as both powerful and orderly, reinforcing God's authority over chaos and history.",
+        "note": "Research librarian prepared theological support for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "theological",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "Strong's Hebrew Dictionary",
+        "author": "James Strong",
+        "source_type": "reference",
+        "excerpt_text": "Strong's lexical entries for creation terms note purposeful formation and ordering, supporting a theological reading centered on God's intentional design rather than randomness.",
+        "note": "Research librarian prepared theological support for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      },
+      {
+        "purpose": "theological",
+        "role_targets": [
+          "outliner",
+          "exposition_writer"
+        ],
+        "source_title": "Smith's Bible Dictionary",
+        "author": "William Smith",
+        "source_type": "reference",
+        "excerpt_text": "Smith's Bible Dictionary presents the Sabbath pattern as a theological gift: rest ordered by God, not merely human cessation, shaping worship and trust.",
+        "note": "Research librarian prepared theological support for Exodus 19:1-4.",
+        "relevance_score": 1.0
+      }
+    ]
+  },
+  "day_plan": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Remembered mercy before covenant demand",
+      "scripture_reference": "Exodus 19:1-4"
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Covenant identity received through obedience",
+      "scripture_reference": "Exodus 19:5-8"
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Consecration and holy boundaries",
+      "scripture_reference": "Exodus 19:9-13"
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Meeting God with trembling reverence",
+      "scripture_reference": "Exodus 19:14-19"
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Nearness without presumption",
+      "scripture_reference": "Exodus 19:20-25"
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Exclusive worship under holy authority",
+      "scripture_reference": "Exodus 20:1-3"
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "topic": "Exodus 19-20 | Rejecting false worship on the way to gathered worship",
+      "scripture_reference": "Exodus 20:4-6"
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "topic": "Exodus 19-20 | Reverent speech and sabbath-shaped life",
+      "scripture_reference": "Exodus 20:7-11"
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "topic": "Exodus 19-20 | Holy obedience in family and neighbor life",
+      "scripture_reference": "Exodus 20:12-14"
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "topic": "Exodus 19-20 | Truthful desire and neighborly integrity",
+      "scripture_reference": "Exodus 20:15-17"
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "topic": "Exodus 19-20 | Fear, distance, and mediated nearness",
+      "scripture_reference": "Exodus 20:18-21"
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "topic": "Exodus 19-20 | Worship ordered by God's own terms",
+      "scripture_reference": "Exodus 20:22-26"
+    }
+  ],
+  "day_briefs": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "scripture_reference": "Exodus 19:1-4",
+      "day_title": "Exodus 19:1-4 - \u201cThus you shall say to the house of Jacob and tell the sons of Israel",
+      "focus_clause": "\u201cThus you shall say to the house of Jacob and tell the sons of Israel",
+      "pastoral_burden": "covenant identity grounded in redeeming grace",
+      "genre": "narrative",
+      "scene_summary": "Exodus 19:1-4 opens with a scene marked by covenant identity grounded in redeeming grace.",
+      "theological_lane": "redeeming grace that brings a people near before covenant obedience is required",
+      "application_lane": "obedience that remembers God's redeeming grace before treating holiness as self-made achievement",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "thus",
+        "shall",
+        "say",
+        "house",
+        "jacob",
+        "tell"
+      ]
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "scripture_reference": "Exodus 19:5-8",
+      "day_title": "Exodus 19:5-8 - \u201d And Moses brought back the words of the people to the Lord",
+      "focus_clause": "\u201d And Moses brought back the words of the people to the Lord",
+      "pastoral_burden": "covenant identity grounded in redeeming grace",
+      "genre": "narrative",
+      "scene_summary": "Exodus 19:5-8 opens with a scene marked by covenant identity grounded in redeeming grace.",
+      "theological_lane": "redeeming grace that brings a people near before covenant obedience is required",
+      "application_lane": "obedience that remembers God's redeeming grace before treating holiness as self-made achievement",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "moses",
+        "brought",
+        "back",
+        "words",
+        "people",
+        "lord"
+      ]
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "scripture_reference": "Exodus 19:9-13",
+      "day_title": "Exodus 19:9-13 - \u201d Then Moses told the words of the people to the Lord",
+      "focus_clause": "\u201d Then Moses told the words of the people to the Lord",
+      "pastoral_burden": "reverent preparation before holy encounter",
+      "genre": "narrative",
+      "scene_summary": "Exodus 19:9-13 opens with a scene marked by reverent preparation before holy encounter.",
+      "theological_lane": "holy nearness that requires reverence, consecration, and creaturely boundaries",
+      "application_lane": "reverent readiness that does not treat God's holiness casually or presumptuously",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "moses",
+        "told",
+        "words",
+        "people",
+        "lord",
+        "said"
+      ]
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "scripture_reference": "Exodus 19:14-19",
+      "day_title": "Exodus 19:14-19 - Mount Sinai was all in smoke because the Lord descended upon it in fire",
+      "focus_clause": "Mount Sinai was all in smoke because the Lord descended upon it in fire",
+      "pastoral_burden": "reverent preparation before holy encounter",
+      "genre": "narrative",
+      "scene_summary": "Exodus 19:14-19 opens with a scene marked by reverent preparation before holy encounter.",
+      "theological_lane": "holy nearness that requires reverence, consecration, and creaturely boundaries",
+      "application_lane": "reverent readiness that does not treat God's holiness casually or presumptuously",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "mount",
+        "sinai",
+        "all",
+        "smoke",
+        "lord",
+        "descended"
+      ]
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "scripture_reference": "Exodus 19:20-25",
+      "day_title": "Exodus 19:20-25 - The Lord came down on Mount Sinai",
+      "focus_clause": "The Lord came down on Mount Sinai",
+      "pastoral_burden": "reverent restraint before holy nearness",
+      "genre": "narrative",
+      "scene_summary": "Exodus 19:20-25 opens with a scene marked by reverent restraint before holy nearness.",
+      "theological_lane": "holy boundaries under God's dangerous nearness",
+      "application_lane": "reverent restraint before God's holy nearness",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "lord",
+        "came",
+        "down",
+        "mount",
+        "sinai",
+        "top"
+      ]
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "scripture_reference": "Exodus 20:1-3",
+      "day_title": "Exodus 20:1-3 - Who brought you out of the land of Egypt",
+      "focus_clause": "Who brought you out of the land of Egypt",
+      "pastoral_burden": "exclusive allegiance to the Lord in worship and trust",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:1-3 opens with a scene marked by exclusive allegiance to the Lord in worship and trust.",
+      "theological_lane": "covenant life ordered by exclusive allegiance to the Lord and holy worship",
+      "application_lane": "wholehearted worship that rejects rivals, false images, and careless treatment of God's name",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "who",
+        "brought",
+        "out",
+        "land",
+        "egypt",
+        "god"
+      ]
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "scripture_reference": "Exodus 20:4-6",
+      "day_title": "Exodus 20:4-6 - To those who love Me and keep My commandments",
+      "focus_clause": "To those who love Me and keep My commandments",
+      "pastoral_burden": "exclusive allegiance to the Lord in worship and trust",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:4-6 opens with a scene marked by exclusive allegiance to the Lord in worship and trust.",
+      "theological_lane": "covenant life ordered by exclusive allegiance to the Lord and holy worship",
+      "application_lane": "wholehearted worship that rejects rivals, false images, and careless treatment of God's name",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "who",
+        "love",
+        "keep",
+        "commandments",
+        "shall",
+        "not"
+      ]
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "scripture_reference": "Exodus 20:7-11",
+      "day_title": "Exodus 20:7-11 - Rested on the seventh day",
+      "focus_clause": "Rested on the seventh day",
+      "pastoral_burden": "exclusive allegiance to the Lord in worship and trust",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:7-11 opens with a scene marked by exclusive allegiance to the Lord in worship and trust.",
+      "theological_lane": "covenant life ordered by exclusive allegiance to the Lord and holy worship",
+      "application_lane": "wholehearted worship that rejects rivals, false images, and careless treatment of God's name",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "rested",
+        "seventh",
+        "day",
+        "shall",
+        "not",
+        "take"
+      ]
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "scripture_reference": "Exodus 20:12-14",
+      "day_title": "Exodus 20:12-14 - That your days may be prolonged in the land which the Lord your God gives you",
+      "focus_clause": "That your days may be prolonged in the land which the Lord your God gives you",
+      "pastoral_burden": "neighbor love expressed through covenant-shaped restraint",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:12-14 opens with a scene marked by neighbor love expressed through covenant-shaped restraint.",
+      "theological_lane": "love of neighbor protected by God's commands against violence, deceit, and grasping desire",
+      "application_lane": "concrete neighbor-love that refuses harm, falsehood, and covetous grasping",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "days",
+        "may",
+        "prolonged",
+        "land",
+        "which",
+        "lord"
+      ]
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "scripture_reference": "Exodus 20:15-17",
+      "day_title": "Exodus 20:15-17 - \u201cYou shall not bear false witness against your neighbor",
+      "focus_clause": "\u201cYou shall not bear false witness against your neighbor",
+      "pastoral_burden": "neighbor love expressed through covenant-shaped restraint",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:15-17 opens with a scene marked by neighbor love expressed through covenant-shaped restraint.",
+      "theological_lane": "love of neighbor protected by God's commands against violence, deceit, and grasping desire",
+      "application_lane": "concrete neighbor-love that refuses harm, falsehood, and covetous grasping",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "shall",
+        "not",
+        "bear",
+        "false",
+        "witness",
+        "against"
+      ]
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "scripture_reference": "Exodus 20:18-21",
+      "day_title": "Exodus 20:18-21 - While Moses approached the thick cloud where God was",
+      "focus_clause": "While Moses approached the thick cloud where God was",
+      "pastoral_burden": "fear of God that restrains sin without driving us away from him",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:18-21 opens with a scene marked by fear of God that restrains sin without driving us away from him.",
+      "theological_lane": "holy fear meant to keep a people from sin, not to leave them in faithless terror",
+      "application_lane": "humble fear of God that leads to obedience instead of shrinking back into unbelief",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "moses",
+        "approached",
+        "thick",
+        "cloud",
+        "where",
+        "god"
+      ]
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "scripture_reference": "Exodus 20:22-26",
+      "day_title": "Exodus 20:22-26 - In every place where I cause My name to be remembered",
+      "focus_clause": "In every place where I cause My name to be remembered",
+      "pastoral_burden": "commandment-shaped obedience under holy authority",
+      "genre": "narrative",
+      "scene_summary": "Exodus 20:22-26 opens with a scene marked by commandment-shaped obedience under holy authority.",
+      "theological_lane": "covenant life ordered by God's holy authority",
+      "application_lane": "concrete obedience shaped by God's holy commands",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "every",
+        "place",
+        "where",
+        "cause",
+        "name",
+        "remembered"
+      ]
+    }
+  ],
+  "week_plans": [
+    {
+      "week_number": 1,
+      "title": "Week 1: Covenant Identity Grounded In Redeeming Grace",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "movement_summary": "Moves from \u201cthus you shall say to the house of jacob and tell the sons of israel toward to those who love me and keep my commandments."
+    },
+    {
+      "week_number": 2,
+      "title": "Week 2: Exclusive Allegiance To The Lord In Worship And Trust",
+      "days": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "movement_summary": "Moves from rested on the seventh day toward in every place where i cause my name to be remembered."
+    }
+  ]
+}

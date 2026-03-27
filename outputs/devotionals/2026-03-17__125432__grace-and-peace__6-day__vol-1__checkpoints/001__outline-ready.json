@@ -1,0 +1,1024 @@
+{
+  "run_slug": "2026-03-17__125432__grace-and-peace__6-day__vol-1",
+  "stage": "outline_ready",
+  "sequence": 1,
+  "created_at_utc": "2026-03-17T12:54:35.366964+00:00",
+  "payload": {
+    "topic": "Grace and Peace",
+    "num_days": 6,
+    "source_reference": "Romans 5",
+    "editorial_build": {
+      "topic": "Grace and Peace",
+      "num_days": 6,
+      "source_reference": "Romans 5",
+      "week_count": 1,
+      "passage_resources": {
+        "topic": "Grace and Peace",
+        "scripture_reference": "Romans 5",
+        "prepared_at_utc": "2026-03-17T12:54:34Z",
+        "shared_resources": [
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "commentary",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "commentary",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "reference",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "reference",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "encyclopedia",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "A Body of Divinity",
+            "author": "Thomas Watson",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember A Body of Divinity first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember A Discourse on Prayer first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Easton's Bible Dictionary first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Institutes of the Christian Religion first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember International Standard Bible Encyclopedia (1915) first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Jamieson-Fausset-Brown Bible Commentary first for background, exposition.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember John Gill's Exposition of the Bible first for background, exposition.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Journals of George Whitefield",
+            "author": "George Whitefield",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Journals of George Whitefield first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Letters of Samuel Rutherford",
+            "author": "Samuel Rutherford",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Letters of Samuel Rutherford first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Luther's Works (Prayer Selections)",
+            "author": "Martin Luther",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Luther's Works (Prayer Selections) first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Matthew Henry's Commentary on the Whole Bible",
+            "author": "Matthew Henry",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Matthew Henry's Commentary on the Whole Bible first for background, citation, exposition, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Metropolitan Tabernacle Pulpit",
+            "author": "Charles H. Spurgeon",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Metropolitan Tabernacle Pulpit first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Of the Mortification of Sin",
+            "author": "John Owen",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Of the Mortification of Sin first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Profiting from the Word",
+            "author": "Arthur W. Pink",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Profiting from the Word first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Resolutions",
+            "author": "Jonathan Edwards",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Resolutions first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Sermons and Letters",
+            "author": "John Calvin",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Sermons and Letters first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Sermons and Tracts",
+            "author": "John Wesley",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Sermons and Tracts first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Smith's Bible Dictionary first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Spurgeon's Sermons",
+            "author": "Charles H. Spurgeon",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Spurgeon's Sermons first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Strong's Hebrew Dictionary first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Table Talk",
+            "author": "Martin Luther",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Table Talk first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Bruised Reed",
+            "author": "Richard Sibbes",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Bruised Reed first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Doctrine of Repentance",
+            "author": "Thomas Watson",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Doctrine of Repentance first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Pulpit Commentary first for background, exposition.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Sovereignty of God",
+            "author": "Arthur W. Pink",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Sovereignty of God first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Works of Jonathan Edwards",
+            "author": "Jonathan Edwards",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Works of Jonathan Edwards first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          }
+        ],
+        "outliner_resources": [
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "encyclopedia",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Journals of George Whitefield",
+            "author": "George Whitefield",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Letters of Samuel Rutherford",
+            "author": "Samuel Rutherford",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Luther's Works (Prayer Selections)",
+            "author": "Martin Luther",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Matthew Henry's Commentary on the Whole Bible",
+            "author": "Matthew Henry",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Metropolitan Tabernacle Pulpit",
+            "author": "Charles H. Spurgeon",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Of the Mortification of Sin",
+            "author": "John Owen",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Profiting from the Word",
+            "author": "Arthur W. Pink",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Sermons and Letters",
+            "author": "John Calvin",
+            "source_type": "sermon_collection",
+            "excerpt_text": "publication_metadata",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Sermons and Tracts",
+            "author": "John Wesley",
+            "source_type": "sermon_collection",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Table Talk",
+            "author": "Martin Luther",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Bruised Reed",
+            "author": "Richard Sibbes",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Doctrine of Repentance",
+            "author": "Thomas Watson",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Sovereignty of God",
+            "author": "Arthur W. Pink",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Romans 5: chapters 4-6. Book coverage: Romans. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          }
+        ],
+        "exposition_resources": [
+          {
+            "purpose": "context",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "commentary",
+            "excerpt_text": "The Pulpit Commentary notes that the creation account frames Israel's worship by grounding all life and time in the Lord's sovereign initiative.",
+            "note": "Research librarian prepared context support for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "commentary",
+            "excerpt_text": "Jamieson-Fausset-Brown observes that each creative act is presented as both powerful and orderly, reinforcing God's authority over chaos and history.",
+            "note": "Research librarian prepared theological support for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "reference",
+            "excerpt_text": "Strong's lexical entries for creation terms note purposeful formation and ordering, supporting a theological reading centered on God's intentional design rather than randomness.",
+            "note": "Research librarian prepared theological support for Romans 5.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "reference",
+            "excerpt_text": "Smith's Bible Dictionary presents the Sabbath pattern as a theological gift: rest ordered by God, not merely human cessation, shaping worship and trust.",
+            "note": "Research librarian prepared theological support for Romans 5.",
+            "relevance_score": 1.0
+          }
+        ]
+      },
+      "day_plan": [
+        {
+          "day_number": 1,
+          "week_number": 1,
+          "topic": "Grace and Peace",
+          "scripture_reference": "Romans 5:2-3",
+          "study_window_reference": "Romans 5:1-3"
+        },
+        {
+          "day_number": 2,
+          "week_number": 1,
+          "topic": "Grace and Peace",
+          "scripture_reference": "Romans 5:5-6",
+          "study_window_reference": "Romans 5:4-7"
+        },
+        {
+          "day_number": 3,
+          "week_number": 1,
+          "topic": "Grace and Peace",
+          "scripture_reference": "Romans 5:9-10",
+          "study_window_reference": "Romans 5:8-10"
+        },
+        {
+          "day_number": 4,
+          "week_number": 1,
+          "topic": "Grace and Peace",
+          "scripture_reference": "Romans 5:12-13",
+          "study_window_reference": "Romans 5:11-14"
+        },
+        {
+          "day_number": 5,
+          "week_number": 1,
+          "topic": "Grace and Peace",
+          "scripture_reference": "Romans 5:16-17",
+          "study_window_reference": "Romans 5:15-17"
+        },
+        {
+          "day_number": 6,
+          "week_number": 1,
+          "topic": "Grace and Peace",
+          "scripture_reference": "Romans 5:19-20",
+          "study_window_reference": "Romans 5:18-21"
+        }
+      ],
+      "day_briefs": [
+        {
+          "day_number": 1,
+          "week_number": 1,
+          "scripture_reference": "Romans 5:2-3",
+          "study_window_reference": "Romans 5:1-3",
+          "key_verse_reference": "Romans 5:2-3",
+          "day_title": "Romans 5:2-3 - We have peace with God through our Lord Jesus Christ",
+          "focus_clause": "We have peace with God through our Lord Jesus Christ",
+          "pastoral_burden": "peace with God received through justification by faith alone",
+          "genre": "epistle",
+          "scene_summary": "Romans 5:2-3 opens with a scene marked by peace with God received through justification by faith alone.",
+          "theological_lane": "justification by faith alone gives the sinner standing, peace, and access to grace that no human effort could earn or sustain",
+          "application_lane": "joyful hope in the glory of God that flows from peace with him, received by faith alone and not by effort added to what Christ finished",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "peace",
+            "god",
+            "our",
+            "lord",
+            "jesus",
+            "christ"
+          ]
+        },
+        {
+          "day_number": 2,
+          "week_number": 1,
+          "scripture_reference": "Romans 5:5-6",
+          "study_window_reference": "Romans 5:4-7",
+          "key_verse_reference": "Romans 5:5-6",
+          "day_title": "Romans 5:5-6 - At the right time Christ died for the ungodly",
+          "focus_clause": "At the right time Christ died for the ungodly",
+          "pastoral_burden": "hope that holds firm because Christ died for the helpless before they deserved it",
+          "genre": "epistle",
+          "scene_summary": "Romans 5:5-6 opens with a scene marked by hope that holds firm because Christ died for the helpless before they deserved it.",
+          "theological_lane": "hope rooted in suffering does not shame the believer because God's love was proved by Christ dying for the ungodly before any merit existed",
+          "application_lane": "hope-filled endurance that rests on Christ who died for the helpless before they deserved it, not on strength that suffering tests",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage",
+            "flattening severe themes into comfort language"
+          ],
+          "key_terms": [
+            "right",
+            "time",
+            "christ",
+            "died",
+            "ungodly",
+            "perseverance"
+          ]
+        },
+        {
+          "day_number": 3,
+          "week_number": 1,
+          "scripture_reference": "Romans 5:9-10",
+          "study_window_reference": "Romans 5:8-10",
+          "key_verse_reference": "Romans 5:9-10",
+          "day_title": "Romans 5:9-10 - If while we were enemies we were reconciled to God through the death of His Son",
+          "focus_clause": "If while we were enemies we were reconciled to God through the death of His Son",
+          "pastoral_burden": "reconciliation with God received while we were still enemies",
+          "genre": "epistle",
+          "scene_summary": "Romans 5:9-10 opens with a scene marked by reconciliation with God received while we were still enemies.",
+          "theological_lane": "God reconciled his enemies to himself through Christ's death and keeps them by his risen life, making boasting in God the proper response",
+          "application_lane": "bold rejoicing in God through Christ, who reconciled enemies by his death and saves them by his life without waiting for them to become worthy",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "enemies",
+            "reconciled",
+            "god",
+            "death",
+            "his",
+            "son"
+          ]
+        },
+        {
+          "day_number": 4,
+          "week_number": 1,
+          "scripture_reference": "Romans 5:12-13",
+          "study_window_reference": "Romans 5:11-14",
+          "key_verse_reference": "Romans 5:12-13",
+          "day_title": "Romans 5:12-13 - We also exult in God through our Lord Jesus Christ",
+          "focus_clause": "We also exult in God through our Lord Jesus Christ",
+          "pastoral_burden": "reconciliation with God received while we were still enemies through also exult god our lord",
+          "genre": "epistle",
+          "scene_summary": "Romans 5:12-13 opens with a scene marked by reconciliation with God received while we were still enemies.",
+          "theological_lane": "God reconciled his enemies to himself through Christ's death and keeps them by his risen life, making boasting in God the proper response centered on also exult god our lord",
+          "application_lane": "bold rejoicing in God through Christ, who reconciled enemies by his death and saves them by his life without waiting for them to become worthy expressed in also exult god our lord",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "also",
+            "exult",
+            "god",
+            "our",
+            "lord",
+            "jesus"
+          ]
+        },
+        {
+          "day_number": 5,
+          "week_number": 1,
+          "scripture_reference": "Romans 5:16-17",
+          "study_window_reference": "Romans 5:15-17",
+          "key_verse_reference": "Romans 5:16-17",
+          "day_title": "Romans 5:16-17 - On the other hand the free gift arose from many transgressions resulting in justification",
+          "focus_clause": "On the other hand the free gift arose from many transgressions resulting in justification",
+          "pastoral_burden": "the free gift of righteousness that far exceeds the reach of the transgression",
+          "genre": "epistle",
+          "scene_summary": "Romans 5:16-17 opens with a scene marked by the free gift of righteousness that far exceeds the reach of the transgression.",
+          "theological_lane": "where the transgression brought condemnation, the free gift of grace and righteousness brings justification and life that overflows beyond the damage",
+          "application_lane": "joyful reception of the free gift of righteousness that far exceeds the transgression, given by grace not earned by those who receive it",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "other",
+            "hand",
+            "free",
+            "gift",
+            "arose",
+            "many"
+          ]
+        },
+        {
+          "day_number": 6,
+          "week_number": 1,
+          "scripture_reference": "Romans 5:19-20",
+          "study_window_reference": "Romans 5:18-21",
+          "key_verse_reference": "Romans 5:19-20",
+          "day_title": "Romans 5:19-20 - Even so grace would reign through righteousness to eternal life through Jesus Christ our Lord",
+          "focus_clause": "Even so grace would reign through righteousness to eternal life through Jesus Christ our Lord",
+          "pastoral_burden": "grace that abounded more than sin through the obedience of the one man",
+          "genre": "epistle",
+          "scene_summary": "Romans 5:19-20 opens with a scene marked by grace that abounded more than sin through the obedience of the one man.",
+          "theological_lane": "where Adam's disobedience brought condemnation to many, Christ's obedience brings righteousness and life, with grace abounding beyond every measure of sin",
+          "application_lane": "humble wonder at grace that abounded beyond sin's increase, grounded entirely in Christ's obedience rather than the obedience of those who receive it",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "even",
+            "grace",
+            "reign",
+            "righteousness",
+            "eternal",
+            "life"
+          ]
+        }
+      ],
+      "week_plans": [
+        {
+          "week_number": 1,
+          "title": "Week 1: Peace With God Received Through Justification By Faith Alone",
+          "days": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "movement_summary": "Moves from we have peace with god through our lord jesus christ toward even so grace would reign through righteousness to eternal life through jesus christ our lord."
+        }
+      ]
+    }
+  }
+}

@@ -282,6 +282,23 @@ describe('generatePDF — margins and compliance', () => {
   }, 30000);
 });
 
+
+describe('generatePDF — reviewed-proof mode', () => {
+  it('adds proof metadata to the generated PDF', async () => {
+    const result = await generatePDF(SAMPLE_DOCUMENT, 'reviewed-proof');
+    const loadedDoc = await PDFDocument.load(result.pdfBytes);
+    expect(loadedDoc.getTitle()).toContain('REVIEW PROOF');
+    expect(loadedDoc.getSubject()).toContain('NOT FOR PUBLICATION');
+  }, 30000);
+
+  it('treats offer-page compliance as advisory in reviewed-proof mode', async () => {
+    const doc = { ...SAMPLE_DOCUMENT, content_pages: SAMPLE_DOCUMENT.content_pages.slice(0, -1) };
+    const result = await generatePDF(doc, 'reviewed-proof');
+    expect(result.complianceResult.offer_page_present).toBe(true);
+    expect(result.complianceResult.violations.some((v) => v.includes('Offer page'))).toBe(false);
+  }, 30000);
+});
+
 describe('generatePDF — personal mode', () => {
   it('personal mode also produces valid PDF bytes', async () => {
     const result = await generatePDF(SAMPLE_DOCUMENT, 'personal');

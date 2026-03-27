@@ -1,0 +1,27 @@
+{
+  "run_slug": "2026-03-09__195419__genesis-1-&-2__12-day__vol-2",
+  "topic": "Genesis 1 & 2",
+  "days": 12,
+  "series_id": "series-genesis12-e2e-final",
+  "standalone_volume": false,
+  "volume_number": 2,
+  "volume_id": "vol-5ff8593f",
+  "db_path": "data/devg_registry.sqlite3",
+  "generator": "real",
+  "preview_pdf_path": "outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__kdp-personal-preview.pdf",
+  "book_json_path": "outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__book.json",
+  "approval_report_path": "outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__approval-gate-report.json",
+  "approval_decisions_path": "outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__approval-decisions.json",
+  "agent_validation_report_path": "outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__agent-validation-report.json",
+  "audit_linkage_path": "outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__audit-linkage.json",
+  "validation_summary": {
+    "total_checks": 120,
+    "passed": 120,
+    "failed": 0,
+    "rewrite_events": []
+  },
+  "agent_validation_overall_passed": true,
+  "review_web_command": "python3 scripts/review/run_review.py --backend web --report outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__approval-gate-report.json --out outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__approval-decisions.json --reviewed-by \"Victor\"",
+  "review_studio_command": "python3 scripts/review/run_review_studio.py --report outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__approval-gate-report.json --out outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__approval-decisions.json --book-json outputs/devotionals/2026-03-09__195419__genesis-1-&-2__12-day__vol-2__book.json --reviewed-by \"Victor\"",
+  "generated_at_utc": "2026-03-09T19:55:28.402393+00:00"
+}

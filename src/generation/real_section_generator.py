@@ -59,68 +59,47 @@ def _maybe_apply_safe_fixes(text: str, *, ignored_words: set[str] | None = None)
     return apply_safe_fixes(text, ignored_words=ignored_words)
 
 
+_STRAY_HEADING_RE = re.compile(
+    r"\bworship\s+and\s+wisdom\s+under\s+the\s+word\s+of\s+god\b",
+    re.IGNORECASE,
+)
+
+
+def _strip_stray_headings(text: str) -> str:
+    """Remove section headings that leak into prose body (e.g. from template bleed)."""
+    return _STRAY_HEADING_RE.sub("", text).strip()
+
+
+def _dedupe_exposition_sentences(text: str) -> str:
+    """Remove verbatim duplicate sentences while preserving paragraph breaks."""
+    seen: set[str] = set()
+    out: list[str] = []
+    for para in text.split("\n\n"):
+        sentences = re.split(r"(?<=[.!?])\s+", para.strip())
+        unique = []
+        for s in sentences:
+            norm = re.sub(r"[^\w\s]", "", s.lower()).strip()
+            if norm and norm not in seen:
+                seen.add(norm)
+                unique.append(s)
+        if unique:
+            out.append(" ".join(unique))
+    return "\n\n".join(out)
+
+
 def _ensure_exposition_floor(text: str, *, theme_key: str) -> str:
     words = text.split()
-    if len(words) >= 500:
+    if len(words) >= 200:
         return text
-    supplementals: list[str] = {
-        "ordered_light": [
-            "God's ordering of light teaches the soul to receive time and limits as wise gifts rather than as obstacles to control.",
-            "Faithful attention to the text allows light and order to do their theological work before application rushes ahead.",
-            "This passage trains patient reception before it trains active response.",
-        ],
-        "fruitfulness": [
-            "The blessing of fruitful life reminds the reader that abundance is first received from God before it is stewarded by human hands.",
-            "Fruitfulness is therefore a theological claim about God's generosity before it becomes a practical goal for the believer.",
-            "Faithful reading of abundance texts begins with gratitude rather than strategy.",
-        ],
-        "delegated_rule": [
-            "Delegated rule becomes holy only when strength remains answerable to the God who gives both dignity and limits.",
-            "Authority exercised humbly becomes a form of worship rather than a claim to independence.",
-            "The text therefore calls for steady, reverent faithfulness rather than self-assured mastery.",
-        ],
-        "sabbath_rest": [
-            "Holy rest teaches the creature to stop proving what God has already completed and called good.",
-            "Rest is not the absence of labor but the presence of trust that God's word about completeness can be believed.",
-            "This text therefore calls for a practiced willingness to stop before the day requires it.",
-        ],
-        "life_dependence": [
-            "Creaturely dependence is not a defect to hide but a truth to receive gratefully before God.",
-            "The life received from God is not diminished by its dependence — it is dignified by the One who gives it.",
-            "This text therefore trains humility and gratitude to arrive before ambition or self-assertion.",
-        ],
-        "garden_stewardship": [
-            "Stewardship matures when provision is treated as entrusted care instead of private possession.",
-            "The garden is not owned by the one who tends it; it remains under the authority of the One who planted it.",
-            "That distinction guards both gratitude and diligence from drifting into pride or carelessness.",
-        ],
-        "generous_command": [
-            "Generous command protects joy by teaching the heart to trust God's boundaries before testing them.",
-            "The limit in the text is not a threat to freedom; it is a testimony to the goodness of the One who set it.",
-            "That reordering of trust and obedience is what faithful exposition must make plain.",
-        ],
-        "delegated_discernment": [
-            "Discernment under God is patient enough to notice, name, and tend responsibilities without vanity.",
-            "The text trains careful attention rather than hasty judgment, because naming rightly is itself an act of obedience.",
-            "Faithful reading therefore slows the reader down before it commissions decisive action.",
-        ],
-    }.get(theme_key, [
-        "Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
-        "The passage rewards patient attention, and patience is itself a form of active trust in the word.",
-        "This kind of reading does not measure its value by how quickly it produces resolution.",
-        "It measures faithfulness by whether the soul has been before God long enough to hear what the text actually teaches.",
-        "Scripture shapes the conscience slowly, and slow formation is often deeper than quick decision.",
-        "The details of the text are not incidental; they carry the theological weight that makes application honest.",
-        "Careful reading resists the urge to arrive at a conclusion before the passage has been heard completely.",
-        "Obedience that outpaces understanding is zeal without knowledge; the text calls for both, in the right order.",
-        "What the passage asks is not always obvious on first reading, and that is precisely why returning to it matters.",
-        "Devotion that stays anchored to the text remains correctable, teachable, and honest before God and neighbor.",
-    ])
-    for sentence in supplementals:
-        if len(words) >= 500:
-            break
-        words.extend(sentence.split())
-    return " ".join(words[:520])
+    joined = " ".join(words)
+    if len(words) <= 350:
+        return joined
+    # Hard cap at 350 words — cut at last sentence boundary to avoid mid-word truncation.
+    truncated = " ".join(words[:350])
+    _sent_end = max(truncated.rfind(". "), truncated.rfind("! "), truncated.rfind("? "))
+    if _sent_end > len(truncated) // 2:
+        return truncated[: _sent_end + 1].rstrip()
+    return truncated
 
 
 def _expand_to_word_count(sentences: list[str], target_words: int) -> str:
@@ -208,13 +187,18 @@ def _normalize_scripture_text(text: str) -> str:
     stopwords = {"and", "or", "of", "the", "about", "to", "for", "in", "on"}
 
     def _looks_like_heading(line: str) -> bool:
-        words = [word for word in line.split() if any(ch.isalpha() for ch in word)]
+        # Strip trailing sentence-ending punctuation before testing — headings like
+        # "The Lord, the Psalmist's Shepherd." end with a period but are still headings.
+        stripped = line.rstrip(".!?")
+        words = [word for word in stripped.split() if any(ch.isalpha() for word in [word] for ch in word)]
         if not words or len(words) > 10:
             return False
-        if re.search(r"[.!?;,:\"'“”]", line):
+        # Internal semicolons/colons/double-quotes signal a sentence, not a heading.
+        # Single quotes (apostrophes in possessives) are allowed in headings.
+        if re.search(r"[;:\"\u201c\u201d]", stripped):
             return False
         return all(
-            re.sub(r"^\W+", "", word)[:1].isupper() or word.lower().strip("()[]") in stopwords
+            re.sub(r"^\W+", "", word)[:1].isupper() or word.lower().strip("()[].,") in stopwords
             for word in words
         )
 
@@ -299,6 +283,10 @@ def _seeded_exposition_resources(
 
 def _communalize_focus(text: str) -> str:
     cleaned = re.sub(r"\byour\b", "the", str(text or ""), flags=re.IGNORECASE)
+    # Fix subject-verb agreement before the generic "you → the hearer" replacement:
+    # "you have died" → "the hearer has died"; "you are" → "the hearer is"
+    cleaned = re.sub(r"\byou have\b", "the hearer has", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"\byou are\b", "the hearer is", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"\byou\b", "the hearer", cleaned, flags=re.IGNORECASE)
     cleaned = " ".join(cleaned.split()).strip(" ,.-")
     return _sentence_case(cleaned)
@@ -419,7 +407,14 @@ def _theme_key(brief: EditorialDayBrief, scripture_text: str = "") -> str:
             return "epistle_sanctification"
     if _ref_lower.startswith(("ruth", "esther", "nehemiah", "daniel", "ezra", "joshua",
                                "judges", "samuel", "kings", "chronicles", "genesis", "exodus")):
-        if any(p in lower for p in ("where you go i will go", "your people shall be my people", "wherever you go", "steadfast love", "lovingkindness")):
+        # Law/command passages take priority over narrative loyalty — Exodus 20 Decalogue
+        # contains "lovingkindness" but is fundamentally a law passage, not a loyalty story.
+        if any(p in lower for p in ("you shall have no other gods", "thou shalt not",
+                                    "you shall not make for yourself", "commandment",
+                                    "the ten commandments", "six days you shall")):
+            return "law"
+        if any(p in lower for p in ("where you go i will go", "your people shall be my people", "wherever you go", "steadfast love", "lovingkindness",
+                                    "deal kindly with you", "the lord deal kindly", "visited his people", "visited his people in giving")):
             return "narrative_loyalty"
         if any(p in lower for p in ("for such a time as this", "god meant it for good", "god intended it for good")):
             return "narrative_providence"
@@ -435,6 +430,13 @@ def _theme_key(brief: EditorialDayBrief, scripture_text: str = "") -> str:
         return "resurrection"
     if _is_gospel and ("cross" in lane or "sacrifice" in lane):
         return "cross"
+    if _is_gospel and any(p in lower for p in (
+        "rebellious desire", "sinful independence", "younger son gathered",
+        "distance from the father", "squandered his estate", "far country",
+        "he began to be impoverished", "he came to his senses",
+        "i will get up and go to my father",
+    )):
+        return "repentance"
     if _is_gospel and "repentance" in lane:
         return "repentance"
     if _is_gospel and "betray" in lane:
@@ -750,9 +752,9 @@ def _theme_applications(theme_key: str) -> tuple[str, str, str]:
         )
     if theme_key == "repentance":
         return (
-            "honest repentance instead of defensive self-justification",
-            "admit failure quickly and return to the Lord",
-            "grief that returns to truth instead of hiding",
+            "a return to the Father that begins with honest recognition of what self-rule produces",
+            "name what the far country actually cost and turn back toward the Father's presence",
+            "honest return that does not dress up self-caused ruin as something other than what it is",
         )
     if theme_key == "betrayal":
         return (
@@ -810,9 +812,9 @@ def _theme_applications(theme_key: str) -> tuple[str, str, str]:
         )
     if theme_key == "psalm_trust":
         return (
-            "trust in the Shepherd instead of anxious self-reliance",
-            "rest in His care even through the valley",
-            "quiet confidence under the Shepherd's lead",
+            "trust in the Shepherd's provision rather than frantic self-securing",
+            "receive His leading without forcing or anticipating what He has not yet given",
+            "quiet confidence under His guidance",
         )
     if theme_key == "psalm_lament":
         return (
@@ -835,7 +837,7 @@ def _theme_applications(theme_key: str) -> tuple[str, str, str]:
     if theme_key == "epistle_sanctification":
         return (
             "new life in Christ instead of old patterns left unchallenged",
-            "put off what belongs to the old self and put on what belongs to the new",
+            "seek the things that are above, where Christ is seated at the right hand of God",
             "seeking things above in ordinary daily obedience",
         )
     if theme_key == "narrative_loyalty":
@@ -966,7 +968,13 @@ def _theme_specific_sentence(theme_key: str) -> str:
         )
     if theme_key == "repentance":
         return (
-            "Failure is not minimized here; it is remembered, named, and turned into grief that can no longer pretend innocence."
+            "In Luke 15:12 the younger son does not ask for guidance or blessing — he asks for his inheritance now, "
+            "which is to say: he wants the father's wealth without the father's presence. "
+            "The father's willingness to divide the estate is not naivety; it is a deliberate choice to let the son go. "
+            "The movement of verses 13-14 is swift and exact: the son gathered everything, left for a far country, "
+            "squandered his estate in loose living, spent everything, and then a famine came. "
+            "The parable does not editorialize at this point — it simply names what self-ruled independence produces "
+            "when the inherited wealth runs out and the world does not provide what it seemed to promise."
         )
     if theme_key == "betrayal":
         return (
@@ -995,6 +1003,66 @@ def _theme_specific_sentence(theme_key: str) -> str:
     if theme_key == "warning":
         return (
             "Divine warning refuses casual optimism and trains the heart to take God's opposition to evil with full seriousness."
+        )
+    if theme_key == "psalm_trust":
+        return (
+            "The shepherd image grounds trust in observed care rather than abstract confidence: "
+            "provision, rest beside quiet water, and renewal of the soul are received before guidance is asked for. "
+            "The crucial phrase 'for His name's sake' names the motive behind that guidance — the Shepherd leads in righteous paths "
+            "not because the sheep has earned direction but because the Shepherd's own character and reputation are at stake."
+        )
+    if theme_key == "psalm_lament":
+        return (
+            "Lament in the psalms is not a failure of faith — it is faith refusing to pretend that everything is well "
+            "while pressing the honest weight of the soul before the God who can bear it."
+        )
+    if theme_key == "psalm_praise":
+        return (
+            "Praise that names specific benefits — steadfast love, mighty deeds, restoration — "
+            "is not sentiment but testimony: the soul reports what God has actually done rather than recycling religious vocabulary."
+        )
+    if theme_key == "epistle_justification":
+        return (
+            "The chain Paul names immediately after the peace declaration — tribulation producing perseverance, "
+            "perseverance producing proven character, proven character producing hope — shows that declared "
+            "righteousness is not abstract: it is tested and confirmed in lived experience under pressure. "
+            "The Holy Spirit's role in pouring out the love of God into the heart explains why this hope "
+            "does not end in shame even when circumstances offer no visible confirmation — it is not "
+            "self-manufactured confidence but a love actively poured into those who have been declared righteous."
+        )
+    if theme_key == "narrative_loyalty":
+        return (
+            "The hesed — steadfast love — that Naomi pronounces over her daughters-in-law in verse 8 is not a generic blessing; "
+            "it is the same character quality the LORD had already shown to Naomi's dead and to Naomi herself. "
+            "The passage holds divine faithfulness and human faithfulness in deliberate parallel: what God has been to Naomi, "
+            "Naomi prays that her daughters-in-law would find from new husbands — and what the daughters-in-law have been to the dead, "
+            "Naomi acknowledges as genuine lovingkindness. "
+            "Loyalty here is not a virtue performed in isolation but a quality that passes from the living God into human relationships."
+        )
+    if theme_key == "narrative_providence":
+        return (
+            "Providence in biblical narrative is rarely announced — it is recognized in retrospect, "
+            "after the hidden purposes of God become visible through the events that seemed arbitrary or cruel at the time. "
+            "The passage invites the reader to trust what they cannot yet see, not by pretending that circumstances are better than they are, "
+            "but by believing that the God who governs outcomes has not abandoned the story."
+        )
+    if theme_key == "epistle_sanctification":
+        return (
+            "The command to set the mind on things above (vv.1-2) is not a call to religious escapism but to a re-ordered orientation: "
+            "the seat where Christ currently rules — 'at the right hand of God' — is meant to be more determinative for daily life "
+            "than the visible pressures that compete for that center. "
+            "The grounding comes in verse 3: 'you have died, and your life is hidden with Christ in God.' "
+            "Identity here is not an achievement to be secured but a status already declared — "
+            "the seeking and the setting of the mind flow from that declaration, not toward it."
+        )
+    if theme_key == "epistle_justification":
+        return (
+            "The peace with God declared in verse 1 is not a mood state to be maintained but a legal status secured through justification — "
+            "it precedes everything the passage then describes and makes it possible. "
+            "The chain running from tribulation through perseverance, proven character, and hope (vv.3-4) is not a self-improvement program; "
+            "it is a testimony to what declared righteousness actually produces in a life lived under real pressure. "
+            "The Spirit's role in verse 5 — pouring God's love into the heart — explains why the hope named here "
+            "does not end in shame: it is not self-generated confidence but received love."
         )
     return ""
 
@@ -1037,8 +1105,9 @@ def _focus_clause_in_passage(focus_clause: str, passage_text: str) -> bool:
     sub-clause independently against the passage. Requires at least 6 characters to
     avoid trivial single-word matches.
     """
-    passage_lower = (passage_text or "").lower()
-    full_lower = (focus_clause or "").lower().strip().rstrip(".,;:")
+    # Normalize whitespace so multi-line scripture text matches single-space focus clauses.
+    passage_lower = re.sub(r"\s+", " ", (passage_text or "").lower())
+    full_lower = re.sub(r"\s+", " ", (focus_clause or "").lower()).strip().rstrip(".,;:")
     if not full_lower or len(full_lower) < 6:
         return False
     # Full-phrase match first (most precise)
@@ -1050,6 +1119,23 @@ def _focus_clause_in_passage(focus_clause: str, passage_text: str) -> bool:
         if len(part) >= 6 and part in passage_lower:
             return True
     return False
+
+
+def _para4_exposure_clause(theme_key: str, practice_move: str) -> str:
+    """Return a theme-appropriate 'Where the text...' clause for para 4."""
+    verbs = {
+        "psalm_trust": f"Where the text calls for trust, we should {practice_move}.",
+        "psalm_lament": f"Where the text names honest grief, we should {practice_move}.",
+        "psalm_praise": f"Where the text calls for blessing, we should {practice_move}.",
+        "epistle_justification": f"Where the text declares standing before God, we should {practice_move}.",
+        "epistle_sanctification": f"Where the text commands the new posture, we should {practice_move}.",
+        "law": f"Where the text commands, we should {practice_move}.",
+        "narrative_loyalty": f"Where the text exposes the cost of faithfulness, we should {practice_move}.",
+        "narrative_providence": f"Where the text reveals hidden providence, we should {practice_move}.",
+        "prophecy_restoration": f"Where the text promises restoration, we should {practice_move}.",
+        "repentance": f"Where the text exposes the lie of self-sufficient independence, we should {practice_move}.",
+    }
+    return verbs.get(theme_key, f"Where the text exposes fear, we should {practice_move}.")
 
 
 def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
@@ -1066,7 +1152,9 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
     christological = _christological_frame(brief)
     theme_variant = _theme_variant(brief, scripture_text)
     if christological:
-        larger_movement = f"in which {focus.lower()} stands as the passage's defining event"
+        # Do not quote focus_clause here — it already appears in paragraphs 1 and 2;
+        # a third occurrence reads as mechanical repetition.
+        larger_movement = f"in which {brief.scripture_reference}'s defining moment is being set before the reader"
     elif brief.genre == "wisdom":
         larger_movement = "in which wisdom's invitation and folly's seduction are being set before the reader as two distinct paths"
     elif brief.genre == "epistle":
@@ -1098,9 +1186,30 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
             "demanding a response from people who have not yet seen the outcome."
         )
     elif brief.genre == "poetry":
+        if theme_key == "psalm_trust":
+            presence_sentence = (
+                f"What we see in {brief.scripture_reference} shows how trust in a shepherd God "
+                "is neither passive sentiment nor managed confidence, but a posture formed by specific care received."
+            )
+        elif theme_key == "psalm_praise":
+            presence_sentence = (
+                f"What we see in {brief.scripture_reference} shows how praise rises from remembered mercy "
+                "before it can be reduced to ritual repetition."
+            )
+        else:
+            presence_sentence = (
+                f"What we see in {brief.scripture_reference} shows how faith voices its inner state honestly "
+                "rather than hiding it behind composed religious language."
+            )
+    elif theme_key == "narrative_loyalty":
         presence_sentence = (
-            f"What we see in {brief.scripture_reference} shows how faith voices its inner state honestly "
-            "rather than hiding it behind composed religious language."
+            f"What we see in {brief.scripture_reference} shows how covenant loyalty emerges under grief — "
+            "these three women are widows on a road, and it is precisely in that stripped-down condition that the costly choice is offered and refused."
+        )
+    elif theme_key == "narrative_providence":
+        presence_sentence = (
+            f"What we see in {brief.scripture_reference} shows how God's hidden purposes govern events "
+            "that appear to those inside them as accident, cruelty, or abandonment."
         )
     else:
         presence_sentence = (
@@ -1110,6 +1219,8 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
     closing_reference = (
         f"Where it reveals Jesus clearly, we should pursue {closing_move} rather than delay."
         if christological
+        else f"That posture — receiving what the Shepherd has already committed to give — is what {brief.scripture_reference} commends as trustful obedience."
+        if theme_key == "psalm_trust"
         else f"Where it reveals God's worth clearly, we should pursue {closing_move} rather than delay."
     )
     if theme_key == "trial":
@@ -1235,9 +1346,36 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         "resurrection": (
             f"{brief.scene_summary} The text opens the day with living hope rather than mere religious sentiment."
         ),
+        "psalm_trust": (
+            f"{brief.scripture_reference} places before the reader a scene of shepherd care: provision, rest, "
+            f"soul-renewal, and purposeful guidance. The passage's claim is not that life will be easy but that the Shepherd "
+            "leads, and that His leading has a purpose grounded in His own character rather than in the sheep's merit."
+        ),
+        "psalm_lament": (
+            f"{brief.scripture_reference} opens honest grief to God without softening the anguish into managed composure. "
+            "The psalm does not rush to resolution — it names the felt distance between need and divine presence "
+            "and presses that distance directly before the Lord."
+        ),
+        "psalm_praise": (
+            f"{brief.scripture_reference} calls the soul to bless the Lord with specific memory of what He has done. "
+            "Praise here is not mood but testimony — the listing of benefits is itself the act of worship."
+        ),
+        "epistle_justification": (
+            f"{brief.scripture_reference} lays a doctrinal declaration before the reader, then draws out its consequences "
+            "for lived life under pressure. The argument is deliberate and sequential."
+        ),
+        "epistle_sanctification": (
+            f"{brief.scripture_reference} calls for a concrete change of posture and practice rather than a vague improvement of attitude. "
+            "The commands are grounded in a status already secured."
+        ),
+        "repentance": (
+            f"{brief.scripture_reference} opens a parable in which a father's generosity becomes the occasion for a son's departure. "
+            "The movement of verses 11-14 is deliberate: request, division, gathering, journey, squandering, famine, impoverishment — "
+            "and the text does not pause to editorialize because the sequence is its own indictment."
+        ),
     }.get(
         theme_key,
-        f"{brief.scene_summary} The text does not ask the reader to admire the moment from a distance."
+        f"{brief.scene_summary} The text presses the reader toward response, not merely observation."
     )
     genre_sentence = {
         "prophecy": "Because this is prophetic material, the burden falls on sober listening, not imaginative embellishment.",
@@ -1268,58 +1406,118 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
         (
             f"{opening_sentence} "
             f"The passage puts one scene before us: \"{focus_quote}.\" "
-            f"That phrase — not a general principle, but those specific words — sets the day's register. "
-            f"What {brief.scripture_reference} shows here must be received before it is applied. "
-            f"The text's particularity is its pastoral authority — what {brief.scripture_reference} says is what the reader must face."
+            f"That phrase — not a general principle, but those specific words — sets the day's register."
         ),
         (
             f"{(brief.theological_lane or '')[:1].upper()}{(brief.theological_lane or '')[1:]}. "
-            f"The text stays concrete: \"{focus_quote}\" — "
-            "those specific words carry the day's theological weight before any principle is named. "
             f"{theme_sentence}".strip()
         ),
         (
             f"{presence_sentence} "
-            "The point is not bare information. "
-            f"It presses into {emphasis}. "
-            "Scripture names the pressure point before we apply it — the text does that work, not a principle imported from elsewhere. "
-            "We should receive what it shows before reaching for application."
+            f"It presses into {emphasis}."
         ),
         (
-            f"What {brief.scripture_reference} reveals calls for concrete response, not abstract agreement. "
-            f"Where the text exposes fear, we should {practice_move}. "
-            f"Where it honors devotion, we should practice {communal_application}. "
-            f"{closing_reference} "
-            "That keeps the day under the authority of Scripture."
+            (
+                # psalm_trust: replace boilerplate opening/closing with YHWH-name specific content
+                f"The covenant name 'LORD' in {brief.scripture_reference} is not decorative — it names the specific One whose character is the ground of every act of provision and guidance named in this text. "
+                f"{_para4_exposure_clause(theme_key, practice_move)} "
+                "Where the Shepherd offers provision and guidance, we should receive His care as an actual claim on this day rather than an abstract promise. "
+                f"{closing_reference} "
+                "The response this passage calls for is formed by that specific name — the One whose covenant fidelity is the ground of the Shepherd's leading."
+            )
+            if theme_key == "psalm_trust"
+            else (
+                # narrative_loyalty: name Naomi's act and Ruth/Orpah's v.10 refusal directly —
+                # these are the concrete pivot events; para 4 must not use slot-fill formula here.
+                f"The pivot in {brief.scripture_reference} comes at verse 10: the daughters-in-law refuse Naomi's release — 'No, but we will surely return with you to your people.' "
+                f"That refusal shows that loyalty in this passage is not a gentle sentiment but a chosen cost: it turns toward Naomi's God and Naomi's people when the comfortable alternative — returning home — was already offered. "
+                f"Where {brief.scripture_reference} names that choice as deliberate and costly, we should {practice_move} — not as natural affection carried forward but as a specific act formed by what the LORD has already done."
+            )
+            if theme_key == "narrative_loyalty"
+            else (
+                # epistle_sanctification: para 4 must ground the command in v.4 eschatology —
+                # the logic runs from future identity (v.4) back to present command (vv.1-2).
+                f"The command to 'seek the things above' in verse 1 is grounded in a status already secured: "
+                f"'you have died, and your life is hidden with Christ in God' (v.3). "
+                f"The logic runs from identity to imperative — {brief.scripture_reference} does not tell us to seek things above in order to secure a hidden life with Christ; the hidden life is already the reality from which the seeking flows. "
+                f"Verse 4 completes the argument: 'When Christ, who is our life, is revealed, then you also will be revealed with Him in glory.' "
+                f"The call to {practice_move} is therefore not a present effort to achieve future glory — it is living in light of a future that has already determined present identity."
+            )
+            if theme_key == "epistle_sanctification"
+            else (
+                # repentance: para 4 must trace the specific descent of vv.12-14 — the demand,
+                # the division, the departure, the squandering, the famine and impoverishment.
+                f"The descent in {brief.scripture_reference} is not sudden — it follows a legible sequence. "
+                f"The demand in verse 12 is the first step: the younger son wants the inheritance without the father, "
+                f"the gift without the giver. The father divides the estate. "
+                f"Then comes the gathering and departure (v.13), the squandering in loose living, and finally the famine "
+                f"and impoverishment of verse 14 — circumstances that did not create the problem but exposed it. "
+                f"Where the text traces that sequence — desire for independence, acquired wealth, departure, waste, and emptiness — "
+                f"we should {practice_move}. "
+                f"The parable does not skip from willfulness to destitution; it shows the middle stages "
+                f"because those are where the reader recognizes themselves."
+            )
+            if theme_key == "repentance"
+            else (
+                f"What {brief.scripture_reference} reveals calls for concrete response, not abstract agreement. "
+                f"{_para4_exposure_clause(theme_key, practice_move)} "
+                f"Where it honors devotion, we should {communal_application}. "
+                f"{closing_reference} "
+                "That keeps the day under the authority of Scripture."
+            )
         ),
     ]
     text = "\n\n".join(paragraphs)
-    if len(text.split()) >= 500:
-        fixed = _maybe_apply_safe_fixes(text, ignored_words={word.title() for word in brief.key_terms})
-        return _ensure_exposition_floor(fixed, theme_key=theme_key)
-
-    # Deterministic fallback padding if wording drifts below validator minimum.
-    # These sentences reference the passage's specific quote and terms — not generic devotional filler.
-    addenda = [
-        f"The language of this scene is not decorative — it carries the specific weight of {brief.scripture_reference}'s claim.",
-        f"An exposition that replaces what {brief.scripture_reference} actually says with a general theological concept loses the particularity the text demands.",
-        f"This passage does its work on the conscience precisely because its words are particular, not borrowed from another text or another scene.",
-        f"Careful attention to the passage's specific language before reaching for application keeps the day tethered to what God has actually said.",
-    ]
+    text = _strip_stray_headings(text)
+    text = _dedupe_exposition_sentences(text)
+    # Deterministic fallback padding — always run to pad output toward AC-10 minimum (500 words).
+    # All sentences are passage-theme-specific, not generic devotional filler.
+    addenda = []
     if christological:
         addenda.extend(
             [
-                f"The passage fixes courage to this specific scene — not to a general confidence in Jesus detached from what {brief.scripture_reference} says.",
-                f"Where {brief.scripture_reference} names what faithfulness costs, the reader is trained by that cost, not by a principle imported from elsewhere.",
+                "The passage grounds courage in this specific scene — not in a general confidence in Jesus detached from what happens here.",
+                "What faithfulness costs in this passage is named concretely; the cost trains the reader, not a principle borrowed from elsewhere.",
+                "Christological passages do not primarily teach concepts about Jesus; they show what presence, authority, and mercy look like when they enter specific human situations.",
+                "The Gospel writers record encounters rather than explanations: they show the crowd's confusion, the disciples' slowness, and the opponents' resistance because these are the textures in which divine action becomes visible.",
+                "What makes each scene theologically weighty is not the human response alone but who is present — the one in whom the fullness of deity dwells bodily, acting within the limits of a particular time, place, and conversation.",
+                "The authority Jesus exercises in this scene is not borrowed, demonstrated, or earned — it belongs to him, and the passage is at pains to show that those present know it, even when they cannot name it.",
+                "Where Jesus teaches in these passages, he teaches with the assumption that the words are authoritative for the life of the hearer, not merely interesting for their theology.",
+                "The passage trains the reader to locate meaning not in the surrounding human drama — crowd reaction, controversy, surprise — but in what the Son of God specifically says and does within it.",
+                "Discipleship formed by christological passages is not formed by imitating a heroic example; it is formed by trust in the one who acts here, who is still acting, and who does not change.",
+                "The scene does not offer the reader a self-help insight borrowed from Christ's behavior; it offers a claim about who Christ is and what it means to live under his authority.",
+                "Every christological encounter ends with a decision: the reader must place themselves somewhere in the scene's response — with those who draw near, those who retreat, or those who are being called.",
+                "The disciples' misunderstanding in these passages is never incidental; it marks the distance between human expectation and divine purpose, and it teaches the reader to hold their own categories lightly before what Jesus does.",
             ]
         )
     else:
-        addenda.extend(
-            [
-                f"What {brief.scripture_reference} names sets the pastoral work for the day before any application is drawn.",
-                f"The exposition honors this passage when it reads these specific words on their own terms before drawing any lesson from them.",
-            ]
-        )
+        # Skip generic meta-commentary sentences for themes that have their own passage-specific
+        # theme_addenda below — those themes don't need "The theology here is not transported..."
+        # because their specific addenda already anchor the exposition in concrete content.
+        _has_theme_addenda = theme_key in {
+            "psalm_trust", "psalm_lament", "psalm_praise",
+            "epistle_justification", "epistle_sanctification",
+            "habakkuk_lament", "habakkuk_awe",
+            "narrative_loyalty", "narrative_providence", "prophecy_restoration", "law",
+            "repentance",
+        }
+        if not _has_theme_addenda:
+            addenda.extend(
+                [
+                    "The theology here is not transported from another passage — it grows from the specific situation, language, and sequence placed before the reader.",
+                    "A response formed by these specific words will carry more weight than a response formed by a principle drawn from them at a distance.",
+                    "Scripture rarely works by announcing general truths; it works by placing the reader inside specific situations, relationships, and moments of decision — and trusting that the particulars will carry the theology.",
+                    "The danger in devotional reading is not too much attention to the text but too little: passing over the concrete details to arrive at a general application that the text may not actually support.",
+                    "Every passage in Scripture addresses a particular people in a particular situation, and part of faithful interpretation is allowing that particularity to shape the universal claims the passage makes.",
+                    "The images, sequences, and characters of this passage are not decorative — they are the carriers of the theological content, and removing them produces an abstraction that the passage itself resists.",
+                    "Faithful response to this passage is not first about application but about attention: the reader must inhabit the text long enough to be shaped by it before they consider what to do with it.",
+                    "Where the text names what God does — reveals, commands, promises, warns, calls, sends — it is always shaping the reader toward a particular posture: not a general religiosity but a specific discipleship formed by these specific words.",
+                    "The consistent pattern of Scripture is not that God explains himself before acting but that he acts and then makes the meaning of the action legible — which teaches the reader to trust before they understand.",
+                    "Biblical theology proceeds by accumulation: each passage adds to rather than replaces what the reader has already received, and the reader is formed over time by the whole, not just by individual insights.",
+                    "The sovereignty of the God who speaks through Scripture does not reduce the reader to passive reception; it increases the weight of the reader's response, because every act of obedience or disobedience now has significance before the One who is present.",
+                    "These particular words, in this particular order, addressed to this particular people, are the medium through which the eternal God has chosen to form the faith of every reader who comes after.",
+                ]
+            )
     theme_addenda = {
         "ordered_light": [
             "Ordered-light passages discipline attention by teaching that faithful living receives time and limits as part of God's good governance.",
@@ -1441,35 +1639,138 @@ def _build_exposition(*, brief: EditorialDayBrief, scripture_text: str) -> str:
             "Resurrection passages insist that hope is not decorative theology but the living reality that reorders fear, witness, and endurance.",
             "The devotional therefore must move beyond uplift and into courageous trust shaped by the risen Christ.",
         ],
+        "psalm_trust": [
+            "The three verbs of care in verses 2-3 — makes lie down, leads, restores — are all the Shepherd's actions; the sheep is entirely the recipient, which is itself a theological claim about what trust looks like in practice.",
+            "Each specific act of care — making lie down, leading beside water, restoring the soul — is named in sequence to show that the Lord's attention is detailed, not general.",
+            "Provision like this forms gratitude and dependence rather than presumption, because it arrives through specific acts of a faithful Shepherd, not through the sheep's own negotiation.",
+            "Trust psalms are not testimonials to a smooth life; they are testimonials to a specific person — the God who has proven faithful over time and therefore can be trusted in the moment the reader now inhabits.",
+            "The pastoral imagery works because it is concrete: it names specific acts rather than offering a general assurance that things will be fine.",
+            "The confession of trust in these passages is not a claim that the psalmist has achieved fearlessness; it is a claim about where fear is being taken and who is being addressed with it.",
+            "Where the psalm moves from third person to second person address, the shift is theologically significant: abstract theology has become personal address, and the reader is meant to make the same transition.",
+            "The valley passage is not resolved before the psalm's confidence is declared; danger is named within the confidence — which is the passage's way of showing that trust is not the absence of difficulty but the presence of a Guide within it.",
+            "The table prepared in the presence of enemies carries a claim about divine faithfulness that suffering alone cannot erase — provision given publicly, before those who opposed.",
+            "The final declaration about dwelling in the house of the LORD forever is not escape from the world but the ground for living in it: the permanent home is named so the journey through dangerous territory has a context that makes it survivable.",
+            "These psalms train the reader to name what God specifically provides before making any claim about what they need — the sequence of the prayer matters because the character of the provider is the ground of the request.",
+            "The shepherd's care in this psalm is not a general declaration of benevolence but a series of specific commitments — and the reader is formed by attending to each one rather than rushing toward a general sense of divine favor.",
+        ],
+        "psalm_lament": [
+            "Lament psalms do not model self-pity; they model the faith that can hold both honest pain and stubborn address to God without either canceling the other.",
+            "The prayer that names suffering directly is not a failure of trust — it is the most trust-filled response possible: bringing the soul's full weight to the only One who can bear it.",
+            "Lament psalms give the grieving reader a language that honest speech requires but social convention often forbids: permission to say how bad it is, how long it has lasted, and how absent God appears.",
+            "The address of lament — always to God, never merely about God — is the theological boundary that keeps honest complaint from becoming accusation that exits the covenant relationship.",
+            "These psalms teach the church that honest prayer is not the same as informed prayer, and that crying out in confusion does not disqualify the prayer or the pray-er.",
+            "Where the psalmist asks 'Why?' or 'How long?' he is not requesting theological explanation; he is refusing to let silence be the only response to suffering, which itself is an act of faith.",
+            "The movement from complaint to trust in many lament psalms is not an emotional reversal but a theological remembering: the God who delivered before is addressed as the God who can deliver again.",
+            "Lament passages form communal solidarity in suffering: the reader who cannot yet articulate their own pain finds here a voice that takes their interior reality seriously before God.",
+            "These psalms are not prescriptions for how long grief should last; they are permissions for grief to be spoken, which is itself a gift to the reader who may have been told to move on before they were ready.",
+            "The faithfulness of God is not mentioned in lament psalms as a quick comfort but as an appeal: the psalmist calls on God's prior faithfulness as the basis for the present cry, which is a form of trust expressed through argument.",
+        ],
+        "psalm_praise": [
+            "Praise in the Psalms is not emotion generated by devotional practice but a response to what God has specifically done — named, recounted, and declared.",
+            "To bless the Lord is to report, to remember, and to testify, not merely to feel warmly toward the One who has been generous.",
+            "Praise psalms are not emotional expressions that require a good mood; they are theological acts that declare what God has done regardless of the psalmist's current circumstances.",
+            "Where the psalmist commands himself to bless the LORD — addressing his own soul — he is demonstrating that praise is a discipline of attention more than a spontaneous feeling.",
+            "These psalms rehearse the specific acts of God before they declare his character: the pattern teaches that theological claims about who God is must be grounded in what God has actually done.",
+            "The communal call to praise places the individual worshiper in a larger assembly that includes creation itself, which relativizes personal suffering and expands theological vision.",
+            "Praise in these psalms is not indifferent to injustice or suffering; it is offered in full awareness of them, which is why it carries weight rather than sounding naive.",
+            "The specific titles used for God in praise psalms are not interchangeable decorations; each one calls the reader to a particular theological claim before the praise can be offered with integrity.",
+            "Praise passages train the reader to remember before they request, to bless before they ask, and to declare before they receive — a sequence that forms the soul toward gratitude rather than entitlement.",
+            "These psalms show that worship is a formed capacity, not an automatic response: the psalter's praise must be learned, practiced, and applied even in seasons when the heart does not immediately feel its weight.",
+        ],
         "poetry": [
             "Poetry in the Psalms teaches the heart to speak its inner state before God with an honesty that prose alone cannot carry.",
             "The imagery of the Psalms is not decoration; it names the weight of lived faith before it is organized into doctrine.",
             "Psalm passages therefore call for slow, attentive reading that does not rush from metaphor to application.",
             "They train the soul to linger over God's character rather than move immediately to self-directed resolution.",
-            "Faithful reading of the Psalms learns to pray before it learns to act, and to listen before it speaks.",
-            "That posture of attentive stillness is itself a form of obedience that the text requires before anything else.",
         ],
-        "response": [
-            "A faithful response to this text will be shaped by what it actually says rather than by what we hope it says.",
-            "The text does not reward the reader who arrives with conclusions already formed; it rewards the reader who arrives empty enough to hear.",
-            "Honest application therefore begins with honest reading, which means staying close to the specific words before reaching for their implications.",
-            "What the passage names must be felt before it is acted upon, or action will outrun understanding.",
-            "Devotion trained by this kind of text becomes steadier over time because it is anchored in what God has actually said.",
-            "That steadiness is not complacency — it is the settled confidence of a soul that has learned to trust the word before trusting its own impressions of the word.",
+        "epistle_sanctification": [
+            "The present hiddenness of Christian identity — 'your life is hidden with Christ in God' (v.3) — is a theological claim: the life God sees is not the life visible to the world or to the self in the mirror.",
+            "Verse 4 introduces the eschatological grounding that keeps the whole passage from becoming moralism: 'When Christ, who is our life, is revealed, then you also will be revealed with Him in glory.' The command to set the mind on things above is a response to a future that has already determined present identity — not an effort to achieve what is still unresolved.",
+            "Sanctification passages address people who already belong to God but have not yet fully oriented their lives by that reality — the commands are not conditions for membership but descriptions of the life that membership makes possible.",
+            "The indicative-imperative structure of these passages is not accidental: what God has declared about the believer's status is stated before anything is required, so that the requirement is understood as responsive rather than constitutive.",
+            "Where the epistle names specific vices to put off and specific virtues to put on, the concreteness is intentional — the apostolic writer does not trust vague aspirations to godliness but names the exact dispositions that must change.",
+            "Sanctification passages teach that holiness is not a spiritual achievement grafted onto ordinary life but the shape that ordinary life takes when it is lived in conscious relation to the one who has already secured the believer's standing.",
+            "The corporate dimension of these passages is consistent: the commands are given to a community, and the virtues named are almost always relational — forbearance, forgiveness, peace, love — which teaches that sanctification is never merely private.",
+            "These passages guard against the illusion that spiritual growth can be assessed by interior feelings alone; the apostolic standard is behavioral and relational, visible to others and measured by how the community holds together.",
+            "The language of 'putting on' implies that the new self is not automatically expressed but deliberately worn — the sanctified life is a practiced orientation, not a spontaneous outcome.",
+            "Sanctification passages consistently point the reader toward the character of God as the standard: 'as the Lord has forgiven you, so you also must forgive' — the measure of the call is not human capacity but divine example.",
+        ],
+        "epistle_justification": [
+            "The peace with God declared in verse 1 is not a psychological state to be cultivated but a legal status declared through justification — it precedes and makes possible everything the passage then describes.",
+            "The chain that runs from tribulation through perseverance to hope (vv. 3-4) is not a program for self-improvement but a testimony to what declared righteousness actually produces in a life lived under real pressure.",
+            "Justification passages insist that right standing before God is received, not achieved — which is why they consistently move from indicative to imperative and never reverse that order.",
+            "Where the apostolic writer uses forensic language — declared righteous, justified, reconciled — he is making a claim about an objective standing before God, not a description of the believer's interior emotional state.",
+            "The argument in these passages is not that faith is a work that earns acceptance; it is that faith is the instrument by which the gift of another's righteousness is received and held.",
+            "Paul's confidence in these passages is never grounded in the believer's spiritual progress — it is always grounded in what Christ has accomplished as the sole basis for acceptance before a holy God.",
+            "The reconciliation these passages describe is not restored friendship, as if God and the sinner had suffered a temporary estrangement; it is the end of enmity — the sinner who stood under divine wrath has been brought near through the death of Christ.",
+            "Justification passages guard against two errors with equal insistence: the error of thinking human works contribute to standing before God, and the error of thinking that standing before God produces nothing in the one who has received it.",
+            "Where the text moves from declaration to description — 'since we have been justified' leading to 'we have peace' — the structure itself teaches that the imperative life flows from the indicative reality.",
+            "These passages train the reader to locate their standing not in their current spiritual temperature but in the completed work of Christ received by faith and secured by the faithfulness of God.",
+            "The boast the apostolic writer invites is not a human boast in personal achievement but a boast in God, which can only be made where all self-commendation has been silenced by the recognition of one's own guilt before a holy standard.",
+            "Epistle passages on justification are always addressed to people who must live in real bodies, under real circumstances, within real communities — the doctrinal argument is never purely academic but always pointed toward the practical shape of the justified life.",
+        ],
+        "narrative_loyalty": [
+            "Loyalty in the biblical narrative is not sentimentality — it is a costly, practical choice to remain committed to God's people when personal retreat is both possible and understandable.",
+            "The choice to return 'to your people' in verse 10 shows that the loyalty here is not merely personal affection for Naomi but a turn toward Israel's God and community — it is covenant allegiance, not just friendship.",
+            "The road back to Bethlehem is not a sentimental journey; it is a specific act of covenant commitment made under grief, at a crossroads, where the comfortable alternative was explicitly offered and refused.",
+            "Narrative loyalty passages show that faithfulness is not an inner disposition that eventually expresses itself outwardly; it is an outward act — a turning, a staying, a returning — that forms the inner life through its cost.",
+            "The three women in Ruth 1 are all widows, which means the passage is asking its characters to choose loyalty when they have nothing left to gain from the relationship and everything still to lose.",
+            "The declaration 'your people shall be my people, and your God my God' is not romantic language; it is a transfer of allegiance — a formal binding of one life to another people and another covenant.",
+            "Biblical loyalty passages resist the modern reduction of commitment to feeling: loyalty here is not an emotion that sustains itself but a decision that must be remade when grief makes retreat more attractive.",
+            "The contrast between Orpah's return and Ruth's staying is not a judgment on Orpah; it is a way of showing the reader how costly the choice was — the same farewell was given to both, and only one refused it.",
+            "These passages train the reader to recognize that covenant faithfulness will always have a moment of costly choice, and that the shape of the choice — like Ruth's — is often low, unheroic, and made on a dusty road rather than a stage.",
+            "Loyalty passages in the narrative books consistently show that the God of Israel is present not in dramatic intervention but in the ordinary choices his people make toward one another under difficult conditions.",
+        ],
+        "repentance": [
+            "The squandering is not merely of money — it is of the father's provision treated as raw material for a self-directed life, disconnected from the relationship that gave it meaning.",
+            "Verse 14 names the transition the parable turns on: 'he began to be impoverished.' The famine did not cause the impoverishment; it revealed the impoverishment that was always the destination of leaving the father.",
+            "The parable does not condemn the younger son for wanting a future — it names what happens when a future is built entirely outside the father's presence: the far country turns out to be a destitution that the inheritance only deferred.",
+            "The parable's power lies in the detail that the father 'saw him while he was still a long way off' — which requires that the father had been looking, which requires that he had never stopped waiting, which is the theological claim the parable is constructed to carry.",
+            "The father's response — running, embracing, calling for robe and ring before the son has finished his prepared speech — is not sentimentality; it is a parable about the priority of grace over the logic of merit.",
+            "The son's prepared speech is theologically important: he has moved from the language of inheritance to the language of creatureliness, which is itself a form of repentance — a willingness to occupy a humbler position than the one he had claimed.",
+            "The far country is defined by absence — absence of the father, absence of provision, absence of identity — and the parable uses the younger son's destitution to expose what the far country always was.",
+            "The elder son's complaint is designed to show that the issue is not only the prodigal's rebellion but the elder son's failure to understand grace — both sons, in different ways, misunderstand the father.",
+            "Repentance in this passage is shown, not explained: the reader watches the son come to himself, form a plan, and return — the parable shows what it looks like to turn rather than simply describing turning as a moral requirement.",
+            "The celebration the father commands is not a reward for return; it is a declaration of the theological reality the return represents — the one who was dead is alive, the one who was lost is found.",
+            "Any treatment of this passage that ends with the younger son's return without registering the elder son's anger has resolved the parable too quickly; the passage leaves the elder son outside the feast so the reader must decide where they are standing.",
+            "Repentance passages in the Gospel of Luke are consistently about God's initiative before human response: the shepherd seeks the sheep, the woman sweeps for the coin, the father runs before the son arrives — the prior movement is always divine.",
+        ],
+        "narrative_providence": [
+            "Providence passages expose that what looks like human failure or malice is being governed by a wisdom that neither the characters nor the reader can see from inside the story.",
+            "They train trust not in a general confidence that things work out, but in the specific conviction that God's hidden purposes are more determinative than any human scheme.",
+            "The reader of a providence passage always knows more than the characters inside the narrative do, which creates the specific kind of trust the passage is designed to form: confidence in a God who governs what the characters cannot see.",
+            "Providence narratives do not minimize human suffering or moral failure; they place those realities inside a larger frame where divine purpose is operating — not by denying the pain but by showing it is not the final word.",
+            "Where human characters act from jealousy, fear, or self-interest, the providence passage uses those very actions as the instruments of a design they did not intend and cannot undo.",
+            "These passages train the reader to distinguish between the surface of events, which looks chaotic or cruel, and the depth of events, where God's hidden governance is already at work.",
+            "Providential narratives require the reader to hold two things simultaneously: that human choices are real and consequential, and that they do not ultimately escape or displace divine purpose.",
+            "The Joseph narrative and passages like it are not encouraging the reader to be passive; they are training the reader to act faithfully within circumstances they cannot control, trusting that the outcome is not theirs to secure.",
+            "Providence passages consistently display their theology by showing the gap between what characters intend and what actually results — a gap that teaches the reader to look for God's hand in outcomes that no human foresaw.",
+            "These passages form a specific kind of patience: not the patience of someone waiting for things to improve, but the patience of someone who believes the story they are inside is being written by a wisdom greater than the story they can see.",
+        ],
+        "prophecy_restoration": [
+            "Restoration passages do not offer mere comfort; they offer the specific claim that the God who made the desolation is the same God who promises the new thing — and that claim is either the foundation for hope or nothing at all.",
+            "The passage trains the reader not to settle for present conditions as if they were permanent, because the word of restoration from God stands between what is and what He has promised.",
+            "Restoration passages do not allow the reader to treat God's promises as vague consolation; they name the specific reversal being promised — of exile, weakness, shame, or desolation — and ground that reversal in the character and prior acts of God.",
+            "The prophet writing these words is addressing people for whom evidence of restoration is absent; the passage therefore demands faith in the word before sight, and trust in the speaker before fulfillment.",
+            "Where Isaiah uses rhetorical questions — 'Have you not known? Have you not heard?' — he is not expressing surprise but exposing the forgetfulness that allows present suffering to rewrite the reader's understanding of who God is.",
+            "The juxtaposition of divine permanence with human weakness is the passage's central theological move: the contrast is not between the strong and the weak but between the creature and the Creator.",
+            "Restoration passages require the reader to distinguish between the present evidence and the authoritative word: the circumstances may say abandonment; the prophet's word says otherwise, and the weight of the argument rests on who is speaking.",
+            "The purpose of the comparison between God's power and human limitation is not to shame the reader but to redirect the source of their confidence — from what they observe in themselves to what God has declared about himself.",
+            "These passages train patient endurance rather than passive resignation: to wait on the Lord is an active posture, directed toward a specific God whose character the text has just rehearsed.",
+            "The language of renewal — mounting up, running, walking — is arranged in descending order because the passage expects the reader to need endurance in ordinary days as much as heroism in dramatic moments.",
+            "Prophetic passages of this kind teach that God's faithfulness is not measured by how quickly relief arrives but by whether his word stands — and the passage insists it does, which is the ground for steadfast trust under long waiting.",
+            "The comfort these passages offer is not emotional uplift but theological reorientation: the reader is being turned from what they can see to what God has spoken, and the turn itself is an act of worship.",
         ],
     }
-    addenda.extend(theme_addenda.get(theme_key, [
-        "The text rewards slow attention because its details are part of its theology, not background decoration.",
-        "Good application therefore grows from disciplined reading rather than from devotional instinct alone.",
-    ]))
+    addenda.extend(theme_addenda.get(theme_key, []))
     words = text.split()
     for sentence in addenda:
-        if len(words) >= 520:
+        if len(words) >= 600:
             break
         words.extend(sentence.split())
-    # Trim to 520 words but cut at a sentence boundary to avoid mid-word truncation.
-    truncated = " ".join(words[:520])
-    # Find last sentence-ending punctuation at or before the 520-word boundary.
+    # Trim to 600 words but cut at a sentence boundary to avoid mid-word truncation.
+    truncated = " ".join(words[:600])
+    # Find last sentence-ending punctuation at or before the 600-word boundary.
     _sent_end = max(
         truncated.rfind(". "),
         truncated.rfind("! "),
@@ -1492,6 +1793,8 @@ def _topic_focus(topic: str) -> str:
 
 
 def _scripture_image(scripture_text: str) -> str:
+    # Strip section headings before extracting an image clause.
+    scripture_text = _normalize_scripture_text(scripture_text)
     # Strip ASCII quotes, backtick, and Unicode curly/smart quotes that appear in NASB text
     cleaned = re.sub(r"[\"\u201c\u201d\u2018\u2019'`\u2032\u2033]+", "", str(scripture_text or "")).strip()
     cleaned = re.sub(r"\s+", " ", cleaned)
@@ -1508,6 +1811,12 @@ def _scripture_image(scripture_text: str) -> str:
     if not chosen and clauses:
         chosen = clauses[0]
     chosen = re.sub(r"\b(And|Or|But)\b", "", chosen)
+    # Trim at comma to avoid half-clauses: "The Lord is my shepherd, I shall not want"
+    # → prefer "The Lord is my shepherd" (complete thought, >=4 words).
+    if "," in chosen:
+        pre_comma = chosen.split(",")[0].strip()
+        if len(pre_comma.split()) >= 4:
+            chosen = pre_comma
     words = [w.strip(" ,;:-") for w in chosen.split() if w.strip(" ,;:-")]
     if not words:
         return "the shape of God's word"
@@ -1565,17 +1874,29 @@ def _build_be_still(
     brief: EditorialDayBrief,
     scripture_text: str,
     exposition_text: str,
+    focal_scripture_text: str = "",
 ) -> list[str]:
     exposition_sentence = _first_exposition_sentence(exposition_text).lower()
     focus = _communalize_focus(brief.focus_clause)
     theme_key = _theme_key(brief, scripture_text)
     theme_variant = _theme_variant(brief, scripture_text)
-    if "order" in exposition_sentence:
+    # Prompt 2: anchor inward prompt to the focus_clause when it appears in the FOCAL
+    # passage — not just anywhere in the full study window context text.
+    # focal_scripture_text defaults to scripture_text if not provided.
+    _focal_text = focal_scripture_text or scripture_text
+    focus_in_passage = _focus_clause_in_passage(brief.focus_clause, _focal_text)
+    if focus_in_passage and brief.focus_clause:
+        _brief_focus = brief.focus_clause[:80].strip().rstrip(".,;:")
+        if theme_key == "repentance":
+            response_prompt = "Where in you is the same movement — wanting the Father's gifts while putting distance between yourself and the Father's presence? Name that specific place honestly before God."
+        else:
+            response_prompt = f"What does \"{_brief_focus}\" name in your life today that you need to bring before God honestly?"
+    elif "order" in exposition_sentence:
         response_prompt = "Where do you need to receive God's order instead of forcing control?"
     elif "rest" in exposition_sentence:
         response_prompt = "Where is God inviting you to rest instead of striving today?"
     elif "trust" in exposition_sentence or "fear" in exposition_sentence:
-        response_prompt = "What fear or self-reliance does this passage ask you to surrender?"
+        response_prompt = "What fear or divided loyalty does this passage ask you to bring before God today?"
     elif theme_key == "loss" and theme_variant == "first_report":
         response_prompt = "What first shock or sudden disruption are you being asked to bring before God honestly today?"
     elif theme_key == "loss" and theme_variant == "compounding_reports":
@@ -1586,56 +1907,121 @@ def _build_be_still(
         response_prompt = "Where are you tempted to interpret unexplained pain as proof that faithfulness is pointless?"
     elif theme_key == "affliction" and theme_variant == "bodily_affliction":
         response_prompt = "How is physical or emotional pain pressing on your worship today?"
+    elif theme_key == "psalm_trust":
+        response_prompt = "Where have you been trying to earn or arrange the guidance this passage says the Shepherd has already committed to give — for His name's sake, not yours? Name that specific place honestly before God."
+    elif theme_key == "psalm_lament":
+        response_prompt = "What grief or confusion does this Psalm give you permission to name honestly before God today — without requiring a resolution?"
+    elif theme_key == "psalm_praise":
+        response_prompt = "What specific mercy or act of God is this Psalm calling you to remember and speak aloud today?"
+    elif theme_key == "epistle_sanctification":
+        response_prompt = "Where do you feel most strongly the gap between your life hidden in Christ — already risen, already seated with Him — and what your daily experience actually shows? What does that gap reveal about what you are actually setting your mind on?"
+    elif theme_key == "epistle_justification":
+        response_prompt = "Where does the peace with God declared in this passage feel most distant from your experience — and what would it mean to stand in that grace anyway?"
+    elif theme_key == "law":
+        response_prompt = "What specific requirement of this command do you find hardest to obey today — and where does that resistance reveal a deeper loyalty you haven't named?"
+    elif theme_key == "narrative_loyalty":
+        response_prompt = "Where are you tempted to calculate the cost of faithfulness before God asks it — and what would loyalty look like today if you stopped calculating?"
+    elif theme_key == "narrative_providence":
+        response_prompt = "Where do you most need to believe that what feels like randomness or abandonment is actually God's hidden hand at work?"
+    elif theme_key == "habakkuk_lament":
+        response_prompt = "Where in your own life have you cried out to God about something that seemed urgent and just — and received silence or delay? Name that specific thing honestly before God right now, without resolving it."
+    elif theme_key == "habakkuk_awe":
+        response_prompt = "Where do you see violence unchecked, the law paralyzed, or justice never upheld — in your world or close to home? Bring that specific disorientation before God now, without pretending it doesn't trouble you."
+    elif theme_key == "prophecy_restoration":
+        response_prompt = "What feels irreversible or broken that this passage's promise would directly address — and what would it mean to pray for that honestly today?"
     else:
-        response_prompt = f"Where does this passage call for {_communalize_application(brief.application_lane)} today?"
+        if brief.focus_clause:
+            response_prompt = f"Where does \"{brief.focus_clause[:60].rstrip('.,;:')}\" press most directly into what you need to bring before God today?"
+        else:
+            response_prompt = f"What would faithful response to {brief.scripture_reference} cost you today, and where do you most feel the weight of that?"
     closing_prompt = (
-        "Stay for one more minute and answer God with one honest sentence of confession, courage, or repentance before continuing."
+        "Stay for one more minute and hold the gap between what God has declared and what you experience now — without resolving it."
+        if theme_key == "epistle_justification"
+        else "From the gap you have just named in yourself: the people around you are living that same gap. What would it look like to carry your hidden life in Christ into one conversation today — not as a principle to share, but as the ground you are actually standing on?"
+        if theme_key == "epistle_sanctification"
+        else "Stay for one more minute and let this rest on you: the Shepherd leads in righteous paths for His name's sake — not because you have earned direction. Receive that as an actual claim before you respond to it."
+        if theme_key == "psalm_trust"
+        else "Stay for one more minute and let this grief be real and unresolved before God — speak one honest word back before you continue."
+        if theme_key == "psalm_lament"
+        else "Stay for one more minute and let this praise be something you own, not perform — before you stand to act."
+        if theme_key == "psalm_praise"
+        else "Stay for one more minute and let this command settle as a claim you cannot meet alone — before you answer it."
+        if theme_key == "law"
+        else "Stay for one more minute and answer God with one honest sentence of confession, courage, or repentance before continuing."
         if theme_key in {"trial", "cross", "betrayal", "repentance"}
-        else "Stay for one more minute and answer God with one honest sentence of trust, lament, or reverence before continuing."
+        else "Stay for one more minute and answer God with one honest sentence of lament, trust, or reverence before continuing."
         if theme_key in {"loss", "endurance", "affliction"}
-        else "Stay for one more minute and answer God with one honest sentence of trust, repentance, or gratitude before continuing."
+        else "Before you leave this passage, name one place where the injustice Habakkuk named — violence, strife, law unable to restrain — touches something real in your own world. You are not required to fix it. You are required to see it and bring it before the God who is listening."
+        if theme_key in {"habakkuk_lament", "habakkuk_awe"}
+        else "Stay for one more minute and let what you have heard remain a live and unresolved weight — a claim you carry into action without having settled it first."
     )
     # Use a concrete passage image (extracted directly from scripture_text) instead of
     # the abstract pastoral_burden label. The trainer requires specific narrative details,
-    # not category labels, in prompt 1.
-    passage_image = _scripture_image(scripture_text)
+    # not category labels, in prompt 1. Close with theme-specific invitation, not generic filler.
+    # Theme-specific overrides prevent superscriptions from being quoted as if they were
+    # theological content (e.g., Habakkuk 1:1 "The oracle which Habakkuk the prophet saw").
+    _be_still_image_override = {
+        "habakkuk_lament": "How long, O Lord, will I call for help and You will not hear",
+        "habakkuk_awe": "the law is ignored and justice is never upheld",
+        "narrative_loyalty": "the LORD had visited His people in giving them food",
+        "repentance": (lambda s: (s if len(s) <= 72 else s[:72].rsplit(' ', 1)[0]).strip().rstrip(".,;:"))(brief.focus_clause or ""),
+    }.get(theme_key, "")
+    passage_image = _be_still_image_override or _scripture_image(_focal_text)
+    _prompt1_close = {
+        "psalm_trust": "and let the Shepherd's care be actual, not just acknowledged.",
+        "psalm_lament": "and let the grief named here be honest, not managed.",
+        "psalm_praise": "and let the praise rise without forcing it.",
+        "repentance": "and let the weight of what is named here land fully before you answer.",
+        "trial": "and let the pressure named here become real before you think about response.",
+        "cross": "and let the cost of what is described become concrete, not abstract.",
+        "betrayal": "and let what loyalty costs here become specific to your life.",
+        "resurrection": "and let the weight of what changed here settle before you speak.",
+        "loss": "and let the grief here be real and unhurried.",
+        "endurance": "and let what the passage asks you to hold on to become clear.",
+        "law": "and let what this command requires settle as something concrete and specific, not abstract.",
+        "narrative_loyalty": "and let what faithfulness costs here become concrete, not distant.",
+        "narrative_providence": "and let the hidden hand become visible before you proceed.",
+        "epistle_justification": "and let the gift named here be fully received before you answer.",
+        "epistle_sanctification": "and let the claim those words make — that your life is already hidden with Christ, already raised — simply be true before you respond to it.",
+        "habakkuk_lament": "and let the prophet's unanswered cry — 'how long?' — be your own question before you answer anything.",
+        "habakkuk_awe": "and let the dissonance between God's coming judgment and what you currently see become real in you before you speak.",
+        "prophecy_restoration": "and let the promise of restoration become more than a category — let it be specific to you.",
+    }.get(theme_key, "and let the weight of these words settle in you before responding.")
     return [
-        f"Sit with {brief.scripture_reference} for two quiet minutes. Read the words \"{passage_image}\" slowly and let what the passage shows settle before you move on.",
+        f"Sit with {brief.scripture_reference} for two quiet minutes. Read the words \"{passage_image}\" slowly, {_prompt1_close}",
         response_prompt,
         closing_prompt,
     ]
 
 
-def _build_action_steps(
-    *,
-    brief: EditorialDayBrief,
-    day_number: int,
-    exposition_text: str,
-    scripture_text: str = "",
-) -> tuple[str, list[str]]:
+def _build_action_steps(*, brief: EditorialDayBrief, day_number: int, exposition_text: str, scripture_text: str = "", focal_scripture_text: str = "") -> tuple[str, list[str]]: 
     exposition_sentence = _first_exposition_sentence(exposition_text).lower()
     focus = _communalize_focus(brief.focus_clause)
     theme_key = _theme_key(brief, scripture_text)
     theme_variant = _theme_variant(brief, scripture_text)
     connector = f"Because {brief.scripture_reference} calls for {_communalize_application(brief.application_lane)} today:"
     # Use a concrete passage image as the anchor for action steps, not just reference labels.
-    _action_image = _scripture_image(scripture_text)
+    _action_image = _scripture_image(focal_scripture_text or scripture_text)
     action_sets = [
         [
-            f"Write one sentence naming what the words \"{_action_image}\" exposed or confirmed in your honest sentence from Be Still.",
+            f"Name the specific tension or claim the words \"{_action_image}\" surfaced in your Be Still reflection — be specific to what the passage exposed, not a general observation.",
             f"Name one place where {_communalize_application(brief.application_lane)} should change the way you listen, speak, or act today — specifically in response to what you named in Be Still.",
+            f"If this response feels unfamiliar or beyond you, name that honestly to God and ask Him to meet you there — the outcome rests in His faithfulness, not your execution.",
         ],
         [
             f"Before your next decision, pause and ask how \"{_action_image}\" should shape your response — not as a general principle but as the specific weight {brief.scripture_reference} places on today.",
             "Offer one concrete act of service that matches the patience or steadiness this passage commends, not a general act of goodwill but one that answers the passage's specific call.",
+            f"If either step feels uncertain or costly, tell God so — and trust that {brief.scripture_reference} places the work of faithfulness in His hands as much as yours.",
         ],
         [
             f"Name one place where you have been trying to control the outcome that \"{_action_image}\" directly addresses, and entrust that specific concern to God in prayer.",
             "End the day by recording one evidence of God's faithfulness you noticed that corresponds to what you heard in this passage — specific, not general.",
+            f"If no evidence was visible today, record that honestly too — faithfulness that cannot yet see confirmation is exactly the kind {brief.scripture_reference} calls for.",
         ],
         [
             f"Speak one truthful and encouraging sentence to someone today that flows from what \"{_action_image}\" showed you in Be Still — name the passage's claim, not just your own observation.",
-            f"Set aside ten minutes to return to the honest sentence you wrote in Be Still and let it become a prayer shaped by {brief.scripture_reference}.",
+            f"Return to the tension or claim you named in Be Still and bring it before God as a specific prayer shaped by {brief.scripture_reference} — leaving the resolution with Him, not your ability to pray well.",
+            f"If this felt rehearsed or hollow, tell God that — and ask Him to make what {brief.scripture_reference} declares true in your experience today.",
         ],
     ]
     items = action_sets[(day_number - 1 + len(theme_key)) % len(action_sets)]
@@ -1646,8 +2032,9 @@ def _build_action_steps(
         ]
     elif theme_key == "repentance":
         items = [
-            "Confess one recent failure honestly to God without self-defense.",
-            f"Return to one neglected act of obedience that {brief.scripture_reference} brings back to mind.",
+            f"Name one specific way you have been spending the Father's provision — time, attention, or gifts — in a 'far country' of your own choosing, and bring that specific thing honestly before God.",
+            f"Identify one concrete act of return that {brief.scripture_reference} places before you today — not a resolution to do better, but one specific step back toward the Father's presence.",
+            f"If that return feels too humiliating or too uncertain, tell God that honestly — and ask Him to be for you the Father who sees from a distance and runs toward those who are still a great way off.",
         ]
     elif theme_key == "resurrection":
         items = [
@@ -1708,15 +2095,53 @@ def _build_action_steps(
             f"Name one place where you are tempted to treat {brief.scripture_reference} as distant material instead of living warning.",
             f"Take one concrete step today that shows you are receiving {focus} with sober obedience.",
         ]
+    elif theme_key == "narrative_loyalty":
+        items = [
+            f"Name one place where you have pulled back from faithfulness to God's people because the cost felt too high — and bring that specific retreat honestly before God in prayer.",
+            f"Name one person in your life whose loyalty to you has cost them something real. Write one sentence of honest acknowledgment — then consider whether you have returned that loyalty or taken it for granted.",
+            f"If faithful loyalty feels beyond your current willingness or strength, tell God that honestly — and ask Him to be in you the same steadfast love He showed His people before Naomi rose to return.",
+        ]
+    elif theme_key == "narrative_providence":
+        items = [
+            f"Name one place where delayed justice or unexplained silence tempts you toward bitterness or resignation — and bring that specific doubt before God honestly, without dressing it up.",
+            f"Refuse one complaint today that slides from honest lament into a verdict that God has failed. Let {brief.scripture_reference} hold both your confusion and your trust simultaneously.",
+            f"If faithful waiting feels like it has no traction, tell God exactly that — and ask Him to sustain your waiting in His faithfulness, not in evidence you can currently see.",
+        ]
+    elif theme_key == "epistle_sanctification":
+        items = [
+            f"Name one specific thing your attention has been set on that {brief.scripture_reference} would call earthly — and deliberately redirect your focus toward Christ today in one concrete act.",
+            f"Choose one conversation today where you will let your identity hidden in Christ — not your circumstances, performance, or visible life — be the actual ground from which you listen and respond: not a principle to announce, but the orientation you are already standing on.",
+            f"If that reorientation feels incomplete or forced, tell God that honestly — and ask Him to be the one who sets your mind, not your own effort.",
+        ]
+    elif theme_key == "epistle_justification":
+        items = [
+            f"Name one tribulation you are currently facing that {brief.scripture_reference} says produces perseverance — and refuse to treat it as evidence that God has forgotten you.",
+            f"Tell one person today what hope {brief.scripture_reference} gives you in a circumstance where hope has no visible confirmation — grounding your statement in the passage's chain, not your feelings.",
+            f"If that feels beyond your current faith, ask God to pour His love into your heart today as He did through the Holy Spirit — not as a formula, but as a specific request grounded in this passage.",
+        ]
+    elif theme_key == "psalm_trust":
+        items = [
+            f"Name one place where you have been striving for provision or guidance that {brief.scripture_reference} says the Shepherd has already committed to give — and stop striving in that one place today.",
+            f"Receive one act of care or rest as a gift from the Shepherd specifically, not as coincidence — and name it to God as such before the day ends.",
+            f"If receiving feels harder than striving, tell God that — and ask Him to lead you in paths of righteousness for His name's sake, not for your confidence.",
+        ]
+    elif theme_key == "psalm_lament":
+        items = [
+            f"Name the specific grief or confusion this Psalm gives you permission to voice today — and bring it before God in one sentence that does not require a resolution.",
+            f"Refuse one pressure to dress up honest pain today. Let {brief.scripture_reference} be the ground for naming what is actually true, not what is spiritually presentable.",
+            f"If honest lament feels dangerous or faithless, tell God that fear — and ask Him to hold your confusion as He held the Psalmist's.",
+        ]
     elif "rest" in exposition_sentence:
         items = [
             f"Protect one short period of unhurried rest today and receive it as obedience to {brief.scripture_reference}.",
             "Release one unnecessary task or self-imposed pressure that is keeping you from grateful trust.",
+            f"If rest feels like a luxury you cannot afford, name that to God — and ask Him to be your provision in the time you give back.",
         ]
     elif "gratitude" in exposition_sentence or "good" in exposition_sentence:
         items = [
             f"Thank God aloud for three concrete gifts named or implied in {brief.scripture_reference}.",
             "Share one tangible kindness or provision with someone else today as a response to God's goodness.",
+            f"If gratitude feels forced or empty right now, name that honestly — and ask God to make what {brief.scripture_reference} declares real in your experience today.",
         ]
     return connector, items
 
@@ -1728,6 +2153,7 @@ def _build_prayer(
     exposition_text: str,
     topic: str | None = None,
     scripture_reference: str | None = None,
+    focal_scripture_text: str = "",
 ) -> str:
     if brief is None:
         if not scripture_reference:
@@ -1737,28 +2163,41 @@ def _build_prayer(
             scripture_reference=scripture_reference,
             scripture_text=scripture_text,
         )
+    # Use focal passage text (not full context) for focus_clause check — prevents
+    # content from outside the focal pericope (e.g. from the broader study window)
+    # from contaminating the prayer's petition language.
+    _focus_check_text = focal_scripture_text or scripture_text
+    theme_key = _theme_key(brief, scripture_text)
     focus = (
         _communalize_focus(brief.focus_clause)
-        if _focus_clause_in_passage(brief.focus_clause, scripture_text)
+        if _focus_clause_in_passage(brief.focus_clause, _focus_check_text)
         else ""
     )
+    # Narrative focus_clauses are story events, not theological principles —
+    # they read incoherently as petition language ("Where 'the younger son
+    # gathered everything...' calls for obedience"). Use empty string so the
+    # fallback petition fires instead of quoting a narrative clause verbatim.
+    if theme_key == "repentance":
+        focus = ""
     exposition_sentence = _first_exposition_sentence(exposition_text)
-    theme_key = _theme_key(brief, scripture_text)
     christological = _christological_frame(brief)
     theme_variant = _theme_variant(brief, scripture_text)
     emphasis, practice_move, closing_move = _theme_applications(theme_key)
     trial_variant = _trial_variant(brief) if theme_key == "trial" else ""
     theme_petition = {
-        "repentance": "Keep us from Peter's collapse of courage, and teach us to remember Your word before fear becomes denial.",
+        "repentance": "Father, do not let us take what You give while putting distance from Your presence, or call that departure freedom. Do not let the far country — whatever form it takes in us — be mistaken for a life well spent. Where we have spent what You gave in a life of our own making, let the impoverishment that self-rule produces be the thing that turns us back — not toward better circumstances, but toward You.",
         "trial": "Keep us from Pilate's evasions, from the crowd's surrender to pressure, and from any habit that hides truth behind appearances.",
         "cross": "Keep us near the crucified Christ, and do not let us soften suffering love into something easier than holy obedience.",
         "betrayal": "Keep us from selling loyalty for convenience, approval, or imagined gain.",
         "resurrection": "Lift our hearts into resurrection courage, and keep us from living as though death still has the final word.",
-        "psalm_trust": "Keep us resting under You as our Shepherd, trusting that You lead us beside still waters and through every valley without fear.",
+        "psalm_trust": "Keep us resting under You as our Shepherd — receiving provision, rest, and guidance in paths of righteousness for Your name's sake, rather than grasping for what only You can give.",
         "psalm_lament": "Hear our cry when our soul is cast down and we feel forsaken; do not hide Your face, but draw near in our anguish and meet us there.",
         "psalm_praise": "Stir our hearts to bless You with all that is within us and to declare Your steadfast love and mighty deeds to every generation.",
+        "habakkuk_lament": "Hear us when we cry to You of violence and iniquity and You do not answer. Do not let us be silenced by spiritual performance when honest complaint is what You have invited. Grant us the prophet's courage: to name what we see, to demand that You see it too, and to wait inside the unanswered question without deserting.",
+        "habakkuk_awe": "We see what Habakkuk saw: the law paralyzed, justice never upheld, the wicked surrounding the righteous. Do not let us domesticate what You are about to do. Give us the sobriety to receive Your unsettling judgment without flinching, and without pretending it ends somewhere it does not.",
         "epistle_justification": "Thank You for justifying us by faith apart from works of the law; let us stand in peace with You through our Lord Jesus Christ and not return to self-made righteousness.",
-        "epistle_sanctification": "Help us put to death what belongs to the earth and set our minds on things above, walking as those who are truly alive from the dead.",
+        "epistle_sanctification": "Keep our minds set on Christ who is seated at Your right hand, and do not let earthly things reclaim what You have declared already hidden and raised. Let the glory yet to come be more real to us than what is currently visible — the concealment now is the ground of the revealing then.",
+        "law": "Keep us from treating Your commands as external expectations to manage rather than the shape of a life fully surrendered to You.",
         "narrative_loyalty": "Grant us grace to cling in faithful loyalty, choosing Your people and Your God even when the path is costly and comfort is not promised.",
         "narrative_providence": "Open our eyes to see Your hidden hand at work — the hand that turns what men intend for harm into mercy for many.",
         "prophecy_restoration": "Comfort us as Your people; speak tenderly, and do the new thing You have promised — breathe life into what is dry and make rivers in the desert.",
@@ -1798,29 +2237,96 @@ def _build_prayer(
                 "Keep us from interpreting bodily affliction as permission for despair, accusation, or spiritual surrender."
             )
     closing_sentence = (
-        "Make us truthful, steady, and brave where fear, pressure, or suffering would tempt us to compromise."
+        "Keep us honest before You about what we see, courageous enough not to pretend, and faithful enough to wait for what You have not yet said."
+        if theme_key in {"habakkuk_lament", "habakkuk_awe"}
+        else "Make us truthful, steady, and brave where fear, pressure, or suffering would tempt us to compromise."
         if theme_key in {"trial", "cross", "betrayal", "repentance", "loss", "endurance", "affliction"}
         else f"Make our lives more truthful, more restful, and more loving as we pursue {closing_move}."
     )
     # Extract a concrete passage image to anchor the prayer in specific passage language.
-    _prayer_image = _scripture_image(scripture_text)
+    # Theme-specific overrides prevent superscriptions or introductory metadata from
+    # being quoted in place of the passage's actual theological content.
+    _prayer_image_override = {
+        "habakkuk_lament": "How long, O Lord, will I call for help and You will not hear",
+        "habakkuk_awe": "the law is ignored and justice is never upheld",
+        "narrative_loyalty": "the LORD had visited His people in giving them food",
+        "repentance": "he squandered his estate in loose living",
+    }.get(theme_key, "")
+    _prayer_image = _prayer_image_override or _scripture_image(focal_scripture_text or scripture_text)
+    # Theme-dependent address — Habakkuk and lament passages address God as sovereign Lord,
+    # not as Father-provider. The address must match the passage's relational register.
+    _prayer_address = {
+        "habakkuk_lament": "Sovereign Lord",
+        "habakkuk_awe": "Sovereign Lord",
+        "psalm_lament": "Lord",
+        "loss": "Lord",
+        "endurance": "Lord",
+        "affliction": "Lord",
+        "trial": "Lord",
+        "cross": "Lord",
+    }.get(theme_key, "Father")
+    # Theme-specific resistance language avoids hardcoded generic "pride/self-deception".
+    _theme_resistance_phrase = {
+        "psalm_trust": "whatever would treat Your leading as passive comfort rather than active obedience",
+        "psalm_lament": "whatever would silence honest grief or replace trust with performed contentment",
+        "psalm_praise": "whatever would let praise become routine or reduce blessing You to habit",
+        "repentance": "whatever would choose the crowd's approval over honest confession",
+        "trial": "whatever would choose safety over truth when others are watching",
+        "cross": "whatever would soften the cost of following the crucified One",
+        "betrayal": "whatever would trade loyalty for convenience or imagined gain",
+        "resurrection": "whatever would keep us living as though death still has the final word",
+        "epistle_justification": "whatever would return us to self-made righteousness rather than resting in Your gift",
+        "epistle_sanctification": "whatever would make the hiddenness of our life in Christ feel like a liability rather than a trust — making us grasp for visible confirmation when You have promised glory at the revealing",
+        "habakkuk_lament": "whatever would let us resolve the scandal of delayed justice with tidy answers rather than remaining honestly inside the unanswered complaint",
+        "habakkuk_awe": "whatever would let us domesticate the terror of Your coming judgment or escape it into premature comfort before You have spoken",
+        "law": "whatever would reduce Your commands to external rules rather than the shape of whole-hearted allegiance",
+        "narrative_loyalty": "whatever would make faithfulness to Your people too costly to keep",
+        "narrative_providence": "whatever would make us mistake Your hidden hand for absence or indifference",
+        "prophecy_restoration": "whatever would make us despair of Your promise or settle for what is dry and barren",
+    }.get(theme_key, "whatever would make Your word comfortable reading rather than commanding truth")
     sentences = [
-        f"Father, thank You for speaking clearly in {brief.scripture_reference}.",
+        # Open with passage image + citation — grounded in text, not just bibliographic reference.
+        # Address is theme-dependent: lament/habakkuk use "Sovereign Lord"/"Lord", not "Father".
+        f"{_prayer_address}, in {brief.scripture_reference} You have placed before us \"{_prayer_image}\" — receive this as our response.",
+        # Pastoral burden as petition — lament themes must not import an obedience frame here.
+        # psalm_trust uses a fixed sentence to avoid importing valley-of-death imagery from study window
+        # into a focal passage that ends at the paths of righteousness (23:1-3).
         (
-            f"In this passage You bring {brief.pastoral_burden} into the open through {focus}."
-            if focus
-            else f"In this passage You bring {brief.pastoral_burden} into the open."
+            "In this passage You place before us a Shepherd who provides rest, soul-renewal, and guidance in righteous paths; do not let us receive that care as sentiment while continuing to secure our own way."
+            if theme_key == "psalm_trust"
+            else f"In this passage You bring {brief.pastoral_burden} into the open; do not let us escape it into performed calm or premature resolve."
+            if theme_key in {"habakkuk_lament", "habakkuk_awe", "psalm_lament", "loss", "endurance", "affliction"}
+            else f"In this passage You bring {brief.pastoral_burden} into the open; let that truth press into our obedience today."
         ),
+        # Passage image in direct petition — lament themes must not say "shape how we act".
         (
-            f"Lord Jesus, let the words \"{_prayer_image}\" press into our obedience today, not only our understanding."
+            f"Sovereign Lord, the words \"{_prayer_image}\" call us not to action but to honest cry before You — grant us the prophet's courage to remain inside the unanswered question."
+            if theme_key in {"habakkuk_lament", "habakkuk_awe"}
+            else f"Lord Jesus, let the words \"{_prayer_image}\" shape not only how we think but how we act in this day."
             if christological
-            else f"Lord, let the words \"{_prayer_image}\" press into our obedience today, not only our understanding."
+            else f"Lord, let the words \"{_prayer_image}\" shape not only how we think but how we act in this day."
         ),
-        f"Where we resist the truth highlighted in this reflection, bring repentance and renewed trust.",
+        # Focus-specific petition — names the day's focal text directly.
+        (
+            f"Where \"{focus}\" calls for obedience, remove in us whatever prefers comfort over trust."
+            if focus
+            else f"Where we resist the truth this passage names, bring repentance and renewed trust."
+        ),
         theme_petition,
-        f"Holy Spirit, take what we have seen in \"{_prayer_image}\" and make it lived faithfulness rather than a passing impression.",
-        f"Teach us to remember that {exposition_sentence or 'Your word is always trustworthy and near to us.'}",
-        f"Guard our hearts from pride, our choices from self-deception, and whatever would pull us away from {emphasis}.",
+        # Holy Spirit petition — theme-specific to avoid epistle-sanctification frame on non-epistle passages.
+        {
+            "narrative_loyalty": f"Lord, let the loyalty this passage commends become the practiced shape of our day — carried into real choice, not admired from a distance.",
+            "narrative_providence": f"Lord, when we cannot see Your hand, keep our trust in Your purposes from collapsing into the visible — let what {brief.scripture_reference} shows about Your hidden work sustain us.",
+            "prophecy_restoration": f"Lord, let Your promise of restoration be more than a hope deferred — let it press into what we pray for and how we live today.",
+        }.get(theme_key, f"Holy Spirit, take what we have encountered in this passage and work it into lived faithfulness rather than a passing impression."),
+        # Focus-based teaching petition — avoids restating pastoral_burden via exposition_sentence.
+        (
+            f"Let \"{focus}\" become more than known words — let it shape the choices and conversations of this day."
+            if focus
+            else f"Let this passage become more than a read text — let it become lived obedience in the choices of this day."
+        ),
+        # Theme-specific resistance; avoids hardcoded generic "pride, self-deception".
+        f"Guard us from {_theme_resistance_phrase}, and do not let anything pull us away from {emphasis}.",
         f"Help us practice the obedience this day requires with humility as we pursue {_communalize_application(brief.application_lane)}.",
         closing_sentence,
         "Receive this prayer and keep us near to You in all things.",

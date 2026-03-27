@@ -99,15 +99,15 @@ def _make_book(num_days: int) -> DevotionalBook:
 
 class TestPageCount:
     def test_6_day_book_page_count(self):
-        # 6 days, no day7, no sending_prompt → 6 day pages + 1 offer page = 7
+        # 6 days, no day7, no sending_prompt → 6 day pages + 1 footnotes page + 1 offer page = 8
         book = _make_book(6)
         doc = _RENDERER.render(book, OutputMode.PUBLISH_READY)
-        assert len(doc.content_pages) == 7
+        assert len(doc.content_pages) == 8
 
     def test_sample_book_content_pages(self):
-        # SAMPLE_BOOK: 7 day pages + 1 Day 7 integration page + 1 offer page = 9
+        # SAMPLE_BOOK: 7 day pages + 1 Day 7 integration page + 1 footnotes page + 1 offer page = 10
         doc = _RENDERER.render(SAMPLE_BOOK, OutputMode.PUBLISH_READY)
-        assert len(doc.content_pages) == 9
+        assert len(doc.content_pages) == 10
 
 
 class TestTocRendering:
@@ -120,17 +120,17 @@ class TestTocRendering:
                 assert block.block_type != BlockType.TOC_ENTRY
 
     def test_toc_rendered_for_12_plus_days(self):
-        # 12 days (day_numbers cycle 1–7 per schema constraint)
+        # TOC is intentionally disabled by default even for longer devotionals.
         book = _make_book(12)
         doc = _RENDERER.render(book, OutputMode.PUBLISH_READY)
-        assert doc.has_toc is True
+        assert doc.has_toc is False
         toc_blocks = [
             block
             for page in doc.front_matter
             for block in page.blocks
             if block.block_type == BlockType.TOC_ENTRY
         ]
-        assert len(toc_blocks) == 12
+        assert len(toc_blocks) == 0
 
 
 class TestDay7Rendering:
@@ -139,8 +139,8 @@ class TestDay7Rendering:
         book = _make_book(6)
         doc = _RENDERER.render(book, OutputMode.PUBLISH_READY)
         assert doc.has_day7 is False
-        # 7 content pages: 6 day pages + offer
-        assert len(doc.content_pages) == 7
+        # 8 content pages: 6 day pages + footnotes + offer
+        assert len(doc.content_pages) == 8
 
     def test_day7_page_has_before_service_heading(self):
         doc = _RENDERER.render(SAMPLE_BOOK, OutputMode.PUBLISH_READY)
@@ -194,10 +194,25 @@ class TestSectionHeadings:
         doc = _RENDERER.render(SAMPLE_BOOK, OutputMode.PUBLISH_READY)
         return doc.content_pages[0].blocks
 
-    def test_timeless_wisdom_has_footnote(self):
+    def test_day_page_begins_with_week_day_subtitle_and_day_title(self):
+        blocks = self._day1_blocks()
+        assert blocks[0].block_type == BlockType.SUBTITLE
+        assert "Week 1" in blocks[0].content
+        assert "Day 1" in blocks[0].content
+        assert blocks[1].block_type == BlockType.TITLE
+        assert blocks[2].block_type == BlockType.DIVIDER
+
+    def test_timeless_wisdom_footnote_moves_to_endnotes_page(self):
         blocks = self._day1_blocks()
         footnote_blocks = [b for b in blocks if b.block_type == BlockType.FOOTNOTE]
-        assert len(footnote_blocks) >= 1
+        assert len(footnote_blocks) == 0
+
+        doc = _RENDERER.render(SAMPLE_BOOK, OutputMode.PUBLISH_READY)
+        footnotes_page = doc.content_pages[-2]
+        headings = [b.content for b in footnotes_page.blocks if b.block_type == BlockType.HEADING]
+        assert "Footnotes" in headings
+        body = [b.content for b in footnotes_page.blocks if b.block_type == BlockType.BODY_TEXT]
+        assert any(line.startswith("1. ") for line in body)
 
     def test_exposition_heading_is_reflection(self):
         blocks = self._day1_blocks()

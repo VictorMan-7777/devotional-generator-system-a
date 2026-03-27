@@ -398,7 +398,7 @@ def _theological_lane(reference: str, focus_clause: str, scripture_text: str, bu
         return "steadfast reverence under cascading loss"
     if any(term in lower for term in {"sore boils", "skin for skin", "touch his bone", "touch his flesh"}):
         return "integrity under bodily affliction"
-    if any(term in lower for term in {"rose", "risen", "empty tomb", "alive"}):
+    if any(term in lower for term in {"he rose", "risen", "empty tomb", "raised from the dead", "he is alive"}):
         return "resurrection hope and witness"
     if "cross" in lower or "crucifi" in lower:
         return "suffering love and obedient sacrifice"
@@ -406,6 +406,13 @@ def _theological_lane(reference: str, focus_clause: str, scripture_text: str, bu
         return "repentance after failure"
     if any(term in lower for term in {"watch", "pray", "cup"}):
         return "watchful surrender before costly obedience"
+    if any(term in lower for term in {
+        "the lord had visited his people",
+        "visited his people in giving them food",
+        "may the lord deal kindly",
+        "she arose with her daughters-in-law that she might return",
+    }):
+        return "covenant loyalty that follows God's people through grief and return"
     if ref.startswith(("psalm", "psalms")):
         return "worship and wisdom under the word of god"
     return burden
@@ -503,6 +510,8 @@ def _application_lane(reference: str, focus_clause: str, scripture_text: str, la
         return "sober reverence that does not domesticate God's judgment"
     if "holiness publicly vindicated" in lower:
         return "humble reverence before God's holiness among the nations"
+    if "covenant loyalty" in lower and "grief" in lower:
+        return "faithful loyalty that chooses God's people over personal comfort"
     if any(term in lower for term in {"loss", "suffering", "affliction", "integrity", "reverent endurance"}):
         return "honest reverence without flattening grief or pain"
     if any(term in lower for term in {"cross", "crucifi", "sacrifice"}):
@@ -522,10 +531,17 @@ def _application_lane(reference: str, focus_clause: str, scripture_text: str, la
         "before", "because", "through", "those", "these", "very", "then", "than", "unto",
         "lord", "god", "him", "his", "her", "its", "our", "who", "she", "came", "went",
         "said", "does", "will", "shall", "also", "not", "but", "for", "are", "all",
+        # Common verbs / prepositions / adverbs that produce garbled connector phrases
+        # when interpolated as noun-phrase anchors (e.g. "takes makes and down seriously")
+        "makes", "make", "made", "leads", "lead", "gives", "give", "given", "walks",
+        "walk", "rests", "rest", "takes", "take", "taken", "comes", "come", "seeks",
+        "seek", "keeps", "keep", "turns", "turn", "looks", "look", "moves", "move",
+        "down", "upon", "over", "away", "back", "near", "open", "like", "just", "only",
     }
+    # Require 5+ character words to avoid short verb/adverb fragments as anchors
     _key_tokens = [
         t.lower()
-        for t in _re.findall(r"[A-Za-z][A-Za-z']{3,}", focus_clause)
+        for t in _re.findall(r"[A-Za-z][A-Za-z']{4,}", focus_clause)
         if t.lower() not in _SKIP
     ][:2]
     _anchor = " and ".join(_key_tokens) if _key_tokens else "this passage"
@@ -725,7 +741,8 @@ def _pastoral_burden(reference: str, focus_clause: str, scripture_text: str = ""
     if any(
         phrase in lower
         for phrase in {
-            "follow me",
+            # "follow me" removed — too short, false-positives on Psalm 23:6
+            # ("goodness and lovingkindness will follow me all the days of my life")
             "he left everything behind",
             "i have not come to call the righteous but sinners to repentance",
             "the disciples of john often fast",
@@ -1211,11 +1228,11 @@ def _pastoral_burden(reference: str, focus_clause: str, scripture_text: str = ""
         return "prepared obedience"
     if any(word in focus_lower for word in {"buried", "tomb", "stone", "guard"}):
         return "hidden hope under watch"
-    if any(word in focus_lower for word in {"rose", "risen", "empty", "alive"}):
+    if any(word in focus_lower for word in {"he rose", "risen", "empty tomb", "raised from the dead", "he is alive"}):
         return "resurrection hope and faithful witness"
     if any(word in lower for word in {"potter", "silver", "betray", "betrayer", "judas"}):
         return "treachery and corrupted reward"
-    if any(word in lower for word in {"deny", "remembered", "wept"}):
+    if any(word in lower for word in {"deny", "remembered", "wept bitterly"}):
         return "repentance after failure"
     if any(word in lower for word in {"fear", "riot", "mock", "scourge", "silent", "trial", "pilate", "wash", "crowd", "governor", "testify", "charge"}):
         return "truthfulness under pressure"
@@ -1223,12 +1240,19 @@ def _pastoral_burden(reference: str, focus_clause: str, scripture_text: str = ""
         return "suffering love and obedient endurance"
     if any(word in lower for word in {"pray", "watch", "garden", "cup"}):
         return "watchful surrender"
-    if any(word in lower for word in {"passover", "prepare", "house", "disciples"}):
+    if any(word in lower for word in {"passover", "prepared a place", "upper room", "make ready"}):
         return "prepared obedience"
     if any(word in lower for word in {"buried", "tomb", "stone", "guard"}):
         return "hidden hope under watch"
-    if any(word in lower for word in {"rose", "risen", "empty", "alive"}):
+    if any(word in lower for word in {"he rose", "risen", "empty tomb", "raised from the dead", "he is alive"}):
         return "resurrection hope and faithful witness"
+    if any(phrase in lower for phrase in {
+        "the lord had visited his people",
+        "visited his people in giving them food",
+        "may the lord deal kindly",
+        "she arose with her daughters-in-law that she might return",
+    }):
+        return "loyal return to God's people after grief"
     return "faithful response to God's word"
 
 

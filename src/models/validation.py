@@ -14,6 +14,10 @@ class ValidatorAssessment(BaseModel):
     evidence: Optional[str] = None  # Specific text triggering the failure
 
 
+class BookValidatorAssessment(ValidatorAssessment):
+    day_numbers: list[int] = []
+
+
 class RewriteSignal(str, Enum):
     AUTO_REWRITE = "auto_rewrite"
     HUMAN_REVIEW = "human_review"

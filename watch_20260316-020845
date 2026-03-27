@@ -1,0 +1,24 @@
+DevG Autonomous Training Monitor                                                
+================================                                                
+Time: Mon Mar 16 02:08:44 EDT 2026                                              
+DB:   /Volumes/claude-projects/projects/devotional-generator-system-a/registry.d
+b                                                                               
+Note: harness-derived outliner rows are excluded from dashboard stats           
+                                                                                
+Experiment counts by worker and status                                          
+--------------------------------------                                          
+worker_name              status       count                                     
+-----------------------  -----------  -----                                     
+general_librarian        in_progress  1                                         
+outliner                 keep         4                                         
+outliner                 running      1                                         
+output_training_manager  reviewed     1                                         
+pdf_art_director         assigned     1                                         
+pdf_layout_engineer      assigned     1                                         
+research_librarian       in_progress  1                                         
+training_manager         reviewed     1                                         
+                                                                                
+Pass rates by worker                                                            
+--------------------                                                            
+worker_name              total  pass_like  pass_rate-----------------------  ---
+

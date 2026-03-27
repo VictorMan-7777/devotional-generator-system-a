@@ -1,0 +1,145 @@
+{
+  "target_max_grade": 8.0,
+  "summary": {
+    "exposition_days_scored": 12,
+    "target_max_grade": 8.0,
+    "average_flesch_kincaid_grade": 8.78,
+    "average_flesch_reading_ease": 56.22,
+    "days_above_target_grade": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ]
+  },
+  "days": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "word_count": 512,
+      "sentence_count": 38,
+      "syllable_count": 821,
+      "flesch_reading_ease": 57.5,
+      "flesch_kincaid_grade": 8.59,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "word_count": 502,
+      "sentence_count": 37,
+      "syllable_count": 797,
+      "flesch_reading_ease": 58.75,
+      "flesch_kincaid_grade": 8.44,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "word_count": 500,
+      "sentence_count": 37,
+      "syllable_count": 854,
+      "flesch_reading_ease": 48.62,
+      "flesch_kincaid_grade": 9.83,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "word_count": 502,
+      "sentence_count": 37,
+      "syllable_count": 813,
+      "flesch_reading_ease": 56.05,
+      "flesch_kincaid_grade": 8.81,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "word_count": 500,
+      "sentence_count": 37,
+      "syllable_count": 809,
+      "flesch_reading_ease": 56.24,
+      "flesch_kincaid_grade": 8.77,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "word_count": 498,
+      "sentence_count": 37,
+      "syllable_count": 800,
+      "flesch_reading_ease": 57.27,
+      "flesch_kincaid_grade": 8.62,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "word_count": 511,
+      "sentence_count": 38,
+      "syllable_count": 853,
+      "flesch_reading_ease": 51.97,
+      "flesch_kincaid_grade": 9.35,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "word_count": 498,
+      "sentence_count": 37,
+      "syllable_count": 825,
+      "flesch_reading_ease": 53.02,
+      "flesch_kincaid_grade": 9.21,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "word_count": 511,
+      "sentence_count": 38,
+      "syllable_count": 812,
+      "flesch_reading_ease": 58.75,
+      "flesch_kincaid_grade": 8.41,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "word_count": 497,
+      "sentence_count": 37,
+      "syllable_count": 783,
+      "flesch_reading_ease": 59.92,
+      "flesch_kincaid_grade": 8.24,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "word_count": 506,
+      "sentence_count": 37,
+      "syllable_count": 811,
+      "flesch_reading_ease": 57.36,
+      "flesch_kincaid_grade": 8.66,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "word_count": 514,
+      "sentence_count": 38,
+      "syllable_count": 814,
+      "flesch_reading_ease": 59.13,
+      "flesch_kincaid_grade": 8.37,
+      "grade_band": "needs_simplification"
+    }
+  ]
+}

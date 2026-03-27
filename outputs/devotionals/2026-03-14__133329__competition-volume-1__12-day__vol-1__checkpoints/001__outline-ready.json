@@ -1,0 +1,872 @@
+{
+  "run_slug": "2026-03-14__133329__competition-volume-1__12-day__vol-1",
+  "stage": "outline_ready",
+  "sequence": 1,
+  "created_at_utc": "2026-03-14T13:33:31.445884+00:00",
+  "payload": {
+    "topic": "Competition Volume 1",
+    "num_days": 12,
+    "source_reference": null,
+    "editorial_build": {
+      "topic": "Competition Volume 1",
+      "num_days": 12,
+      "source_reference": null,
+      "week_count": 2,
+      "passage_resources": {
+        "topic": "Competition Volume 1",
+        "scripture_reference": "Luke 15:1-2",
+        "prepared_at_utc": "2026-03-14T13:33:29Z",
+        "shared_resources": [
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "commentary",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "commentary",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "reference",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "reference",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "encyclopedia",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          }
+        ],
+        "outliner_resources": [
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Luke 15",
+            "author": "",
+            "source_type": "planner_outline",
+            "excerpt_text": "Day 1 focus | Luke 15:1-2",
+            "note": "Planner-generated outline used by scripture harness.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "encyclopedia",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Journals of George Whitefield",
+            "author": "George Whitefield",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Letters of Samuel Rutherford",
+            "author": "Samuel Rutherford",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Luther's Works (Prayer Selections)",
+            "author": "Martin Luther",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Matthew Henry's Commentary on the Whole Bible",
+            "author": "Matthew Henry",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Metropolitan Tabernacle Pulpit",
+            "author": "Charles H. Spurgeon",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Of the Mortification of Sin",
+            "author": "John Owen",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Profiting from the Word",
+            "author": "Arthur W. Pink",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Sermons and Letters",
+            "author": "John Calvin",
+            "source_type": "sermon_collection",
+            "excerpt_text": "publication_metadata",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Sermons and Tracts",
+            "author": "John Wesley",
+            "source_type": "sermon_collection",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Table Talk",
+            "author": "Martin Luther",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Bruised Reed",
+            "author": "Richard Sibbes",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Doctrine of Repentance",
+            "author": "Thomas Watson",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Sovereignty of God",
+            "author": "Arthur W. Pink",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Luke 15:1-2: chapters 1-16. Book coverage: Luke. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          }
+        ],
+        "exposition_resources": [
+          {
+            "purpose": "context",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "commentary",
+            "excerpt_text": "The Pulpit Commentary notes that the creation account frames Israel's worship by grounding all life and time in the Lord's sovereign initiative.",
+            "note": "Research librarian prepared context support for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "commentary",
+            "excerpt_text": "Jamieson-Fausset-Brown observes that each creative act is presented as both powerful and orderly, reinforcing God's authority over chaos and history.",
+            "note": "Research librarian prepared theological support for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "reference",
+            "excerpt_text": "Strong's lexical entries for creation terms note purposeful formation and ordering, supporting a theological reading centered on God's intentional design rather than randomness.",
+            "note": "Research librarian prepared theological support for Luke 15:1-2.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "reference",
+            "excerpt_text": "Smith's Bible Dictionary presents the Sabbath pattern as a theological gift: rest ordered by God, not merely human cessation, shaping worship and trust.",
+            "note": "Research librarian prepared theological support for Luke 15:1-2.",
+            "relevance_score": 1.0
+          }
+        ]
+      },
+      "day_plan": [
+        {
+          "day_number": 1,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 1 focus | Luke 15:1-2",
+          "scripture_reference": "Luke 15:1-2"
+        },
+        {
+          "day_number": 2,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 2 focus | Luke 15:3-5",
+          "scripture_reference": "Luke 15:3-5"
+        },
+        {
+          "day_number": 3,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 3 focus | Luke 15:6-8",
+          "scripture_reference": "Luke 15:6-8"
+        },
+        {
+          "day_number": 4,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 4 focus | Luke 15:9-10",
+          "scripture_reference": "Luke 15:9-10"
+        },
+        {
+          "day_number": 5,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 5 focus | Luke 15:11-13",
+          "scripture_reference": "Luke 15:11-13"
+        },
+        {
+          "day_number": 6,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 6 focus | Luke 15:14-16",
+          "scripture_reference": "Luke 15:14-16"
+        },
+        {
+          "day_number": 7,
+          "week_number": 1,
+          "topic": "Luke 15 | Day 7 focus | Luke 15:17-18",
+          "scripture_reference": "Luke 15:17-18"
+        },
+        {
+          "day_number": 8,
+          "week_number": 2,
+          "topic": "Luke 15 | Day 8 focus | Luke 15:19-21",
+          "scripture_reference": "Luke 15:19-21"
+        },
+        {
+          "day_number": 9,
+          "week_number": 2,
+          "topic": "Luke 15 | Day 9 focus | Luke 15:22-24",
+          "scripture_reference": "Luke 15:22-24"
+        },
+        {
+          "day_number": 10,
+          "week_number": 2,
+          "topic": "Luke 15 | Day 10 focus | Luke 15:25-26",
+          "scripture_reference": "Luke 15:25-26"
+        },
+        {
+          "day_number": 11,
+          "week_number": 2,
+          "topic": "Luke 15 | Day 11 focus | Luke 15:27-29",
+          "scripture_reference": "Luke 15:27-29"
+        },
+        {
+          "day_number": 12,
+          "week_number": 2,
+          "topic": "Luke 15 | Day 12 focus | Luke 15:30-32",
+          "scripture_reference": "Luke 15:30-32"
+        }
+      ],
+      "day_briefs": [
+        {
+          "day_number": 1,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:1-2",
+          "day_title": "Luke 15:1-2 - All the tax collectors and the sinners were coming near Him to listen to Him",
+          "focus_clause": "All the tax collectors and the sinners were coming near Him to listen to Him",
+          "pastoral_burden": "mercy that welcomes the very people religious pride keeps at a distance",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:1-2 opens with a scene marked by mercy that welcomes the very people religious pride keeps at a distance.",
+          "theological_lane": "the mercy of Christ receives sinners openly and exposes the coldness of self-righteous grumbling",
+          "application_lane": "glad nearness to Christ that welcomes repentant sinners instead of guarding respectability through distance",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "all",
+            "tax",
+            "collectors",
+            "sinners",
+            "coming",
+            "near"
+          ]
+        },
+        {
+          "day_number": 2,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:3-5",
+          "day_title": "Luke 15:3-5 - If he has a hundred sheep and has lost one of them",
+          "focus_clause": "If he has a hundred sheep and has lost one of them",
+          "pastoral_burden": "seeking mercy that refuses to leave the lost where they wandered",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:3-5 opens with a scene marked by seeking mercy that refuses to leave the lost where they wandered.",
+          "theological_lane": "the shepherding mercy of God moves toward the lost with patient, joyful intention until they are found",
+          "application_lane": "hopeful pursuit that reflects the shepherd's joy in recovering the lost rather than writing them off",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "hundred",
+            "sheep",
+            "lost",
+            "one",
+            "told",
+            "parable"
+          ]
+        },
+        {
+          "day_number": 3,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:6-8",
+          "day_title": "Luke 15:6-8 - Does not light a lamp and sweep the house and search carefully until she finds it",
+          "focus_clause": "Does not light a lamp and sweep the house and search carefully until she finds it",
+          "pastoral_burden": "heavenly joy over one repentant sinner",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:6-8 opens with a scene marked by heavenly joy over one repentant sinner.",
+          "theological_lane": "the joy of God and heaven over repentance dwarfs the stingy calculations of religious pride",
+          "application_lane": "shared joy in repentance that celebrates grace instead of minimizing what heaven itself delights in",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "does",
+            "not",
+            "light",
+            "lamp",
+            "sweep",
+            "house"
+          ]
+        },
+        {
+          "day_number": 4,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:9-10",
+          "day_title": "Luke 15:9-10 - There is joy in the presence of the angels of God over one sinner who repents",
+          "focus_clause": "There is joy in the presence of the angels of God over one sinner who repents",
+          "pastoral_burden": "heavenly joy over one repentant sinner",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:9-10 opens with a scene marked by heavenly joy over one repentant sinner.",
+          "theological_lane": "the joy of God and heaven over repentance dwarfs the stingy calculations of religious pride",
+          "application_lane": "shared joy in repentance that celebrates grace instead of minimizing what heaven itself delights in",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "joy",
+            "presence",
+            "angels",
+            "god",
+            "over",
+            "one"
+          ]
+        },
+        {
+          "day_number": 5,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:11-13",
+          "day_title": "Luke 15:11-13 - The younger son gathered everything together and went on a journey into a distant country",
+          "focus_clause": "The younger son gathered everything together and went on a journey into a distant country",
+          "pastoral_burden": "rebellious desire that mistakes distance from the father for freedom",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:11-13 opens with a scene marked by rebellious desire that mistakes distance from the father for freedom.",
+          "theological_lane": "sinful independence spends the father's gifts while rejecting the father's presence",
+          "application_lane": "honest repentance that stops calling self-ruled distance from God a form of freedom",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "younger",
+            "son",
+            "gathered",
+            "everything",
+            "together",
+            "went"
+          ]
+        },
+        {
+          "day_number": 6,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:14-16",
+          "day_title": "Luke 15:14-16 - He would have gladly filled his stomach with the pods that the swine were eating",
+          "focus_clause": "He would have gladly filled his stomach with the pods that the swine were eating",
+          "pastoral_burden": "the emptiness and humiliation that finally expose rebellion",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:14-16 opens with a scene marked by the emptiness and humiliation that finally expose rebellion.",
+          "theological_lane": "the far country cannot sustain the sinner; ruin exposes the lie that rebellion can nourish the soul",
+          "application_lane": "sobriety about sin's emptiness that stops romanticizing paths which finally leave people starving",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "gladly",
+            "filled",
+            "his",
+            "stomach",
+            "pods",
+            "swine"
+          ]
+        },
+        {
+          "day_number": 7,
+          "week_number": 1,
+          "scripture_reference": "Luke 15:17-18",
+          "day_title": "Luke 15:17-18 - \u2018How many of my father\u2019s hired men have more than enough bread",
+          "focus_clause": "\u2018How many of my father\u2019s hired men have more than enough bread",
+          "pastoral_burden": "repentance that comes to its senses and returns honestly",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:17-18 opens with a scene marked by repentance that comes to its senses and returns honestly.",
+          "theological_lane": "true repentance names sin plainly, abandons excuses, and turns back toward the father",
+          "application_lane": "plainspoken repentance that rises and returns without bargaining away the truth about sin",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "how",
+            "many",
+            "father",
+            "hired",
+            "men",
+            "more"
+          ]
+        },
+        {
+          "day_number": 8,
+          "week_number": 2,
+          "scripture_reference": "Luke 15:19-21",
+          "day_title": "Luke 15:19-21 - I have sinned against heaven and in your sight",
+          "focus_clause": "I have sinned against heaven and in your sight",
+          "pastoral_burden": "repentance that comes to its senses and returns honestly",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:19-21 opens with a scene marked by repentance that comes to its senses and returns honestly.",
+          "theological_lane": "true repentance names sin plainly, abandons excuses, and turns back toward the father",
+          "application_lane": "plainspoken repentance that rises and returns without bargaining away the truth about sin",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "sinned",
+            "against",
+            "heaven",
+            "sight",
+            "longer",
+            "worthy"
+          ]
+        },
+        {
+          "day_number": 9,
+          "week_number": 2,
+          "scripture_reference": "Luke 15:22-24",
+          "day_title": "Luke 15:22-24 - Put a ring on his hand and sandals on his feet",
+          "focus_clause": "Put a ring on his hand and sandals on his feet",
+          "pastoral_burden": "the father's compassionate welcome outruns the returning sinner",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:22-24 opens with a scene marked by the father's compassionate welcome outruns the returning sinner.",
+          "theological_lane": "the father's compassion moves toward the repentant sinner with restoring love before merit can be claimed",
+          "application_lane": "resting in the father's restoring mercy instead of trying to earn a place back through self-humbling performance",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "put",
+            "ring",
+            "his",
+            "hand",
+            "sandals",
+            "feet"
+          ]
+        },
+        {
+          "day_number": 10,
+          "week_number": 2,
+          "scripture_reference": "Luke 15:25-26",
+          "day_title": "Luke 15:25-26 - He summoned one of the servants and began inquiring what these things could be",
+          "focus_clause": "He summoned one of the servants and began inquiring what these things could be",
+          "pastoral_burden": "self-righteous resentment that refuses the joy of grace",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:25-26 opens with a scene marked by self-righteous resentment that refuses the joy of grace.",
+          "theological_lane": "religious pride can remain near the father's house while hating the father's mercy and joy",
+          "application_lane": "repentance from resentful self-righteousness that measures grace like wages instead of receiving it as family mercy",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "summoned",
+            "one",
+            "servants",
+            "began",
+            "inquiring",
+            "things"
+          ]
+        },
+        {
+          "day_number": 11,
+          "week_number": 2,
+          "scripture_reference": "Luke 15:27-29",
+          "day_title": "Luke 15:27-29 - Many years I have been serving you and I have never neglected a command of yours",
+          "focus_clause": "Many years I have been serving you and I have never neglected a command of yours",
+          "pastoral_burden": "self-righteous resentment that refuses the joy of grace",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:27-29 opens with a scene marked by self-righteous resentment that refuses the joy of grace.",
+          "theological_lane": "religious pride can remain near the father's house while hating the father's mercy and joy",
+          "application_lane": "repentance from resentful self-righteousness that measures grace like wages instead of receiving it as family mercy",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "many",
+            "years",
+            "been",
+            "serving",
+            "never",
+            "neglected"
+          ]
+        },
+        {
+          "day_number": 12,
+          "week_number": 2,
+          "scripture_reference": "Luke 15:30-32",
+          "day_title": "Luke 15:30-32 - This brother of yours was dead and has begun to live",
+          "focus_clause": "This brother of yours was dead and has begun to live",
+          "pastoral_burden": "the father's appeal to share his joy instead of standing outside in pride",
+          "genre": "narrative",
+          "scene_summary": "Luke 15:30-32 opens with a scene marked by the father's appeal to share his joy instead of standing outside in pride.",
+          "theological_lane": "the father's generosity invites resentful children to come inside and share the joy of mercy",
+          "application_lane": "coming inside the joy of grace by receiving the father's generosity instead of standing outside with offended pride",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "brother",
+            "yours",
+            "dead",
+            "begun",
+            "live",
+            "son"
+          ]
+        }
+      ],
+      "week_plans": [
+        {
+          "week_number": 1,
+          "title": "Week 1: Mercy That Welcomes The Very People Religious Pride Keeps At A Distance",
+          "days": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "movement_summary": "Moves from all the tax collectors and the sinners were coming near him to listen to him toward \u2018how many of my father\u2019s hired men have more than enough bread."
+        },
+        {
+          "week_number": 2,
+          "title": "Week 2: Repentance That Comes To Its Senses And Returns Honestly",
+          "days": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "movement_summary": "Moves from i have sinned against heaven and in your sight toward this brother of yours was dead and has begun to live."
+        }
+      ]
+    }
+  }
+}

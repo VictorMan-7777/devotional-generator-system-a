@@ -1,0 +1,52 @@
+{
+  "run_slug": "2026-03-14__133218__competition-volume-1__12-day__vol-1",
+  "stage": "book_unification",
+  "sequence": 28,
+  "created_at_utc": "2026-03-14T13:32:31.548177+00:00",
+  "payload": {
+    "status": "failed",
+    "findings": [
+      {
+        "check_id": "BOOK_THEOLOGICAL_BOUNDARY",
+        "result": "fail",
+        "reason_code": "THEOLOGICAL_BOUNDARY_FLATTENING",
+        "explanation": "The day's application softens a severe passage into generic comfort language. Judgment, sin, repentance, suffering, or the cross should not be flattened away.",
+        "evidence": "passage_themes=['suffer'] comfort_terms=['comfort']",
+        "day_numbers": [
+          5
+        ]
+      },
+      {
+        "check_id": "BOOK_THEOLOGICAL_BOUNDARY",
+        "result": "fail",
+        "reason_code": "THEOLOGICAL_BOUNDARY_FLATTENING",
+        "explanation": "The day's application softens a severe passage into generic comfort language. Judgment, sin, repentance, suffering, or the cross should not be flattened away.",
+        "evidence": "passage_themes=['death'] comfort_terms=['comfort']",
+        "day_numbers": [
+          8
+        ]
+      },
+      {
+        "check_id": "BOOK_THEOLOGICAL_BOUNDARY",
+        "result": "fail",
+        "reason_code": "THEOLOGICAL_BOUNDARY_FLATTENING",
+        "explanation": "The day's application softens a severe passage into generic comfort language. Judgment, sin, repentance, suffering, or the cross should not be flattened away.",
+        "evidence": "passage_themes=['death'] comfort_terms=['comfort', 'peace']",
+        "day_numbers": [
+          9
+        ]
+      },
+      {
+        "check_id": "BOOK_WEEK_TRANSITION",
+        "result": "fail",
+        "reason_code": "WEEK_TRANSITION_WEAK",
+        "explanation": "The week boundary does not show a healthy blend of continuity and fresh movement. Week two should connect to week one without feeling like a reset or duplicate.",
+        "evidence": "boundary=6->8 shared=[] new_terms=['death', 'disciples', 'him', 'took'] similarity=0.64",
+        "day_numbers": [
+          6,
+          8
+        ]
+      }
+    ]
+  }
+}

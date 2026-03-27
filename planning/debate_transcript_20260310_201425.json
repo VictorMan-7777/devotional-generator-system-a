@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-03-10T20:13:48.441427",
+    "party": "orchestrator",
+    "issue": "implementation-plan",
+    "round": 1,
+    "response": "implementation-plan\n\nOption: keep the current three-cycle sequence, but make Cycle 1 explicitly two-stage with a mandatory approval gate between them, and treat the semantic choice as fixed unless a reviewer produces contrary repo evidence.\n\n1. Cycle 1A: repair the review/export contract by surfacing `agent_validated` sections in the approval-gate report.\nRationale: the current code-verified blocker is the mismatch between [`src/api/full_run_assets.py`](/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/full_run_assets.py) and [`src/api/export_gate.py`](/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/export_gate.py). The queue hides some sections while export still requires all sections to be approved. That is the highest-severity defect because it makes the operator workflow non-completable. The fail-closed choice is to surface those sections, not silently promote them.\n\n2. Human checkpoint immediately after Cycle 1A.\nRationale: this is the only step that changes the meaning of \u201creview complete.\u201d The checkpoint should approve a concrete artifact set: code diff, targeted test proving `agent_validated` sections appear in `pending_sections`, and a short statement of the Cycle 1B command contract.\n\n3. Cycle 1B: add the deterministic decisions-to-publish path.\nRationale: repo inspection still supports the earlier finding that there is no verified CLI path from `__approval-decisions.json` to updated `__book.json` plus publish-ready export. That path should be a dedicated script or subcommand, not folded implicitly into review UI state, because the competition run needs a reproducible operator command and evidence artifact.\n\n4. Cycle 2: fix the PDF heading normalization regression.\nRationale: this is real and already backed by a failing test in the TS PDF layer, but it is lower priority than the blocked publish-ready path because it does not prevent an operator from completing review semantics once Cycle 1 is fixed.\n\n5. Cycle 3: harden execution discipline and canonical commands.\nRationale: ambient `pytest` failure is an operational defect, not a product-path blocker. It belongs last, together with updating [`docs/system/competition-readiness-backlog.md`](/Volumes/claude-projects/projects/devotional-generator-system-a/docs/system/competition-readiness-backlog.md) and the final command set.\n\nPass criteria I would defend:\n- No hidden section state can block publish-ready export.\n- Publish-ready export remains fail-closed on scripture correctness and approval state.\n- Series child-volume non-dup enforcement stays intact.\n- Review UI timestamp/local-time behavior is unchanged.\n- One fresh competition-format run can produce `__book.json`, `__approval-gate-report.json`, `__agent-validation-report.json`, `__audit-linkage.json`, and a preview/publish-ready PDF through a documented command path.\n\nI agree with the existing direction in [`planning/2026-03-10__07__devg__two-eyes-system-review-plan.md`](/Volumes/claude-projects/projects/devotional-generator-system-a/planning/2026-03-10__07__devg__two-eyes-system-review-plan.md). The only point worth making explicit is that Cycle 1A should be considered a semantic contract approval, not just a bugfix, and Cycle 1B should not start until that contract is signed off.\n\n---DEBATE-SIGNAL---\nissue: implementation-plan\nposition: AGREE\n---END-DEBATE-SIGNAL---",
+    "signals": [
+      {
+        "issue": "implementation-plan",
+        "position": "AGREE",
+        "reason": null
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-03-10T20:14:25.600943",
+    "party": "verifier",
+    "issue": "implementation-plan",
+    "round": 1,
+    "response": "The repo evidence confirms all root cause claims. I've verified:\n\n1. `build_approval_gate_report` (line 529) calls `build_pending_sections_and_previews(book)` with the default `include_agent_validated=False` \u2014 the mismatch is real and code-confirmed.\n2. `ExportGate.check_exportability` (export_gate.py:55) checks `approval_status != APPROVED` for all sections without any `verification_status` filter \u2014 the blocked-export scenario is guaranteed when `agent_validated` sections exist.\n3. The fix surface is exactly one call-site argument. The alternative (silent promotion) is explicitly rejected in the plan, which is correct \u2014 it would bypass the human review requirement.\n4. No CLI path from `__approval-decisions.json` \u2192 mutated `__book.json` \u2192 publish-ready export exists in the current codebase. Cycle 1B gap is real.\n5. The Cycle 2 regex double-escape (`[\\\\s-]+` vs `[\\s_-]+`) is independently verifiable from the plan and is correctly classified as lower-priority than the blocked operator workflow.\n\nThe two-stage split of Cycle 1 with a human checkpoint between 1A and 1B is the right structural choice. Cycle 1A changes what \"review complete\" means \u2014 that is a semantic contract change, not a mechanical fix, and it warrants explicit operator sign-off before the decision-application CLI is built on top of it. Allowing Cycle 2 to proceed in parallel with 1B is safe because the TS and Python paths are fully independent.\n\nNo contrary evidence found. The plan ordering, pass criteria, and fail-closed constraints are all defensible.\n\n---DEBATE-SIGNAL---\nissue: implementation-plan\nposition: AGREE\n---END-DEBATE-SIGNAL---\n",
+    "signals": [
+      {
+        "issue": "implementation-plan",
+        "position": "AGREE",
+        "reason": null
+      }
+    ]
+  }
+]

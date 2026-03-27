@@ -11,11 +11,12 @@ from typing import Any
 from src.autoresearch.store import log_experiment
 from src.autoresearch.grammar_advisor_agent import build_grammar_advisor_report
 from src.autoresearch.theological_reviewer_agent import build_theological_reviewer_report
-from src.autoresearch.training_corpus import ensure_approved_training_artifact
+from src.autoresearch.training_corpus import ensure_approved_training_artifact, _is_psalm23_excluded
 from src.autoresearch.llm_exposition_core import build_llm_exposition_trainer_review
 from src.generation.editorial import build_editorial_day_brief
 from src.generation.real_section_generator import _build_exposition
-from src.models.devotional import DevotionalBook
+from src.models.devotional import DevotionalBook, ExpositionSection
+from src.validation.ac_scorer import ac_scores_to_metrics, score_exposition
 from src.persistence.paths import default_registry_db_path
 from src.rag.research_librarian import prepare_passage_resource_bundle
 from src.scripture.planner import select_daily_key_verses_reference
@@ -27,8 +28,11 @@ _FRESH_BENCHMARK_PASSAGES = [
     ("Luke 15:1-2", "Luke 15:1-10"),
     ("John 10:11-13", "John 10:1-18"),
     ("Romans 5:1-5", "Romans 5:1-11"),
-    ("Psalm 23:1-3", "Psalm 23:1-6"),
+    ("Isaiah 40:28-31", "Isaiah 40:27-31"),
     ("Philippians 2:5-8", "Philippians 2:1-11"),
+    ("Romans 1:1-7", "Romans 1:1-17"),
+    ("Romans 3:21-26", "Romans 3:21-31"),
+    ("Galatians 3:1-5", "Galatians 3:1-14"),
 ]
 
 
@@ -143,6 +147,12 @@ def run_fresh_exposition_benchmark(repo_root: Path) -> dict[str, Any]:
         }
 
     slug = re.sub(r"[^a-z0-9]+", "-", focal_reference.lower()).strip("-")
+    _section = ExpositionSection(
+        text=exposition_text,
+        word_count=len(exposition_text.split()),
+        grounding_map_id="",
+    )
+    _ac = ac_scores_to_metrics(score_exposition(_section))
     log_experiment(
         experiment_id=f"exposition-fresh-benchmark__{slug}__{now}",
         worker_name="exposition_writer",
@@ -157,6 +167,7 @@ def run_fresh_exposition_benchmark(repo_root: Path) -> dict[str, Any]:
             "score": review["score"],
             "passage_grounded": review["passage_grounded"],
             "generic_phrase_count": review["generic_phrase_count"],
+            **_ac,
         },
         learning_note=(
             "Fresh benchmark regenerates exposition from current deterministic templates each cycle. "
@@ -283,6 +294,8 @@ def _unique_passage_artifacts(repo_root: Path, max_artifacts: int = 10) -> list[
         except Exception:
             continue
         run_slug = str(meta.get("run_slug") or "")
+        if _is_psalm23_excluded(run_slug):
+            continue
         book_json_path = str(meta.get("book_json_path") or "")
         if not book_json_path or not Path(book_json_path).exists():
             continue
@@ -448,11 +461,23 @@ def build_exposition_training_cycle(repo_root: Path) -> dict[str, Any]:
         },
         "assignments": [asdict(item) for item in assignments],
         "passage_researcher_assignments": passage_researcher_assignments,
+        # Required by policy guardian L2 evidence gate
+        "findings": theological_findings + grammar_findings_list,
     }
 
 
 def log_exposition_training_cycle(repo_root: Path) -> dict[str, Any]:
+    # ── Fresh benchmark runs FIRST, unconditionally ──
+    # The fresh benchmark is the primary training signal — it does not need an approved
+    # artifact to run. Running it first ensures it is committed to the DB before the
+    # slower artifact cycle (6 × prepare_passage_resource_bundle over SMB) can time out
+    # and kill the process before any results are logged.
+    fresh_benchmark = run_fresh_exposition_benchmark(repo_root)
+    fresh_score = int((fresh_benchmark.get("evaluation") or {}).get("score", 0) or 0)
+    fresh_status = str(fresh_benchmark.get("status") or "blocked")
+
     payload = build_exposition_training_cycle(repo_root)
+    payload["fresh_benchmark"] = fresh_benchmark
     now = _utc_now()
     if payload.get("status") == "ready":
         for item in payload["assignments"]:
@@ -476,21 +501,9 @@ def log_exposition_training_cycle(repo_root: Path) -> dict[str, Any]:
                 completed_at_utc=now,
             )
 
-        # ── Fresh benchmark: regenerate exposition from current templates and score immediately ──
-        # The deterministic writer is code — same input → same output. Fresh benchmark
-        # means template improvements show up in scores immediately without waiting for
-        # new production runs. This is the primary training signal for the deterministic writer.
-        fresh_benchmark = run_fresh_exposition_benchmark(repo_root)
-        payload["fresh_benchmark"] = fresh_benchmark
-        fresh_score = int((fresh_benchmark.get("evaluation") or {}).get("score", 0) or 0)
-        fresh_status = str(fresh_benchmark.get("status") or "blocked")
-
-        # ── Artifact benchmark: evaluate exposition from an approved production artifact ──
-        # Secondary signal — reflects historical quality of past production runs.
+        # ── Artifact benchmark: secondary signal from approved production artifact ──
         llm_benchmark = run_llm_exposition_trainer_review(repo_root, artifact=payload["artifact"])
         payload["llm_benchmark"] = llm_benchmark
-        llm_score = int((llm_benchmark.get("evaluation") or {}).get("score", 0) or 0)
-        llm_status = str(llm_benchmark.get("status") or "blocked")
 
         # Primary gate uses fresh benchmark (current template quality)
         llm_score = fresh_score

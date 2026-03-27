@@ -1,0 +1,44 @@
+{
+  "prompt_file": "/Volumes/claude-projects/projects/orchestrator-prompts/ready/DevG.txt",
+  "prompt_sha256": "27bfb94cdde68b89186d25506cd723b7cb35f7b5c56b42f077d345411b240205",
+  "timestamp": "2026-03-13T05:26:39.612098Z",
+  "overall": "FAIL",
+  "operator_decision": "REJECT",
+  "lint_results": [
+    {
+      "rule": "rg_law",
+      "passed": true,
+      "detail": "No `grep` usage found"
+    },
+    {
+      "rule": "no_hardcoded_nn",
+      "passed": false,
+      "detail": "Found hardcoded NN number near position 940: '__01__'"
+    },
+    {
+      "rule": "no_dangerous_commands",
+      "passed": true,
+      "detail": "No dangerous commands found"
+    },
+    {
+      "rule": "completion_signal",
+      "passed": true,
+      "detail": "Found OUTCOME: completion signal"
+    },
+    {
+      "rule": "no_self_invoke",
+      "passed": true,
+      "detail": "No self-invocation of orchestrate.py found"
+    },
+    {
+      "rule": "target_repo_exists",
+      "passed": true,
+      "detail": "Target repo path exists: /Volumes/claude-projects/projects/devotional-generator-system-a"
+    },
+    {
+      "rule": "auto_approve_scope",
+      "passed": true,
+      "detail": "No Auto-approve header \u2014 skipped"
+    }
+  ]
+}

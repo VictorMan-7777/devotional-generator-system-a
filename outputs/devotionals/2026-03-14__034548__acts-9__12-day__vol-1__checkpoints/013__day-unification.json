@@ -1,0 +1,11 @@
+{
+  "run_slug": "2026-03-14__034548__acts-9__12-day__vol-1",
+  "stage": "day_unification",
+  "sequence": 13,
+  "created_at_utc": "2026-03-14T03:45:56.384811+00:00",
+  "payload": {
+    "day_number": 6,
+    "status": "failed",
+    "findings": []
+  }
+}

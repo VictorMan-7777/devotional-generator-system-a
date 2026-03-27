@@ -1,0 +1,10 @@
+{
+  "run_slug": "2026-03-17__125348__the-seeking-god__6-day__vol-1",
+  "stage": "book_unification",
+  "sequence": 15,
+  "created_at_utc": "2026-03-17T12:53:58.549700+00:00",
+  "payload": {
+    "status": "passed",
+    "findings": []
+  }
+}

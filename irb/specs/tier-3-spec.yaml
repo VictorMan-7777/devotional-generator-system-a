@@ -1,0 +1,174 @@
+spec_id:          irb-tier-3
+spec_version:     1.0.0
+tier:             3
+title:            IRB Tier-3 Certification — Adversarial Robustness
+description: >
+  Tier 3 certifies that System A's validation, guardrail, and schema layers
+  are adversarially robust: they correctly reject malformed, malicious, and
+  edge-case inputs without crashing, silently skipping checks, or producing
+  incorrect pass/fail signals.
+  Tier 3 is SINGLE-AGENT, OFFLINE, and DETERMINISTIC. No LLM calls. No network.
+
+execution_mode:   deterministic
+offline_required: true
+mutation_allowed: false
+evidence_required: true
+
+agent_model:
+  mode: single
+  max_agents: 1
+  allow_parallel_checks: false
+  forbid_subagents: true
+  allow_tool_subprocesses: false  # pure Python, no subprocess except git
+
+config:
+  allow_network_calls: false
+  require_fixed_seed: true
+  enforce_reproducible_ordering: true
+
+checks:
+
+  # ── REPO ──────────────────────────────────────────────────────────────────
+  - id: T3-REPO-001
+    category: repo
+    name: no_grep_in_irb_scripts
+    blocking: false
+    description: >
+      scripts/irb/*.py must not invoke grep via subprocess.
+      Advisory (scripts may not exist before runner build).
+
+  - id: T3-REPO-002
+    category: repo
+    name: artifact_naming_policy
+    blocking: true
+    description: >
+      Every .md and .json in docs/system/outputs/ must match
+      YYYY-MM-DD__NN__ROLE__desc.ext (kebab-case desc).
+
+  # ── DOCTRINAL ─────────────────────────────────────────────────────────────
+  - id: T3-DOC-001
+    category: doctrinal
+    name: prosperity_gospel_flagged
+    blocking: true
+    description: >
+      check_doctrinal(prosperity_text) returns >= 1 assessment with
+      reason_code == DOCTRINAL_PROSPERITY_GOSPEL.
+
+  - id: T3-DOC-002
+    category: doctrinal
+    name: works_merit_flagged
+    blocking: true
+    description: >
+      check_doctrinal(works_text) returns >= 1 assessment with
+      reason_code == DOCTRINAL_WORKS_MERIT.
+
+  - id: T3-DOC-003
+    category: doctrinal
+    name: clean_text_passes
+    blocking: true
+    description: >
+      check_doctrinal(clean_text) returns [] (no false positives).
+
+  - id: T3-DOC-004
+    category: doctrinal
+    name: combined_adversarial
+    blocking: true
+    description: >
+      Text with both violation types returns 2 assessments (one per category).
+
+  # ── SCHEMA ────────────────────────────────────────────────────────────────
+  - id: T3-SCH-001
+    category: schema
+    name: grounding_map_rejects_three_entries
+    blocking: true
+    description: >
+      GroundingMap with 3 entries raises ValidationError.
+
+  - id: T3-SCH-002
+    category: schema
+    name: grounding_map_rejects_empty_entries
+    blocking: true
+    description: >
+      GroundingMap with 0 entries raises ValidationError.
+
+  - id: T3-SCH-003
+    category: schema
+    name: prayer_trace_map_rejects_invalid_source
+    blocking: true
+    description: >
+      PrayerTraceMap with source_type="llm_hallucination" raises ValidationError.
+
+  - id: T3-SCH-004
+    category: schema
+    name: prayer_trace_map_accepts_valid_types
+    blocking: true
+    description: >
+      PrayerTraceMap with all valid source types (scripture, exposition, be_still)
+      creates successfully.
+
+  # ── REWRITE ───────────────────────────────────────────────────────────────
+  - id: T3-RWR-001
+    category: rewrite
+    name: attempt_one_auto_rewrite
+    blocking: true
+    description: >
+      route(failing_assessments, attempt_number=1).signal == AUTO_REWRITE.
+
+  - id: T3-RWR-002
+    category: rewrite
+    name: attempt_two_human_review
+    blocking: true
+    description: >
+      route(failing_assessments, attempt_number=2).signal == HUMAN_REVIEW.
+
+  - id: T3-RWR-003
+    category: rewrite
+    name: attempt_three_still_human_review
+    blocking: true
+    description: >
+      route(failing_assessments, attempt_number=3).signal == HUMAN_REVIEW.
+
+  # ── ADVERSARIAL ───────────────────────────────────────────────────────────
+  - id: T3-ADV-001
+    category: adversarial
+    name: injection_topic_accepted_safely
+    blocking: true
+    description: >
+      DevotionalInput(topic="; DROP TABLE devotionals; --") creates model
+      without crash. Pydantic accepts it; no downstream crash.
+
+  - id: T3-ADV-002
+    category: adversarial
+    name: exposition_validator_no_crash_on_long_text
+    blocking: true
+    description: >
+      validate_exposition(ExpositionSection(text=10_000_char_string, ...))
+      returns list, does not raise.
+
+  - id: T3-ADV-003
+    category: adversarial
+    name: be_still_validator_no_crash_on_empty_prompts
+    blocking: true
+    description: >
+      validate_be_still(BeStillSection(prompts=[])) returns list with
+      FAIL assessments, does not raise.
+
+  # ── GUARD ─────────────────────────────────────────────────────────────────
+  - id: T3-GUARD-001
+    category: guard
+    name: repo_mutation_guard
+    blocking: true
+    description: >
+      git status --porcelain output identical before and after all checks.
+      Captured in finally block.
+
+exit_codes:
+  0: CERTIFIED
+  1: FAILED
+  2: ERROR
+
+reporting:
+  formats: [md, json]
+  output_dir: docs/system/outputs
+  filename_pattern: "YYYY-MM-DD__NN__builder__irb-tier-3-{report|results}.{md|json}"
+  nn_policy: dynamic_scan_no_hardcode

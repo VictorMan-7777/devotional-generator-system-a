@@ -34,8 +34,21 @@ def _approved_day(day_number: int = 1):
     day = MockSectionGenerator().generate_day("grace", day_number)
     for attr in ("timeless_wisdom", "scripture", "exposition", "be_still", "action_steps", "prayer"):
         section = getattr(day, attr)
-        approved = section.model_copy(update={"approval_status": SectionApprovalStatus.APPROVED})
+        update = {"approval_status": SectionApprovalStatus.APPROVED}
+        if attr == "timeless_wisdom":
+            update["publication_year"] = 1890
+        approved = section.model_copy(update=update)
         object.__setattr__(day, attr, approved)
+    return day
+
+
+def _rejected_day(day_number: int = 1):
+    """Day with one section explicitly rejected."""
+    day = _approved_day(day_number)
+    rejected = day.exposition.model_copy(
+        update={"approval_status": SectionApprovalStatus.REJECTED}
+    )
+    object.__setattr__(day, "exposition", rejected)
     return day
 
 
@@ -62,6 +75,12 @@ class TestPersonalMode:
         result = ExportGate().check_exportability(book, OutputMode.PERSONAL)
         assert any("exposition" in w for w in result.warnings)
 
+    def test_rejected_sections_are_reported_as_not_export_ready(self):
+        book = _make_book(_rejected_day())
+        result = ExportGate().check_exportability(book, OutputMode.PERSONAL)
+        assert result.exportable is True
+        assert any("exposition" in w for w in result.warnings)
+
 
 # ---------------------------------------------------------------------------
 # PUBLISH_READY mode
@@ -86,10 +105,32 @@ class TestPublishReadyMode:
         result = ExportGate().check_exportability(book, OutputMode.PUBLISH_READY)
         assert result.exportable is False
 
+    def test_rejected_sections_block_export(self):
+        book = _make_book(_rejected_day())
+        result = ExportGate().check_exportability(book, OutputMode.PUBLISH_READY)
+        assert result.exportable is False
+        assert result.blocked_reason is not None
+        assert "exposition" in result.blocked_reason
+
     def test_blocked_reason_absent_when_all_approved(self):
         book = _make_book(_approved_day())
         result = ExportGate().check_exportability(book, OutputMode.PUBLISH_READY)
         assert result.blocked_reason is None
+
+    def test_missing_turabian_fields_block_publish_ready(self):
+        day = _approved_day()
+        bad_tw = day.timeless_wisdom.model_copy(
+            update={
+                "publication_year": None,
+                "page_or_url": "",
+            }
+        )
+        object.__setattr__(day, "timeless_wisdom", bad_tw)
+        book = _make_book(day)
+        result = ExportGate().check_exportability(book, OutputMode.PUBLISH_READY)
+        assert result.exportable is False
+        assert result.blocked_reason is not None
+        assert "Turabian field" in result.blocked_reason
 
 
 # ---------------------------------------------------------------------------

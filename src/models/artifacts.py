@@ -10,6 +10,9 @@ class GroundingMapEntry(BaseModel):
     paragraph_name: str
     sources_retrieved: List[str]  # Document names retrieved
     excerpts_used: List[str]  # Specific passages drawn upon
+    original_excerpts_used: List[str] = []  # Original wording before any modernization
+    excerpts_modernized: List[bool] = []  # Parallel to excerpts_used
+    modernization_label: str = ""
     how_retrieval_informed_paragraph: str  # One-sentence statement
     source_ids: List[str] = []  # parse_source_id per excerpt (parallel to excerpts_used)
     similarity_scores: List[float] = []  # relevance_score per excerpt (parallel to source_ids)

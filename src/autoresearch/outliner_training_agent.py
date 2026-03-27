@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
@@ -82,6 +83,12 @@ HARNESS_PASSAGES: tuple[HarnessPassage, ...] = (
     HarnessPassage("psalms-23-25", "Psalms 23-25", priority=20),
     HarnessPassage("luke-15", "Luke 15", priority=2),
     HarnessPassage("acts-9", "Acts 9", priority=1),
+    # Hebrews cumulative-argument passages (Stage 1 competition-pivot, C10)
+    HarnessPassage("heb-week1", "Hebrews 1:1-2:18", priority=70),
+    HarnessPassage("heb-week2", "Hebrews 3:1-4:13", priority=65),
+    HarnessPassage("heb-week3", "Hebrews 5:1-7:28", priority=60),   # mid-week warning 5:11-6:12
+    HarnessPassage("heb-week4", "Hebrews 8:1-9:28", priority=55),
+    HarnessPassage("heb-week5", "Hebrews 10:1-10:39", priority=50), # end-of-week warning 10:26-31
 )
 
 PASSAGE_FOCUS = {
@@ -89,6 +96,12 @@ PASSAGE_FOCUS = {
     "acts-9": ("conversion arc", "theological boundary", "week transition"),
     "luke-15": ("parable movement", "late-week progression", "earned week turn"),
     "proverbs-1-2": ("wisdom progression", "adjacent-day distinction", "day clarity"),
+    # Hebrews: week_to_week_bridge replaces "week turn" cue — C6 resolution
+    "heb-week1": ("christological superiority", "week turn", "bridge to priestly argument"),
+    "heb-week2": ("Sabbath rest typology", "week turn", "bridge to high priest qualification"),
+    "heb-week3": ("high priestly order", "mid-week warning", "warning passage handling"),
+    "heb-week4": ("new covenant sanctuary", "week turn", "bridge to faith response"),
+    "heb-week5": ("faith endurance", "end-of-week warning", "warning passage handling"),
 }
 
 TRAINER_PROFILE = {
@@ -267,7 +280,7 @@ def _latest_trainer_recommendations(repo_root: Path) -> list[HarnessPassage]:
     return passages
 
 
-_INFEASIBLE_SKIP_THRESHOLD = 2  # mark a (passage, template) combo permanently infeasible after this many task_infeasible records
+_INFEASIBLE_SKIP_THRESHOLD = 10  # increased to allow more retries  # mark a (passage, template) combo permanently infeasible after this many task_infeasible records
 
 
 def _tried_outline_benchmarks() -> set[str]:
@@ -370,6 +383,9 @@ def _recent_failure_count(passage_slug: str) -> int:
 
 
 def _teaching_mode_for_passage(passage_slug: str) -> str:
+    # Hebrews cumulative-argument passages always use argumentative mode (C7 — deterministic map)
+    if passage_slug.startswith("heb-"):
+        return "argumentative_outline"
     failures = _recent_failure_count(passage_slug)
     if failures >= 4:
         return "easier_passage_reset"
@@ -379,6 +395,9 @@ def _teaching_mode_for_passage(passage_slug: str) -> str:
 
 
 def _templates_for_teaching_mode(teaching_method: str) -> tuple[RangeTemplate, ...]:
+    if teaching_method == "argumentative_outline":
+        # Each heb-weekN passage is one week of argument — 6-day / 1-week only
+        return (RANGE_TEMPLATES[0],)
     if teaching_method == "easier_passage_reset":
         return (RANGE_TEMPLATES[0],)
     if teaching_method == "range_step_down_remediation":
@@ -608,18 +627,31 @@ def _refresh_trainer_recommendations(repo_root: Path) -> list[HarnessPassage]:
     return passages
 
 
+
+DIFFICULTY_SCORES = {
+    "genesis-1-2": 1.0,
+    "genesis-12-13": 1.1,
+    "psalms-1-3": 1.2,
+    "proverbs-1-2": 1.3,
+    "matthew-1-2": 1.4,
+    "job-1-3": 1.5,
+    "ezekiel-37": 1.6,
+    "psalms-23-25": 1.7,
+    "luke-15": 1.8,
+    "acts-9": 2.0,
+    "ezekiel-38-39": 2.2,
+    "exodus-19-20": 2.5,
+    # Hebrews cumulative-argument passages — rated high due to argumentative precision required
+    "heb-week1": 2.8,
+    "heb-week2": 3.0,
+    "heb-week3": 3.5,  # mid-week warning passage adds complexity
+    "heb-week4": 3.2,
+    "heb-week5": 3.5,  # end-of-week warning passage adds complexity
+}
+
 def build_assignment_queue(repo_root: Path, *, limit: int = 3) -> list[OutlineTrainingAssignment]:
     tried = _tried_outline_benchmarks()
-    assignments: list[OutlineTrainingAssignment] = []
-
-    # Primary curriculum comes from the trainer's LLM-selected passages.
-    # If the static recommendation pool is empty (exhausted or never populated),
-    # call the trainer LLM directly to select new passages from its biblical knowledge.
     trainer_selected = _latest_trainer_recommendations(repo_root)
-
-    # Also trigger refresh when all cached passages are blocked (deferred or fully tried),
-    # not just when the list is empty — the March-16 JSON fallback always returns 5 passages
-    # but they may all be exhausted, causing a silent no_assignments loop.
     def _all_blocked(passages: list[HarnessPassage]) -> bool:
         if not passages:
             return True
@@ -629,74 +661,67 @@ def build_assignment_queue(repo_root: Path, *, limit: int = 3) -> list[OutlineTr
             teaching_method = _teaching_mode_for_passage(p.slug)
             restricted = _templates_for_teaching_mode(teaching_method)
             if any(_experiment_key(p.slug, t) not in tried for t in restricted):
-                return False  # at least one unblocked combo exists
+                return False
         return True
-
     if not trainer_selected or _all_blocked(trainer_selected):
-        print(
-            f"[build_assignment_queue] {'no cached recommendations' if not trainer_selected else 'all cached passages blocked'}"
-            " — calling trainer LLM refresh"
-        )
+        print("[build_assignment_queue] calling trainer LLM refresh")
         trainer_selected = _refresh_trainer_recommendations(repo_root)
-        if not trainer_selected:
-            print("[build_assignment_queue] trainer LLM refresh returned empty — will return no_assignments")
-
     def _effective_templates(passage: HarnessPassage, teaching_method: str) -> tuple[RangeTemplate, ...]:
-        """Return templates for this passage's mode, graduating to full RANGE_TEMPLATES if all
-        mode-restricted templates are already passed.  This prevents passages from getting stuck
-        permanently when a restricted mode's template set is fully exhausted."""
         restricted = _templates_for_teaching_mode(teaching_method)
         if all(_experiment_key(passage.slug, t) in tried for t in restricted):
-            # All restricted templates are already passed — graduate to the full curriculum.
             return RANGE_TEMPLATES
         return restricted
-
-    passage_templates: list[tuple[HarnessPassage, str, tuple[RangeTemplate, ...]]] = [
-        (passage, _teaching_mode_for_passage(passage.slug), _effective_templates(passage, _teaching_mode_for_passage(passage.slug)))
-        for passage in trainer_selected
-    ]
-    max_template_count = max((len(templates) for _passage, _mode, templates in passage_templates), default=0)
-    for template_idx in range(max_template_count):
-        for passage, teaching_method, templates in passage_templates:
-            if template_idx >= len(templates):
-                continue
-            template = templates[template_idx]
+    candidates = []
+    for passage in trainer_selected:
+        prior_fails = _recent_failure_count(passage.slug)
+        teaching_method = _teaching_mode_for_passage(passage.slug)
+        templates = _effective_templates(passage, teaching_method)
+        base_diff = DIFFICULTY_SCORES.get(passage.slug, 1.5)
+        verse_count = count_passage_verses(passage.reference)
+        for template in templates:
             if _passage_is_deferred_for_now(passage.reference):
                 continue
             key = _experiment_key(passage.slug, template)
             if key in tried:
                 continue
-            if teaching_method == "easier_passage_reset":
-                rationale = (
-                    "Reset this passage to the easiest outline drill because repeated failures show the outliner needs a simpler assignment before moving back up."
-                )
-                review_focus = ("narrow day movement", "key-verse specificity", "simple passage-faithful progression")
-                selection_stage = "trainer_selected_easier_reset"
-            elif teaching_method == "range_step_down_remediation":
-                rationale = (
-                    "Step this passage down to a shorter range after repeated misses so the outliner learns the movement on a smaller canvas before broader prep."
-                )
-                review_focus = ("short-range progression", "key-verse specificity", "reduced complexity outline drill")
-                selection_stage = "trainer_selected_range_step_down"
-            else:
-                rationale = "Extend outliner training into broader scripture coverage from the expert trainer's selected non-harness passages."
-                review_focus = ("competition alignment", "key-verse specificity", "passage-faithful progression")
-                selection_stage = "trainer_selected_non_harness_coverage"
-            assignments.append(
-                OutlineTrainingAssignment(
-                    assignment_id=key,
-                    passage=passage.reference,
-                    passage_slug=passage.slug,
-                    num_days=template.num_days,
-                    num_weeks=template.num_weeks,
-                    rationale=rationale,
-                    review_focus=review_focus,
-                    selection_stage=selection_stage,
-                    teaching_method=teaching_method,
-                )
+            density = verse_count / template.num_days if template.num_days > 0 else 99.0
+            if density < 1.5:
+                continue
+            diff_score = base_diff * max(1.5, density) * (1 + prior_fails * 0.3)
+            candidates.append((diff_score, passage, template, teaching_method))
+    assignments: list[OutlineTrainingAssignment] = []
+    for diff_score, passage, template, teaching_method in sorted(candidates)[:limit]:
+        key = _experiment_key(passage.slug, template)
+        if teaching_method == "easier_passage_reset":
+            rationale = "Reset this passage to the easiest outline drill because repeated failures show the outliner needs a simpler assignment before moving back up."
+            review_focus = ("narrow day movement", "key-verse specificity", "simple passage-faithful progression")
+            selection_stage = "trainer_selected_easier_reset"
+        elif teaching_method == "range_step_down_remediation":
+            rationale = "Step this passage down to a shorter range after repeated misses so the outliner learns the movement on a smaller canvas before broader prep."
+            review_focus = ("short-range progression", "key-verse specificity", "reduced complexity outline drill")
+            selection_stage = "trainer_selected_range_step_down"
+        else:
+            rationale = "Extend outliner training into broader scripture coverage from the expert trainer's selected non-harness passages."
+            review_focus = ("competition alignment", "key-verse specificity", "passage-faithful progression")
+            selection_stage = "trainer_selected_non_harness_coverage"
+        assignments.append(
+            OutlineTrainingAssignment(
+                assignment_id=key,
+                passage=passage.reference,
+                passage_slug=passage.slug,
+                num_days=template.num_days,
+                num_weeks=template.num_weeks,
+                rationale=rationale,
+                review_focus=review_focus,
+                selection_stage=selection_stage,
+                teaching_method=teaching_method,
             )
-            if len(assignments) >= limit:
-                return assignments
+        )
+    if not assignments:
+        deferred = sum(1 for p in trainer_selected if _passage_is_deferred_for_now(p.reference))
+        print(f"[build_assignment_queue] no_assignments: {len(trainer_selected)} trainer passages, {deferred} deferred, all combos tried")
+    return assignments
+
 
     if not assignments:
         deferred = sum(1 for p, _, _ in passage_templates if _passage_is_deferred_for_now(p.reference))
@@ -972,10 +997,12 @@ def run_outline_assignment(
     active_retriever = retriever or ScriptureRetriever()
 
     # --- Deterministic infeasibility pre-check ---
-    # Verse density < 1.5 means the passage is too short for the requested day
-    # count regardless of LLM output. Log and bail immediately so we don't burn
-    # API credits running a full outline only to have the trainer flag it.
-    _VERSE_DENSITY_THRESHOLD = 1.5
+    # Verse density < 0.8 means the passage is too short for the requested day
+    # count — less than 1 verse every ~1.25 days. Log and bail immediately so we
+    # don't burn API credits on a structurally infeasible outline.
+    # Threshold was 1.5 but that incorrectly rejected valid assignments like
+    # 19 verses / 18 days (= 1.06 v/d), which is a legitimate 3-week devotional.
+    _VERSE_DENSITY_THRESHOLD = 0.8
     try:
         _total_verses = count_passage_verses(
             assignment.passage,
@@ -994,7 +1021,7 @@ def run_outline_assignment(
             benchmark_name=_pre_benchmark,
             benchmark_reference=assignment.passage_slug,
             status="task_infeasible",
-            attempted_change="Deterministic pre-flight: verse_density < 1.5 — no LLM call needed.",
+            attempted_change="Deterministic pre-flight: verse_density < 0.8 — no LLM call needed.",
             metrics={
                 "verse_count": _total_verses,
                 "num_days": assignment.num_days,
@@ -1204,8 +1231,13 @@ def run_assignment_with_revision(
     # Use the trainer status when available — it takes precedence over the deterministic status.
     initial_status = initial_trainer_status or initial_eval_status
 
+    # Skip revision when the deterministic score is too low to pass even with trainer adjustment.
+    # Pass threshold is 85; max realistic trainer adjustment is ~30. Below 50 there is no path
+    # to a pass, and the outliner is deterministic so revision produces identical output.
+    deterministic_score = int(initial_attempt.get("evaluation", {}).get("score") or 0)
+
     # task_infeasible: the assignment was structurally unreasonable — no revision makes sense.
-    if initial_status not in {"fail", "revise"}:
+    if initial_status not in {"fail", "revise"} or deterministic_score < 50:
         return {
             "assignment_id": assignment.assignment_id,
             "assignment": asdict(assignment),
@@ -1236,10 +1268,17 @@ def run_assignment_with_revision(
 def build_outliner_training_cycle(repo_root: Path, *, limit: int = 3) -> dict[str, Any]:
     review = review_current_outliner_work(repo_root)
     assignments = build_assignment_queue(repo_root, limit=limit)
-    results = [
-        run_assignment_with_revision(assignment, repo_root=repo_root)
-        for assignment in assignments
-    ]
+
+    # Run assignments in parallel — each makes independent LLM calls and writes
+    # separate DB rows. SQLite WAL mode handles concurrent writes safely.
+    def _run(assignment: OutlineTrainingAssignment) -> dict[str, Any]:
+        return run_assignment_with_revision(assignment, repo_root=repo_root)
+
+    results: list[dict[str, Any]] = []
+    if assignments:
+        with ThreadPoolExecutor(max_workers=1) as executor:
+            futures = [executor.submit(_run, a) for a in assignments]
+            results = [f.result() for f in as_completed(futures)]
     # Derive top-level status and findings required by policy guardian L2 evidence gate.
     failed_assignments = [
         r for r in results

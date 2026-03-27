@@ -21,6 +21,7 @@ Network isolation:
 from __future__ import annotations
 
 import csv
+import os
 import re
 from dataclasses import dataclass, field
 from enum import Enum
@@ -31,6 +32,7 @@ import httpx
 from pydantic import BaseModel
 
 from src.scripture.book_ids import BOOK_IDS, get_book_id
+from src.scripture.source_policy import ScriptureSourcePolicy, scripture_source_metadata
 
 # ---------------------------------------------------------------------------
 # Bolls.life → API.Bible passage-ID abbreviation table (NT + frequently used OT)
@@ -78,6 +80,12 @@ class ScriptureResult(BaseModel):
     text: str  # HTML-stripped; multi-verse concatenated with single space
     translation: str
     retrieval_source: str   # "bolls_life" | "api_bible" | "operator_import"
+    retrieval_reference: str = ""
+    retrieved_at_utc: str = ""
+    copyright_notice: str = ""
+    source_access_policy: str = ""
+    text_cache_status: str = "cached"
+    cache_expires_at_utc: str = ""
     verification_status: str = "verified"
 
 
@@ -125,19 +133,29 @@ class ScriptureRetriever:
     """
 
     BOLLS_LIFE_BASE = "https://bolls.life/get-verse"
-    API_BIBLE_BASE = "https://api.scripture.api.bible/v1"
-    # Default API.Bible bible ID for NASB; override via constructor if needed.
-    DEFAULT_API_BIBLE_BIBLE_ID = "72c7f6f5e7fa1b62-01"
+    API_BIBLE_BASE = "https://rest.api.bible/v1"
+    # Default API.Bible Bible ID for NASB 1995; override via constructor if needed.
+    DEFAULT_API_BIBLE_BIBLE_ID = "b8ee27bcd1cae43a-01"
 
     def __init__(
         self,
         http_client: Optional[HttpClient] = None,
         api_bible_key: Optional[str] = None,
         api_bible_bible_id: Optional[str] = None,
+        source_policy: Optional[ScriptureSourcePolicy] = None,
     ) -> None:
         self._http = http_client or HttpClient()
-        self._api_bible_key = api_bible_key
-        self._api_bible_bible_id = api_bible_bible_id or self.DEFAULT_API_BIBLE_BIBLE_ID
+        self._api_bible_key = (
+            os.getenv("API_BIBLE_KEY")
+            if api_bible_key is None
+            else api_bible_key
+        )
+        self._api_bible_bible_id = (
+            os.getenv("API_BIBLE_BIBLE_ID")
+            if api_bible_bible_id is None
+            else api_bible_bible_id
+        ) or self.DEFAULT_API_BIBLE_BIBLE_ID
+        self._source_policy = source_policy or ScriptureSourcePolicy.from_env()
 
     # ------------------------------------------------------------------
     # Public API
@@ -166,25 +184,18 @@ class ScriptureRetriever:
 
         attempted: list[str] = []
 
-        # 1. Bolls.life primary — one retry on failure (FR-59a)
-        result = self._try_bolls_life(parsed, translation)
-        if isinstance(result, ScriptureResult):
-            return result
-        attempted.append("bolls_life")
-
-        # 2. API.Bible secondary — only when key is present (FR-59b)
-        if self._api_bible_key:
-            result = self._try_api_bible(reference, translation)
+        for source in self._source_policy.retrieval_order():
+            result = self._retrieve_from_source(
+                source=source,
+                parsed=parsed,
+                reference=reference,
+                translation=translation,
+                operator_import=operator_import,
+            )
             if isinstance(result, ScriptureResult):
                 return result
-            attempted.append("api_bible")
-
-        # 3. Operator import file (FR-59c)
-        if operator_import is not None:
-            result = self._load_operator_import(reference, translation, operator_import)
-            if isinstance(result, ScriptureResult):
-                return result
-            attempted.append("operator_import")
+            if result is not None:
+                attempted.append(source)
 
         # 4. Structured failure alert (FR-59d–f)
         return ScriptureFailureAlert(
@@ -197,6 +208,31 @@ class ScriptureRetriever:
             ),
             attempted_sources=attempted,
         )
+
+    def _retrieve_from_source(
+        self,
+        *,
+        source: str,
+        parsed: ParsedReference,
+        reference: str,
+        translation: str,
+        operator_import: Optional[Path],
+    ) -> Optional[ScriptureResult | bool]:
+        source_norm = str(source or "").strip().lower()
+        if source_norm == "bolls_life":
+            result = self._try_bolls_life(parsed, translation)
+            return result if result is not None else True
+        if source_norm == "api_bible":
+            if not self._api_bible_key:
+                return None
+            result = self._try_api_bible(reference, translation)
+            return result if result is not None else True
+        if source_norm == "operator_import":
+            if operator_import is None:
+                return None
+            result = self._load_operator_import(reference, translation, operator_import)
+            return result if result is not None else True
+        return None
 
     def validate_match(
         self,
@@ -290,12 +326,18 @@ class ScriptureRetriever:
         if len(parsed.verses) > 1:
             ref_str += f"-{parsed.verses[-1]}"
 
-        return ScriptureResult(
+        result = ScriptureResult(
             reference=ref_str,
             text=combined,
             translation=translation,
             retrieval_source="bolls_life",
             verification_status="verified",
+        )
+        return result.model_copy(
+            update=scripture_source_metadata(
+                source="bolls_life",
+                translation=translation,
+            )
         )
 
     # ------------------------------------------------------------------
@@ -326,18 +368,50 @@ class ScriptureRetriever:
             text = self._strip_html(
                 data.get("data", {}).get("content", "")
             ).strip()
+            text = self._strip_heading_lines(text)
             if not text:
                 return None
 
-            return ScriptureResult(
+            result = ScriptureResult(
                 reference=reference,
                 text=text,
                 translation=translation,
                 retrieval_source="api_bible",
                 verification_status="verified",
             )
+            return result.model_copy(
+                update=scripture_source_metadata(
+                    source="api_bible",
+                    translation=translation,
+                    cache_ttl_days=self._source_policy.cache_ttl_days,
+                )
+            )
         except Exception:
             return None
+
+    def _strip_heading_lines(self, text: str) -> str:
+        stopwords = {"and", "or", "of", "the", "about", "to", "for", "in", "on"}
+
+        def _looks_like_heading(line: str) -> bool:
+            words = [word for word in line.split() if any(ch.isalpha() for ch in word)]
+            if not words or len(words) > 10:
+                return False
+            if re.search(r"[.!?;,:\"']", line):
+                return False
+            return all(
+                word[:1].isupper() or word.lower() in stopwords
+                for word in words
+            )
+
+        lines: list[str] = []
+        for raw_line in str(text or "").splitlines():
+            line = " ".join(raw_line.split()).strip()
+            if not line:
+                continue
+            if _looks_like_heading(line):
+                continue
+            lines.append(line)
+        return "\n".join(lines).strip()
 
     def _to_api_bible_passage_id(self, reference: str) -> str:
         """
@@ -380,12 +454,18 @@ class ScriptureRetriever:
                     ):
                         text = row.get("text", "").strip()
                         if text:
-                            return ScriptureResult(
+                            result = ScriptureResult(
                                 reference=reference,
                                 text=text,
                                 translation=translation,
                                 retrieval_source="operator_import",
                                 verification_status="operator_imported",
+                            )
+                            return result.model_copy(
+                                update=scripture_source_metadata(
+                                    source="operator_import",
+                                    translation=translation,
+                                )
                             )
         except (OSError, KeyError, csv.Error):
             return None

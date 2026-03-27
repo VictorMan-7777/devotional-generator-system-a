@@ -1,0 +1,32 @@
+#!/bin/bash
+set -euo pipefail
+
+REPO_ROOT="${DEVG_REPO_ROOT:-/Volumes/claude-projects/projects/devotional-generator-system-a}"
+
+python3 - "$REPO_ROOT" <<'PY'
+import glob
+import json
+import os
+import sys
+
+root = sys.argv[1]
+paths = sorted(glob.glob(os.path.join(root, 'data', 'library', 'resources', '*', 'holding.json')))
+
+print("Current holdings")
+print("----------------")
+
+count = 0
+for path in paths:
+    try:
+        with open(path, encoding="utf-8") as handle:
+            data = json.load(handle)
+        title = str(data.get('title') or '').strip()
+        if title:
+            print(title)
+            count += 1
+    except Exception:
+        continue
+
+print()
+print(f"total_holdings: {count}")
+PY

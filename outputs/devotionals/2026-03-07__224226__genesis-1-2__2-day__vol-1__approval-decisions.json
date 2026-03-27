@@ -1,0 +1,113 @@
+{
+  "source_report": "outputs/devotionals/2026-03-07__224226__genesis-1-2__2-day__vol-1__approval-gate-report.json",
+  "topic": "Genesis 1-2",
+  "days": 2,
+  "mode": "reject-all",
+  "generated_at_utc": "2026-03-07T22:47:08.664249+00:00",
+  "summary": {
+    "approved": 0,
+    "rejected": 12,
+    "skipped": 0,
+    "completed": 12,
+    "remaining": 0,
+    "total_pending": 12
+  },
+  "decisions": [
+    {
+      "day": 1,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 1,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 1,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 1,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 1,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 1,
+      "section": "timeless_wisdom",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 2,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 2,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 2,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 2,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 2,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    },
+    {
+      "day": 2,
+      "section": "timeless_wisdom",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-07T22:47:08.664126+00:00",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all"
+    }
+  ]
+}

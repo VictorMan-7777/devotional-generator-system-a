@@ -1,0 +1,11 @@
+{
+  "run_slug": "2026-03-14__023018__luke-5-6__12-day__vol-1",
+  "stage": "day_unification",
+  "sequence": 20,
+  "created_at_utc": "2026-03-14T02:30:25.723617+00:00",
+  "payload": {
+    "day_number": 9,
+    "status": "failed",
+    "findings": []
+  }
+}

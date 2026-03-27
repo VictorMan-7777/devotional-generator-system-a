@@ -1,0 +1,126 @@
+{
+  "mode": "advisory",
+  "enabled": true,
+  "advisory_count": 13,
+  "advisories": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "witness shaped by resurrection reality. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "ionship and habits that normalize evil. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "COMMA_COMPOUND_SENTENCE_2",
+      "message": "Use a comma before \"and\" if it connects two independent clauses (unless they are closely connected and short).",
+      "category": "PUNCTUATION",
+      "context": "anguage of the passage, Because I called and the hearer refused, I stretched and dre",
+      "replacements": [
+        ", and"
+      ]
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "t of wisdom as a treasure worth effort. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "ience within God's generous boundaries. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "r wisdom's guard instead of self-trust. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "nce under the authority of the passage. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "rence without flattening grief or pain. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "r wisdom's guard instead of self-trust. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "target_max_grade": 8.0,
+  "summary": {
+    "exposition_days_scored": 3,
+    "target_max_grade": 8.0,
+    "average_flesch_kincaid_grade": 8.39,
+    "average_flesch_reading_ease": 59.25,
+    "days_above_target_grade": [
+      2,
+      3
+    ]
+  },
+  "days": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "word_count": 496,
+      "sentence_count": 37,
+      "syllable_count": 768,
+      "flesch_reading_ease": 62.23,
+      "flesch_kincaid_grade": 7.91,
+      "grade_band": "target"
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "word_count": 499,
+      "sentence_count": 36,
+      "syllable_count": 790,
+      "flesch_reading_ease": 58.83,
+      "flesch_kincaid_grade": 8.5,
+      "grade_band": "needs_simplification"
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "word_count": 506,
+      "sentence_count": 37,
+      "syllable_count": 815,
+      "flesch_reading_ease": 56.69,
+      "flesch_kincaid_grade": 8.75,
+      "grade_band": "needs_simplification"
+    }
+  ]
+}

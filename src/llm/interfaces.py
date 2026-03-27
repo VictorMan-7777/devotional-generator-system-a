@@ -4,7 +4,7 @@ Defines the injectable LLMClient interface used by LLMExpositionGenerator.
 No concrete network implementation is provided here.
 
 Contract:
-- Single method: generate(prompt) -> str
+- Single method: generate(prompt, timeout) -> str
 - No network calls in this module.
 - No LLM framework imports.
 """
@@ -16,15 +16,16 @@ from typing import Protocol
 class LLMClient(Protocol):
     """Structural protocol for injectable LLM clients.
 
-    Any object implementing ``generate(prompt: str) -> str`` satisfies
+    Any object implementing ``generate(prompt: str, timeout: int = 300) -> str`` satisfies
     this protocol — no explicit inheritance required.
     """
 
-    def generate(self, prompt: str) -> str:
+    def generate(self, prompt: str, timeout: int = 300) -> str:
         """Send a prompt to the LLM and return the generated text.
 
         Args:
             prompt: The full prompt string to send.
+            timeout: Timeout in seconds (default: 300).
 
         Returns:
             The generated text string.

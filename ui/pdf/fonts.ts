@@ -64,16 +64,17 @@ export async function embedFonts(doc: PDFDocument): Promise<EmbeddedFonts> {
 
 /**
  * Font size constants (in points).
- * KDP 6x9 body text at 11pt is within the comfortable 10–12pt reading range.
+ * Body text is intentionally set larger for a more premium devotional reading
+ * experience on 6x9 pages.
  */
 export const FONT_SIZES = {
-  TITLE: 24,
-  SUBTITLE: 16,
-  HEADING: 14,
-  SUBHEADING: 12,
-  BODY: 11,
-  FOOTNOTE: 9,
-  IMPRINT: 10,
+  TITLE: 30,
+  SUBTITLE: 20,
+  HEADING: 18,
+  SUBHEADING: 16,
+  BODY: 14,
+  FOOTNOTE: 10,
+  IMPRINT: 12,
 } as const;
 
 export type FontSizeKey = keyof typeof FONT_SIZES;

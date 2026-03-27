@@ -7,16 +7,28 @@ from pydantic import BaseModel
 
 class QuoteCandidate(BaseModel):
     quote_text: str
+    original_quote_text: str = ""
+    language_modernized: bool = False
+    modernization_label: str = ""
     author: str
     source_title: str
     publication_year: Optional[int] = None
     page_or_url: str
+    citation_locator: str = ""
+    source_url: str = ""
+    publisher: str = ""
+    publication_city: str = ""
+    source_trace: list[str] = []
     public_domain: bool
     relevance_score: float = 1.0
+    citation_completeness: int = 0
 
 
 class RetrievedExcerpt(BaseModel):
     text: str
+    original_text: str = ""
+    language_modernized: bool = False
+    modernization_label: str = ""
     source_title: str
     author: str
     source_type: str  # "commentary" | "reference"

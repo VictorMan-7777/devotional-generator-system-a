@@ -1,0 +1,1023 @@
+{
+  "run_slug": "2026-03-17__125543__contentment-in-christ__6-day__vol-1",
+  "stage": "outline_ready",
+  "sequence": 1,
+  "created_at_utc": "2026-03-17T12:55:51.235263+00:00",
+  "payload": {
+    "topic": "Contentment in Christ",
+    "num_days": 6,
+    "source_reference": "Philippians 4",
+    "editorial_build": {
+      "topic": "Contentment in Christ",
+      "num_days": 6,
+      "source_reference": "Philippians 4",
+      "week_count": 1,
+      "passage_resources": {
+        "topic": "Contentment in Christ",
+        "scripture_reference": "Philippians 4",
+        "prepared_at_utc": "2026-03-17T12:55:50Z",
+        "shared_resources": [
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "commentary",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "commentary",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "reference",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "reference",
+            "excerpt_text": "",
+            "note": "Shared library resource prepositioned for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "encyclopedia",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "exposition_writer"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "A Body of Divinity",
+            "author": "Thomas Watson",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember A Body of Divinity first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember A Discourse on Prayer first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Easton's Bible Dictionary first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Institutes of the Christian Religion first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember International Standard Bible Encyclopedia (1915) first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Jamieson-Fausset-Brown Bible Commentary first for background, exposition.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember John Gill's Exposition of the Bible first for background, exposition.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Journals of George Whitefield",
+            "author": "George Whitefield",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Journals of George Whitefield first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Letters of Samuel Rutherford",
+            "author": "Samuel Rutherford",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Letters of Samuel Rutherford first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Luther's Works (Prayer Selections)",
+            "author": "Martin Luther",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Luther's Works (Prayer Selections) first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Matthew Henry's Commentary on the Whole Bible",
+            "author": "Matthew Henry",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Matthew Henry's Commentary on the Whole Bible first for background, citation, exposition, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Metropolitan Tabernacle Pulpit",
+            "author": "Charles H. Spurgeon",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Metropolitan Tabernacle Pulpit first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Of the Mortification of Sin",
+            "author": "John Owen",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Of the Mortification of Sin first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Profiting from the Word",
+            "author": "Arthur W. Pink",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Profiting from the Word first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Resolutions",
+            "author": "Jonathan Edwards",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Resolutions first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Sermons and Letters",
+            "author": "John Calvin",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Sermons and Letters first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Sermons and Tracts",
+            "author": "John Wesley",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Sermons and Tracts first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Smith's Bible Dictionary first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Spurgeon's Sermons",
+            "author": "Charles H. Spurgeon",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Spurgeon's Sermons first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Strong's Hebrew Dictionary first for background, terms.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Table Talk",
+            "author": "Martin Luther",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Table Talk first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Bruised Reed",
+            "author": "Richard Sibbes",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Bruised Reed first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Doctrine of Repentance",
+            "author": "Thomas Watson",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Doctrine of Repentance first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Pulpit Commentary first for background, exposition.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Sovereignty of God",
+            "author": "Arthur W. Pink",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember The Sovereignty of God first for background.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          },
+          {
+            "purpose": "shared",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Works of Jonathan Edwards",
+            "author": "Jonathan Edwards",
+            "source_type": "library-reading-note",
+            "excerpt_text": "Remember Works of Jonathan Edwards first for citation, quotes.",
+            "note": "Research librarian memory \u2014 general resource guidance, not passage-specific.",
+            "relevance_score": 0.5
+          }
+        ],
+        "outliner_resources": [
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "A Discourse on Prayer",
+            "author": "John Bunyan",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Easton's Bible Dictionary",
+            "author": "M.G. Easton",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Institutes of the Christian Religion",
+            "author": "John Calvin",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "International Standard Bible Encyclopedia (1915)",
+            "author": "ISBE Editorial Board",
+            "source_type": "encyclopedia",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "John Gill's Exposition of the Bible",
+            "author": "John Gill",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Journals of George Whitefield",
+            "author": "George Whitefield",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Letters of Samuel Rutherford",
+            "author": "Samuel Rutherford",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Luther's Works (Prayer Selections)",
+            "author": "Martin Luther",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Matthew Henry's Commentary on the Whole Bible",
+            "author": "Matthew Henry",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Metropolitan Tabernacle Pulpit",
+            "author": "Charles H. Spurgeon",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Of the Mortification of Sin",
+            "author": "John Owen",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Profiting from the Word",
+            "author": "Arthur W. Pink",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Sermons and Letters",
+            "author": "John Calvin",
+            "source_type": "sermon_collection",
+            "excerpt_text": "publication_metadata",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Sermons and Tracts",
+            "author": "John Wesley",
+            "source_type": "sermon_collection",
+            "excerpt_text": "publication_metadata, public_domain_text",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "dictionary",
+            "excerpt_text": "publication_metadata, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "Table Talk",
+            "author": "Martin Luther",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Bruised Reed",
+            "author": "Richard Sibbes",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Doctrine of Repentance",
+            "author": "Thomas Watson",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "whole_bible_commentary",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          },
+          {
+            "purpose": "outline",
+            "role_targets": [
+              "outliner"
+            ],
+            "source_title": "The Sovereignty of God",
+            "author": "Arthur W. Pink",
+            "source_type": "reference_work",
+            "excerpt_text": "publication_metadata, public_domain_text, page_images",
+            "note": "Research window for Philippians 4: chapters 3-5. Book coverage: Philippians. Catalog says this resource contains: publication_metadata, public_domain_text, page_images. Draft card created from acquired holding. Needs librarian inspection beyond metadata before live acceptance.",
+            "relevance_score": 0.0
+          }
+        ],
+        "exposition_resources": [
+          {
+            "purpose": "context",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "The Pulpit Commentary",
+            "author": "H.D.M. Spence and Joseph Exell",
+            "source_type": "commentary",
+            "excerpt_text": "The Pulpit Commentary notes that the creation account frames Israel's worship by grounding all life and time in the Lord's sovereign initiative.",
+            "note": "Research librarian prepared context support for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Jamieson-Fausset-Brown Bible Commentary",
+            "author": "Jamieson, Fausset, and Brown",
+            "source_type": "commentary",
+            "excerpt_text": "Jamieson-Fausset-Brown observes that each creative act is presented as both powerful and orderly, reinforcing God's authority over chaos and history.",
+            "note": "Research librarian prepared theological support for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Strong's Hebrew Dictionary",
+            "author": "James Strong",
+            "source_type": "reference",
+            "excerpt_text": "Strong's lexical entries for creation terms note purposeful formation and ordering, supporting a theological reading centered on God's intentional design rather than randomness.",
+            "note": "Research librarian prepared theological support for Philippians 4.",
+            "relevance_score": 1.0
+          },
+          {
+            "purpose": "theological",
+            "role_targets": [
+              "outliner",
+              "exposition_writer"
+            ],
+            "source_title": "Smith's Bible Dictionary",
+            "author": "William Smith",
+            "source_type": "reference",
+            "excerpt_text": "Smith's Bible Dictionary presents the Sabbath pattern as a theological gift: rest ordered by God, not merely human cessation, shaping worship and trust.",
+            "note": "Research librarian prepared theological support for Philippians 4.",
+            "relevance_score": 1.0
+          }
+        ]
+      },
+      "day_plan": [
+        {
+          "day_number": 1,
+          "week_number": 1,
+          "topic": "Contentment in Christ",
+          "scripture_reference": "Philippians 4:2-3",
+          "study_window_reference": "Philippians 4:1-3"
+        },
+        {
+          "day_number": 2,
+          "week_number": 1,
+          "topic": "Contentment in Christ",
+          "scripture_reference": "Philippians 4:5-6",
+          "study_window_reference": "Philippians 4:4-7"
+        },
+        {
+          "day_number": 3,
+          "week_number": 1,
+          "topic": "Contentment in Christ",
+          "scripture_reference": "Philippians 4:9-10",
+          "study_window_reference": "Philippians 4:8-11"
+        },
+        {
+          "day_number": 4,
+          "week_number": 1,
+          "topic": "Contentment in Christ",
+          "scripture_reference": "Philippians 4:13-14",
+          "study_window_reference": "Philippians 4:12-15"
+        },
+        {
+          "day_number": 5,
+          "week_number": 1,
+          "topic": "Contentment in Christ",
+          "scripture_reference": "Philippians 4:17-18",
+          "study_window_reference": "Philippians 4:16-19"
+        },
+        {
+          "day_number": 6,
+          "week_number": 1,
+          "topic": "Contentment in Christ",
+          "scripture_reference": "Philippians 4:21-22",
+          "study_window_reference": "Philippians 4:20-23"
+        }
+      ],
+      "day_briefs": [
+        {
+          "day_number": 1,
+          "week_number": 1,
+          "scripture_reference": "Philippians 4:2-3",
+          "study_window_reference": "Philippians 4:1-3",
+          "key_verse_reference": "Philippians 4:2-3",
+          "day_title": "Philippians 4:2-3 - I urge Euodia and I urge Syntyche to live in harmony in the Lord",
+          "focus_clause": "I urge Euodia and I urge Syntyche to live in harmony in the Lord",
+          "pastoral_burden": "faithful response to God's word",
+          "genre": "epistle",
+          "scene_summary": "Philippians 4:2-3 opens with a scene marked by faithful response to God's word.",
+          "theological_lane": "faithful response to God's word",
+          "application_lane": "concrete obedience that takes urge and euodia seriously rather than at a distance",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "urge",
+            "euodia",
+            "syntyche",
+            "live",
+            "harmony",
+            "lord"
+          ]
+        },
+        {
+          "day_number": 2,
+          "week_number": 1,
+          "scripture_reference": "Philippians 4:5-6",
+          "study_window_reference": "Philippians 4:4-7",
+          "key_verse_reference": "Philippians 4:5-6",
+          "day_title": "Philippians 4:5-6 - Will guard your hearts and your minds in Christ Jesus",
+          "focus_clause": "Will guard your hearts and your minds in Christ Jesus",
+          "pastoral_burden": "hidden hope under watch",
+          "genre": "epistle",
+          "scene_summary": "Philippians 4:5-6 opens with a scene marked by hidden hope under watch.",
+          "theological_lane": "watchful surrender before costly obedience",
+          "application_lane": "grateful obedience within God's generous boundaries",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "will",
+            "guard",
+            "hearts",
+            "minds",
+            "christ",
+            "jesus"
+          ]
+        },
+        {
+          "day_number": 3,
+          "week_number": 1,
+          "scripture_reference": "Philippians 4:9-10",
+          "study_window_reference": "Philippians 4:8-11",
+          "key_verse_reference": "Philippians 4:9-10",
+          "day_title": "Philippians 4:9-10 - I have learned to be content in whatever circumstances I am",
+          "focus_clause": "I have learned to be content in whatever circumstances I am",
+          "pastoral_burden": "faithful response to God's word",
+          "genre": "epistle",
+          "scene_summary": "Philippians 4:9-10 opens with a scene marked by faithful response to God's word.",
+          "theological_lane": "faithful response to God's word",
+          "application_lane": "concrete obedience that takes learned and content seriously rather than at a distance",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "learned",
+            "content",
+            "whatever",
+            "circumstances",
+            "finally",
+            "brethren"
+          ]
+        },
+        {
+          "day_number": 4,
+          "week_number": 1,
+          "scripture_reference": "Philippians 4:13-14",
+          "study_window_reference": "Philippians 4:12-15",
+          "key_verse_reference": "Philippians 4:13-14",
+          "day_title": "Philippians 4:13-14 - In any and every circumstance I have learned the secret of being filled and going hungry",
+          "focus_clause": "In any and every circumstance I have learned the secret of being filled and going hungry",
+          "pastoral_burden": "faithful response to God's word through any every circumstance learned secret",
+          "genre": "epistle",
+          "scene_summary": "Philippians 4:13-14 opens with a scene marked by faithful response to God's word.",
+          "theological_lane": "faithful response to God's word centered on any every circumstance learned secret",
+          "application_lane": "honest reverence without flattening grief or pain",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "any",
+            "every",
+            "circumstance",
+            "learned",
+            "secret",
+            "being"
+          ]
+        },
+        {
+          "day_number": 5,
+          "week_number": 1,
+          "scripture_reference": "Philippians 4:17-18",
+          "study_window_reference": "Philippians 4:16-19",
+          "key_verse_reference": "Philippians 4:17-18",
+          "day_title": "Philippians 4:17-18 - My God will supply all your needs according to His riches in glory in Christ Jesus",
+          "focus_clause": "My God will supply all your needs according to His riches in glory in Christ Jesus",
+          "pastoral_burden": "faithful response to God's word",
+          "genre": "epistle",
+          "scene_summary": "Philippians 4:17-18 opens with a scene marked by faithful response to God's word.",
+          "theological_lane": "faithful response to God's word",
+          "application_lane": "costly obedience without self-protection",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "god",
+            "will",
+            "supply",
+            "all",
+            "needs",
+            "according"
+          ]
+        },
+        {
+          "day_number": 6,
+          "week_number": 1,
+          "scripture_reference": "Philippians 4:21-22",
+          "study_window_reference": "Philippians 4:20-23",
+          "key_verse_reference": "Philippians 4:21-22",
+          "day_title": "Philippians 4:21-22 - The grace of the Lord Jesus Christ be with your spirit",
+          "focus_clause": "The grace of the Lord Jesus Christ be with your spirit",
+          "pastoral_burden": "prepared obedience",
+          "genre": "epistle",
+          "scene_summary": "Philippians 4:21-22 opens with a scene marked by prepared obedience.",
+          "theological_lane": "prepared obedience",
+          "application_lane": "grateful obedience within God's generous boundaries",
+          "forbidden_drifts": [
+            "generic encouragement detached from the scene",
+            "applications that ignore the specific burden of the passage"
+          ],
+          "key_terms": [
+            "grace",
+            "lord",
+            "jesus",
+            "christ",
+            "spirit",
+            "our"
+          ]
+        }
+      ],
+      "week_plans": [
+        {
+          "week_number": 1,
+          "title": "Week 1: Faithful Response To God'S Word",
+          "days": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "movement_summary": "Moves from i urge euodia and i urge syntyche to live in harmony in the lord toward the grace of the lord jesus christ be with your spirit."
+        }
+      ]
+    }
+  }
+}

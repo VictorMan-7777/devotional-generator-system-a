@@ -1,0 +1,41 @@
+{
+  "run_slug": "2026-03-14__133329__competition-volume-1__12-day__vol-1",
+  "stage": "week_unification",
+  "sequence": 27,
+  "created_at_utc": "2026-03-14T13:33:37.564358+00:00",
+  "payload": {
+    "week_number": 2,
+    "day_numbers": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "status": "failed",
+    "findings": [
+      {
+        "check_id": "BOOK_DAY_PROGRESS",
+        "result": "fail",
+        "reason_code": "DAY_PROGRESS_STALLED",
+        "explanation": "Adjacent days are too similar. The devotional should progress from day to day instead of repeating the same reflection pattern.",
+        "evidence": "similarity=0.93",
+        "day_numbers": [
+          7,
+          8
+        ]
+      },
+      {
+        "check_id": "BOOK_WEEK_TRANSITION",
+        "result": "fail",
+        "reason_code": "WEEK_TRANSITION_WEAK",
+        "explanation": "The week boundary does not show a healthy blend of continuity and fresh movement. Week two should connect to week one without feeling like a reset or duplicate.",
+        "evidence": "boundary=6->8 shared=[] new_terms=['against', 'father', 'heaven', 'sinned'] similarity=0.73",
+        "day_numbers": [
+          6,
+          8
+        ]
+      }
+    ]
+  }
+}

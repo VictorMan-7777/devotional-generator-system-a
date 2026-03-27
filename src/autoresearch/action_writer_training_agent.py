@@ -28,7 +28,8 @@ from src.generation.real_section_generator import (
     _build_be_still,
     _build_exposition,
 )
-from src.models.devotional import DevotionalBook
+from src.models.devotional import ActionStepsSection, DevotionalBook
+from src.validation.ac_scorer import ac_scores_to_metrics, score_action_steps
 from src.scripture.planner import select_daily_key_verses_reference
 from src.scripture.retrieval import ScriptureRetriever, ScriptureResult
 
@@ -38,7 +39,7 @@ _FRESH_BENCHMARK_PASSAGES = [
     ("Proverbs 1:7-9", "Proverbs 1:1-19"),
     ("Colossians 3:12-14", "Colossians 3:1-17"),
     ("Habakkuk 2:1-4", "Habakkuk 1:1-17"),
-    ("Psalm 23:4-6", "Psalm 23:1-6"),
+    ("Isaiah 40:28-31", "Isaiah 40:27-31"),
 ]
 
 ACTION_WRITER_TRAINER_PROFILE = {
@@ -113,11 +114,13 @@ def run_fresh_action_steps_benchmark(repo_root: Path) -> dict[str, Any]:
         scripture_text=scripture_text,
         exposition_text=exposition_text,
     )
+    focal_scripture_text = _scripture_text(retriever, focal_reference)
     action_connector, action_items = _build_action_steps(
         brief=brief,
         day_number=1,
         exposition_text=exposition_text,
         scripture_text=scripture_text,
+        focal_scripture_text=focal_scripture_text,
     )
 
     try:
@@ -137,6 +140,8 @@ def run_fresh_action_steps_benchmark(repo_root: Path) -> dict[str, Any]:
         }
 
     slug = re.sub(r"[^a-z0-9]+", "-", focal_reference.lower()).strip("-")
+    _section = ActionStepsSection(items=action_items, connector_phrase=action_connector)
+    _ac = ac_scores_to_metrics(score_action_steps(_section))
     log_experiment(
         experiment_id=f"action-steps-fresh-benchmark__{slug}__{now}",
         worker_name="action_writer",
@@ -151,6 +156,7 @@ def run_fresh_action_steps_benchmark(repo_root: Path) -> dict[str, Any]:
             "score": review["score"],
             "flows_from_be_still": review["flows_from_be_still"],
             "same_day_applicable": review["same_day_applicable"],
+            **_ac,
         },
         learning_note=(
             "Fresh benchmark regenerates Action Steps from current deterministic templates each cycle. "

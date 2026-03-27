@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-03-10T16:08:52.736719",
+    "party": "orchestrator",
+    "issue": "implementation-plan",
+    "round": 1,
+    "response": "implementation-plan\n\nOption: keep the deterministic three-cycle sequence, but make Cycle 1 explicitly two gated substeps with a mandatory human checkpoint between them.\n\n1. Cycle 1A: resolve the review/export semantic mismatch.\nRationale: current code confirms the mismatch is real, not hypothetical. [`src/api/full_run_assets.py`](/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/full_run_assets.py) excludes `agent_validated` sections from the default pending queue, while [`src/api/export_gate.py`](/Volumes/claude-projects/projects/devotional-generator-system-a/src/api/export_gate.py) still blocks publish-ready export unless every present section is `APPROVED`. That means operators can complete the visible queue and still fail closed at export. This is the highest-severity issue because it changes what \u201creview complete\u201d means.\n\n2. Human checkpoint after Cycle 1A.\nRationale: this is the only point where the operator contract can change. The checkpoint should approve one concrete semantic path, not just a general direction:\n- either surface `agent_validated` sections in the review queue, or\n- add an explicit, tested promotion path for them that still preserves fail-closed publish-ready behavior.\nThis checkpoint should review code/test evidence, not just prose, because Cycle 1B will codify that contract.\n\n3. Cycle 1B: add the deterministic decision-application and publish-ready export path.\nRationale: the repo has review decision writers, but I found no existing command path that reads `__approval-decisions.json`, applies decisions back to [`__book.json`], re-runs export gating, and emits a publish-ready PDF. [`scripts/run_devotional_full.py`](/Volumes/claude-projects/projects/devotional-generator-system-a/scripts/run_devotional_full.py) only generates the bundle and prints follow-up review commands. Until this path exists, Section 3 cannot be certified even if the queue semantics are fixed.\n\n4. Cycle 2: fix the PDF heading normalization regression.\nRationale: this is reader-facing and verified, but lower severity than the blocked review-to-publish path. It should follow Cycle 1, not precede it.\n\n5. Cycle 3: harden execution discipline and documented commands.\nRationale: the ambient-shell `pytest tests/ -q` failure is real operational debt, but it does not outrank the missing publish-ready flow. It belongs last unless it blocks the Cycle 1/2 test surfaces.\n\nPass criteria for the plan should stay strict:\n- no section hidden from the active review path can still block publish-ready export\n- no validator bypass on scripture correctness\n- series child-volume non-dup constraints remain fail-closed\n- review UI local-time display behavior remains unchanged\n- one reviewed competition-format run can deterministically produce the required publish-ready artifact set\n\nThis is a refinement of the earlier proposal, not a reversal: I still support the three-cycle order, but I would tighten Cycle 1A so it ends with an explicit semantic choice and evidence artifact before 1B starts.\n\n---DEBATE-SIGNAL---\nissue: implementation-plan\nposition: AGREE\n---END-DEBATE-SIGNAL---",
+    "signals": [
+      {
+        "issue": "implementation-plan",
+        "position": "AGREE",
+        "reason": null
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-03-10T16:10:59.996165",
+    "party": "verifier",
+    "issue": "implementation-plan",
+    "round": 1,
+    "response": "The proposal's core claims are code-verified. Let me confirm the two critical ones before evaluating.\n\n**Mismatch confirmed** (`full_run_assets.py:204-206`): `build_pending_sections_and_previews` skips `verification_status == \"agent_validated\"` by default. `build_approval_gate_report` calls it without `include_agent_validated=True` (`line 529`). `ExportGate.check_exportability` (`export_gate.py:55`) checks only `approval_status != APPROVED` \u2014 verification status is invisible to it. An operator can drain the entire pending queue and still be blocked at export by agent_validated sections that never appeared in the queue. The mismatch is structural, not edge-case.\n\n**Decision-application path**: `run_review_studio.py:624` does write `book_data` back atomically, but that is inside the interactive web UI session. There is no CLI command that reads a committed `__approval-decisions.json`, applies it to `__book.json`, and then re-runs export gating to produce a publish-ready artifact. `run_pending_approvals.py` records decisions to the JSON file but does not apply them to the book model. The planner's claim stands.\n\n**One gap the proposal does not make explicit**: the human checkpoint after Cycle 1A needs a concrete scope definition. The checkpoint asks the operator to choose between two paths, but neither path has acceptance criteria stated at the checkpoint level. If the operator approves path A (surface agent_validated in the queue) without knowing what \"surfaced\" means for the `include_agent_validated` flag and whether any existing tests would need to change, they cannot give an informed approval. I would strengthen the checkpoint by requiring Cycle 1A to deliver: (a) the chosen semantic, (b) a minimal test demonstrating the fix, and (c) a written summary of what Cycle 1B will codify \u2014 before the checkpoint fires. This keeps the human decision anchored to evidence, not prose.\n\nThat said, the overall three-cycle sequence, the 1A/1B split, and the priority ordering (review-to-publish path before reader-facing regression before operational debt) are all correct. The pass criteria are appropriately strict and match the fail-closed requirements.\n\n---DEBATE-SIGNAL---\nissue: implementation-plan\nposition: AGREE\n---END-DEBATE-SIGNAL---\n",
+    "signals": [
+      {
+        "issue": "implementation-plan",
+        "position": "AGREE",
+        "reason": null
+      }
+    ]
+  }
+]

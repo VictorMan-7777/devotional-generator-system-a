@@ -1,0 +1,24 @@
+{
+  "target_max_grade": 8.0,
+  "summary": {
+    "exposition_days_scored": 1,
+    "target_max_grade": 8.0,
+    "average_flesch_kincaid_grade": 9.02,
+    "average_flesch_reading_ease": 56.35,
+    "days_above_target_grade": [
+      1
+    ]
+  },
+  "days": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "word_count": 510,
+      "sentence_count": 35,
+      "syllable_count": 818,
+      "flesch_reading_ease": 56.35,
+      "flesch_kincaid_grade": 9.02,
+      "grade_band": "needs_simplification"
+    }
+  ]
+}

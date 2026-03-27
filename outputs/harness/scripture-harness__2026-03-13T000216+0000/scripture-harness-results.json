@@ -1,0 +1,49 @@
+{
+  "generated_at_utc": "2026-03-13T00:04:30.685221+00:00",
+  "generator": "real",
+  "cases": [
+    {
+      "slug": "ezekiel-38-39__12d_2w_review",
+      "passage": "Ezekiel 38-39",
+      "num_days": 12,
+      "num_weeks": 2
+    }
+  ],
+  "results": [
+    {
+      "case_slug": "ezekiel-38-39__12d_2w_review",
+      "passage": "Ezekiel 38-39",
+      "num_days": 12,
+      "num_weeks": 2,
+      "outline_csv": "/Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T000216+0000/ezekiel-38-39__12d_2w_review__outline.csv",
+      "command": "/Volumes/claude-projects/projects/devotional-generator-system-a/.venv/bin/python scripts/run_devotional_full.py --csv /Volumes/claude-projects/projects/devotional-generator-system-a/outputs/harness/scripture-harness__2026-03-13T000216+0000/ezekiel-38-39__12d_2w_review__outline.csv --generator real --reviewed-by Victor",
+      "exit_code": 0,
+      "stdout": "RUN_SLUG=2026-03-13__000239__competition-volume-1__12-day__vol-1\nBOOK_JSON=outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__book.json\nEDITORIAL_BUILD=outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__editorial-build.json\nAPPROVAL_REPORT=outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-gate-report.json\nAGENT_VALIDATION=outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__agent-validation-report.json\nAUDIT_LINKAGE=outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__audit-linkage.json\nMETA=outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__meta.json\nREVIEW_WEB=python3 scripts/review/run_review.py --backend web --report outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-gate-report.json --out outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-decisions.json --reviewed-by \"Victor\"\nREVIEW_STUDIO=python3 scripts/review/run_review_studio.py --report outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-gate-report.json --out outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-decisions.json --book-json outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__book.json --reviewed-by \"Victor\"\nPUBLISH_READY=python3 scripts/apply_decisions_and_export.py --book-json outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__book.json --decisions-json outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-decisions.json",
+      "stderr": "",
+      "run_slug": "2026-03-13__000239__competition-volume-1__12-day__vol-1",
+      "book_json": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__book.json",
+      "editorial_build": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__editorial-build.json",
+      "approval_report": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-gate-report.json",
+      "agent_validation": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__agent-validation-report.json",
+      "audit_linkage": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__audit-linkage.json",
+      "meta": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__meta.json",
+      "meta_summary": {
+        "run_state": "validated_pass",
+        "agent_validation_overall_status": "passed",
+        "agent_validation_overall_passed": true,
+        "blocking_issues": []
+      },
+      "agent_validation_summary": {
+        "overall_status": "passed",
+        "overall_passed": true,
+        "discrepancy_count": 0,
+        "blocking_issues": []
+      },
+      "approval_summary": {
+        "exportable": false,
+        "pending_sections": 72,
+        "blocked_reason": "72 section(s) pending approval: day 1 \u2014 timeless_wisdom; day 1 \u2014 scripture; day 1 \u2014 exposition; day 1 \u2014 be_still; day 1 \u2014 action_steps; day 1 \u2014 prayer; day 2 \u2014 timeless_wisdom; day 2 \u2014 scripture; day 2 \u2014 exposition; day 2 \u2014 be_still; day 2 \u2014 action_steps; day 2 \u2014 prayer; day 3 \u2014 timeless_wisdom; day 3 \u2014 scripture; day 3 \u2014 exposition; day 3 \u2014 be_still; day 3 \u2014 action_steps; day 3 \u2014 prayer; day 4 \u2014 timeless_wisdom; day 4 \u2014 scripture; day 4 \u2014 exposition; day 4 \u2014 be_still; day 4 \u2014 action_steps; day 4 \u2014 prayer; day 5 \u2014 timeless_wisdom; day 5 \u2014 scripture; day 5 \u2014 exposition; day 5 \u2014 be_still; day 5 \u2014 action_steps; day 5 \u2014 prayer; day 6 \u2014 timeless_wisdom; day 6 \u2014 scripture; day 6 \u2014 exposition; day 6 \u2014 be_still; day 6 \u2014 action_steps; day 6 \u2014 prayer; day 7 \u2014 timeless_wisdom; day 7 \u2014 scripture; day 7 \u2014 exposition; day 7 \u2014 be_still; day 7 \u2014 action_steps; day 7 \u2014 prayer; day 8 \u2014 timeless_wisdom; day 8 \u2014 scripture; day 8 \u2014 exposition; day 8 \u2014 be_still; day 8 \u2014 action_steps; day 8 \u2014 prayer; day 9 \u2014 timeless_wisdom; day 9 \u2014 scripture; day 9 \u2014 exposition; day 9 \u2014 be_still; day 9 \u2014 action_steps; day 9 \u2014 prayer; day 10 \u2014 timeless_wisdom; day 10 \u2014 scripture; day 10 \u2014 exposition; day 10 \u2014 be_still; day 10 \u2014 action_steps; day 10 \u2014 prayer; day 11 \u2014 timeless_wisdom; day 11 \u2014 scripture; day 11 \u2014 exposition; day 11 \u2014 be_still; day 11 \u2014 action_steps; day 11 \u2014 prayer; day 12 \u2014 timeless_wisdom; day 12 \u2014 scripture; day 12 \u2014 exposition; day 12 \u2014 be_still; day 12 \u2014 action_steps; day 12 \u2014 prayer"
+      }
+    }
+  ]
+}

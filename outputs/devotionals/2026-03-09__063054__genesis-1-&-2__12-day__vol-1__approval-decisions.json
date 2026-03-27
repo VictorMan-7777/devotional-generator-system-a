@@ -1,0 +1,504 @@
+{
+  "source_report": "outputs/devotionals/2026-03-09__063054__genesis-1-&-2__12-day__vol-1__approval-gate-report.json",
+  "topic": "Genesis 1 & 2",
+  "days": 12,
+  "mode": "reject-all",
+  "generated_at_utc": "2026-03-09T17:18:36.511950+00:00",
+  "summary": {
+    "approved": 0,
+    "rejected": 61,
+    "skipped": 0,
+    "completed": 61,
+    "remaining": 0,
+    "total_pending": 61
+  },
+  "decisions": [
+    {
+      "day": 1,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 1,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 1,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 1,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 1,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 1,
+      "section": "timeless_wisdom",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "reviewed_at_utc": "2026-03-09T06:45:37.299753+00:00"
+    },
+    {
+      "day": 2,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 2,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 2,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 2,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 2,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 3,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 3,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 3,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 3,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 3,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 4,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 4,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 4,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 4,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 4,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 5,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 5,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 5,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 5,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 5,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 6,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 6,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 6,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 6,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 6,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 7,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 7,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 7,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 7,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 7,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 8,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 8,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 8,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 8,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 8,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 9,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 9,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 9,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 9,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 9,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 10,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 10,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 10,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 10,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 10,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 11,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 11,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 11,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 11,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 11,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 12,
+      "section": "action_steps",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 12,
+      "section": "be_still",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 12,
+      "section": "exposition",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 12,
+      "section": "prayer",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    },
+    {
+      "day": 12,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_by": "Victor",
+      "decision_source": "cli_batch_reject_all",
+      "reviewed_at_utc": "2026-03-09T15:21:55.189336+00:00"
+    }
+  ]
+}

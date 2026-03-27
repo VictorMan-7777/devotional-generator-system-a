@@ -1,0 +1,456 @@
+]0;Orchestrator ▶ DevG
+════════════════════════════════════════════════════════════════════════
+  Codex-Claude Orchestrator starting
+════════════════════════════════════════════════════════════════════════
+  Started     : 2026-03-10 15:08:19
+  Log         : /Volumes/claude-projects/projects/devotional-generator-system-a/logs/run_20260310_150819.log
+  Prompt file : /Volumes/claude-projects/projects/orchestrator-prompts/ready/DevG.txt
+  State file  : session-state.json
+  Work dir    : /Volumes/claude-projects/projects/devotional-generator-system-a  [extracted from prompt file]
+  Max steps   : 50
+  Timeout/turn: 3600s
+  Skip perms  : True  (default)
+  Phase mode  : single-phase (PASS → COMPLETION)
+  Preflight   : OK
+  Prompts repo : /Volumes/claude-projects/projects/orchestrator-prompts
+  Notifications: ntfy → https://ntfy.sh/VictorMans-ideas
+  Prompt mode  : debate
+  Planner      : none
+
+────────────────────────────────────────────────────────────────────────
+  DEBATE PRE-PASS — planning phase
+────────────────────────────────────────────────────────────────────────
+
+  ┌──────────────────────────────────────────────────────┐
+  │  USAGE GATE — debate pre-pass role assignment        │
+  │  Role matrix: Codex=Orchestrator, Claude=Verifier    │
+  │  Economy roles activate if session OR weekly < 20%  │
+  └──────────────────────────────────────────────────────┘
+
+  [warn] Usage cache missing/stale — assuming sufficient credits. Use economy mode manually if needed (--economy flag).
+  Debate roles: default  (Orchestrator=codex, Verifier=claude)
+  Running DebateRunner to produce agreed implementation plan…
+
+  [DEBATE] Orchestrator (codex) turn — issue: 'implementation-plan'  round: 1
+  [codex] OpenAI Codex v0.107.0 (research preview)
+  [codex] --------
+  [codex] workdir: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] model: gpt-5.4
+  [codex] provider: openai
+  [codex] approval: never
+  [codex] sandbox: danger-full-access
+  [codex] reasoning effort: none
+  [codex] reasoning summaries: none
+  [codex] session id: 019cd926-72bb-7373-8543-a204c6e26463
+  [codex] --------
+  [codex] user
+  [codex] SYSTEM: You are the Planner. For each open issue, propose a concrete option with rationale. After each reviewer response, either defend your position or update it. End every turn with the DEBATE-SIGNAL block for each issue you addressed.
+  [codex] 
+  [codex] CONTEXT:
+  [codex] DevG — READY FOR EXECUTION
+  [codex] Mode: debate
+  [codex] Target Repo: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] Write all planning artifacts to: /Volumes/claude-projects/projects/devotional-generator-system-a/planning/
+  [codex] 
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] SECTION 1 — TWO-EYES SYSTEM REVIEW (PLANNING SESSION ONLY)
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] 
+  [codex] Target Repo: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] 
+  [codex] Objective:
+  [codex] Run a clean-room two-eyes system review of the complete current DevG repo state
+  [codex] and produce an execution plan for fix cycles.
+  [codex] 
+  [codex] Rules for this section:
+  [codex] - No implementation/code edits in Section 1.
+  [codex] - Read full current system state (not only original code paths).
+  [codex] - Treat previous context as non-authoritative; verify from repository artifacts and tests.
+  [codex] 
+  [codex] Required planning outputs:
+  [codex] 1. Competition readiness findings report with severity-ranked issues.
+  [codex] 2. E2E test-and-review matrix covering:
+  [codex]    - generation
+  [codex]    - validation
+  [codex]    - review UI workflow
+  [codex]    - PDF render path
+  [codex]    - publish-ready gates
+  [codex]    - audit/provenance traceability
+  [codex] 3. Fix-cycle execution plan with deterministic order and pass criteria.
+  [codex] 4. Explicit human checkpoints where re-review approval is required.
+  [codex] 
+  [codex] Write planning artifacts to:
+  [codex] - /Volumes/claude-projects/projects/devotional-generator-system-a/planning/
+  [codex] - /Volumes/claude-projects/projects/devotional-generator-system-a/docs/system/outputs/
+  [codex] 
+  [codex] Artifact naming:
+  [codex] - YYYY-MM-DD__NN__devg__two-eyes-system-review-plan.md
+  [codex] - YYYY-MM-DD__NN__devg__two-eyes-system-review-findings.md
+  [codex] - NN must be computed at runtime (never hardcoded).
+  [codex] 
+  [codex] Stop condition for Section 1:
+  [codex] - Planning artifacts complete and saved.
+  [codex] - Await human approval before implementation section proceeds.
+  [codex] - Any artifact containing only test counts/status text is invalid and must be regenerated.
+  [codex] 
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] SECTION 2 — FIX CYCLES + RE-REVIEW (IMPLEMENTATION SESSION)
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] 
+  [codex] Target Repo: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] 
+  [codex] Start condition:
+  [codex] - Human has approved Section 1 artifacts.
+  [codex] 
+  [codex] Implementation loop:
+  [codex] 1. Implement highest-severity findings first.
+  [codex] 2. Run targeted tests for changed surfaces.
+  [codex] 3. Run required E2E checks.
+  [codex] 4. Perform two-eyes re-review of affected flows.
+  [codex] 5. Repeat until:
+  [codex]    - both eyes pass, OR
+  [codex]    - human escalation is required.
+  [codex] 
+  [codex] Required behavior:
+  [codex] - Fail closed on scripture correctness and publish-ready gate criteria.
+  [codex] - Do not bypass independent validator logic.
+  [codex] - Preserve series child-volume non-dup constraints.
+  [codex] - Keep review UI/local-time display behavior for UI timestamps.
+  [codex] 
+  [codex] If a blocker requires human decision, emit exactly:
+  [codex] ---HUMAN DECISION NEEDED---
+  [codex] Context: <one paragraph>
+  [codex] Options:
+  [codex] 1) <option 1>
+  [codex] 2) <option 2>
+  [codex] Recommendation: <1 or 2>
+  [codex] Impact: <one paragraph>
+  [codex] ---END HUMAN DECISION NEEDED---
+  [codex] 
+  [codex] Required implementation outputs:
+  [codex] - Updated readiness summary in docs/system/competition-readiness-backlog.md
+  [codex] - Immutable evidence artifact:
+  [codex]   - YYYY-MM-DD__NN__devg__two-eyes-cycle-results.md
+  [codex] - Command set for final test devotional run and review launch.
+  [codex] 
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] SECTION 3 — FINAL TEST DEVOTIONAL GATE
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] 
+  [codex] Target Repo: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] 
+  [codex] After both-eyes PASS:
+  [codex] 1. Run one fresh test devotional end-to-end.
+  [codex] 2. Verify artifacts exist:
+  [codex]    - __book.json
+  [codex]    - __approval-gate-report.json
+  [codex]    - __agent-validation-report.json
+  [codex]    - __audit-linkage.json
+  [codex]    - preview PDF
+  [codex] 3. Verify publish-ready blockers are accurate.
+  [codex] 4. Provide operator-ready commands for review UI and next cycle.
+  [codex] 
+  [codex] If PASS:
+  [codex] - Mark system as ready for competition devotional submission run.
+  [codex] 
+  [codex] If FAIL:
+  [codex] - Return to Section 2 cycle with evidence.
+  [codex] 
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] SECTION 4 — EXECUTION PROTOCOL
+  [codex] ════════════════════════════════════════════════════════════════════
+  [codex] 
+  [codex] Target Repo: /Volumes/claude-projects/projects/devotional-generator-system-a
+  [codex] 
+  [codex] - Use rg for searches; avoid grep.
+  [codex] - Use local date convention: datetime.now().strftime("%Y-%m-%d").
+  [codex] - Compute NN dynamically for artifacts.
+  [codex] - State management permission: you may write planning, output, and state artifacts under the target repo paths specified in this prompt.
+  [codex] - Respect two-eyes gate: planning and implementation are separate sessions with human approval between them.
+  [codex] - ORCH launch is human-only.
+  [codex] - Completion signal requirement: if ORCH is not requiring a YAML envelope for this turn, end final response with OUTCOME: CERTIFIED (success) or OUTCOME: FAIL (failure).
+  [codex] 
+  [codex] Debate pre-pass response contract (mandatory):
+  [codex] - During DebateRunner turns, do NOT emit YAML envelopes.
+  [codex] - Debate turns must end only with the required `---DEBATE-SIGNAL---` block format.
+  [codex] - Keep debate responses in plain text suitable for convergence parsing.
+  [codex] 
+  [codex] Worker-turn ORCH envelope contract (mandatory):
+  [codex] - Final response must be a single fenced YAML block (```yaml ... ```), with no prose outside the block.
+  [codex] - Required fields:
+  [codex]   - envelope_version: "1.0"
+  [codex]   - session_id: "<from ORCH context>"
+  [codex]   - turn_id: "<from ORCH context>"
+  [codex]   - phase_id: "<from ORCH context>"
+  [codex]   - outcome: PASS | FAIL | NEEDS_HUMAN | BLOCKED | AMBIGUOUS
+  [codex]   - evidence: list (can be empty list `[]`, but field must exist)
+  [codex]   - notes: short summary
+  [codex] - For Section 1 completion (artifacts created + waiting for approval), set `outcome: NEEDS_HUMAN`.
+  [codex] - For successful implementation completion after approvals, set `outcome: PASS`.
+  [codex] - For failures, set `outcome: FAIL` and include blocker details in `notes`.
+  [codex] 
+  [codex] YAML envelope example:
+  [codex] ```yaml
+  [codex] envelope_version: "1.0"
+  [codex] session_id: "<from ORCH context>"
+  [codex] turn_id: "<from ORCH context>"
+  [codex] phase_id: "<from ORCH context>"
+  [codex] outcome: "NEEDS_HUMAN"
+  [codex] evidence:
+  [codex]   - label: "two-eyes-plan"
+  [codex]     type: "artifact"
+  [codex]     file: "<planning-plan-artifact-path>"
+  [codex]   - label: "two-eyes-findings"
+  [codex]     type: "artifact"
+  [codex]     file: "<planning-findings-artifact-path>"
+  [codex] notes: "Section 1 complete; awaiting human approval before Section 2."
+  [codex] ```
+  [codex] 
+  [codex] 
+  [codex] OPEN ISSUES:
+  [codex] - implementation-plan
+  [codex] 
+  [codex] Respond with your proposal for each issue, then end with the signal blocks:
+  [codex] 
+  [codex] ---DEBATE-SIGNAL---
+  [codex] issue: implementation-plan
+  [codex] position: AGREE | DISAGREE
+  [codex] reason: [one line if DISAGREE; omit if AGREE]
+  [codex] ---END-DEBATE-SIGNAL---
+  [codex] mcp startup: no servers
+  [codex] codex
+  [codex] I’m reviewing the repo state and existing planning/output structure first so the implementation-plan proposal is grounded in current artifacts rather than the prompt alone.
+  [codex] exec
+  [codex] /bin/zsh -lc 'rg -n "competition-readiness|approval-gate|audit-linkage|agent-validation|review UI|pdf|publish-ready|two-eyes|devotional" -S .' in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "pwd && rg --files planning docs/system . | sed 's#"'^#./#'"'" in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 764ms:
+  [codex] ././prd.md
+  [codex] ././iteration-log.md
+  [codex] ././constitution.md
+  [codex] ././pyproject.toml
+  [codex] ././irb/config.yaml
+  [codex] ././irb/specs/tier-1-spec.yaml
+  [codex] ././irb/specs/tier-2-spec.yaml
+  [codex] ././irb/specs/tier-3-plan.md
+  [codex] ././irb/specs/tier-3-spec.yaml
+  [codex] ././irb/specs/tier-1.5-spec.yaml
+  [codex] ././tests/test_section_renderers.py
+  [codex] ./docs/system/approval-contract.md
+  [codex] ././templates/introduction_sunday.md
+  [codex] ././templates/offer_page.md
+  [codex] ././phases/004-validation-review-and-scoring-harness.md
+  [codex] ././phases/001-data-model-and-inputs.md
+  [codex] ././phases/002-template-system.md
+  [codex] ././phases/003-kdp-pdf-export.md
+  [codex] ./docs/system/governance-reference.md
+  [codex] ./docs/system/competition-readiness-backlog.md
+  [codex]  succeeded in 2.54s:
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:8:  B. validate_daily_devotional() auto-resolves the saved artifact and
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:10:  C. audit_devotionals() reports grounding_status="pass" and
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:19:from src.audit.artifact_audit import audit_devotionals
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:23:from src.validation.orchestrator import validate_daily_devotional
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:121:        assessments = validate_daily_devotional(day)
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:131:        assessments = validate_daily_devotional(day)
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:150:        results = audit_devotionals([day])
+  [codex] ./tests/generation/test_deterministic_real_section_generator.py:160:        results = audit_devotionals([day])
+  [codex] ./irb/config.yaml:1:project_slug: devotional-generator
+  [codex] ./index.md:3:**Project Slug**: devotional-generator-system-a
+  [codex] ./index.md:14:System A is Barbara's primary implementation of the FaithJourney.ai Devotional Generator, built under the Automated Builder framework with human-guided AI development. It produces KDP-ready devotional books from structured inputs, enforces doctrinal guardrails, and implements the deterministic AC Scoring Harness required for competition validity.
+  [codex] ./index.md:16:The application is local, single-user, and built in Python (backend, generation, validation, scoring) and TypeScript (review UI, PDF export layer). No cloud deployment in V1.0.
+  [codex] ./index.md:31:- [Phase 003: KDP PDF Export](phases/003-kdp-pdf-export.md)
+  [codex] ./index.md:41:`../competition-2026/input/` is read-only. All planner outputs are written only to this project directory (`devotional-generator-system-a/`) and its subdirectories.
+  [codex] ./tests/test_rendering.py:8:Expected content_pages for SAMPLE_BOOK (publish-ready):
+  [codex] ./tests/test_rendering.py:19:from src.models.devotional import (
+  [codex] ./tests/test_rendering.py:33:from tests.fixtures.sample_devotional import SAMPLE_BOOK
+  [codex] ./tests/test_rendering.py:182:        from src.models.devotional import SendingPromptSection
+  [codex] ./templates/introduction_sunday.md:3:This devotional is designed to accompany your week — six days of personal reading,
+  [codex] ./pyproject.toml:6:name = "devotional-generator"
+  [codex] codex
+  [codex] I’ve confirmed there are already March 10 planning artifacts and they identify concrete live-path blockers. I’m reading those plus the readiness backlog so the proposal can either defend that ordering or replace it.
+  [codex] exec
+  [codex] /bin/zsh -lc "sed -n '1,260p' planning/2026-03-10__02__devg__two-eyes-system-review-findings.md" in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "sed -n '1,260p' docs/system/competition-readiness-backlog.md" in /Volumes/claude-projects/projects/devotional-generator-system-aexec
+  [codex] /bin/zsh -lc "sed -n '1,220p' planning/2026-03-10__01__devg__two-eyes-system-review-plan.md" in /Volumes/claude-projects/projects/devotional-generator-system-a succeeded in 223ms:
+  [codex] # DevG Two-Eyes System Review Findings
+  [codex] 
+  [codex] Date: 2026-03-10
+  [codex] Scope: clean-room Section 1 findings from current repo state and observed test/artifact evidence
+  [codex] Repo: `/Volumes/claude-projects/projects/devotional-generator-system-a`
+  [codex] 
+  [codex] ## Executive Finding
+  [codex] 
+  [codex] DevG is not yet competition-ready for execution because the current repo does not prove a complete review-to-publish path on competition-format outputs. The primary blocker is not generation quality; it is state-transition completeness between review artifacts and publish-ready export.
+  [codex] 
+  [codex] ## Severity-Ranked Findings
+  [codex] 
+  [codex] ### SEV-1: Publish-ready path is blocked by queue/export mismatch and missing finalization path
+  [codex] 
+  [codex] Status: Open
+  [codex] 
+  [codex] Verified evidence:
+  [codex] 
+  [codex] - `src/api/full_run_assets.py` builds review queues with `include_agent_validated=False` by default
+  [codex] - same file excludes `verification_status == "agent_validated"` sections from `pending_sections`
+  [codex]  succeeded in 51ms:
+  [codex] # DevG Competition Readiness Backlog
+  [codex] 
+  [codex] Last updated: 2026-03-09 (America/New_York)
+  [codex] Scope: DevG System A only. This file is the interim tracker until local persistent memory is online.
+  [codex] 
+  [codex] ## Priority 0 (Must finish before submission)
+  [codex] 
+  [codex] - [x] COMP-001: Competition outline CSV native loader
+  [codex]   - Status: pending
+  [codex]   - Requirement: `scripts/run_devotional_full.py` must accept `Series 1 - Volume 1 - 30-Day Outline.csv` directly.
+  [codex]   - Input schema: `Day, Week, Attribute, Scripture, Theme/Focus, Notes, Status`
+  [codex]   - Acceptance:
+  [codex]     - Build succeeds without conversion CSV.
+  [codex]     - Day scripture references come from `Scripture` column.
+  [codex]     - Day topic/focus derives from `Theme/Focus` + `Attribute`.
+  [codex] 
+  [codex] - [x] COMP-002: Agent scripture validator first, manual Logos only on mismatch/unavailable
+  [codex]   - Status: completed
+  [codex]   - Current behavior: agent comparison exists; manual fallback path exists.
+  [codex]   - Remaining:
+  [codex]  succeeded in 51ms:
+  [codex] # DevG Two-Eyes System Review Plan
+  [codex] 
+  [codex] Date: 2026-03-10
+  [codex] Scope: Section 1 planning only. No implementation performed.
+  [codex] Repo: `/Volumes/claude-projects/projects/devotional-generator-system-a`
+  [codex] 
+  [codex] ## Proposal
+  [codex] 
+  [codex] Proceed with a deterministic three-cycle execution plan:
+  [codex] 
+  [codex] 1. Unblock the publish-ready path first.
+  [codex] 2. Repair the PDF reader-facing heading regression second.
+  [codex] 3. Harden operator and CI execution so the validated path is reproducible from documented commands.
+  [codex] 
+  [codex] Rationale: the current system can generate review bundles, but the repo does not yet prove an end-to-end path from competition-format generation through review completion to publish-ready export. That is a harder blocker than the PDF label regression or shell-environment drift.
+  [codex] 
+  [codex] ## Verified Repo State
+  [codex] 
+  [codex] - Full pipeline entrypoint exists: `scripts/run_devotional_full.py`
+  [codex] - Review launchers exist: `scripts/review/run_review.py`, `scripts/review/run_review_studio.py`, `scripts/review/run_review_web.py`, `scripts/review/run_review_ui.py`
+  [codex] codex
+  [codex] implementation-plan
+  [codex] 
+  [codex] Option: proceed with a deterministic three-cycle implementation sequence, but tighten Cycle 1 into two gated substeps.
+  [codex] 
+  [codex] 1. Cycle 1A: align approval semantics before touching export.
+  [codex] Rationale: current evidence shows the real blocker is not generation or validation, but the mismatch between review queue construction and export gating. `planning/2026-03-10__02__devg__two-eyes-system-review-findings.md` identifies `agent_validated` sections being excluded from the visible queue while `src/api/export_gate.py` still requires approved state for all present sections. If that semantic contract is not resolved first, later work risks codifying the wrong operator flow.
+  [codex] 
+  [codex] 2. Human checkpoint after Cycle 1A.
+  [codex] Rationale: this is the only decision point that changes what “review complete” means. The prompt explicitly requires re-review approval on publish-ready semantics before broader reruns. That checkpoint should happen before implementing the finalization/export path, not after it.
+  [codex] 
+  [codex] 3. Cycle 1B: add the deterministic decision-application and publish-ready export path.
+  [codex] Rationale: the repo currently has generation, validation, review launchers, and approval reports, but the findings artifact correctly notes no verified command path that applies `__approval-decisions.json` back into the book and emits a publish-ready artifact. This is the main competition-readiness gap.
+  [codex] 
+  [codex] 4. Cycle 2: fix the PDF heading normalization regression and rerun UI/PDF tests.
+  [codex] Rationale: this is user-facing and real, but lower severity than the blocked review-to-publish transition. It should not precede the gate-path repair.
+  [codex] 
+  [codex] 5. Cycle 3: harden execution discipline and documented commands.
+  [codex] Rationale: the ambient-shell `pytest tests/ -q` failure is operationally important, but it does not invalidate a correct competition submission path once the supported environment is explicit. It belongs last.
+  [codex] 
+  [codex] Pass criteria should remain:
+  [codex] - no hidden section state can block publish-ready export
+  [codex] - no validator bypass on scripture correctness
+  [codex] - series child-volume non-dup constraints still fail closed
+  [codex] - review UI local-time display behavior remains unchanged
+  [codex] 
+  [codex] ---DEBATE-SIGNAL---
+  [codex] issue: implementation-plan
+  [codex] position: AGREE
+  [codex] ---END-DEBATE-SIGNAL---
+  [codex] tokens used
+implementation-plan
+  [codex] 20,762
+
+Option: proceed with a deterministic three-cycle implementation sequence, but tighten Cycle 1 into two gated substeps.
+
+1. Cycle 1A: align approval semantics before touching export.
+Rationale: current evidence shows the real blocker is not generation or validation, but the mismatch between review queue construction and export gating. `planning/2026-03-10__02__devg__two-eyes-system-review-findings.md` identifies `agent_validated` sections being excluded from the visible queue while `src/api/export_gate.py` still requires approved state for all present sections. If that semantic contract is not resolved first, later work risks codifying the wrong operator flow.
+
+2. Human checkpoint after Cycle 1A.
+Rationale: this is the only decision point that changes what “review complete” means. The prompt explicitly requires re-review approval on publish-ready semantics before broader reruns. That checkpoint should happen before implementing the finalization/export path, not after it.
+
+3. Cycle 1B: add the deterministic decision-application and publish-ready export path.
+Rationale: the repo currently has generation, validation, review launchers, and approval reports, but the findings artifact correctly notes no verified command path that applies `__approval-decisions.json` back into the book and emits a publish-ready artifact. This is the main competition-readiness gap.
+
+4. Cycle 2: fix the PDF heading normalization regression and rerun UI/PDF tests.
+Rationale: this is user-facing and real, but lower severity than the blocked review-to-publish transition. It should not precede the gate-path repair.
+
+5. Cycle 3: harden execution discipline and documented commands.
+Rationale: the ambient-shell `pytest tests/ -q` failure is operationally important, but it does not invalidate a correct competition submission path once the supported environment is explicit. It belongs last.
+
+Pass criteria should remain:
+- no hidden section state can block publish-ready export
+- no validator bypass on scripture correctness
+- series child-volume non-dup constraints still fail closed
+- review UI local-time display behavior remains unchanged
+
+---DEBATE-SIGNAL---
+issue: implementation-plan
+position: AGREE
+---END-DEBATE-SIGNAL---
+
+  [DEBATE] Verifier (claude) turn — issue: 'implementation-plan'  round: 1
+The planner's proposal is sound. My evaluation:
+
+**What the split buys:** The original Cycle 1 in the plan artifact was already internally two-phased (semantic alignment + path implementation), but the checkpoint was placed at the end. Moving it to the midpoint is strictly better because the finalization path built in 1B will implement whatever semantic contract 1A establishes. If that contract is wrong, 1B is built on bad assumptions. The planner correctly identifies this as the only decision that changes what "review complete" means.
+
+**One precision gap to name:** 1A says "align approval semantics" without pinning which of the two paths the findings identify — (a) expand the review queue to surface `agent_validated` sections, or (b) add an explicit state-promotion path for them that preserves fail-closed behavior. These produce different operator workflows. The human checkpoint after 1A is the correct place to resolve this, but the 1A output must include a concrete evidence artifact (e.g., a changed test or a code-level diff) — not just a semantic decision statement — so the checkpoint has something real to approve. The proposal structure supports this; it just needs to be explicit in execution.
+
+**No new risks introduced:** SEV ranking unchanged, pass criteria unchanged, fail-closed rules on scripture correctness and series non-dup constraints preserved, PDF and execution-discipline cycles remain in correct order below the publish-ready-path work.
+
+**Conclusion:** AGREE. The three-cycle sequence with the 1A/1B gate inserted is a strict improvement over the monolithic Cycle 1 because it prevents building the wrong finalization path before human confirmation of the semantic contract.
+
+---DEBATE-SIGNAL---
+issue: implementation-plan
+position: AGREE
+---END-DEBATE-SIGNAL---
+
+  [DEBATE] Issue CONVERGED: 'implementation-plan'
+
+  [DEBATE] Transcript written → /Volumes/claude-projects/projects/devotional-generator-system-a/planning/debate_transcript_20260310_151015.json
+
+────────────────────────────────────────────────────────────────────────
+  DEBATE RESOLVED — proceeding to plan approval
+────────────────────────────────────────────────────────────────────────
+
+════════════════════════════════════════════════════════════════════════
+  DEBATE RESOLVED — AWAITING PLAN APPROVAL
+════════════════════════════════════════════════════════════════════════
+  Transcript: /Volumes/claude-projects/projects/devotional-generator-system-a/planning/debate_transcript_20260310_151015.json
+  Review the transcript, then re-select this prompt to approve and begin implementation.
+
+  Returning to prompt selection…
+]0;Orchestrator — Select prompt
+════════════════════════════════════════════════════════════════════════
+  Select next prompt
+════════════════════════════════════════════════════════════════════════
+  [warn] Non-.txt file(s) in ready/ (ignored): .DS_Store
+  2 prompt(s) in prompts/ready/
+
+    1.  DevG.txt
+    2.  YT.txt
+
+  [R] Refresh   [C] Cancel
+
+  >   Rescanning prompts/ready/ …
+  [warn] Non-.txt file(s) in ready/ (ignored): .DS_Store
+  2 prompt(s) in prompts/ready/
+
+    1.  DevG.txt
+    2.  YT.txt
+
+  [R] Refresh   [C] Cancel
+
+  > 
+────────────────────────────────────────────────────────────────────────
+  Prompt preflight — validating paths
+────────────────────────────────────────────────────────────────────────
+  All paths OK — no corrections needed.
+  Section mode : full prompt (no stop marker)
+  Prompt mode  : debate
+  Planner      : none (standard single-subprocess)

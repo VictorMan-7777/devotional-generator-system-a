@@ -1,0 +1,394 @@
+{
+  "mode": "advisory",
+  "enabled": true,
+  "advisory_count": 40,
+  "advisories": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "COMMA_COMPOUND_SENTENCE_2",
+      "message": "Use a comma before 'so' if it connects two independent clauses (unless they are closely connected and short).",
+      "category": "PUNCTUATION",
+      "context": "y. The text begins with remembered mercy so obedience does not forget who brought t",
+      "replacements": [
+        ", so"
+      ]
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ge puts one clear scene in front of us: \u201cThus the hearer shall say to the house o",
+      "replacements": []
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "NEAR_BY",
+      "message": "Did you mean \"nearby\"?",
+      "category": "TYPOS",
+      "context": "nt obedience grows out of being brought near by God rather than out of bare demand. Wha",
+      "replacements": [
+        "nearby"
+      ]
+    },
+    {
+      "day_number": 1,
+      "section": "prayer",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ore covenant duty into the open through \u201cThus the hearer shall say to the house o",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "COMMA_COMPOUND_SENTENCE_2",
+      "message": "Use a comma before 'so' if it connects two independent clauses (unless they are closely connected and short).",
+      "category": "PUNCTUATION",
+      "context": "y. The text begins with remembered mercy so obedience does not forget who brought t",
+      "replacements": [
+        ", so"
+      ]
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space on both sides of a quote symbol.",
+      "category": "TYPOGRAPHY",
+      "context": "age puts one clear scene in front of us: \u201d And Moses brought back the words of the",
+      "replacements": [
+        "\u201d ",
+        " \u201d"
+      ]
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "NEAR_BY",
+      "message": "Did you mean \"nearby\"?",
+      "category": "TYPOS",
+      "context": "nt obedience grows out of being brought near by God rather than out of bare demand. Wha",
+      "replacements": [
+        "nearby"
+      ]
+    },
+    {
+      "day_number": 2,
+      "section": "prayer",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space on both sides of a quote symbol.",
+      "category": "TYPOGRAPHY",
+      "context": "fore covenant duty into the open through \u201d And Moses brought back the words of the",
+      "replacements": [
+        "\u201d ",
+        " \u201d"
+      ]
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space on both sides of a quote symbol.",
+      "category": "TYPOGRAPHY",
+      "context": "age puts one clear scene in front of us: \u201d Then Moses told the words of the people",
+      "replacements": [
+        "\u201d ",
+        " \u201d"
+      ]
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "concrete through The Lord said to Moses \u201cBehold I and moses, told, words. Holy bo",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space on both sides of a quote symbol.",
+      "category": "TYPOGRAPHY",
+      "context": "t for the day. If the scene is shaped by \u201d Then Moses told the words of the people",
+      "replacements": [
+        "\u201d ",
+        " \u201d"
+      ]
+    },
+    {
+      "day_number": 3,
+      "section": "prayer",
+      "rule_id": "COMMA_PARENTHESIS_WHITESPACE",
+      "message": "Don't put a space on both sides of a quote symbol.",
+      "category": "TYPOGRAPHY",
+      "context": "fore holy nearness into the open through \u201d Then Moses told the words of the people",
+      "replacements": [
+        "\u201d ",
+        " \u201d"
+      ]
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "does not treat God's presence lightly. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 4,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "t restraint before God's holy nearness. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 5,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "bedience shaped by God's holy commands. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 6,
+      "section": "exposition",
+      "rule_id": "COMMA_COMPOUND_SENTENCE_2",
+      "message": "Use a comma before 'so' if it connects two independent clauses (unless they are closely connected and short).",
+      "category": "PUNCTUATION",
+      "context": "ges give covenant life a practical shape so holiness is measured in worship, speech",
+      "replacements": [
+        ", so"
+      ]
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ity. The passage stays concrete through \u201cthe hearer shall not make for yourself a",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "bedience shaped by God's holy commands. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 7,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ity. The passage stays concrete through \u201cthe hearer shall not take the name of an",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "bedience shaped by God's holy commands. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 8,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ity. The passage stays concrete through \u201cHonor the father and the mother that and",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "bedience shaped by God's holy commands. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 9,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ge puts one clear scene in front of us: \u201cthe hearer shall not bear false witness",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "nce. The passage stays concrete through \u201cthe hearer shall not steal and shall, no",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "for the day. If the scene is shaped by \u201cthe hearer shall not bear false witness",
+      "replacements": []
+    },
+    {
+      "day_number": 10,
+      "section": "prayer",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "repared obedience into the open through \u201cthe hearer shall not bear false witness",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 11,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "er than from devotional instinct alone. Faithful exposition keeps returning to the text",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "EN_UNPAIRED_QUOTES",
+      "message": "Unpaired symbol: '\u201d' seems to be missing",
+      "category": "PUNCTUATION",
+      "context": "ete through Then the Lord said to Moses \u201cThus and every, place, where. Commandmen",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 12,
+      "section": "exposition",
+      "rule_id": "COMMA_COMPOUND_SENTENCE_2",
+      "message": "Use a comma before 'so' if it connects two independent clauses (unless they are closely connected and short).",
+      "category": "PUNCTUATION",
+      "context": "ges give covenant life a practical shape so holiness is measured in worship, speech",
+      "replacements": [
+        ", so"
+      ]
+    }
+  ]
+}

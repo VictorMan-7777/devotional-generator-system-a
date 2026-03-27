@@ -36,6 +36,33 @@ const DIVIDER_WIDTH_RATIO = 0.8;
 const COLOR_BLACK = rgb(0, 0, 0);
 const COLOR_DARK_GRAY = rgb(0.3, 0.3, 0.3);
 
+const HUMAN_SECTION_HEADINGS: Record<string, string> = {
+  timeless_wisdom: 'Timeless Wisdom',
+  scripture: 'Scripture Reading',
+  exposition: 'Reflection',
+  be_still: 'Still Before God',
+  action_steps: 'Walk It Out',
+  prayer: 'Prayer',
+  sending_prompt: 'Sending Prompt',
+  day7: 'Day 7 Reflection',
+  title: 'Title',
+};
+
+/**
+ * Defensive heading normalization:
+ * convert internal section keys (e.g. `timeless_wisdom`) into reader-facing
+ * labels before rendering into PDF.
+ */
+export function normalizeHeadingText(raw: string): string {
+  const trimmed = raw.trim();
+  if (trimmed.length === 0) return raw;
+  const normalizedKey = trimmed.toLowerCase().replace(/[\s-]+/g, '_');
+  if (HUMAN_SECTION_HEADINGS[normalizedKey]) {
+    return HUMAN_SECTION_HEADINGS[normalizedKey];
+  }
+  return raw;
+}
+
 // ── Types ──────────────────────────────────────────────────────────────────────
 
 export interface RenderContext {
@@ -59,6 +86,37 @@ export interface RenderResult {
 // ── Text utilities ─────────────────────────────────────────────────────────────
 
 /**
+ * Normalize Unicode typographic ligature codepoints to plain ASCII sequences,
+ * then insert ZWNJ (U+200C) between common ligature pairs (fi, fl, ff) to
+ * prevent PDF viewers from applying OT GSUB substitution during rendering.
+ *
+ * Problem: pdf-lib/fontkit measures word widths using OT-aware shaping (fi → ﬁ
+ * ligature advance), but the PDF content stream stores individual character
+ * codes. Viewers then apply OT GSUB again during render, producing a glyph
+ * whose advance width differs from the original f+i measured sum — creating
+ * visible mid-word gaps ("specifi c", "Refl ection").
+ *
+ * Fix: ZWNJ (U+200C) has zero advance in EB Garamond so it does not shift
+ * following characters, but it signals to OT shapers that the surrounding
+ * characters must NOT be joined into a ligature. This keeps measurement and
+ * rendering consistent.
+ */
+export function sanitizeText(text: string): string {
+  return text
+    .replace(/\uFB00/g, 'ff')   // ﬀ → ff
+    .replace(/\uFB01/g, 'fi')   // ﬁ → fi
+    .replace(/\uFB02/g, 'fl')   // ﬂ → fl
+    .replace(/\uFB03/g, 'ffi')  // ﬃ → ffi
+    .replace(/\uFB04/g, 'ffl')  // ﬄ → ffl
+    .replace(/\uFB05/g, 'st')   // ﬅ → st
+    .replace(/\uFB06/g, 'st')   // ﬆ → st
+    // Insert ZWNJ to suppress viewer-side OT GSUB ligature substitution.
+    .replace(/fi/g, 'f\u200Ci') // fi → f‌i (no fi ligature)
+    .replace(/fl/g, 'f\u200Cl') // fl → f‌l (no fl ligature)
+    .replace(/ff/g, 'f\u200Cf'); // ff → f‌f (no ff ligature)
+}
+
+/**
  * Wrap text into lines that fit within maxWidth at the given font/size.
  * Preserves explicit newlines in content.
  */
@@ -68,6 +126,7 @@ export function wrapText(
   fontSize: number,
   maxWidth: number,
 ): string[] {
+  text = sanitizeText(text);
   if (text.length === 0) return [];
   const lines: string[] = [];
 
@@ -115,15 +174,28 @@ function drawLines(
   return { x: startX, y };
 }
 
+function blockAlign(block: DocumentBlock): 'left' | 'center' {
+  const align = String(block.metadata?.align ?? '').toLowerCase();
+  return align === 'center' ? 'center' : 'left';
+}
+
 // ── Block renderers ─────────────────────────────────────────────────────────
 
 function renderHeading(block: DocumentBlock, ctx: RenderContext): RenderResult {
   const font = ctx.fonts.bold;
   const size = FONT_SIZES.HEADING;
   const lineHeight = size * LEADING;
-  const lines = wrapText(block.content, font, size, ctx.contentWidth);
-  const cursor = drawLines(lines, ctx.page, font, size, ctx.contentX, ctx.cursor.y, lineHeight);
-  return { cursor: { ...cursor, y: cursor.y - BLOCK_SPACING } };
+  const lines = wrapText(normalizeHeadingText(block.content), font, size, ctx.contentWidth);
+  let y = ctx.cursor.y;
+  for (const line of lines) {
+    const textWidth = font.widthOfTextAtSize(line, size);
+    const x = blockAlign(block) === 'center'
+      ? ctx.contentX + (ctx.contentWidth - textWidth) / 2
+      : ctx.contentX;
+    ctx.page.drawText(line, { x, y: y - size, font, size, color: COLOR_BLACK });
+    y -= lineHeight;
+  }
+  return { cursor: { x: ctx.contentX, y: y - BLOCK_SPACING } };
 }
 
 function renderBodyText(block: DocumentBlock, ctx: RenderContext): RenderResult {
@@ -131,8 +203,16 @@ function renderBodyText(block: DocumentBlock, ctx: RenderContext): RenderResult 
   const size = FONT_SIZES.BODY;
   const lineHeight = size * LEADING;
   const lines = wrapText(block.content, font, size, ctx.contentWidth);
-  const cursor = drawLines(lines, ctx.page, font, size, ctx.contentX, ctx.cursor.y, lineHeight);
-  return { cursor: { ...cursor, y: cursor.y - BLOCK_SPACING } };
+  let y = ctx.cursor.y;
+  for (const line of lines) {
+    const textWidth = font.widthOfTextAtSize(line, size);
+    const x = blockAlign(block) === 'center'
+      ? ctx.contentX + (ctx.contentWidth - textWidth) / 2
+      : ctx.contentX;
+    ctx.page.drawText(line, { x, y: y - size, font, size, color: COLOR_BLACK });
+    y -= lineHeight;
+  }
+  return { cursor: { x: ctx.contentX, y: y - BLOCK_SPACING } };
 }
 
 function renderBlockQuote(block: DocumentBlock, ctx: RenderContext): RenderResult {
@@ -211,8 +291,16 @@ function renderTitle(block: DocumentBlock, ctx: RenderContext): RenderResult {
   const size = FONT_SIZES.TITLE;
   const lineHeight = size * LEADING;
   const lines = wrapText(block.content, font, size, ctx.contentWidth);
-  const cursor = drawLines(lines, ctx.page, font, size, ctx.contentX, ctx.cursor.y, lineHeight);
-  return { cursor: { ...cursor, y: cursor.y - BLOCK_SPACING * 2 } };
+  let y = ctx.cursor.y;
+  for (const line of lines) {
+    const textWidth = font.widthOfTextAtSize(line, size);
+    const x = blockAlign(block) === 'center'
+      ? ctx.contentX + (ctx.contentWidth - textWidth) / 2
+      : ctx.contentX;
+    ctx.page.drawText(line, { x, y: y - size, font, size, color: COLOR_BLACK });
+    y -= lineHeight;
+  }
+  return { cursor: { x: ctx.contentX, y: y - BLOCK_SPACING * 2 } };
 }
 
 function renderSubtitle(block: DocumentBlock, ctx: RenderContext): RenderResult {
@@ -220,8 +308,16 @@ function renderSubtitle(block: DocumentBlock, ctx: RenderContext): RenderResult 
   const size = FONT_SIZES.SUBTITLE;
   const lineHeight = size * LEADING;
   const lines = wrapText(block.content, font, size, ctx.contentWidth);
-  const cursor = drawLines(lines, ctx.page, font, size, ctx.contentX, ctx.cursor.y, lineHeight);
-  return { cursor: { ...cursor, y: cursor.y - BLOCK_SPACING } };
+  let y = ctx.cursor.y;
+  for (const line of lines) {
+    const textWidth = font.widthOfTextAtSize(line, size);
+    const x = blockAlign(block) === 'center'
+      ? ctx.contentX + (ctx.contentWidth - textWidth) / 2
+      : ctx.contentX;
+    ctx.page.drawText(line, { x, y: y - size, font, size, color: COLOR_BLACK });
+    y -= lineHeight;
+  }
+  return { cursor: { x: ctx.contentX, y: y - BLOCK_SPACING } };
 }
 
 function renderImprint(block: DocumentBlock, ctx: RenderContext): RenderResult {
@@ -229,8 +325,16 @@ function renderImprint(block: DocumentBlock, ctx: RenderContext): RenderResult {
   const size = FONT_SIZES.IMPRINT;
   const lineHeight = size * LEADING;
   const lines = wrapText(block.content, font, size, ctx.contentWidth);
-  const cursor = drawLines(lines, ctx.page, font, size, ctx.contentX, ctx.cursor.y, lineHeight);
-  return { cursor: { ...cursor, y: cursor.y - BLOCK_SPACING } };
+  let y = ctx.cursor.y;
+  for (const line of lines) {
+    const textWidth = font.widthOfTextAtSize(line, size);
+    const x = blockAlign(block) === 'center'
+      ? ctx.contentX + (ctx.contentWidth - textWidth) / 2
+      : ctx.contentX;
+    ctx.page.drawText(line, { x, y: y - size, font, size, color: COLOR_BLACK });
+    y -= lineHeight;
+  }
+  return { cursor: { x: ctx.contentX, y: y - BLOCK_SPACING } };
 }
 
 function renderTocEntry(block: DocumentBlock, ctx: RenderContext): RenderResult {
@@ -241,6 +345,92 @@ function renderTocEntry(block: DocumentBlock, ctx: RenderContext): RenderResult 
   const lines = wrapText(block.content, font, size, ctx.contentWidth);
   const cursor = drawLines(lines, ctx.page, font, size, ctx.contentX, ctx.cursor.y, lineHeight);
   return { cursor: { ...cursor, y: cursor.y - 4 } }; // tighter spacing for TOC
+}
+
+// ── Block height measurement ───────────────────────────────────────────────────
+
+/**
+ * Measure the vertical height (in points) a block will consume when rendered.
+ *
+ * Mirrors each renderer's wrapText + line-height + spacing logic exactly, so
+ * the engine can decide whether to advance the page BEFORE drawing. Returns 0
+ * for block types that don't consume vertical space in the normal flow (footnote,
+ * page_break).
+ */
+export function measureBlockHeight(
+  block: DocumentBlock,
+  fonts: EmbeddedFonts,
+  contentWidth: number,
+): number {
+  const lh = (size: number) => size * LEADING;
+  switch (block.block_type) {
+    case 'heading': {
+      const size = FONT_SIZES.HEADING;
+      const lines = wrapText(normalizeHeadingText(block.content), fonts.bold, size, contentWidth);
+      return lines.length * lh(size) + BLOCK_SPACING;
+    }
+    case 'body_text': {
+      const size = FONT_SIZES.BODY;
+      const lines = wrapText(block.content, fonts.regular, size, contentWidth);
+      return lines.length * lh(size) + BLOCK_SPACING;
+    }
+    case 'block_quote': {
+      const size = FONT_SIZES.BODY;
+      const indentedWidth = contentWidth - BLOCK_QUOTE_INDENT * 2;
+      const lines = wrapText(block.content, fonts.italic, size, indentedWidth);
+      return lines.length * lh(size) + BLOCK_SPACING;
+    }
+    case 'prompt_list': {
+      const size = FONT_SIZES.BODY;
+      const items = block.content
+        .split('\n')
+        .filter((l) => l.trim().length > 0)
+        .map((l) => `• ${l.trim()}`);
+      const totalLines = items.reduce(
+        (n, item) => n + wrapText(item, fonts.regular, size, contentWidth).length,
+        0,
+      );
+      return totalLines * lh(size) + BLOCK_SPACING;
+    }
+    case 'action_list': {
+      const size = FONT_SIZES.BODY;
+      const items = block.content
+        .split('\n')
+        .filter((l) => l.trim().length > 0)
+        .map((l) => `→ ${l.trim()}`);
+      const totalLines = items.reduce(
+        (n, item) => n + wrapText(item, fonts.regular, size, contentWidth).length,
+        0,
+      );
+      return totalLines * lh(size) + BLOCK_SPACING;
+    }
+    case 'divider':
+      return 8 + 8 + BLOCK_SPACING; // offset above + below + spacing
+    case 'title': {
+      const size = FONT_SIZES.TITLE;
+      const lines = wrapText(block.content, fonts.bold, size, contentWidth);
+      return lines.length * lh(size) + BLOCK_SPACING * 2;
+    }
+    case 'subtitle': {
+      const size = FONT_SIZES.SUBTITLE;
+      const lines = wrapText(block.content, fonts.italic, size, contentWidth);
+      return lines.length * lh(size) + BLOCK_SPACING;
+    }
+    case 'imprint': {
+      const size = FONT_SIZES.IMPRINT;
+      const lines = wrapText(block.content, fonts.regular, size, contentWidth);
+      return lines.length * lh(size) + BLOCK_SPACING;
+    }
+    case 'toc_entry': {
+      const size = FONT_SIZES.BODY;
+      const lines = wrapText(block.content, fonts.regular, size, contentWidth);
+      return lines.length * lh(size) + 4;
+    }
+    case 'footnote':
+    case 'page_break':
+    default:
+      return 0;
+  }
 }
 
 // ── Renderer dispatch map ──────────────────────────────────────────────────────

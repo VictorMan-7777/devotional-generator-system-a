@@ -1,0 +1,53 @@
+DevG Autonomous Training Monitor                                                                                        
+================================                                                                                        
+Time: Mon Mar 16 09:58:48 EDT 2026                                                                                      
+DB:   /Users/agentrunner/Library/Application Support/DevG/devg_registry.sqlite3                                         
+Since: 2026-03-16T11:38:00 UTC                                                                                          
+Status: fresh (1s since last log/artifact change)                                                                       
+* Known issue: registry backup readability test is currently failing and still needs a real fix.                        
+                                                                                                                        
+Library status                                Training freshness                                                        
+--------------                                ------------------                                                        
+volumes_on_shelf: 26                          🟢 exposition_writer                                                      
+volumes_in_shelving: 0                        🟢 outliner                                                               
+research_requests_fulfilled: 3                🟢 pdf_art_director                                                       
+research_requests_waiting_on_acquisition: 0   🟢 pdf_layout_engineer                                                    
+                                              🟢 research_librarian                                                     
+Library turnaround                            🟢 resource_coordinator                                                   
+------------------                            🟢 library_trainer                                                        
+oldest_waiting_request: none                  🟢 outliner_trainer                                                       
+                                              🟢 output_training_manager                                                
+                                              🟢 policy_guardian                                                        
+                                              ⚪ theological_reviewer                                                   
+                                              🟢 training_manager                                                       
+                                                                                                                        
+                                              Worker counts                                                             
+                                              -------------                                                             
+                                              worker                P   K  F   %                                        
+                                              --------------------  --  -  --  ------                                   
+                                              exposition_writer     0   0  24  0.0%                                     
+                                              outliner              0   0  14  0.0%                                     
+                                              pdf_art_director      0   0  27  0.0%                                     
+                                              pdf_layout_engineer   27  0  0   100.0%                                   
+                                              resource_coordinator  24  0  0   100.0%                                   
+                                                                                                                        
+Recent experiments (last 5)                                                                                             
+----------------------------                                                                                            
+worker_name          benchmark_name                    status    created_at_local                                       
+-------------------  --------------------------------  --------  --------------------                                   
+library_trainer      library-notes-and-request-review  reviewed  2026-03-16  09:58 AM                                   
+pdf_layout_engineer  pdf-training-assignment           assigned  2026-03-16  09:58 AM                                   
+pdf_layout_engineer  pdf-training-assignment           assigned  2026-03-16  09:58 AM                                   
+pdf_art_director     pdf-training-assignment           assigned  2026-03-16  09:58 AM                                   
+pdf_art_director     pdf-training-assignment           assigned  2026-03-16  09:58 AM                                   
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        

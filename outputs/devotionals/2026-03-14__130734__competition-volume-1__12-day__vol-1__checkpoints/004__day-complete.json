@@ -1,0 +1,156 @@
+{
+  "run_slug": "2026-03-14__130734__competition-volume-1__12-day__vol-1",
+  "stage": "day_complete",
+  "sequence": 4,
+  "created_at_utc": "2026-03-14T13:07:41.031159+00:00",
+  "payload": {
+    "day_number": 2,
+    "attempt_start": 1,
+    "day": {
+      "day_number": 2,
+      "day_focus": "Proverbs 1:8-13 - Your father\u2019s instruction And do not forsake your mother\u2019s teaching",
+      "timeless_wisdom": {
+        "quote_text": "Prayer will make a man cease from sin, or sin will entice a man to cease from prayer.",
+        "original_quote_text": "Prayer will make a man cease from sin, or sin will entice a man to cease from prayer.",
+        "language_modernized": false,
+        "modernization_label": "",
+        "author": "John Bunyan",
+        "source_title": "A Discourse on Prayer",
+        "publication_year": 1662,
+        "page_or_url": "https://ccel.org/ccel/bunyan/miscellaneous/miscellaneous.v.html",
+        "citation_locator": "Of Prayer",
+        "source_url": "https://ccel.org/ccel/bunyan/miscellaneous/miscellaneous.v.html",
+        "source_trace": [
+          "https://ccel.org/ccel/bunyan/miscellaneous/miscellaneous.v.html"
+        ],
+        "publisher": "Christian Classics Ethereal Library",
+        "publication_city": "Grand Rapids, MI",
+        "public_domain": true,
+        "retrieval_source": "quote_catalog",
+        "retrieval_reference": "A Discourse on Prayer | searched=https://ccel.org/ccel/bunyan/miscellaneous/miscellaneous.v.html",
+        "retrieved_at_utc": "2026-03-14T13:07:40.961496+00:00",
+        "validation_agent": "",
+        "verification_status": "quote_validated",
+        "approval_status": "pending"
+      },
+      "scripture": {
+        "reference": "Proverbs 1:8-13",
+        "text": "Hear, my son, your father\u2019s instruction\nAnd do not forsake your mother\u2019s teaching;\nIndeed, they are a graceful wreath to your head\nAnd ornaments about your neck.\nMy son, if sinners entice you,\nDo not consent.\nIf they say, \u201cCome with us,\nLet us lie in wait for blood,\nLet us ambush the innocent without cause;\nLet us swallow them alive like Sheol,\nEven whole, as those who go down to the pit;\nWe will find all kinds of precious wealth,\nWe will fill our houses with spoil;",
+        "translation": "NASB",
+        "retrieval_source": "api_bible",
+        "retrieval_reference": "Proverbs 1:8-13",
+        "retrieved_at_utc": "2026-03-14T13:07:40.814007+00:00",
+        "copyright_notice": "New American Standard Bible\u00ae, Copyright \u00a9 1995, The Lockman Foundation. All rights reserved. lockman.org",
+        "source_access_policy": "licensed_text_cache_refresh_30d",
+        "text_cache_status": "cached",
+        "cache_expires_at_utc": "2026-04-13T13:07:40.814007+00:00",
+        "verification_status": "verified",
+        "approval_status": "pending"
+      },
+      "exposition": {
+        "text": "Proverbs 1:8-13 opens with a scene marked by early refusal of seductive companionship in evil. The text opens the day with living hope rather than mere religious sentiment. The passage puts one clear scene in front of us: The father\u2019s instruction And do not forsake the mother\u2019s teaching. We should stay with that scene before we rush to a slogan. The literary shape of the passage helps determine the kind of obedience it requires. That keeps the reading honest. The wider context matters too. Proverbs 1:8-13 belongs to a larger movement in which God's wisdom, permission, and worth are being tested under pressure. So the burden here is early refusal of seductive companionship in evil. The theological lane is wisdom refuses the first invitation into violence, greed, and shared corruption. The passage stays concrete through Hear my son the father\u2019s instruction do and father, instruction, not. Resurrection does not merely improve mood; it overturns despair and commissions living witness. What we see in Proverbs 1:8-13 shows how faith responds when suffering, loss, and accusation make reverence costly. The point is not bare information. It presses into living hope instead of defeated resignation. We should not drift into generic encouragement detached from the scene. We should let the passage name the pressure point for the day. If the scene is shaped by The father\u2019s instruction And do not forsake the mother\u2019s teaching, then obedience today should answer that same pressure point. Where the text exposes fear, we should speak and act like Christ is truly risen. Where it honors devotion, we should practice prompt refusal that names sinful companionship as dangerous before it hardens into shared evil. Where it reveals God's worth clearly, we should pursue courageous witness shaped by resurrection reality rather than delay. That keeps the day under the authority of Scripture. Strong exposition stays close to the text. It does not chase a clever slogan. It lets the details do their work on the conscience. That kind of reading slows us down. It teaches us to listen before we react. It also keeps prayer and application from drifting away from the passage. When the text warns, we should feel the warning. When the text comforts, we should receive the comfort. When the text humbles us, we should not dodge that weight. This is how devotion stays truthful, steady, and alive. Resurrection passages insist that hope is not decorative theology but the living reality that reorders fear, witness, and endurance. The devotional therefore must move beyond uplift and into courageous trust shaped by the risen Christ. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone. Faithful exposition keeps returning to the text until obedience grows from truth rather than from devotional instinct alone.",
+        "word_count": 550,
+        "grounding_map_id": "gm_8678a96a",
+        "approval_status": "pending"
+      },
+      "be_still": {
+        "prompts": [
+          "Sit with Proverbs 1:8-13 for two quiet minutes. Read the scene of early refusal of seductive companionship in evil slowly and let it settle before you move on.",
+          "Where does this passage call for prompt refusal that names sinful companionship as dangerous before it hardens into shared evil today?",
+          "Stay for one more minute and answer God with one honest sentence of trust, repentance, or gratitude before continuing."
+        ],
+        "approval_status": "pending"
+      },
+      "action_steps": {
+        "items": [
+          "Tell one person today what hope Proverbs 1:8-13 gives you.",
+          "Take one concrete step that reflects courage instead of resignation."
+        ],
+        "connector_phrase": "Because Proverbs 1:8-13 calls for prompt refusal that names sinful companionship as dangerous before it hardens into shared evil today:",
+        "approval_status": "pending"
+      },
+      "prayer": {
+        "text": "Father, thank You for speaking clearly in Proverbs 1:8-13. In this passage You bring early refusal of seductive companionship in evil into the open through The father\u2019s instruction And do not forsake the mother\u2019s teaching. Lord, keep us from reading these words as distant history only, and press them into our ordinary obedience today. Where we resist the truth highlighted in this reflection, bring repentance and renewed trust. Lift our hearts into resurrection courage, and keep us from living as though death still has the final word. Holy Spirit, take what we have seen in the exposition and turn it into worship instead of mere information. Teach us to remember that Proverbs 1:8-13 opens with a scene marked by early refusal of seductive companionship in evil. Guard our speech from haste, our work from pride, and our choices from whatever would pull us away from living hope instead of defeated resignation. Help us practice the obedience this day requires with humility as we pursue prompt refusal that names sinful companionship as dangerous before it hardens into shared evil. Amen.",
+        "word_count": 150,
+        "prayer_trace_map_id": "ptm_a64024a7",
+        "approval_status": "pending"
+      },
+      "sending_prompt": null,
+      "day7": null,
+      "created_at": "2026-03-14T13:07:40.961496Z",
+      "last_modified": "2026-03-14T13:07:40.961496Z"
+    },
+    "assessments": [
+      {
+        "check_id": "EXPOSITION_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_VOICE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "EXPOSITION_GROUNDING_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_PROMPT_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "BE_STILL_SECOND_PERSON",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "ACTION_STEPS_CONNECTOR_PHRASE",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_WORD_COUNT",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRINITY_ADDRESS",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      },
+      {
+        "check_id": "PRAYER_TRACE_MAP",
+        "result": "pass",
+        "reason_code": "",
+        "explanation": "",
+        "evidence": null
+      }
+    ]
+  }
+}

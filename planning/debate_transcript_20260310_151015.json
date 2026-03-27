@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2026-03-10T15:08:51.879045",
+    "party": "orchestrator",
+    "issue": "implementation-plan",
+    "round": 1,
+    "response": "implementation-plan\n\nOption: proceed with a deterministic three-cycle implementation sequence, but tighten Cycle 1 into two gated substeps.\n\n1. Cycle 1A: align approval semantics before touching export.\nRationale: current evidence shows the real blocker is not generation or validation, but the mismatch between review queue construction and export gating. `planning/2026-03-10__02__devg__two-eyes-system-review-findings.md` identifies `agent_validated` sections being excluded from the visible queue while `src/api/export_gate.py` still requires approved state for all present sections. If that semantic contract is not resolved first, later work risks codifying the wrong operator flow.\n\n2. Human checkpoint after Cycle 1A.\nRationale: this is the only decision point that changes what \u201creview complete\u201d means. The prompt explicitly requires re-review approval on publish-ready semantics before broader reruns. That checkpoint should happen before implementing the finalization/export path, not after it.\n\n3. Cycle 1B: add the deterministic decision-application and publish-ready export path.\nRationale: the repo currently has generation, validation, review launchers, and approval reports, but the findings artifact correctly notes no verified command path that applies `__approval-decisions.json` back into the book and emits a publish-ready artifact. This is the main competition-readiness gap.\n\n4. Cycle 2: fix the PDF heading normalization regression and rerun UI/PDF tests.\nRationale: this is user-facing and real, but lower severity than the blocked review-to-publish transition. It should not precede the gate-path repair.\n\n5. Cycle 3: harden execution discipline and documented commands.\nRationale: the ambient-shell `pytest tests/ -q` failure is operationally important, but it does not invalidate a correct competition submission path once the supported environment is explicit. It belongs last.\n\nPass criteria should remain:\n- no hidden section state can block publish-ready export\n- no validator bypass on scripture correctness\n- series child-volume non-dup constraints still fail closed\n- review UI local-time display behavior remains unchanged\n\n---DEBATE-SIGNAL---\nissue: implementation-plan\nposition: AGREE\n---END-DEBATE-SIGNAL---",
+    "signals": [
+      {
+        "issue": "implementation-plan",
+        "position": "AGREE",
+        "reason": null
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-03-10T15:10:14.722665",
+    "party": "verifier",
+    "issue": "implementation-plan",
+    "round": 1,
+    "response": "The planner's proposal is sound. My evaluation:\n\n**What the split buys:** The original Cycle 1 in the plan artifact was already internally two-phased (semantic alignment + path implementation), but the checkpoint was placed at the end. Moving it to the midpoint is strictly better because the finalization path built in 1B will implement whatever semantic contract 1A establishes. If that contract is wrong, 1B is built on bad assumptions. The planner correctly identifies this as the only decision that changes what \"review complete\" means.\n\n**One precision gap to name:** 1A says \"align approval semantics\" without pinning which of the two paths the findings identify \u2014 (a) expand the review queue to surface `agent_validated` sections, or (b) add an explicit state-promotion path for them that preserves fail-closed behavior. These produce different operator workflows. The human checkpoint after 1A is the correct place to resolve this, but the 1A output must include a concrete evidence artifact (e.g., a changed test or a code-level diff) \u2014 not just a semantic decision statement \u2014 so the checkpoint has something real to approve. The proposal structure supports this; it just needs to be explicit in execution.\n\n**No new risks introduced:** SEV ranking unchanged, pass criteria unchanged, fail-closed rules on scripture correctness and series non-dup constraints preserved, PDF and execution-discipline cycles remain in correct order below the publish-ready-path work.\n\n**Conclusion:** AGREE. The three-cycle sequence with the 1A/1B gate inserted is a strict improvement over the monolithic Cycle 1 because it prevents building the wrong finalization path before human confirmation of the semantic contract.\n\n---DEBATE-SIGNAL---\nissue: implementation-plan\nposition: AGREE\n---END-DEBATE-SIGNAL---\n",
+    "signals": [
+      {
+        "issue": "implementation-plan",
+        "position": "AGREE",
+        "reason": null
+      }
+    ]
+  }
+]

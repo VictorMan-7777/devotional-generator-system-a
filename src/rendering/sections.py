@@ -11,7 +11,9 @@ Day 7 headings per PRD D056:
 """
 
 from typing import List
+import re
 
+from src.citations.quote_citations import quote_attribution_line, quote_footnote
 from src.models.devotional import (
     ActionStepsSection,
     BeStillSection,
@@ -49,9 +51,18 @@ def render_timeless_wisdom(section: TimelessWisdomSection) -> List[DocumentBlock
     The FOOTNOTE block carries full attribution metadata for the PDF engine to render
     as a Turabian-style footnote at the bottom of the page (FR-63).
     """
-    year = section.publication_year or "n.d."
-    turabian = f"{section.author}, {section.source_title} ({year}), {section.page_or_url}."
-    return [
+    turabian = quote_footnote(
+        author=section.author,
+        source_title=section.source_title,
+        publication_year=section.publication_year,
+        citation_locator=section.citation_locator or section.page_or_url,
+        publisher=section.publisher,
+        publication_city=section.publication_city,
+    )
+    if section.language_modernized and section.modernization_label:
+        turabian = f"{turabian} ({section.modernization_label})"
+    attribution = quote_attribution_line(section.author, section.source_title)
+    blocks = [
         _block(BlockType.HEADING, "Timeless Wisdom"),
         _block(
             BlockType.BLOCK_QUOTE,
@@ -67,9 +78,19 @@ def render_timeless_wisdom(section: TimelessWisdomSection) -> List[DocumentBlock
                 "source_title": section.source_title,
                 "publication_year": section.publication_year,
                 "page_or_url": section.page_or_url,
+                "citation_locator": section.citation_locator,
+                "source_url": section.source_url,
+                "publisher": section.publisher,
+                "publication_city": section.publication_city,
+                "original_quote_text": section.original_quote_text,
+                "language_modernized": section.language_modernized,
+                "modernization_label": section.modernization_label,
             },
         ),
     ]
+    if attribution:
+        blocks.insert(2, _block(BlockType.BODY_TEXT, attribution))
+    return blocks
 
 
 def render_scripture(section: ScriptureSection) -> List[DocumentBlock]:
@@ -78,9 +99,43 @@ def render_scripture(section: ScriptureSection) -> List[DocumentBlock]:
     BODY_TEXT(reference with translation)
     BLOCK_QUOTE(scripture text)
     """
+    def _abbr(ref: str) -> str:
+        ref = ref.strip()
+        mapping = {
+            "Genesis": "Gen", "Exodus": "Exod", "Leviticus": "Lev", "Numbers": "Num",
+            "Deuteronomy": "Deut", "Joshua": "Josh", "Judges": "Judg", "Ruth": "Ruth",
+            "1 Samuel": "1 Sam", "2 Samuel": "2 Sam", "1 Kings": "1 Kgs", "2 Kings": "2 Kgs",
+            "1 Chronicles": "1 Chr", "2 Chronicles": "2 Chr", "Ezra": "Ezra", "Nehemiah": "Neh",
+            "Esther": "Esth", "Job": "Job", "Psalms": "Ps", "Psalm": "Ps", "Proverbs": "Prov",
+            "Ecclesiastes": "Eccl", "Song of Solomon": "Song", "Song of Songs": "Song",
+            "Isaiah": "Isa", "Jeremiah": "Jer", "Lamentations": "Lam", "Ezekiel": "Ezek",
+            "Daniel": "Dan", "Hosea": "Hos", "Joel": "Joel", "Amos": "Amos", "Obadiah": "Obad",
+            "Jonah": "Jonah", "Micah": "Mic", "Nahum": "Nah", "Habakkuk": "Hab",
+            "Zephaniah": "Zeph", "Haggai": "Hag", "Zechariah": "Zech", "Malachi": "Mal",
+            "Matthew": "Matt", "Mark": "Mark", "Luke": "Luke", "John": "John", "Acts": "Acts",
+            "Romans": "Rom", "1 Corinthians": "1 Cor", "2 Corinthians": "2 Cor", "Galatians": "Gal",
+            "Ephesians": "Eph", "Philippians": "Phil", "Colossians": "Col",
+            "1 Thessalonians": "1 Thess", "2 Thessalonians": "2 Thess",
+            "1 Timothy": "1 Tim", "2 Timothy": "2 Tim", "Titus": "Titus", "Philemon": "Phlm",
+            "Hebrews": "Heb", "James": "Jas", "1 Peter": "1 Pet", "2 Peter": "2 Pet",
+            "1 John": "1 John", "2 John": "2 John", "3 John": "3 John", "Jude": "Jude",
+            "Revelation": "Rev",
+        }
+        m = re.match(r"^(.+?)\s+(\d+:\d.*)$", ref)
+        if m:
+            book = m.group(1).strip()
+            rest = m.group(2).strip()
+            short = mapping.get(book)
+            if short:
+                return f"{short} {rest}"
+        for full, short in sorted(mapping.items(), key=lambda kv: -len(kv[0])):
+            if ref.startswith(full + " "):
+                return short + ref[len(full):]
+        return ref
+
     return [
         _block(BlockType.HEADING, "Scripture Reading"),
-        _block(BlockType.BODY_TEXT, f"{section.reference} ({section.translation})"),
+        _block(BlockType.BODY_TEXT, f"{_abbr(section.reference)} ({section.translation})"),
         _block(BlockType.BLOCK_QUOTE, section.text),
     ]
 
@@ -93,10 +148,16 @@ def render_exposition(section: ExpositionSection) -> List[DocumentBlock]:
     The Grounding Map is NOT included in the DocumentRepresentation; it is a UI
     artifact displayed in the Review UI alongside the exposition (FR-79a).
     """
-    return [
-        _block(BlockType.HEADING, "Reflection"),
-        _block(BlockType.BODY_TEXT, section.text),
+    blocks: List[DocumentBlock] = [_block(BlockType.HEADING, "Reflection")]
+    paragraphs = [
+        paragraph.strip()
+        for paragraph in re.split(r"\n\s*\n", section.text)
+        if paragraph.strip()
     ]
+    if not paragraphs:
+        paragraphs = [section.text.strip()]
+    blocks.extend(_block(BlockType.BODY_TEXT, paragraph) for paragraph in paragraphs if paragraph)
+    return blocks
 
 
 def render_be_still(section: BeStillSection) -> List[DocumentBlock]:

@@ -1,0 +1,638 @@
+#!/bin/bash
+set -euo pipefail
+
+REPO_ROOT="${DEVG_REPO_ROOT:-/Volumes/claude-projects/projects/devotional-generator-system-a}"
+# Training loop writes to registry.db in repo root — use the same file devg-watch reads.
+_REPO_DB="$REPO_ROOT/registry.db"
+DB_PATH="${DEVG_REGISTRY_DB:-$_REPO_DB}"
+ACTIVE_LOG="${DEVG_ACTIVE_LOG:-/tmp/devg-active.log}"
+HARNESS_OUTLINER_FILTER="NOT (worker_name = 'outliner' AND benchmark_reference IN ('genesis-1-2','job-1-3','matthew-1-2','psalms-1-3','ezekiel-37','ezekiel-38-39','genesis-12-13','exodus-19-20','proverbs-1-2','psalms-23-25','luke-15','acts-9'))"
+TIMED_FILTER="TRIM(COALESCE(created_at_utc, '')) <> ''"
+STALE_AFTER_SECONDS="${DEVG_STALE_AFTER_SECONDS:-900}"
+WORKER_STALE_SECONDS="${DEVG_WORKER_STALE_SECONDS:-900}"
+DEVG_RECENT_LIMIT="${DEVG_RECENT_LIMIT:-5}"
+STATS_SINCE="${DEVG_STATS_SINCE:-2026-03-16T15:30:00}"  # training suspended — agent AI calls implementation started
+
+run_sql() {
+  sqlite3 "$DB_PATH" <<SQL
+.timeout 3000
+PRAGMA busy_timeout=3000;
+PRAGMA query_only=ON;
+$1
+SQL
+}
+
+if [[ -t 1 && "${DEVG_NO_CLEAR:-0}" != "1" ]]; then
+  clear
+fi
+
+now_epoch="$(date +%s)"
+latest_output_epoch="$(find "$REPO_ROOT/docs/system/outputs" -maxdepth 1 -type f -print0 2>/dev/null | xargs -0 stat -f '%m' 2>/dev/null | sort -nr | head -1 || true)"
+latest_log_epoch=""
+if [[ -f "$ACTIVE_LOG" ]]; then
+  latest_log_epoch="$(stat -f '%m' "$ACTIVE_LOG" 2>/dev/null || true)"
+fi
+freshest_epoch=0
+if [[ -n "${latest_output_epoch:-}" ]]; then
+  freshest_epoch="$latest_output_epoch"
+fi
+if [[ -n "${latest_log_epoch:-}" ]] && [[ "$latest_log_epoch" -gt "$freshest_epoch" ]]; then
+  freshest_epoch="$latest_log_epoch"
+fi
+stale_status="unknown"
+stale_age_seconds=""
+if [[ "$freshest_epoch" -gt 0 ]]; then
+  stale_age_seconds=$((now_epoch - freshest_epoch))
+  if [[ "$stale_age_seconds" -ge "$STALE_AFTER_SECONDS" ]]; then
+    stale_status="STALE"
+  else
+    stale_status="fresh"
+  fi
+fi
+
+echo "DevG Autonomous Training Monitor"
+echo "================================"
+echo "Time: $(date)"
+echo "DB:   $DB_PATH"
+echo "Since: $STATS_SINCE UTC"
+if [[ "$stale_status" == "STALE" ]]; then
+  echo "Status: STALE (${stale_age_seconds}s since last log/artifact change)"
+elif [[ "$stale_status" == "fresh" ]]; then
+  echo "Status: fresh (${stale_age_seconds}s since last log/artifact change)"
+else
+echo "Status: unknown (no log/artifact timestamp found)"
+fi
+echo "* Known issue: registry backup readability test is currently failing and still needs a real fix."
+echo "* Training: ACTIVE — LLM trainers wired. Deterministic workers; LLM agents evaluate output."
+echo "  Provider: ${DEVG_LLM_PROVIDER:-codex} | Outliner mode: ${DEVG_OUTLINER_MODE:-reasoning}"
+
+# ── OpenAI Budget Monitor ──────────────────────────────────────────────────
+_OPENAI_BUDGET=25.00
+_BUDGET_WARN=15.00
+# Resolve key: env var → tmux session env → ~/.zshrc
+_openai_key="${OPENAI_API_KEY:-}"
+if [[ -z "$_openai_key" ]]; then
+  _openai_key="$(tmux show-environment -t devg-training OPENAI_API_KEY 2>/dev/null | cut -d= -f2- || true)"
+fi
+if [[ -z "$_openai_key" ]] && [[ -f "$HOME/.zshrc" ]]; then
+  _openai_key="$(grep -E '^export OPENAI_API_KEY=' "$HOME/.zshrc" 2>/dev/null | tail -1 | cut -d= -f2- | tr -d "'" | tr -d '"' || true)"
+fi
+if [[ -n "$_openai_key" ]]; then
+  _today="$(date -u +%Y-%m-%d)"
+  _start_epoch="$(date -u -j -f '%Y-%m-%d' '2026-03-16' '+%s' 2>/dev/null || date -u -d '2026-03-16' '+%s' 2>/dev/null || echo 0)"
+  _usage_json="$(curl -s --max-time 5 \
+    "https://api.openai.com/v1/usage?date=$_today" \
+    -H "Authorization: Bearer $_openai_key" 2>/dev/null || echo '{}')"
+  _today_cost="$(echo "$_usage_json" | python3 -c "
+import json,sys
+try:
+  d=json.load(sys.stdin)
+  data=d.get('data',[])
+  total=sum(float(r.get('total_tokens',0)) for r in data)
+  # rough GPT-4o cost: $5/1M input + $15/1M output — use $10/1M as blended estimate
+  cost=total/1_000_000*10
+  print(f'{cost:.4f}')
+except: print('0')
+" 2>/dev/null || echo "0")"
+  _spent="$(python3 -c "print(f'{float(\"${_today_cost:-0}\"):.2f}')" 2>/dev/null || echo "0.00")"
+  _remaining="$(python3 -c "print(f'{max(0, $_OPENAI_BUDGET - float(\"$_spent\")):.2f}')" 2>/dev/null || echo "$_OPENAI_BUDGET")"
+  _remaining_num="$(python3 -c "print(max(0, $_OPENAI_BUDGET - float(\"$_spent\")))" 2>/dev/null || echo "$_OPENAI_BUDGET")"
+  _budget_line="Budget: \$${_remaining} remaining of \$${_OPENAI_BUDGET} (est. \$${_spent} used today)"
+  if python3 -c "import sys; sys.exit(0 if float('${_remaining_num}') < ${_BUDGET_WARN} else 1)" 2>/dev/null; then
+    echo "⚠  BUDGET ALERT: \$${_remaining} remaining — below \$${_BUDGET_WARN} threshold! Consider pausing."
+  else
+    echo "   $_budget_line"
+  fi
+else
+  echo "   Budget: OPENAI_API_KEY not set — cannot check usage"
+fi
+# ──────────────────────────────────────────────────────────────────────────
+echo
+
+if [[ ! -f "$DB_PATH" ]]; then
+  echo "Registry DB not found."
+  exit 1
+fi
+
+library_cards="$(jq 'length' "$REPO_ROOT/data/library/resource-catalog.json" 2>/dev/null || echo 0)"
+library_holdings_in_process="$(find "$REPO_ROOT/data/library/resources" -name holding.json 2>/dev/null | wc -l | tr -d ' ')"
+library_volumes_in_processing=$(( library_holdings_in_process - library_cards ))
+if [[ "$library_volumes_in_processing" -lt 0 ]]; then
+  library_volumes_in_processing=0
+fi
+library_requests_answered="$(run_sql "SELECT COUNT(*) FROM resource_acquisition_requests WHERE status IN ('completed','fulfilled','answered','ready');" | tail -n 1)"
+reference_queue="$(run_sql "SELECT COUNT(*) FROM resource_acquisition_requests WHERE requested_by NOT IN ('research_librarian','acquisition_librarian') AND status IN ('requested','pending','queued','waiting');" | tail -n 1)"
+acquisition_queue="$(run_sql "SELECT COUNT(*) FROM resource_acquisition_requests WHERE requested_by='research_librarian' AND status IN ('requested','pending','queued','waiting');" | tail -n 1)"
+# Compute graduation streaks outside of the freshness heredoc
+# (bash 3.2 has heredoc-in-$() issues; keep these separate and pass as args).
+_streak_python='
+import sys
+streak = 0
+for line in sys.stdin:
+    s = line.strip()
+    if s == "pass":
+        streak += 1
+    else:
+        break
+print(streak)
+'
+_layout_streak_raw="$(sqlite3 "$DB_PATH" "SELECT status FROM autoresearch_experiments WHERE worker_name='pdf_layout_engineer' AND benchmark_name='output-worker-review' ORDER BY created_at_utc DESC, rowid DESC LIMIT 100;" 2>/dev/null | python3 -c "$_streak_python" 2>/dev/null)"
+_layout_streak="${_layout_streak_raw//[$'\n\r\t ']/}"
+_layout_streak="${_layout_streak:-0}"
+
+_art_streak_raw="$(sqlite3 "$DB_PATH" "SELECT status FROM autoresearch_experiments WHERE worker_name='pdf_art_director' AND benchmark_name='output-worker-review' ORDER BY created_at_utc DESC, rowid DESC LIMIT 100;" 2>/dev/null | python3 -c "$_streak_python" 2>/dev/null)"
+_art_streak="${_art_streak_raw//[$'\n\r\t ']/}"
+_art_streak="${_art_streak:-0}"
+
+_passage_streak_raw="$(sqlite3 "$DB_PATH" "SELECT status FROM autoresearch_experiments WHERE worker_name='passage_researcher' ORDER BY created_at_utc DESC, rowid DESC LIMIT 200;" 2>/dev/null | python3 -c "$_streak_python" 2>/dev/null)"
+_passage_streak="${_passage_streak_raw//[$'\n\r\t ']/}"
+_passage_streak="${_passage_streak:-0}"
+
+# graduated_workers_arg is "worker:streak,worker2:streak2" — passed to ALL display blocks
+# so graduated workers are excluded from momentum and freshness without touching those blocks.
+graduated_workers_arg=""
+if [[ "$_layout_streak" -ge 10 ]] 2>/dev/null; then
+  graduated_workers_arg="pdf_layout_engineer:${_layout_streak}"
+fi
+if [[ "$_art_streak" -ge 25 ]] 2>/dev/null; then
+  graduated_workers_arg="${graduated_workers_arg:+${graduated_workers_arg},}pdf_art_director:${_art_streak}"
+fi
+if [[ "$_passage_streak" -ge 200 ]] 2>/dev/null; then
+  graduated_workers_arg="${graduated_workers_arg:+${graduated_workers_arg},}passage_researcher:${_passage_streak}"
+fi
+
+active_processes="$(pgrep -af 'run_training_loop|run_training_supervisor|run_outliner_training_cycle|run_exposition_training_cycle|run_be_still_training_cycle|run_action_writer_training_cycle|run_passage_researcher_training_cycle|run_research_librarian_training_cycle|run_pdf_training_cycle|pytest|vitest|run_training_manager_review|run_output_training_manager_review|run_devotional_full|devg-watch' \
+  | awk '{print $2}' \
+  | sed 's#.*/##' \
+  | grep -v '^$' \
+  | paste -sd ', ' - || true)"
+if [[ -n "${active_processes:-}" ]] && [[ "$active_processes" != ", " ]]; then
+  echo
+  echo "Active tasks"
+  echo "------------"
+  echo "$active_processes"
+fi
+
+left_block="$(cat <<EOF
+Library status
+--------------
+volumes_on_shelf: $library_cards
+volumes_in_processing: $library_volumes_in_processing
+research_requests_fulfilled: $library_requests_answered
+reference_queue: $reference_queue
+acquisition_queue: $acquisition_queue
+EOF
+)"
+
+graduated_block="Graduated workers
+-----------------"
+_any_graduated=0
+if [[ "$_layout_streak" -ge 10 ]] 2>/dev/null; then
+  graduated_block="${graduated_block}
+🟢 pdf_layout_engineer  (${_layout_streak} P in a row)"
+  _any_graduated=1
+fi
+if [[ "$_art_streak" -ge 25 ]] 2>/dev/null; then
+  graduated_block="${graduated_block}
+🟢 pdf_art_director     (${_art_streak} P in a row)"
+  _any_graduated=1
+fi
+if [[ "$_passage_streak" -ge 200 ]] 2>/dev/null; then
+  graduated_block="${graduated_block}
+🟢 passage_researcher   (${_passage_streak} P in a row)"
+  _any_graduated=1
+fi
+if [[ "$_any_graduated" -eq 0 ]]; then
+  graduated_block="${graduated_block}
+none yet"
+fi
+
+left_block="${left_block}
+
+${graduated_block}"
+
+_DEVG_WINDOW="${DEVG_WINDOW_SIZE:-50}"
+worker_counts_block="$(
+python3 - "$DB_PATH" "$_DEVG_WINDOW" "$graduated_workers_arg" <<'PY'
+import sqlite3, sys
+
+db_path = sys.argv[1]
+window = int(sys.argv[2])
+graduated_arg = sys.argv[3] if len(sys.argv) > 3 else ""
+
+# Static exclusions — trainers and infra workers that never appear in momentum.
+_STATIC_EXCLUDE = {
+    'acquisition_librarian','research_librarian','training_manager',
+    'output_training_manager','library_trainer','theological_reviewer',
+    'policy_guardian','resource_coordinator','general_librarian',
+}
+# Dynamic exclusions — graduated workers passed in from the outer shell.
+_graduated = {p.split(":")[0].strip() for p in graduated_arg.split(",") if ":" in p}
+EXCLUDE_WORKERS = tuple(_STATIC_EXCLUDE | _graduated)
+OUTLINER_SEED_REFS = (
+    'genesis-1-2','job-1-3','matthew-1-2','psalms-1-3','ezekiel-37','ezekiel-38-39',
+    'genesis-12-13','exodus-19-20','proverbs-1-2','psalms-23-25','luke-15','acts-9',
+)
+
+conn = sqlite3.connect(str(db_path))
+
+# All-time rates per worker
+lifetime_rows = conn.execute("""
+SELECT
+  worker_name,
+  SUM(CASE WHEN status IN ('pass','keep') THEN 1 ELSE 0 END) AS ok,
+  COUNT(*) AS total
+FROM autoresearch_experiments
+WHERE NOT (worker_name = 'outliner' AND benchmark_reference IN ({}))
+  AND worker_name NOT IN ({})
+  AND TRIM(COALESCE(created_at_utc, '')) <> ''
+GROUP BY worker_name
+ORDER BY worker_name
+""".format(
+    ",".join("?" * len(OUTLINER_SEED_REFS)),
+    ",".join("?" * len(EXCLUDE_WORKERS)),
+), OUTLINER_SEED_REFS + EXCLUDE_WORKERS).fetchall()
+
+lifetime = {}
+for worker_name, ok, total in lifetime_rows:
+    lifetime[worker_name] = (int(ok or 0), int(total or 0))
+
+# Recent window: last N rows per worker (ordered by rowid desc)
+recent_rows = conn.execute("""
+SELECT worker_name, status FROM (
+  SELECT worker_name, status, rowid,
+         ROW_NUMBER() OVER (PARTITION BY worker_name ORDER BY rowid DESC) AS rn
+  FROM autoresearch_experiments
+  WHERE NOT (worker_name = 'outliner' AND benchmark_reference IN ({}))
+    AND worker_name NOT IN ({})
+    AND TRIM(COALESCE(created_at_utc, '')) <> ''
+) WHERE rn <= ?
+""".format(
+    ",".join("?" * len(OUTLINER_SEED_REFS)),
+    ",".join("?" * len(EXCLUDE_WORKERS)),
+), OUTLINER_SEED_REFS + EXCLUDE_WORKERS + (window,)).fetchall()
+
+recent = {}
+for worker_name, status in recent_rows:
+    ok, total = recent.get(worker_name, (0, 0))
+    recent[worker_name] = (ok + (1 if status in ('pass','keep') else 0), total + 1)
+
+workers = sorted(lifetime.keys())
+
+print("Training momentum")
+print("-----------------")
+if not workers:
+    print("no worker rows yet")
+else:
+    header = ("worker", "ever%", f"last{window}", "trend", "n")
+    widths = [len(h) for h in header]
+    formatted = []
+    for w in workers:
+        life_ok, life_total = lifetime.get(w, (0, 0))
+        rec_ok, rec_total = recent.get(w, (0, 0))
+        ever_pct = 0.0 if not life_total else 100.0 * life_ok / life_total
+        rec_pct = 0.0 if not rec_total else 100.0 * rec_ok / rec_total
+        delta = rec_pct - ever_pct
+        if abs(delta) < 1.0:
+            trend = "→"
+        elif delta > 0:
+            trend = f"+{delta:.0f}%"
+        else:
+            trend = f"{delta:.0f}%"
+        row = (
+            w,
+            f"{ever_pct:.0f}%",
+            f"{rec_pct:.0f}%",
+            trend,
+            str(rec_total),
+        )
+        formatted.append(row)
+        for i, value in enumerate(row):
+            widths[i] = max(widths[i], len(value))
+
+    def line(values):
+        return "  ".join(value.ljust(widths[i]) for i, value in enumerate(values))
+
+    print(line(header))
+    print(line(tuple("-" * w for w in widths)))
+    for row in formatted:
+        print(line(row))
+PY
+)"
+
+worker_freshness_block="$(
+python3 - "$DB_PATH" "$WORKER_STALE_SECONDS" "$REPO_ROOT" "$graduated_workers_arg" <<'PY'
+import sqlite3, sys
+import json
+from pathlib import Path
+from datetime import datetime, timezone
+
+db_path = sys.argv[1]
+worker_stale_seconds = int(sys.argv[2])
+repo_root = Path(sys.argv[3])
+graduated_arg = sys.argv[4] if len(sys.argv) > 4 else ""
+# Parse "worker:streak,worker2:streak2" format
+graduated_workers = {}
+for part in graduated_arg.split(","):
+    part = part.strip()
+    if ":" in part:
+        wname, sval = part.split(":", 1)
+        try:
+            graduated_workers[wname.strip()] = int(sval.strip())
+        except ValueError:
+            pass
+conn = sqlite3.connect(str(db_path))
+rows = conn.execute("""
+SELECT
+  worker_name,
+  status,
+  benchmark_name,
+  created_at_utc
+FROM autoresearch_experiments
+WHERE NOT (worker_name = 'outliner' AND benchmark_reference IN ('genesis-1-2','job-1-3','matthew-1-2','psalms-1-3','ezekiel-37','ezekiel-38-39','genesis-12-13','exodus-19-20','proverbs-1-2','psalms-23-25','luke-15','acts-9'))
+  AND (
+    worker_name NOT IN ('acquisition_librarian','research_librarian','resource_coordinator','general_librarian')
+    OR (worker_name = 'research_librarian' AND benchmark_name = 'research-notes-training')
+  )
+  AND TRIM(COALESCE(created_at_utc, '')) <> ''
+ORDER BY worker_name, created_at_utc DESC, rowid DESC
+""").fetchall()
+
+open_requests = conn.execute("""
+SELECT requested_by, COUNT(*)
+FROM resource_acquisition_requests
+WHERE status IN ('requested','pending','queued','waiting')
+GROUP BY requested_by
+""").fetchall()
+
+request_counts = {str(requested_by): int(count or 0) for requested_by, count in open_requests}
+
+dependency_notes = {}
+if request_counts.get("outliner", 0) > 0:
+    dependency_notes["outliner"] = "waiting research"
+if request_counts.get("research_librarian", 0) > 0:
+    dependency_notes["research_librarian"] = "waiting general"
+
+now = datetime.now(timezone.utc)
+print("Training freshness")
+print("------------------")
+latest = {}
+for worker_name, status, benchmark_name, created_at_utc in rows:
+    latest.setdefault(worker_name, (status, benchmark_name, created_at_utc))
+
+# Keep key workers visible even immediately after a reset, when no fresh rows exist yet.
+for baseline_worker in (
+    "outliner",
+    "outliner_trainer",
+    "exposition_writer",
+    "be_still_writer",
+    "action_writer",
+    "pdf_art_director",
+    "research_librarian",
+    "library_trainer",
+    "output_training_manager",
+    "theological_reviewer",
+    "policy_guardian",
+    "training_manager",
+    "grok_outliner_monitor",
+):
+    latest.setdefault(baseline_worker, ("idle", "reset-ready", ""))
+
+output_dir = repo_root / "docs" / "system" / "outputs"
+matches = sorted(output_dir.glob("*__devg__exposition-training-cycle.json"))
+if matches:
+    try:
+        exposition_cycle = json.loads(matches[-1].read_text())
+        generated_at = str(exposition_cycle.get("generated_at_utc") or "")
+    except Exception:
+        pass
+
+for trainer_name, pattern in (
+    ("outliner_trainer", "*__devg__outliner-training-cycle.json"),
+    ("library_trainer", "*__devg__library-trainer-review.json"),
+    ("theological_reviewer", "*__devg__theological-reviewer-report.json"),
+    ("policy_guardian", "*__devg__policy-guardian-report.json"),
+    ("output_training_manager", "*__devg__output-training-manager-review.json"),
+    ("be_still_writer", "*__devg__be-still-training-cycle.json"),
+    ("action_writer", "*__devg__action-writer-training-cycle.json"),
+    ("grok_outliner_monitor", "*__devg__grok-outliner-monitor.json"),
+):
+    matches = sorted(output_dir.glob(pattern))
+    if not matches:
+        continue
+    try:
+        payload = json.loads(matches[-1].read_text())
+    except Exception:
+        continue
+    timestamp = (
+        payload.get("generated_at_utc")
+        or payload.get("reviewed_at_utc")
+        or payload.get("created_at_utc")
+        or ""
+    )
+    if timestamp:
+        current = latest.get(trainer_name)
+        if (not current) or str(current[1]).strip().lower() == "reset-ready":
+            latest[trainer_name] = ("reviewed", "trainer-artifact", timestamp)
+
+outliner_cycle_matches = sorted(output_dir.glob("*__devg__outliner-training-cycle.json"))
+if outliner_cycle_matches:
+    try:
+        payload = json.loads(outliner_cycle_matches[-1].read_text())
+        timestamp = str(payload.get("generated_at_utc") or "")
+        if timestamp and (
+            "outliner" not in latest
+            or str(latest["outliner"][1]).strip().lower() == "reset-ready"
+        ):
+            latest["outliner"] = ("reviewed", "outline-cycle-artifact", timestamp)
+    except Exception:
+        pass
+
+trainer_workers = {
+    "outliner_trainer",
+    "training_manager",
+    "output_training_manager",
+    "theological_reviewer",
+    "library_trainer",
+    "policy_guardian",
+    "grok_outliner_monitor",
+}
+active_statuses = {"assigned", "running", "in_progress"}
+trainer_support_map = {
+    "outliner_trainer": ("outliner",),
+    "library_trainer": ("research_librarian",),
+    "theological_reviewer": ("exposition_writer", "quote_selector"),
+    "policy_guardian": (
+        "outliner",
+        "exposition_writer",
+        "quote_selector",
+        "research_librarian",
+        "pdf_art_director",
+        "be_still_writer",
+        "action_writer",
+    ),
+    "output_training_manager": ("pdf_art_director",),
+    "grok_outliner_monitor": ("outliner",),
+    "training_manager": (
+        "outliner",
+        "exposition_writer",
+        "research_librarian",
+        "pdf_art_director",
+    ),
+}
+
+def any_active_training_session() -> bool:
+    for worker_name, payload in latest.items():
+        if worker_name in trainer_workers:
+            continue
+        status, benchmark_name, _last_updated_utc = payload
+        status_value = str(status).strip().lower()
+        if status_value in active_statuses:
+            return True
+        if worker_name == "outliner" and status_value in {"pass", "keep", "fail", "task_infeasible", "deferred_no_resources"} and str(benchmark_name).startswith("outline-only-"):
+            return True
+        if worker_name == "research_librarian" and str(benchmark_name) == "research-notes-training":
+            return status_value in {"completed", "reviewed", "pass", "keep", "fail"}
+    return False
+
+def worker_is_training(worker_name: str) -> bool:
+    payload = latest.get(worker_name)
+    if not payload:
+        return False
+    status, benchmark_name, _last_updated_utc = payload
+    status_value = str(status).strip().lower()
+    if status_value in active_statuses:
+        return True
+    if worker_name == "outliner" and status_value in {"pass", "keep", "fail"} and str(benchmark_name).startswith("outline-only-"):
+        return True
+    if worker_name == "research_librarian" and str(benchmark_name) == "research-notes-training":
+        return status_value in {"completed", "reviewed", "pass", "keep", "fail"}
+    if worker_name == "exposition_writer":
+        # fail/pass/revise/keep all mean active training is happening — not idle
+        # "revise" is now a valid status from the LLM benchmark scorer (score 60-79)
+        return status_value in {"pass", "keep", "fail", "revise", "assigned", "reviewed"}
+    if worker_name in {"be_still_writer", "action_writer"}:
+        return status_value in {"pass", "keep", "fail", "revise", "assigned", "reviewed"}
+    return False
+
+ordered_workers = sorted(
+    latest,
+    key=lambda name: (1 if name in trainer_workers else 0, name),
+)
+
+for worker_name in ordered_workers:
+    if worker_name in graduated_workers:
+        continue  # graduated — shown in graduated list only, not here
+    status, benchmark_name, last_updated_utc = latest[worker_name]
+    waiting_note = dependency_notes.get(worker_name, "")
+    if not last_updated_utc:
+        suffix = f" ({waiting_note})" if waiting_note else ""
+        print(f"⚪ {worker_name}{suffix}: unknown")
+        continue
+    try:
+        dt = datetime.fromisoformat(str(last_updated_utc).replace("Z", "+00:00"))
+        age_minutes = int((now - dt).total_seconds() // 60)
+        if age_minutes < 60:
+            age_label = f"{age_minutes}m ago"
+        else:
+            hours = age_minutes // 60
+            minutes = age_minutes % 60
+            age_label = f"{hours}h {minutes}m ago"
+        age_seconds = (now - dt).total_seconds()
+        if worker_name in trainer_workers:
+            if worker_name == "policy_guardian":
+                trainer_active = any_active_training_session()
+            else:
+                supported_workers = trainer_support_map.get(worker_name, ())
+                trainer_active = any(worker_is_training(name) for name in supported_workers)
+            if not trainer_active:
+                print(f"⚪ {worker_name}")
+                continue
+            if worker_name == "policy_guardian":
+                wait_suffix = f" ({waiting_note})" if waiting_note else ""
+                print(f"🟢 {worker_name}{wait_suffix}")
+                continue
+        wait_suffix = f" ({waiting_note})" if waiting_note else ""
+        if age_seconds < 600:
+            dot = "🟢"
+            detail = ""
+        elif age_seconds < worker_stale_seconds:
+            dot = "🟡"
+            detail = ""
+        else:
+            dot = "🔴"
+            detail = f" ({age_label})"
+        print(f"{dot} {worker_name}{wait_suffix}{detail}")
+    except Exception:
+        suffix = f" ({waiting_note})" if waiting_note else ""
+        print(f"⚪ {worker_name}{suffix}")
+PY
+)"
+
+right_block="${worker_freshness_block}
+
+${worker_counts_block}"
+
+python3 - <<'PY' "$left_block" "$right_block"
+import sys, unicodedata
+left = sys.argv[1].splitlines()
+right = sys.argv[2].splitlines()
+width = 44
+def vlen(s):
+    return sum(2 if unicodedata.east_asian_width(c) in ('W', 'F') else 1 for c in s)
+rows = max(len(left), len(right))
+for i in range(rows):
+    l = left[i] if i < len(left) else ""
+    r = right[i] if i < len(right) else ""
+    pad = max(0, width - vlen(l))
+    print(f"{l}{' ' * pad}  {r}")
+PY
+
+echo
+echo "Recent experiments (last ${DEVG_RECENT_LIMIT})"
+echo "----------------------------"
+python3 - "$DB_PATH" "$DEVG_RECENT_LIMIT" "$STATS_SINCE" <<'PY'
+import sqlite3, sys
+from datetime import datetime
+
+db_path = sys.argv[1]
+limit = int(sys.argv[2])
+stats_since = sys.argv[3]
+conn = sqlite3.connect(str(db_path))
+rows = conn.execute(f"""
+SELECT worker_name, benchmark_name, status, created_at_utc
+FROM autoresearch_experiments
+WHERE NOT (worker_name = 'outliner' AND benchmark_reference IN ('genesis-1-2','job-1-3','matthew-1-2','psalms-1-3','ezekiel-37','ezekiel-38-39','genesis-12-13','exodus-19-20','proverbs-1-2','psalms-23-25','luke-15','acts-9'))
+  AND worker_name NOT IN ('acquisition_librarian','research_librarian')
+  AND TRIM(COALESCE(created_at_utc, '')) <> ''
+  AND created_at_utc >= ?
+ORDER BY created_at_utc DESC, rowid DESC
+LIMIT {limit}
+""", (stats_since,)).fetchall()
+
+headers = ("worker_name", "benchmark_name", "status", "created_at_local")
+formatted = []
+for worker_name, benchmark_name, status, created_at_utc in rows:
+    display_time = created_at_utc
+    if created_at_utc:
+        try:
+            dt = datetime.fromisoformat(str(created_at_utc).replace("Z", "+00:00"))
+            display_time = dt.astimezone().strftime("%Y-%m-%d  %I:%M %p")
+        except Exception:
+            display_time = str(created_at_utc).replace("T", "  ")
+    formatted.append((str(worker_name), str(benchmark_name), str(status), str(display_time)))
+
+widths = [len(h) for h in headers]
+for row in formatted:
+    for i, value in enumerate(row):
+        widths[i] = max(widths[i], len(value))
+
+def line(values):
+    return "  ".join(value.ljust(widths[i]) for i, value in enumerate(values))
+
+print(line(headers))
+print(line(tuple("-" * w for w in widths)))
+for row in formatted:
+    print(line(row))
+PY
+

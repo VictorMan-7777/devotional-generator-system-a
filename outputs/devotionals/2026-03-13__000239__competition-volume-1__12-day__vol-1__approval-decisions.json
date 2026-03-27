@@ -1,0 +1,31 @@
+{
+  "source_report": "outputs/devotionals/2026-03-13__000239__competition-volume-1__12-day__vol-1__approval-gate-report.json",
+  "topic": "Competition Volume 1",
+  "days": 12,
+  "mode": "studio-web",
+  "generated_at_utc": "2026-03-13T00:10:37.265731+00:00",
+  "summary": {
+    "approved": 0,
+    "rejected": 2,
+    "skipped": 0,
+    "completed": 2,
+    "remaining": 70,
+    "total_pending": 72
+  },
+  "decisions": [
+    {
+      "day": 1,
+      "section": "scripture",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-13T00:10:37.265660+00:00",
+      "reviewed_by": "Victor"
+    },
+    {
+      "day": 1,
+      "section": "timeless_wisdom",
+      "decision": "rejected",
+      "reviewed_at_utc": "2026-03-13T00:09:03.149289+00:00",
+      "reviewed_by": "Victor"
+    }
+  ]
+}

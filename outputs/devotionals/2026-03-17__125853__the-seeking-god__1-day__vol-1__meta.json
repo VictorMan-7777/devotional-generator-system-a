@@ -1,0 +1,56 @@
+{
+  "run_slug": "2026-03-17__125853__the-seeking-god__1-day__vol-1",
+  "topic": "The Seeking God",
+  "days": 1,
+  "series_id": null,
+  "standalone_volume": true,
+  "volume_number": 1,
+  "volume_id": "vol-b8a6a704",
+  "db_path": "/Users/agentrunner/Library/Application Support/DevG/devg_registry.sqlite3",
+  "generator": "real",
+  "run_state": "validation_failed",
+  "preview_pdf_path": null,
+  "editorial_build_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__editorial-build.json",
+  "book_json_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__book.json",
+  "approval_report_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-gate-report.json",
+  "approval_decisions_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-decisions.json",
+  "agent_validation_report_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__agent-validation-report.json",
+  "audit_linkage_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__audit-linkage.json",
+  "language_tool_report_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__language-tool-report.json",
+  "readability_report_path": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__readability-report.json",
+  "checkpoint_dir": "outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__checkpoints",
+  "second_eyes_review_prompt_path": "docs/system/second_eyes_review_prompt.md",
+  "second_eyes_review_packet_path": null,
+  "generated_at_utc": "2026-03-17T12:58:54.204085+00:00",
+  "remedy_suggestions": {
+    "attempted_remedies": [],
+    "suggested_remedies": [],
+    "suggested_by_check": {}
+  },
+  "language_tool": {
+    "mode": "advisory",
+    "advisory_count": 3
+  },
+  "readability": {
+    "exposition_days_scored": 1,
+    "target_max_grade": 8.0,
+    "average_flesch_kincaid_grade": 9.02,
+    "average_flesch_reading_ease": 56.35,
+    "days_above_target_grade": [
+      1
+    ]
+  },
+  "validation_summary": {
+    "total_checks": 10,
+    "passed": 10,
+    "failed": 0,
+    "rewrite_events": [],
+    "attempted_remedies": []
+  },
+  "agent_validation_overall_passed": false,
+  "review_web_command": "python3 scripts/review/run_review.py --backend web --report outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-gate-report.json --out outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-decisions.json --reviewed-by \"Victor\"",
+  "review_studio_command": "python3 scripts/review/run_review_studio.py --report outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-gate-report.json --out outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-decisions.json --book-json outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__book.json --reviewed-by \"Victor\"",
+  "publish_ready_command": "python3 scripts/apply_decisions_and_export.py --book-json outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__book.json --decisions-json outputs/devotionals/2026-03-17__125853__the-seeking-god__1-day__vol-1__approval-decisions.json",
+  "agent_validation_overall_status": "failed",
+  "blocking_issues": []
+}

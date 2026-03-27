@@ -13,6 +13,7 @@ import {
   wrapText,
   renderBlock,
   renderPageFootnotes,
+  normalizeHeadingText,
   BLOCK_RENDERERS,
   type RenderContext,
 } from '../blocks.js';
@@ -60,6 +61,10 @@ function block(block_type: BlockType, content = 'Sample content.'): DocumentBloc
   return { block_type, content };
 }
 
+function centeredBlock(block_type: BlockType, content = 'Centered content.'): DocumentBlock {
+  return { block_type, content, metadata: { align: 'center' } };
+}
+
 // ── wrapText ──────────────────────────────────────────────────────────────────
 
 describe('wrapText', () => {
@@ -91,6 +96,24 @@ describe('wrapText', () => {
     const lines = wrapText('Superlongwordwithnospacesthatexceedsthelinewidth', fonts.regular, 11, 50);
     expect(lines).toHaveLength(1);
     expect(lines[0]).toBe('Superlongwordwithnospacesthatexceedsthelinewidth');
+  });
+});
+
+describe('normalizeHeadingText', () => {
+  it('maps internal section keys to reader-facing labels', () => {
+    expect(normalizeHeadingText('timeless_wisdom')).toBe('Timeless Wisdom');
+    expect(normalizeHeadingText('action_steps')).toBe('Walk It Out');
+    expect(normalizeHeadingText('be_still')).toBe('Still Before God');
+  });
+
+  it('maps dashed and spaced section keys to reader-facing labels', () => {
+    expect(normalizeHeadingText('timeless-wisdom')).toBe('Timeless Wisdom');
+    expect(normalizeHeadingText('action steps')).toBe('Walk It Out');
+    expect(normalizeHeadingText('be still')).toBe('Still Before God');
+  });
+
+  it('preserves non-section headings', () => {
+    expect(normalizeHeadingText('Day 1 — Hope')).toBe('Day 1 — Hope');
   });
 });
 
@@ -222,6 +245,12 @@ describe('renderBlock — cursor advancement', () => {
     const ctx = makeCtx(page);
     const result = renderBlock(block('toc_entry', 'Day 1 — Grace in Failure ... 5'), ctx);
     expect(result.cursor.y).toBeLessThan(ctx.cursor.y);
+  });
+
+  it('center-aligned title renders without throwing', () => {
+    const page = makePage();
+    const ctx = makeCtx(page);
+    expect(() => renderBlock(centeredBlock('title', 'Grace in the Ordinary'), ctx)).not.toThrow();
   });
 });
 

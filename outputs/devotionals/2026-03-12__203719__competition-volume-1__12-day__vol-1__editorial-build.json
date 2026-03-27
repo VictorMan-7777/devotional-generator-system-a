@@ -1,0 +1,206 @@
+{
+  "topic": "Competition Volume 1",
+  "num_days": 12,
+  "source_reference": null,
+  "week_count": 2,
+  "day_plan": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "topic": "Integrity | Theme: blameless beginning",
+      "scripture_reference": "Job 1:1-2"
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "topic": "Watchfulness | Theme: reverent household care",
+      "scripture_reference": "Job 1:3-5"
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "topic": "Heavenly Counsel | Theme: integrity under scrutiny",
+      "scripture_reference": "Job 1:6-8"
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "topic": "Permission | Theme: testing motives",
+      "scripture_reference": "Job 1:9-11"
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "topic": "Loss | Theme: first hard report",
+      "scripture_reference": "Job 1:12-14"
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "topic": "Loss | Theme: compounding blows",
+      "scripture_reference": "Job 1:15-17"
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "topic": "Sunday Integration | Theme: grief before worship",
+      "scripture_reference": "Job 1:18-20"
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "topic": "Worship | Theme: reverence in loss",
+      "scripture_reference": "Job 1:21-22"
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "topic": "Affliction | Theme: integrity without cause",
+      "scripture_reference": "Job 2:1-4"
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "topic": "Affliction | Theme: bodily suffering",
+      "scripture_reference": "Job 2:5-7"
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "topic": "Response | Theme: honest endurance",
+      "scripture_reference": "Job 2:8-10"
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "topic": "Companionship | Theme: silent presence in sorrow",
+      "scripture_reference": "Job 2:11-13"
+    }
+  ],
+  "day_briefs": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "scripture_reference": "Job 1:1-2",
+      "day_title": "Job 1:1-2 - Seven sons and three daughters were born to him",
+      "focus_clause": "Seven sons and three daughters were born to him",
+      "pastoral_burden": "truthfulness under pressure"
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "scripture_reference": "Job 1:3-5",
+      "day_title": "Job 1:3-5 - Perhaps my sons have sinned and cursed God in their hearts",
+      "focus_clause": "Perhaps my sons have sinned and cursed God in their hearts",
+      "pastoral_burden": "prepared obedience"
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "scripture_reference": "Job 1:6-8",
+      "day_title": "Job 1:6-8 - There was a day when the sons of God came to present themselves before the LORD",
+      "focus_clause": "There was a day when the sons of God came to present themselves before the LORD",
+      "pastoral_burden": "truthfulness under pressure"
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "scripture_reference": "Job 1:9-11",
+      "day_title": "Job 1:9-11 - He will surely curse You to Your face",
+      "focus_clause": "He will surely curse You to Your face",
+      "pastoral_burden": "truthfulness under pressure"
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "scripture_reference": "Job 1:12-14",
+      "day_title": "Job 1:12-14 - Satan departed from the presence of the LORD",
+      "focus_clause": "Satan departed from the presence of the LORD",
+      "pastoral_burden": "endurance under cascading loss"
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "scripture_reference": "Job 1:15-17",
+      "day_title": "Job 1:15-17 - The Sabeans attacked and took them",
+      "focus_clause": "The Sabeans attacked and took them",
+      "pastoral_burden": "endurance under cascading loss"
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "scripture_reference": "Job 1:18-20",
+      "day_title": "Job 1:18-20 - A great wind came from across the wilderness and struck the four corners of the house",
+      "focus_clause": "A great wind came from across the wilderness and struck the four corners of the house",
+      "pastoral_burden": "endurance under cascading loss"
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "scripture_reference": "Job 1:21-22",
+      "day_title": "Job 1:21-22 - The LORD gave and the LORD has taken away",
+      "focus_clause": "The LORD gave and the LORD has taken away",
+      "pastoral_burden": "steadfast integrity in suffering"
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "scripture_reference": "Job 2:1-4",
+      "day_title": "Job 2:1-4 - Although you incited Me against him to ruin him without cause",
+      "focus_clause": "Although you incited Me against him to ruin him without cause",
+      "pastoral_burden": "steadfastness under affliction"
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "scripture_reference": "Job 2:5-7",
+      "day_title": "Job 2:5-7 - He will curse You to Your face",
+      "focus_clause": "He will curse You to Your face",
+      "pastoral_burden": "steadfastness under affliction"
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "scripture_reference": "Job 2:8-10",
+      "day_title": "Job 2:8-10 - Shall we indeed accept good from God and not accept adversity",
+      "focus_clause": "Shall we indeed accept good from God and not accept adversity",
+      "pastoral_burden": "steadfast integrity in suffering"
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "scripture_reference": "Job 2:11-13",
+      "day_title": "Job 2:11-13 - When Jobs three friends heard of all this adversity that had come upon him",
+      "focus_clause": "When Jobs three friends heard of all this adversity that had come upon him",
+      "pastoral_burden": "repentance after failure"
+    }
+  ],
+  "week_plans": [
+    {
+      "week_number": 1,
+      "title": "Week 1: Truthfulness Under Pressure",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "movement_summary": "Moves from seven sons and three daughters were born to him toward a great wind came from across the wilderness and struck the four corners of the house."
+    },
+    {
+      "week_number": 2,
+      "title": "Week 2: Steadfast Integrity In Suffering",
+      "days": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "movement_summary": "Moves from the lord gave and the lord has taken away toward when jobs three friends heard of all this adversity that had come upon him."
+    }
+  ]
+}

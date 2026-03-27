@@ -818,8 +818,96 @@ ROMANS_5_CUES: tuple[PassageCue, ...] = (
 )
 
 
+PSALM_CUES: tuple[PassageCue, ...] = (
+    PassageCue(
+        books=("psalm",),
+        contains_any=("the lord is my shepherd", "valley of the shadow of death", "dwell in the house of the lord", "rod and your staff"),
+        pastoral_burden="restful trust in god's shepherding care through the valley of death",
+        theological_lane="the lord as caring shepherd who leads and protects",
+        application_lane="follow the shepherd with calm confidence even through the valley",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("god is our refuge and strength", "be still and know that i am god", "the lord of hosts is with us"),
+        pastoral_burden="fear and instability when the earth gives way",
+        theological_lane="god as unshakable refuge and fortress amid cosmic upheaval",
+        application_lane="be still and trust god's sovereign presence in crisis",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("bless the lord o my soul", "all his benefits", "slow to anger and abounding in steadfast love", "merciful and gracious"),
+        pastoral_burden="forgetful soul that fails to count god's covenant mercies",
+        theological_lane="the lord's compassionate and forgiving character toward those who fear him",
+        application_lane="bless the lord by deliberately remembering his benefits",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("have mercy on me o god", "against you you only have i sinned", "create in me a clean heart", "restore to me the joy of your salvation"),
+        pastoral_burden="crushing guilt and need for heart-cleansing mercy",
+        theological_lane="god's mercy that washes, renews, and restores the broken sinner",
+        application_lane="come to god with honest confession and seek renewal of the heart",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("the lord is my light and my salvation", "whom shall i fear", "the stronghold of my life", "one thing have i asked of the lord"),
+        pastoral_burden="fear and intimidation from enemies and threatening circumstances",
+        theological_lane="the lord as light, salvation, and stronghold who shelters those who seek him",
+        application_lane="seek god's face and wait for him with undivided courage",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("o lord you have searched me and known me", "fearfully and wonderfully made", "search me o god and know my heart", "where shall i flee from your presence"),
+        pastoral_burden="the need to be fully known and examined by god",
+        theological_lane="god's intimate and inescapable knowledge of every person he has made",
+        application_lane="invite god's searching gaze and trust his guiding hand",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("blessed is the man who walks not in the counsel of the wicked", "like a tree planted by streams of water", "his delight is in the law of the lord"),
+        pastoral_burden="vulnerability to ungodly influence and spiritual rootlessness",
+        theological_lane="the contrast between the fruitful righteous and the wind-driven wicked",
+        application_lane="meditate on god's law day and night to become a tree of lasting fruit",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("fret not yourself because of evildoers", "trust in the lord and do good", "delight yourself in the lord", "commit your way to the lord"),
+        pastoral_burden="anxious fretting over the apparent success of the wicked",
+        theological_lane="the lord's certain justice and faithful care for those who wait on him",
+        application_lane="trust, delight, and commit your way to the lord — and wait patiently",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("he who dwells in the shelter of the most high", "will not fear the terror of the night", "he will command his angels", "under his wings"),
+        pastoral_burden="anxiety over unseen dangers and spiritual threats",
+        theological_lane="the most high as refuge, shield, and commander of angelic protection",
+        application_lane="dwell deliberately in the shelter of the most high and claim his protection",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("i lift up my eyes to the hills", "my help comes from the lord", "the lord will keep you from all evil", "he who keeps israel"),
+        pastoral_burden="uncertainty and the daily need for steady help and divine keeping",
+        theological_lane="the lord as maker of heaven and earth who neither slumbers nor sleeps",
+        application_lane="look to the lord as your keeper in every step and circumstance",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("as a deer pants for flowing streams", "why are you cast down o my soul", "hope in god", "deep calls to deep"),
+        pastoral_burden="spiritual depression and felt distance from god's sustaining presence",
+        theological_lane="the living god as the only source of hope when the soul is cast down",
+        application_lane="put your hope in god and seek his light even in the dark season",
+    ),
+    PassageCue(
+        books=("psalm",),
+        contains_any=("o god you are my god", "my soul thirsts for you", "your steadfast love is better than life", "my soul will be satisfied"),
+        pastoral_burden="soul thirst in a dry and weary land cut off from god's fullness",
+        theological_lane="god as the satisfying portion whose steadfast love surpasses all earthly good",
+        application_lane="seek god earnestly — lift hands, lips, and longing toward the one who satisfies",
+    ),
+)
+
 PASSAGE_CUES: tuple[PassageCue, ...] = (
-    LUKE_5_6_CUES
+    PSALM_CUES
+    + LUKE_5_6_CUES
     + LUKE_15_CUES
     + COLOSSIANS_3_4_CUES
     + EXODUS_19_20_CUES

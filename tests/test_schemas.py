@@ -105,8 +105,8 @@ class TestDevotionalInput:
         d = DevotionalInput(topic="Grace")
         assert d.num_days == 6
 
-    def test_accepts_num_days_1_through_7(self):
-        for n in range(1, 8):
+    def test_accepts_num_days_1_through_366(self):
+        for n in [1, 6, 7, 12, 30, 366]:
             d = DevotionalInput(topic="test", num_days=n)
             assert d.num_days == n
 
@@ -114,9 +114,9 @@ class TestDevotionalInput:
         with pytest.raises(ValidationError):
             DevotionalInput(topic="test", num_days=0)
 
-    def test_rejects_num_days_eight(self):
+    def test_rejects_num_days_367(self):
         with pytest.raises(ValidationError):
-            DevotionalInput(topic="test", num_days=8)
+            DevotionalInput(topic="test", num_days=367)
 
     def test_rejects_negative_num_days(self):
         with pytest.raises(ValidationError):
@@ -175,6 +175,13 @@ class TestSectionApprovalStatus:
             approval_status=SectionApprovalStatus.APPROVED,
         )
         assert s.approval_status == SectionApprovalStatus.APPROVED
+
+    def test_section_can_be_set_to_rejected(self):
+        s = BeStillSection(
+            prompts=["p1", "p2", "p3"],
+            approval_status=SectionApprovalStatus.REJECTED,
+        )
+        assert s.approval_status == SectionApprovalStatus.REJECTED
 
 
 # ---------------------------------------------------------------------------

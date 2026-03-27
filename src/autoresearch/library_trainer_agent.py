@@ -396,6 +396,7 @@ def build_library_trainer_review(repo_root: Path, *, run_llm_note_review: bool =
         )
 
     return {
+        "status": "reviewed",
         "reviewed_at_utc": _utc_now(),
         "trainer_profile": LIBRARY_TRAINER_PROFILE,
         "note_summary": {

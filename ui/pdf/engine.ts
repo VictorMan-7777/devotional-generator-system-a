@@ -10,17 +10,17 @@
  *
  * Entry point: when invoked as a subprocess, reads JSON from stdin and writes
  * PDF bytes to stdout.
- *   stdin: { "document": <DocumentRepresentation>, "output_mode": "personal" | "publish-ready" }
+ *   stdin: { "document": <DocumentRepresentation>, "output_mode": "personal" | "reviewed-proof" | "publish-ready" }
  *   stdout: raw PDF bytes
  */
 
-import { PDFDocument, rgb } from 'pdf-lib';
+import { PDFDocument, rgb, degrees } from 'pdf-lib';
 import { fileURLToPath } from 'url';
 import { embedFonts, FONT_SIZES, type EmbeddedFonts } from './fonts.js';
 import { calculateMargins, marginsToPoints, describeMarginBracket } from './margins.js';
 import { checkCompliance, TRIM_WIDTH_PT, TRIM_HEIGHT_PT, type KDPComplianceResult } from './compliance.js';
-import { renderBlock, renderPageFootnotes, type RenderContext } from './blocks.js';
-import type { DocumentRepresentation, DocumentPage, DocumentBlock, PageNumberStyle } from './types.js';
+import { renderBlock, measureBlockHeight, renderPageFootnotes, type RenderContext } from './blocks.js';
+import type { DocumentRepresentation, DocumentPage, DocumentBlock, PageNumberStyle, PDFOutputMode } from './types.js';
 
 // ── Constants ─────────────────────────────────────────────────────────────────
 
@@ -29,6 +29,14 @@ const DEFAULT_INSIDE_PT = 0.375 * 72;
 
 /** Height reserved at page bottom for page number and footnote separator. */
 const PAGE_NUMBER_HEIGHT_PT = 20;
+
+/**
+ * Minimum body-text cushion (points) required after a heading before a page
+ * break is triggered. Prevents headings stranded alone at the bottom of a page
+ * with their associated body text starting on the next (keep-with-next).
+ * Two body lines at BODY size 14 * LEADING 1.4 = ~39pt.
+ */
+const HEADING_KEEP_WITH_NEXT_PT = 14 * 1.4 * 2;
 
 // ── Result type ───────────────────────────────────────────────────────────────
 
@@ -76,6 +84,41 @@ function drawPageNumber(
 
 // ── Core layout engine ────────────────────────────────────────────────────────
 
+
+function drawProofWatermark(
+  page: ReturnType<PDFDocument['addPage']>,
+  fonts: EmbeddedFonts,
+): void {
+  const primary = 'REVIEW PROOF';
+  const secondary = 'NOT FOR PUBLICATION';
+  const primarySize = 34;
+  const secondarySize = 16;
+  const angle = degrees(35);
+  const centerX = TRIM_WIDTH_PT / 2;
+  const centerY = TRIM_HEIGHT_PT / 2;
+  const primaryWidth = fonts.bold.widthOfTextAtSize(primary, primarySize);
+  const secondaryWidth = fonts.bold.widthOfTextAtSize(secondary, secondarySize);
+
+  page.drawText(primary, {
+    x: centerX - primaryWidth / 2,
+    y: centerY + 12,
+    font: fonts.bold,
+    size: primarySize,
+    rotate: angle,
+    color: rgb(0.8, 0.14, 0.14),
+    opacity: 0.12,
+  });
+  page.drawText(secondary, {
+    x: centerX - secondaryWidth / 2,
+    y: centerY - 24,
+    font: fonts.bold,
+    size: secondarySize,
+    rotate: angle,
+    color: rgb(0.8, 0.14, 0.14),
+    opacity: 0.16,
+  });
+}
+
 interface LayoutResult {
   doc: PDFDocument;
   pageCount: number;
@@ -90,13 +133,18 @@ interface LayoutResult {
 
 async function renderLayout(
   document: DocumentRepresentation,
-  outputMode: 'personal' | 'publish-ready',
+  outputMode: PDFOutputMode,
   insideIn: number,
   outsideIn: number,
   topIn: number,
   bottomIn: number,
 ): Promise<LayoutResult> {
   const doc = await PDFDocument.create();
+  if (outputMode === 'reviewed-proof') {
+    doc.setTitle(`${document.title} — REVIEW PROOF`);
+    doc.setSubject('REVIEW PROOF — NOT FOR PUBLICATION');
+    doc.setKeywords(['REVIEW PROOF', 'NOT FOR PUBLICATION', 'reviewed-proof']);
+  }
   const fonts = await embedFonts(doc);
 
   const insidePt = insideIn * 72;
@@ -114,6 +162,7 @@ async function renderLayout(
 
   // Mutable state
   let currentPage = doc.addPage([TRIM_WIDTH_PT, TRIM_HEIGHT_PT]);
+  if (outputMode === 'reviewed-proof') drawProofWatermark(currentPage, fonts);
   pageDimensions.push([TRIM_WIDTH_PT, TRIM_HEIGHT_PT]);
   let pdfPageCount = 1;
   let cursor = { x: contentX, y: contentTopY };
@@ -133,6 +182,7 @@ async function renderLayout(
   function advancePage(style: PageNumberStyle, incrementCounter: boolean): void {
     finalizeCurrentPage();
     currentPage = doc.addPage([TRIM_WIDTH_PT, TRIM_HEIGHT_PT]);
+    if (outputMode === 'reviewed-proof') drawProofWatermark(currentPage, fonts);
     pageDimensions.push([TRIM_WIDTH_PT, TRIM_HEIGHT_PT]);
     pdfPageCount++;
     cursor = { x: contentX, y: contentTopY };
@@ -156,6 +206,15 @@ async function renderLayout(
       else if (pageStyle === 'arabic') arabicCounter = 1;
     } else {
       advancePage(pageStyle, true);
+
+      // Recto enforcement: content pages that start a new section (starts_new_page)
+      // must land on a right-hand (odd) PDF page. If advancing left us on an even
+      // page, insert a blank page so the section opens on a recto.
+      // The blank page is suppressed (no page number) to avoid duplicate numbers.
+      if (docPage.starts_new_page && pdfPageCount % 2 === 0) {
+        currentStyle = 'suppressed'; // blank recto page carries no number
+        advancePage(pageStyle, false); // new page restores correct style
+      }
     }
 
     cursor = { x: contentX, y: contentTopY };
@@ -168,8 +227,17 @@ async function renderLayout(
         continue;
       }
 
-      // Overflow check: start a new page before rendering if cursor is too low
-      if (cursor.y < contentFloorY) {
+      // Pre-render overflow prevention: measure how much vertical space this
+      // block will consume and advance the page if it won't fit entirely.
+      // This prevents text from running off the bottom of the page.
+      const blockHeight = measureBlockHeight(block, fonts, contentWidth);
+      const needsPage = block.block_type === 'heading'
+        // Headings: keep-with-next — require room for heading + minimum body cushion
+        ? cursor.y - blockHeight - HEADING_KEEP_WITH_NEXT_PT < contentFloorY
+        // All other blocks: require room for the full block
+        : blockHeight > 0 && cursor.y - blockHeight < contentFloorY;
+
+      if (cursor.y < contentFloorY || needsPage) {
         advancePage(pageStyle, false);
         if (pageStyle === 'roman') romanCounter++;
         else if (pageStyle === 'arabic') arabicCounter++;
@@ -219,7 +287,7 @@ async function renderLayout(
  */
 export async function generatePDF(
   document: DocumentRepresentation,
-  outputMode: 'personal' | 'publish-ready',
+  outputMode: PDFOutputMode,
 ): Promise<PDFEngineResult> {
   // --- Pass 1: default margins (0.375" gutter) ---
   const defaultIn = 0.375;
@@ -278,7 +346,7 @@ function hasOfferPage(document: DocumentRepresentation): boolean {
 
 interface SubprocessInput {
   document: DocumentRepresentation;
-  output_mode: 'personal' | 'publish-ready';
+  output_mode: PDFOutputMode;
 }
 
 async function runSubprocess(): Promise<void> {

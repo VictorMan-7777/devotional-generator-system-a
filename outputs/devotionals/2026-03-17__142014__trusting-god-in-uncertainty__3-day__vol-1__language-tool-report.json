@@ -1,0 +1,94 @@
+{
+  "mode": "advisory",
+  "enabled": true,
+  "advisory_count": 9,
+  "advisories": [
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "UPPERCASE_SENTENCE_START",
+      "message": "This sentence does not start with an uppercase letter.",
+      "category": "CASING",
+      "context": "applied. That keeps the reading honest. worship and wisdom under the word of god. Psalm",
+      "replacements": [
+        "Worship"
+      ]
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "wn seriously rather than at a distance. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 1,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "UPPERCASE_SENTENCE_START",
+      "message": "This sentence does not start with an uppercase letter.",
+      "category": "CASING",
+      "context": "applied. That keeps the reading honest. worship and wisdom under the word of god center",
+      "replacements": [
+        "Worship"
+      ]
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "hs seriously rather than at a distance. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 2,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "UPPERCASE_SENTENCE_START",
+      "message": "This sentence does not start with an uppercase letter.",
+      "category": "CASING",
+      "context": "applied. That keeps the reading honest. watchful surrender before costly obedience. Psal",
+      "replacements": [
+        "Watchful"
+      ]
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "ience within God's generous boundaries. Where it reveals God's worth clearly, we shou",
+      "replacements": []
+    },
+    {
+      "day_number": 3,
+      "section": "exposition",
+      "rule_id": "ENGLISH_WORD_REPEAT_BEGINNING_RULE",
+      "message": "Three successive sentences begin with the same word. Consider rewording the sentence or use a thesaurus to find a synonym.",
+      "category": "REPETITIONS_STYLE",
+      "context": "omforts, we should receive the comfort. When the text humbles us, we should not dodg",
+      "replacements": []
+    }
+  ]
+}

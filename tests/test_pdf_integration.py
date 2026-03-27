@@ -57,3 +57,12 @@ def test_export_pdf_document_representation_contract() -> None:
     assert isinstance(doc, DocumentRepresentation)
     result = export_pdf(doc)
     assert isinstance(result, bytes)
+
+
+
+def test_export_pdf_reviewed_proof_mode() -> None:
+    """Reviewed-proof mode also produces valid PDF bytes through the Python subprocess path."""
+    doc = DocumentRenderer().render(SAMPLE_BOOK, "publish-ready")
+    pdf_bytes = export_pdf(doc, output_mode="reviewed-proof")
+    assert pdf_bytes[:4] == b"%PDF"
+    assert len(pdf_bytes) > 0

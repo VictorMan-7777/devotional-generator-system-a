@@ -1,0 +1,33 @@
+#!/bin/bash
+set -euo pipefail
+
+PID_FILE="${DEVG_TRAINING_LOOP_PID:-/tmp/devg-training-loop.pid}"
+SESSION_NAME="${DEVG_TRAINING_SESSION:-devg-training}"
+
+# Stop tmux session if present.
+if command -v tmux >/dev/null 2>&1 && tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+  tmux kill-session -t "$SESSION_NAME"
+  rm -f "$PID_FILE"
+  echo "stopped training loop (tmux session: $SESSION_NAME)"
+  exit 0
+fi
+
+# Fallback: kill by PID file.
+if [[ ! -f "$PID_FILE" ]]; then
+  echo "no training loop pid file"
+  exit 0
+fi
+
+pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+if [[ -n "${pid:-}" ]] && kill -0 "$pid" 2>/dev/null; then
+  kill "$pid" || true
+  sleep 1
+  if kill -0 "$pid" 2>/dev/null; then
+    kill -9 "$pid" || true
+  fi
+  echo "stopped training loop: pid=$pid"
+else
+  echo "training loop not running"
+fi
+
+rm -f "$PID_FILE"

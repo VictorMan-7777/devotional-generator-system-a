@@ -20,7 +20,7 @@ from typing import Literal
 
 from src.models.document import DocumentRepresentation
 
-OutputMode = Literal["personal", "publish-ready"]
+OutputMode = Literal["personal", "reviewed-proof", "publish-ready"]
 
 # Project root: src/api/pdf_export.py → src/api/ → src/ → project root
 _PROJECT_ROOT = pathlib.Path(__file__).resolve().parents[2]
@@ -40,8 +40,8 @@ def export_pdf(
 
     Args:
         document: DocumentRepresentation produced by DocumentRenderer.render().
-        output_mode: 'personal' (advisory compliance) or 'publish-ready'
-                     (compliance enforced; violations block export).
+        output_mode: 'personal' or 'reviewed-proof' (advisory compliance) or
+                     'publish-ready' (compliance enforced; violations block export).
         timeout: Maximum seconds to wait for the TypeScript engine. Default 60.
 
     Returns:

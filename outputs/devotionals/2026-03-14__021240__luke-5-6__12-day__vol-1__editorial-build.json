@@ -1,0 +1,398 @@
+{
+  "topic": "Luke 5-6",
+  "num_days": 12,
+  "source_reference": "Luke 5-6",
+  "week_count": 2,
+  "day_plan": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 5:2-6"
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 5:9-13"
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 5:16-20"
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 5:24-28"
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 5:31-35"
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 5:38-39"
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 6:7-11"
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 6:14-18"
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 6:21-25"
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 6:29-33"
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 6:36-40"
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "topic": "Luke 5-6",
+      "scripture_reference": "Luke 6:43-47"
+    }
+  ],
+  "day_briefs": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "scripture_reference": "Luke 5:2-6",
+      "day_title": "Luke 5:2-6 - We worked hard all night and caught nothing",
+      "focus_clause": "We worked hard all night and caught nothing",
+      "pastoral_burden": "truthfulness under pressure",
+      "genre": "narrative",
+      "scene_summary": "Luke 5:2-6 opens with a scene marked by truthfulness under pressure.",
+      "theological_lane": "truthfulness under pressure",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "worked",
+        "hard",
+        "all",
+        "night",
+        "caught",
+        "nothing"
+      ]
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "scripture_reference": "Luke 5:9-13",
+      "day_title": "Luke 5:9-13 - \u201d And He stretched out His hand and touched him",
+      "focus_clause": "\u201d And He stretched out His hand and touched him",
+      "pastoral_burden": "truthfulness under pressure",
+      "genre": "narrative",
+      "scene_summary": "Luke 5:9-13 opens with a scene marked by truthfulness under pressure.",
+      "theological_lane": "truthfulness under pressure",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "stretched",
+        "out",
+        "his",
+        "hand",
+        "touched",
+        "him"
+      ]
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "scripture_reference": "Luke 5:16-20",
+      "day_title": "Luke 5:16-20 - Who had come from every village of Galilee and Judea and from Jerusalem",
+      "focus_clause": "Who had come from every village of Galilee and Judea and from Jerusalem",
+      "pastoral_burden": "resurrection mercy in community life",
+      "genre": "narrative",
+      "scene_summary": "Luke 5:16-20 opens with a scene marked by resurrection mercy in community life.",
+      "theological_lane": "resurrection mercy that strengthens communal witness",
+      "application_lane": "acts of mercy that strengthen resurrection-shaped witness in community",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "who",
+        "come",
+        "every",
+        "village",
+        "galilee",
+        "judea"
+      ]
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "scripture_reference": "Luke 5:24-28",
+      "day_title": "Luke 5:24-28 - They were all struck with astonishment and began glorifying God",
+      "focus_clause": "They were all struck with astonishment and began glorifying God",
+      "pastoral_burden": "truthfulness under pressure",
+      "genre": "narrative",
+      "scene_summary": "Luke 5:24-28 opens with a scene marked by truthfulness under pressure.",
+      "theological_lane": "truthfulness under pressure",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "all",
+        "struck",
+        "astonishment",
+        "began",
+        "glorifying",
+        "god"
+      ]
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "scripture_reference": "Luke 5:31-35",
+      "day_title": "Luke 5:31-35 - \u201cThe disciples of John often fast and offer prayers",
+      "focus_clause": "\u201cThe disciples of John often fast and offer prayers",
+      "pastoral_burden": "resurrection mercy in community life",
+      "genre": "narrative",
+      "scene_summary": "Luke 5:31-35 opens with a scene marked by resurrection mercy in community life.",
+      "theological_lane": "resurrection mercy that strengthens communal witness",
+      "application_lane": "acts of mercy that strengthen resurrection-shaped witness in community",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "disciples",
+        "john",
+        "often",
+        "fast",
+        "offer",
+        "prayers"
+      ]
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "scripture_reference": "Luke 5:38-39",
+      "day_title": "Luke 5:38-39 - New wine must be put into fresh wineskins",
+      "focus_clause": "New wine must be put into fresh wineskins",
+      "pastoral_burden": "faithful response to God's word",
+      "genre": "narrative",
+      "scene_summary": "Luke 5:38-39 opens with a scene marked by faithful response to God's word.",
+      "theological_lane": "faithful response to God's word",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "new",
+        "wine",
+        "must",
+        "put",
+        "fresh",
+        "wineskins"
+      ]
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "scripture_reference": "Luke 6:7-11",
+      "day_title": "Luke 6:7-11 - That they might find reason to accuse Him",
+      "focus_clause": "That they might find reason to accuse Him",
+      "pastoral_burden": "resurrection mercy in community life",
+      "genre": "narrative",
+      "scene_summary": "Luke 6:7-11 opens with a scene marked by resurrection mercy in community life.",
+      "theological_lane": "resurrection mercy that strengthens communal witness",
+      "application_lane": "acts of mercy that strengthen resurrection-shaped witness in community",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "might",
+        "find",
+        "reason",
+        "accuse",
+        "him",
+        "scribes"
+      ]
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "scripture_reference": "Luke 6:14-18",
+      "day_title": "Luke 6:14-18 - Jesus came down with them and stood on a level place",
+      "focus_clause": "Jesus came down with them and stood on a level place",
+      "pastoral_burden": "treachery and corrupted reward",
+      "genre": "narrative",
+      "scene_summary": "Luke 6:14-18 opens with a scene marked by treachery and corrupted reward.",
+      "theological_lane": "treachery and corrupted reward",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "jesus",
+        "came",
+        "down",
+        "stood",
+        "level",
+        "place"
+      ]
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "scripture_reference": "Luke 6:21-25",
+      "day_title": "Luke 6:21-25 - In the same way their fathers used to treat the prophets",
+      "focus_clause": "In the same way their fathers used to treat the prophets",
+      "pastoral_burden": "faithful response to God's word",
+      "genre": "narrative",
+      "scene_summary": "Luke 6:21-25 opens with a scene marked by faithful response to God's word.",
+      "theological_lane": "faithful response to God's word",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "same",
+        "way",
+        "fathers",
+        "used",
+        "treat",
+        "prophets"
+      ]
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "scripture_reference": "Luke 6:29-33",
+      "day_title": "Luke 6:29-33 - Treat others the same way you want them to treat you",
+      "focus_clause": "Treat others the same way you want them to treat you",
+      "pastoral_burden": "faithful response to God's word",
+      "genre": "narrative",
+      "scene_summary": "Luke 6:29-33 opens with a scene marked by faithful response to God's word.",
+      "theological_lane": "faithful response to God's word",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "treat",
+        "others",
+        "same",
+        "way",
+        "want",
+        "whoever"
+      ]
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "scripture_reference": "Luke 6:36-40",
+      "day_title": "Luke 6:36-40 - They will pour into your lap a good measure\u2014pressed down",
+      "focus_clause": "They will pour into your lap a good measure\u2014pressed down",
+      "pastoral_burden": "faithful response to God's word",
+      "genre": "narrative",
+      "scene_summary": "Luke 6:36-40 opens with a scene marked by faithful response to God's word.",
+      "theological_lane": "faithful response to God's word",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "will",
+        "pour",
+        "lap",
+        "good",
+        "measure",
+        "pressed"
+      ]
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "scripture_reference": "Luke 6:43-47",
+      "day_title": "Luke 6:43-47 - Everyone who comes to Me and hears My words and acts on them",
+      "focus_clause": "Everyone who comes to Me and hears My words and acts on them",
+      "pastoral_burden": "faithful response to God's word",
+      "genre": "narrative",
+      "scene_summary": "Luke 6:43-47 opens with a scene marked by faithful response to God's word.",
+      "theological_lane": "faithful response to God's word",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage"
+      ],
+      "key_terms": [
+        "everyone",
+        "who",
+        "comes",
+        "hears",
+        "words",
+        "acts"
+      ]
+    }
+  ],
+  "week_plans": [
+    {
+      "week_number": 1,
+      "title": "Week 1: Truthfulness Under Pressure",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "movement_summary": "Moves from we worked hard all night and caught nothing toward that they might find reason to accuse him."
+    },
+    {
+      "week_number": 2,
+      "title": "Week 2: Treachery And Corrupted Reward",
+      "days": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "movement_summary": "Moves from jesus came down with them and stood on a level place toward everyone who comes to me and hears my words and acts on them."
+    }
+  ]
+}

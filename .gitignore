@@ -41,6 +41,13 @@ node_modules/
 # Generated state / local toolchain files
 uv.lock
 builder-manifest.yaml
+docs/system/outputs/
+data/artifacts/
+data/library/
+data/devg_registry.sqlite3
+watch_*/
+.monitor-venv/
+.smbdelete*
 
 # Cowork tool local state
 .cowork/

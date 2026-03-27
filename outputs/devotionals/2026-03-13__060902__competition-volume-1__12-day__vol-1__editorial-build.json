@@ -1,0 +1,411 @@
+{
+  "topic": "Competition Volume 1",
+  "num_days": 12,
+  "source_reference": null,
+  "week_count": 2,
+  "day_plan": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "topic": "Acts 9 | Hostile zeal on the road to Damascus",
+      "scripture_reference": "Acts 9:1-3"
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "topic": "Acts 9 | Confronted directly by the risen Lord",
+      "scripture_reference": "Acts 9:4-6"
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "topic": "Acts 9 | Helplessness after proud certainty",
+      "scripture_reference": "Acts 9:7-9"
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "topic": "Acts 9 | Ananias summoned into costly obedience",
+      "scripture_reference": "Acts 9:10-12"
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "topic": "Acts 9 | Mercy for the least expected person",
+      "scripture_reference": "Acts 9:13-16"
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "topic": "Acts 9 | Restored sight and received fellowship",
+      "scripture_reference": "Acts 9:17-19"
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "topic": "Acts 9 | New allegiance becoming public witness",
+      "scripture_reference": "Acts 9:20-22"
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "topic": "Acts 9 | Preserved through danger and opposition",
+      "scripture_reference": "Acts 9:23-25"
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "topic": "Acts 9 | The church strengthened in holy peace",
+      "scripture_reference": "Acts 9:26-31"
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "topic": "Acts 9 | Healing that turns hearts toward the Lord",
+      "scripture_reference": "Acts 9:32-35"
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "topic": "Acts 9 | Mercy remembered in a grieving community",
+      "scripture_reference": "Acts 9:36-39"
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "topic": "Acts 9 | Resurrection mercy and ordinary readiness",
+      "scripture_reference": "Acts 9:40-43"
+    }
+  ],
+  "day_briefs": [
+    {
+      "day_number": 1,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:1-3",
+      "day_title": "Acts 9:1-3 - Still breathing threats and murder against the disciples of the Lord",
+      "focus_clause": "Still breathing threats and murder against the disciples of the Lord",
+      "pastoral_burden": "steadfast attention under divine warning",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:1-3 opens with a scene marked by steadfast attention under divine warning.",
+      "theological_lane": "divine warning against hostile pride",
+      "application_lane": "sober obedience that takes God's warning seriously",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage",
+        "flattening severe themes into comfort language"
+      ],
+      "key_terms": [
+        "still",
+        "breathing",
+        "threats",
+        "murder",
+        "against",
+        "disciples"
+      ]
+    },
+    {
+      "day_number": 2,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:4-6",
+      "day_title": "Acts 9:4-6 - He fell to the ground and heard a voice saying to him",
+      "focus_clause": "He fell to the ground and heard a voice saying to him",
+      "pastoral_burden": "humbled surrender before the risen Lord",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:4-6 opens with a scene marked by humbled surrender before the risen Lord.",
+      "theological_lane": "direct confrontation by the risen Lord",
+      "application_lane": "surrender that stops arguing when Christ exposes the truth",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "fell",
+        "ground",
+        "heard",
+        "voice",
+        "saying",
+        "him"
+      ]
+    },
+    {
+      "day_number": 3,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:7-9",
+      "day_title": "Acts 9:7-9 - He was three days without sight",
+      "focus_clause": "He was three days without sight",
+      "pastoral_burden": "helpless reorientation after pride is broken",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:7-9 opens with a scene marked by helpless reorientation after pride is broken.",
+      "theological_lane": "helpless reorientation under divine interruption",
+      "application_lane": "teachability that accepts dependence after pride is broken",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "three",
+        "days",
+        "without",
+        "sight",
+        "men",
+        "who"
+      ]
+    },
+    {
+      "day_number": 4,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:10-12",
+      "day_title": "Acts 9:10-12 - Inquire at the house of Judas for a man from Tarsus named Saul",
+      "focus_clause": "Inquire at the house of Judas for a man from Tarsus named Saul",
+      "pastoral_burden": "costly obedience that mediates mercy",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:10-12 opens with a scene marked by costly obedience that mediates mercy.",
+      "theological_lane": "obedient mediation in service of God's surprising mercy",
+      "application_lane": "costly obedience that serves the mercy of God toward surprising people",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "inquire",
+        "house",
+        "judas",
+        "man",
+        "tarsus",
+        "named"
+      ]
+    },
+    {
+      "day_number": 5,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:13-16",
+      "day_title": "Acts 9:13-16 - To bear My name before the Gentiles and kings and the sons of Israel",
+      "focus_clause": "To bear My name before the Gentiles and kings and the sons of Israel",
+      "pastoral_burden": "costly obedience that mediates mercy",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:13-16 opens with a scene marked by costly obedience that mediates mercy.",
+      "theological_lane": "obedient mediation in service of God's surprising mercy",
+      "application_lane": "costly obedience that serves the mercy of God toward surprising people",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "bear",
+        "name",
+        "gentiles",
+        "kings",
+        "sons",
+        "israel"
+      ]
+    },
+    {
+      "day_number": 6,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:17-19",
+      "day_title": "Acts 9:17-19 - \u201d And immediately there fell from his eyes something like scales",
+      "focus_clause": "\u201d And immediately there fell from his eyes something like scales",
+      "pastoral_burden": "costly obedience that mediates mercy",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:17-19 opens with a scene marked by costly obedience that mediates mercy.",
+      "theological_lane": "obedient mediation in service of God's surprising mercy",
+      "application_lane": "costly obedience that serves the mercy of God toward surprising people",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "immediately",
+        "fell",
+        "his",
+        "eyes",
+        "something",
+        "like"
+      ]
+    },
+    {
+      "day_number": 7,
+      "week_number": 1,
+      "scripture_reference": "Acts 9:20-22",
+      "day_title": "Acts 9:20-22 - Who had come here for the purpose of bringing them bound before the chief priests",
+      "focus_clause": "Who had come here for the purpose of bringing them bound before the chief priests",
+      "pastoral_burden": "visible transformation under public witness",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:20-22 opens with a scene marked by visible transformation under public witness.",
+      "theological_lane": "public transformation that cannot stay hidden",
+      "application_lane": "public faithfulness that lets changed allegiance become visible",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "who",
+        "come",
+        "here",
+        "purpose",
+        "bringing",
+        "bound"
+      ]
+    },
+    {
+      "day_number": 8,
+      "week_number": 2,
+      "scripture_reference": "Acts 9:23-25",
+      "day_title": "Acts 9:23-25 - His disciples took him by night and let him down through an opening in the wall",
+      "focus_clause": "His disciples took him by night and let him down through an opening in the wall",
+      "pastoral_burden": "prepared obedience",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:23-25 opens with a scene marked by prepared obedience.",
+      "theological_lane": "watchful surrender before costly obedience",
+      "application_lane": "grateful obedience within God's generous boundaries",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "his",
+        "disciples",
+        "took",
+        "him",
+        "night",
+        "let"
+      ]
+    },
+    {
+      "day_number": 9,
+      "week_number": 2,
+      "scripture_reference": "Acts 9:26-31",
+      "day_title": "Acts 9:26-31 - The church throughout all Judea and Galilee and Samaria enjoyed peace",
+      "focus_clause": "The church throughout all Judea and Galilee and Samaria enjoyed peace",
+      "pastoral_burden": "strengthening peace under holy comfort",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:26-31 opens with a scene marked by strengthening peace under holy comfort.",
+      "theological_lane": "strengthening peace under the fear and comfort of God",
+      "application_lane": "quiet faithfulness that builds up the church under holy comfort",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "church",
+        "throughout",
+        "all",
+        "judea",
+        "galilee",
+        "samaria"
+      ]
+    },
+    {
+      "day_number": 10,
+      "week_number": 2,
+      "scripture_reference": "Acts 9:32-35",
+      "day_title": "Acts 9:32-35 - He came down also to the saints who lived at Lydda",
+      "focus_clause": "He came down also to the saints who lived at Lydda",
+      "pastoral_burden": "faithful response to God's word",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:32-35 opens with a scene marked by faithful response to God's word.",
+      "theological_lane": "faithful response to God's word",
+      "application_lane": "concrete obedience under the authority of the passage",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "came",
+        "down",
+        "also",
+        "saints",
+        "who",
+        "lived"
+      ]
+    },
+    {
+      "day_number": 11,
+      "week_number": 2,
+      "scripture_reference": "Acts 9:36-39",
+      "day_title": "Acts 9:36-39 - In Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas)",
+      "focus_clause": "In Joppa there was a disciple named Tabitha (which translated in Greek is called Dorcas)",
+      "pastoral_burden": "resurrection mercy in community life",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:36-39 opens with a scene marked by resurrection mercy in community life.",
+      "theological_lane": "resurrection mercy that strengthens communal witness",
+      "application_lane": "acts of mercy that strengthen resurrection-shaped witness in community",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "joppa",
+        "disciple",
+        "named",
+        "tabitha",
+        "which",
+        "translated"
+      ]
+    },
+    {
+      "day_number": 12,
+      "week_number": 2,
+      "scripture_reference": "Acts 9:40-43",
+      "day_title": "Acts 9:40-43 - Peter stayed many days in Joppa with a tanner named Simon",
+      "focus_clause": "Peter stayed many days in Joppa with a tanner named Simon",
+      "pastoral_burden": "resurrection mercy in community life",
+      "genre": "narrative",
+      "scene_summary": "Acts 9:40-43 opens with a scene marked by resurrection mercy in community life.",
+      "theological_lane": "resurrection mercy that strengthens communal witness",
+      "application_lane": "acts of mercy that strengthen resurrection-shaped witness in community",
+      "forbidden_drifts": [
+        "generic encouragement detached from the scene",
+        "applications that ignore the specific burden of the passage",
+        "explicit Jesus language not warranted by the passage"
+      ],
+      "key_terms": [
+        "peter",
+        "stayed",
+        "many",
+        "days",
+        "joppa",
+        "tanner"
+      ]
+    }
+  ],
+  "week_plans": [
+    {
+      "week_number": 1,
+      "title": "Week 1: Steadfast Attention Under Divine Warning",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "movement_summary": "Moves from still breathing threats and murder against the disciples of the lord toward who had come here for the purpose of bringing them bound before the chief priests."
+    },
+    {
+      "week_number": 2,
+      "title": "Week 2: Prepared Obedience",
+      "days": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "movement_summary": "Moves from his disciples took him by night and let him down through an opening in the wall toward peter stayed many days in joppa with a tanner named simon."
+    }
+  ]
+}

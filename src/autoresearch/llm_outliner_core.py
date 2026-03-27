@@ -144,7 +144,7 @@ def build_llm_burden_lane(
         research_block=research_block,
     )
     try:
-        raw = llm.generate(prompt)
+        raw = llm.generate(prompt, timeout=300)
         match = re.search(r"\{.*\}", raw, re.DOTALL)
         if match:
             result = json.loads(match.group(0))
@@ -354,18 +354,27 @@ def _outline_to_text(artifact: EditorialBuildArtifact) -> str:
 
 def _parse_trainer_response(raw: str) -> dict[str, Any]:
     """Extract and parse JSON from LLM trainer response, with fallback."""
-    match = re.search(r"\{.*\}", raw, re.DOTALL)
-    if match:
-        try:
-            return json.loads(match.group(0))
-        except json.JSONDecodeError:
-            pass
+    text = raw.strip()
+    # Strip markdown code fences first (LLMs frequently wrap JSON in ```json ... ```)
+    fence_match = re.search(r"```(?:json)?\s*(\{.*?\})\s*```", text, re.DOTALL)
+    if fence_match:
+        text = fence_match.group(1)
+    else:
+        # Fall back to the outermost {...} block
+        brace_match = re.search(r"\{.*\}", text, re.DOTALL)
+        if brace_match:
+            text = brace_match.group(0)
+    try:
+        return json.loads(text)
+    except (json.JSONDecodeError, ValueError):
+        pass
     return {
         "score_adjustment": 0,
         "status": "revise",
         "passage_specificity": "low",
         "coaching_notes": [f"Trainer could not parse LLM response: {raw[:200]}"],
         "priority_fix": "Re-run trainer evaluation and inspect LLM output format.",
+        "parse_failed": True,
     }
 
 
@@ -450,8 +459,12 @@ def build_llm_outliner_trainer_review(
         outline_text=_outline_to_text(artifact),
     )
 
-    raw = llm.generate(prompt)
+    raw = llm.generate(prompt, timeout=300)
     result = _parse_trainer_response(raw)
+    if result.get("parse_failed"):
+        result["score_adjustment"] = -36
+        result["coaching_notes"] = [f"LLM trainer parse failed — evaluation error, not pass. Raw: {raw[:200]}"]
+
 
     # Task feasibility — if infeasible, do not penalise the outliner
     feasibility = str(result.get("task_feasibility_verdict") or "feasible").lower()
@@ -619,7 +632,7 @@ def build_llm_passage_selection(
         count=count,
     )
     try:
-        raw = client.generate(prompt)
+        raw = client.generate(prompt, timeout=300)
         raw = re.sub(r"^```(?:json)?\s*", "", raw.strip())
         raw = re.sub(r"\s*```$", "", raw.strip())
         result = json.loads(raw)
@@ -789,7 +802,7 @@ def build_llm_day_brief(
         topic=topic,
     )
 
-    response = llm.generate(prompt)
+    response = llm.generate(prompt, timeout=300)
     parsed = _parse_llm_brief(
         response,
         fallback_focus=fallback_focus,

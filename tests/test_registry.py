@@ -21,7 +21,16 @@ from pathlib import Path
 
 import pytest
 
-from src.models.registry import QuoteRecord, ScriptureRecord, VolumeRecord
+from src.models.registry import (
+    AutoresearchExperimentRecord,
+    OutlinerSystemComparisonRecord,
+    QuoteRecord,
+    ResourceAcquisitionRequestRecord,
+    ScriptureRecord,
+    TrainerRecommendationRecord,
+    VolumeDayPlanRecord,
+    VolumeRecord,
+)
 from src.registry.registry import (
     CrossVolumeDuplicateError,
     DuplicateQuoteError,
@@ -150,6 +159,109 @@ class TestPersistence:
         dist_v2 = r2.get_author_distribution("v2")
         assert dist_v1 == {"Author A": 1}
         assert dist_v2 == {"Author B": 1}
+
+    def test_delete_volume_removes_usage_records(self, tmp_path: Path) -> None:
+        db = tmp_path / "persist3.db"
+        r1 = SeriesRegistry(db_path=db)
+        r1.create_series("s1")
+        r1.create_volume("v1", "s1", 1)
+        r1.record_quote_use("v1", "s1", "All is grace.", "Thomas Merton", "Thoughts in Solitude")
+        r1.record_scripture_use("v1", "Romans 8:15", "NASB")
+
+        assert r1.delete_volume("v1") is True
+
+        r2 = SeriesRegistry(db_path=db)
+        assert r2.get_volume_by_number("s1", 1) is None
+        assert r2.get_author_distribution("v1") == {}
+
+    def test_resource_acquisition_requests_survive_restart(self, tmp_path: Path) -> None:
+        db = tmp_path / "persist-librarian.db"
+        r1 = SeriesRegistry(db_path=db)
+        record = r1.request_resource_acquisition(
+            request_id="req-1",
+            requested_by="research_librarian",
+            scripture_reference="Luke 15",
+            topic="Luke 15",
+            worker_name="outliner",
+            reason="Need more outline help for clustered parables.",
+            requested_resource_kinds=["outline", "commentary"],
+            status="requested",
+            notes="Auto-raised after thin bundle.",
+            created_at_utc="2026-03-14T00:00:00Z",
+            completed_at_utc="",
+        )
+        assert isinstance(record, ResourceAcquisitionRequestRecord)
+
+        r2 = SeriesRegistry(db_path=db)
+        rows = r2.list_resource_acquisition_requests(scripture_reference="Luke 15")
+        assert len(rows) == 1
+        assert rows[0].requested_resource_kinds == ["outline", "commentary"]
+        assert rows[0].requested_by == "research_librarian"
+
+    def test_resource_acquisition_request_can_be_updated(self, tmp_path: Path) -> None:
+        db = tmp_path / "persist-librarian-update.db"
+        r1 = SeriesRegistry(db_path=db)
+        r1.request_resource_acquisition(
+            request_id="req-2",
+            requested_by="research_librarian",
+            scripture_reference="Luke 15",
+            topic="Luke 15",
+            worker_name="outliner",
+            reason="Need more outline help.",
+            requested_resource_kinds=["outline"],
+            status="requested",
+            notes="Raised automatically.",
+            created_at_utc="2026-03-16T00:00:00Z",
+            completed_at_utc="",
+        )
+
+        updated = r1.update_resource_acquisition_request(
+            request_id="req-2",
+            status="answered",
+            notes="Cleared after trainer review.",
+            completed_at_utc="2026-03-16T00:05:00Z",
+        )
+
+        assert updated.status == "answered"
+        assert updated.completed_at_utc == "2026-03-16T00:05:00Z"
+        assert updated.notes == "Cleared after trainer review."
+
+    def test_delete_volume_can_remove_orphan_series(self, tmp_path: Path) -> None:
+        db = tmp_path / "persist4.db"
+        r1 = SeriesRegistry(db_path=db)
+        r1.create_series("s1")
+        r1.create_volume("v1", "s1", 1)
+        assert r1.delete_volume("v1", delete_series_if_orphan=True) is True
+        r2 = SeriesRegistry(db_path=db)
+        r2.create_series("s1")
+
+    def test_trainer_recommendations_survive_restart(self, tmp_path: Path) -> None:
+        db = tmp_path / "persist-trainer.db"
+        r1 = SeriesRegistry(db_path=db)
+        record = r1.record_trainer_recommendation(
+            recommendation_id="trainer-rec-1",
+            trainer_name="expert_outliner_trainer",
+            worker_name="outliner",
+            scripture_reference="Ruth 1",
+            passage_slug="ruth-1",
+            priority=10,
+            rationale="Train narrative grief and covenant loyalty.",
+            selection_stage="trainer_selected_non_harness_coverage",
+            status="recommended",
+            created_at_utc="2026-03-16T03:30:00Z",
+            consumed_at_utc="",
+        )
+        assert isinstance(record, TrainerRecommendationRecord)
+
+        r2 = SeriesRegistry(db_path=db)
+        rows = r2.list_trainer_recommendations(
+            trainer_name="expert_outliner_trainer",
+            worker_name="outliner",
+            status="recommended",
+        )
+        assert len(rows) == 1
+        assert rows[0].scripture_reference == "Ruth 1"
+        assert rows[0].passage_slug == "ruth-1"
 
 
 # ---------------------------------------------------------------------------
@@ -355,6 +467,89 @@ class TestParentChildInheritance:
 
 
 # ---------------------------------------------------------------------------
+# TestVolumeContext
+# ---------------------------------------------------------------------------
+
+
+class TestVolumeContext:
+    def test_get_volume_by_number_returns_record(self, registry: SeriesRegistry) -> None:
+        registry.create_series("s1")
+        registry.create_volume("v1", "s1", 1, title="Vol 1")
+        record = registry.get_volume_by_number("s1", 1)
+        assert record is not None
+        assert record.id == "v1"
+        assert record.volume_number == 1
+
+    def test_record_and_read_volume_day_plan(self, registry: SeriesRegistry) -> None:
+        registry.create_series("s1")
+        registry.create_volume("v1", "s1", 1, title="Vol 1")
+        row = registry.record_volume_day_plan(
+            volume_id="v1",
+            series_id="s1",
+            volume_number=1,
+            day_number=1,
+            week_number=1,
+            topic="Creation",
+            scripture_reference="Genesis 1:1-5",
+        )
+        assert isinstance(row, VolumeDayPlanRecord)
+        rows = registry.get_volume_day_plan("v1")
+        assert len(rows) == 1
+        assert rows[0].week_number == 1
+        assert rows[0].scripture_reference == "Genesis 1:1-5"
+
+    def test_week_scripture_map_groups_refs(self, registry: SeriesRegistry) -> None:
+        registry.create_series("s1")
+        registry.create_volume("v1", "s1", 1)
+        registry.record_volume_day_plan(
+            volume_id="v1",
+            series_id="s1",
+            volume_number=1,
+            day_number=1,
+            week_number=1,
+            topic="Creation",
+            scripture_reference="Genesis 1:1-5",
+        )
+        registry.record_volume_day_plan(
+            volume_id="v1",
+            series_id="s1",
+            volume_number=1,
+            day_number=2,
+            week_number=1,
+            topic="Creation",
+            scripture_reference="Genesis 1:6-8",
+        )
+        by_week = registry.get_week_scripture_map_for_volume("v1")
+        assert by_week[1] == {"Genesis 1:1-5", "Genesis 1:6-8"}
+
+    def test_week_quote_map_groups_quotes(self, registry: SeriesRegistry) -> None:
+        registry.create_series("s1")
+        registry.create_volume("v1", "s1", 1)
+        registry.record_volume_day_quote(
+            volume_id="v1",
+            series_id="s1",
+            volume_number=1,
+            day_number=1,
+            week_number=1,
+            quote_text="Quote A",
+            author="Author A",
+            source_title="Source A",
+        )
+        registry.record_volume_day_quote(
+            volume_id="v1",
+            series_id="s1",
+            volume_number=1,
+            day_number=2,
+            week_number=1,
+            quote_text="Quote B",
+            author="Author B",
+            source_title="Source B",
+        )
+        by_week = registry.get_week_quote_map_for_volume("v1")
+        assert by_week[1] == {"Quote A", "Quote B"}
+
+
+# ---------------------------------------------------------------------------
 # TestBackup
 # ---------------------------------------------------------------------------
 
@@ -388,3 +583,108 @@ class TestBackup:
         backup_file = tmp_path / "backup.db"
         with pytest.raises(RegistryError):
             registry.backup("nonexistent-volume", backup_file)
+
+
+# ---------------------------------------------------------------------------
+# TestAutoresearchLedger
+# ---------------------------------------------------------------------------
+
+
+class TestAutoresearchLedger:
+    def test_log_and_list_autoresearch_experiment(self, registry: SeriesRegistry) -> None:
+        rec = registry.log_autoresearch_experiment(
+            experiment_id="exp-001",
+            worker_name="outliner",
+            benchmark_name="sinai-boundary",
+            benchmark_reference="Exodus 19-20",
+            run_slug="2026-03-14__demo",
+            status="keep",
+            attempted_change="Split Sinai preparation from encounter.",
+            metrics_json='{"BOOK_DAY_PROGRESS": "passed"}',
+            learning_note="Clearer week turn after the covenant encounter.",
+            keep_decision="keep",
+            created_at_utc="2026-03-14T01:00:00Z",
+            completed_at_utc="2026-03-14T01:12:00Z",
+        )
+        assert isinstance(rec, AutoresearchExperimentRecord)
+        rows = registry.list_autoresearch_experiments(worker_name="outliner")
+        assert len(rows) == 1
+        assert rows[0].benchmark_reference == "Exodus 19-20"
+        assert rows[0].keep_decision == "keep"
+
+    def test_log_autoresearch_experiment_updates_existing_row(self, registry: SeriesRegistry) -> None:
+        registry.log_autoresearch_experiment(
+            experiment_id="exp-002",
+            worker_name="quote_selector",
+            benchmark_name="pastoral-devotional",
+            benchmark_reference="Psalms 23-25",
+            run_slug="",
+            status="running",
+            attempted_change="Try high-yield domains first.",
+            metrics_json='{}',
+            learning_note="",
+            keep_decision="",
+            created_at_utc="2026-03-14T01:00:00Z",
+            completed_at_utc="",
+        )
+        rec = registry.log_autoresearch_experiment(
+            experiment_id="exp-002",
+            worker_name="quote_selector",
+            benchmark_name="pastoral-devotional",
+            benchmark_reference="Psalms 23-25",
+            run_slug="2026-03-14__quotes",
+            status="discard",
+            attempted_change="Try high-yield domains first.",
+            metrics_json='{"complete_turabian_rate": 0.2}',
+            learning_note="Still too many incomplete citations.",
+            keep_decision="discard",
+            created_at_utc="2026-03-14T01:00:00Z",
+            completed_at_utc="2026-03-14T01:07:00Z",
+        )
+        assert rec.run_slug == "2026-03-14__quotes"
+        assert rec.status == "discard"
+        rows = registry.list_autoresearch_experiments(benchmark_name="pastoral-devotional")
+        assert len(rows) == 1
+        assert rows[0].learning_note == "Still too many incomplete citations."
+
+    def test_outliner_system_comparisons_survive_restart(self, tmp_path: Path) -> None:
+        db = tmp_path / "registry.db"
+        r1 = SeriesRegistry(db_path=db)
+        rec = r1.record_outliner_system_comparison(
+            comparison_id="cmp-001",
+            scripture_reference="Romans 5",
+            passage_slug="romans-5",
+            range_label="6d_1w",
+            assignment_payload_json='{"training_level":"level-1","study_goal":"segmentation"}',
+            interaction_log_json='{"events":["legacy fail","redesign review pending"]}',
+            packet_snapshot_json='{"resource_count":2,"packet_certified":false}',
+            reviewer_guidance_json='{"theological_reviewer":["check burden drift"]}',
+            artifact_paths_json='{"spec":"docs/system/outliner-agent-redesign-spec.md"}',
+            legacy_system_name="deterministic_editorial",
+            legacy_system_reference="src/generation/editorial.py",
+            legacy_status="fail",
+            legacy_score=10.0,
+            legacy_summary="Fell through to generic fallback behavior.",
+            legacy_metrics_json='{"used_generic_fallback":true}',
+            redesigned_system_name="reasoning_outliner",
+            redesigned_system_reference="docs/system/outliner-agent-redesign-spec.md",
+            redesigned_status="under_review",
+            redesigned_score=None,
+            redesigned_summary="Replacement architecture under review.",
+            redesigned_metrics_json='{"packet_gate_required":true}',
+            winner="",
+            decision_status="under_review",
+            decision_rationale="Need adapter comparison before cutover.",
+            comparison_notes="Prepared for third-party review if needed.",
+            reviewed_by="training_manager",
+            created_at_utc="2026-03-16T10:30:00Z",
+            completed_at_utc="2026-03-16T10:30:00Z",
+        )
+        assert isinstance(rec, OutlinerSystemComparisonRecord)
+
+        r2 = SeriesRegistry(db_path=db)
+        rows = r2.list_outliner_system_comparisons(passage_slug="romans-5")
+        assert len(rows) == 1
+        assert rows[0].legacy_system_reference == "src/generation/editorial.py"
+        assert rows[0].reviewer_guidance_json == '{"theological_reviewer":["check burden drift"]}'
+        assert rows[0].decision_status == "under_review"

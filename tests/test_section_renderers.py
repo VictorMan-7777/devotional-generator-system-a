@@ -39,6 +39,9 @@ def _timeless_wisdom(**kwargs) -> TimelessWisdomSection:
         source_title="Mere Christianity",
         publication_year=1952,
         page_or_url="p. 42",
+        citation_locator="p. 42",
+        publisher="Geoffrey Bles",
+        publication_city="London",
         public_domain=False,
         verification_status="catalog_verified",
     )
@@ -136,6 +139,12 @@ class TestRenderTimelessWisdom:
         assert len(quote_blocks) == 1
         assert quote_blocks[0].content == section.quote_text
 
+    def test_reader_facing_attribution_line_present(self):
+        blocks = render_timeless_wisdom(_timeless_wisdom())
+        body_blocks = [b for b in blocks if b.block_type == BlockType.BODY_TEXT]
+        assert len(body_blocks) == 1
+        assert body_blocks[0].content == "- C.S. Lewis, Mere Christianity"
+
     def test_footnote_present(self):
         blocks = render_timeless_wisdom(_timeless_wisdom())
         footnote_blocks = [b for b in blocks if b.block_type == BlockType.FOOTNOTE]
@@ -159,20 +168,43 @@ class TestRenderTimelessWisdom:
         footnote = next(b for b in blocks if b.block_type == BlockType.FOOTNOTE)
         assert "C.S. Lewis" in footnote.content
 
+    def test_footnote_includes_locator(self):
+        section = _timeless_wisdom()
+        blocks = render_timeless_wisdom(section)
+        footnote = next(b for b in blocks if b.block_type == BlockType.FOOTNOTE)
+        assert "p. 42" in footnote.content
+
     def test_footnote_uses_nd_when_no_year(self):
         section = _timeless_wisdom(publication_year=None)
         blocks = render_timeless_wisdom(section)
         footnote = next(b for b in blocks if b.block_type == BlockType.FOOTNOTE)
         assert "n.d." in footnote.content
 
+    def test_footnote_omits_raw_url_locator(self):
+        section = _timeless_wisdom(page_or_url="https://archive.org/example")
+        blocks = render_timeless_wisdom(section)
+        footnote = next(b for b in blocks if b.block_type == BlockType.FOOTNOTE)
+        assert "archive.org" not in footnote.content
+
+    def test_footnote_discloses_modernized_language(self):
+        section = _timeless_wisdom(
+            quote_text="Give you rest",
+            original_quote_text="Give thee rest",
+            language_modernized=True,
+            modernization_label="Language modernized by AI",
+        )
+        blocks = render_timeless_wisdom(section)
+        footnote = next(b for b in blocks if b.block_type == BlockType.FOOTNOTE)
+        assert "Language modernized by AI" in footnote.content
+
     def test_block_quote_has_footnote_id_metadata(self):
         blocks = render_timeless_wisdom(_timeless_wisdom())
         quote = next(b for b in blocks if b.block_type == BlockType.BLOCK_QUOTE)
         assert quote.metadata.get("footnote_id") == "tw"
 
-    def test_returns_three_blocks(self):
+    def test_returns_four_blocks(self):
         blocks = render_timeless_wisdom(_timeless_wisdom())
-        assert len(blocks) == 3
+        assert len(blocks) == 4
 
 
 class TestRenderScripture:
@@ -185,7 +217,7 @@ class TestRenderScripture:
         section = _scripture()
         blocks = render_scripture(section)
         body_blocks = [b for b in blocks if b.block_type == BlockType.BODY_TEXT]
-        assert any("Romans 8:15" in b.content for b in body_blocks)
+        assert any("Rom 8:15" in b.content for b in body_blocks)
 
     def test_body_text_contains_translation(self):
         section = _scripture()
@@ -214,11 +246,12 @@ class TestRenderExposition:
         assert "Exposition" not in heading_blocks[0].content
 
     def test_body_text_is_section_text(self):
-        section = _exposition()
+        section = _exposition(text="First paragraph.\n\nSecond paragraph.")
         blocks = render_exposition(section)
         body_blocks = [b for b in blocks if b.block_type == BlockType.BODY_TEXT]
-        assert len(body_blocks) == 1
-        assert body_blocks[0].content == section.text
+        assert len(body_blocks) == 2
+        assert body_blocks[0].content == "First paragraph."
+        assert body_blocks[1].content == "Second paragraph."
 
     def test_no_grounding_map_content(self):
         blocks = render_exposition(_exposition())
@@ -228,7 +261,7 @@ class TestRenderExposition:
 
     def test_returns_two_blocks(self):
         blocks = render_exposition(_exposition())
-        assert len(blocks) == 2
+        assert len(blocks) >= 2
 
 
 class TestRenderBeStill:

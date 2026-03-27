@@ -1,0 +1,316 @@
+{
+  "generated_at_utc": "2026-03-17T15:01:32.311584+00:00",
+  "overall_passed": true,
+  "overall_status": "passed",
+  "discrepancies": [],
+  "blocking_issues": [],
+  "by_day": {
+    "1": {
+      "scripture": {
+        "status": "passed",
+        "original_source": "api_bible",
+        "validator_source": "bolls_life",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "reference": "Psalm 23:1-2",
+        "translation": "NASB",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "timeless_wisdom": {
+        "status": "passed",
+        "original_source": "The Sovereignty of God",
+        "validator_source": "quote_catalog",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "failed_count": 0,
+      "failed_check_ids": [],
+      "manual_review_flags": []
+    },
+    "2": {
+      "scripture": {
+        "status": "passed",
+        "original_source": "api_bible",
+        "validator_source": "bolls_life",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "reference": "Psalm 23:3-4",
+        "translation": "NASB",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "timeless_wisdom": {
+        "status": "passed",
+        "original_source": "Metropolitan Tabernacle Pulpit",
+        "validator_source": "quote_catalog",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "failed_count": 0,
+      "failed_check_ids": [],
+      "manual_review_flags": []
+    },
+    "3": {
+      "scripture": {
+        "status": "passed",
+        "original_source": "api_bible",
+        "validator_source": "bolls_life",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "reference": "Psalm 23:5-6",
+        "translation": "NASB",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "timeless_wisdom": {
+        "status": "passed",
+        "original_source": "The Doctrine of Repentance",
+        "validator_source": "quote_catalog",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "failed_count": 0,
+      "failed_check_ids": [],
+      "manual_review_flags": []
+    }
+  },
+  "agents": [
+    {
+      "agent": "agent:validator-1",
+      "decision_source": "independent_validator_bundle",
+      "passed": true,
+      "total_checks": 30,
+      "failed_checks": 0,
+      "days": [
+        {
+          "day_number": 1,
+          "failed_count": 0,
+          "failed_check_ids": [],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Psalm 23:1-2",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "passed",
+            "original_source": "The Sovereignty of God",
+            "validator_source": "quote_catalog",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": true,
+            "discrepancy": false
+          }
+        },
+        {
+          "day_number": 2,
+          "failed_count": 0,
+          "failed_check_ids": [],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Psalm 23:3-4",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "passed",
+            "original_source": "Metropolitan Tabernacle Pulpit",
+            "validator_source": "quote_catalog",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": true,
+            "discrepancy": false
+          }
+        },
+        {
+          "day_number": 3,
+          "failed_count": 0,
+          "failed_check_ids": [],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Psalm 23:5-6",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "passed",
+            "original_source": "The Doctrine of Repentance",
+            "validator_source": "quote_catalog",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": true,
+            "discrepancy": false
+          }
+        }
+      ],
+      "validated_at_utc": "2026-03-17T15:01:30.004062+00:00"
+    },
+    {
+      "agent": "agent:validator-2",
+      "decision_source": "independent_validator_bundle",
+      "passed": true,
+      "total_checks": 30,
+      "failed_checks": 0,
+      "days": [
+        {
+          "day_number": 1,
+          "failed_count": 0,
+          "failed_check_ids": [],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Psalm 23:1-2",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "passed",
+            "original_source": "The Sovereignty of God",
+            "validator_source": "quote_catalog",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": true,
+            "discrepancy": false
+          }
+        },
+        {
+          "day_number": 2,
+          "failed_count": 0,
+          "failed_check_ids": [],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Psalm 23:3-4",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "passed",
+            "original_source": "Metropolitan Tabernacle Pulpit",
+            "validator_source": "quote_catalog",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": true,
+            "discrepancy": false
+          }
+        },
+        {
+          "day_number": 3,
+          "failed_count": 0,
+          "failed_check_ids": [],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Psalm 23:5-6",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "passed",
+            "original_source": "The Doctrine of Repentance",
+            "validator_source": "quote_catalog",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": true,
+            "discrepancy": false
+          }
+        }
+      ],
+      "validated_at_utc": "2026-03-17T15:01:32.311571+00:00"
+    }
+  ]
+}

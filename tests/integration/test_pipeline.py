@@ -1,48 +1,31 @@
 """Integration tests for src/api/generation_pipeline.py — generate_devotional().
 
-Tests that call export_pdf() (spawning the TypeScript subprocess) are gated
-behind module-scoped fixtures that skip when npx is unavailable, and reuse
-a single PipelineResult per fixture to minimise subprocess invocations.
-
-All other tests use OutputMode.PUBLISH_READY — sections default to PENDING,
-so the export gate blocks and export_pdf() is never called.
+Standard generation now stops at review and does not emit PDFs directly.
+These tests assert the review-stage contract rather than legacy PDF bytes.
 """
 from __future__ import annotations
-
-import shutil
 
 import pytest
 
 from src.api.generation_pipeline import generate_devotional
-from src.generation.generators import FailFirstMockGenerator
+from src.generation.generators import FailFirstMockGenerator, MockSectionGenerator
 from src.models.devotional import OutputMode
 from src.registry.registry import SeriesRegistry
 
 # ---------------------------------------------------------------------------
-# npx availability check
-# ---------------------------------------------------------------------------
-
-_NPX_AVAILABLE = shutil.which("npx") is not None
-
-
-# ---------------------------------------------------------------------------
-# Module-scoped fixtures (PDF-producing; skipped when npx unavailable)
+# Module-scoped fixtures
 # ---------------------------------------------------------------------------
 
 
 @pytest.fixture(scope="module")
 def personal_1_day():
-    """One-day PERSONAL generation — calls export_pdf() once for the module."""
-    if not _NPX_AVAILABLE:
-        pytest.skip("npx not available")
+    """One-day PERSONAL generation — stops at review stage."""
     return generate_devotional("grace", 1, output_mode=OutputMode.PERSONAL)
 
 
 @pytest.fixture(scope="module")
 def personal_3_day():
-    """Three-day PERSONAL generation — calls export_pdf() once for the module."""
-    if not _NPX_AVAILABLE:
-        pytest.skip("npx not available")
+    """Three-day PERSONAL generation — stops at review stage."""
     return generate_devotional("faith", 3, output_mode=OutputMode.PERSONAL)
 
 
@@ -52,8 +35,8 @@ def personal_3_day():
 
 
 class TestEndToEndPersonalMode:
-    def test_pdf_bytes_start_with_pdf_magic(self, personal_1_day):
-        assert personal_1_day.pdf_bytes[:4] == b"%PDF"
+    def test_personal_mode_stops_before_pdf_export(self, personal_1_day):
+        assert personal_1_day.pdf_bytes == b""
 
     def test_no_validation_failures(self, personal_1_day):
         assert personal_1_day.validation_summary.failed == 0
@@ -63,6 +46,11 @@ class TestEndToEndPersonalMode:
 
     def test_registry_volume_id_non_empty(self, personal_1_day):
         assert personal_1_day.registry_volume_id != ""
+
+    def test_editorial_build_present(self, personal_1_day):
+        assert personal_1_day.editorial_build.num_days == 1
+        assert len(personal_1_day.editorial_build.day_briefs) == 1
+        assert personal_1_day.editorial_build.week_plans[0].days == [1]
 
 
 # ---------------------------------------------------------------------------
@@ -103,6 +91,52 @@ class TestRetryPath:
             "EXPOSITION_WORD_COUNT"
             in result.validation_summary.rewrite_events[0].failed_check_ids
         )
+
+    def test_book_quality_auto_rewrite_event_recorded(self):
+        class BookQualityFailFirstGenerator:
+            def generate_day(
+                self,
+                topic,
+                day_number,
+                attempt_number=1,
+                scripture_reference=None,
+                forbidden_quote_texts=None,
+            ):
+                day = MockSectionGenerator().generate_day(
+                    topic,
+                    day_number,
+                    attempt_number=attempt_number,
+                    scripture_reference=scripture_reference,
+                    forbidden_quote_texts=forbidden_quote_texts,
+                )
+                if day_number == 2 and attempt_number < 3:
+                    prior = MockSectionGenerator().generate_day(
+                        topic,
+                        1,
+                        attempt_number=attempt_number,
+                        scripture_reference=scripture_reference,
+                        forbidden_quote_texts=forbidden_quote_texts,
+                    )
+                    day.exposition = prior.exposition.model_copy(deep=True)
+                    day.be_still = prior.be_still.model_copy(deep=True)
+                    day.action_steps = prior.action_steps.model_copy(deep=True)
+                    day.prayer = prior.prayer.model_copy(deep=True)
+                return day
+
+        result = generate_devotional(
+            "grace",
+            2,
+            generator=BookQualityFailFirstGenerator(),
+            output_mode=OutputMode.PUBLISH_READY,
+        )
+
+        book_events = [
+            event for event in result.validation_summary.rewrite_events if event.scope == "book"
+        ]
+        assert len(book_events) == 1
+        assert book_events[0].signal == "auto_rewrite"
+        assert 2 in book_events[0].target_day_numbers
+        assert result.validation_summary.failed == 0
 
 
 # ---------------------------------------------------------------------------
@@ -151,5 +185,5 @@ class TestMultiDay:
         result = generate_devotional("faith", 3, output_mode=OutputMode.PUBLISH_READY)
         assert len(result.book.days) == 3
 
-    def test_three_day_pdf_valid(self, personal_3_day):
-        assert personal_3_day.pdf_bytes[:4] == b"%PDF"
+    def test_three_day_personal_mode_stops_before_pdf_export(self, personal_3_day):
+        assert personal_3_day.pdf_bytes == b""

@@ -1,0 +1,135 @@
+{
+  "generated_at_utc": "2026-03-17T12:59:09.211837+00:00",
+  "overall_passed": false,
+  "overall_status": "failed",
+  "discrepancies": [],
+  "blocking_issues": [],
+  "by_day": {
+    "1": {
+      "scripture": {
+        "status": "passed",
+        "original_source": "api_bible",
+        "validator_source": "bolls_life",
+        "separate_source": true,
+        "comparison_mode": "exact_text",
+        "exact_text_compatible": true,
+        "generated_text": "",
+        "validator_text": "",
+        "reference": "Luke 15:16-17",
+        "translation": "NASB",
+        "text_match": true,
+        "discrepancy": false
+      },
+      "timeless_wisdom": {
+        "status": "failed",
+        "original_source": "",
+        "validator_source": "quote_catalog",
+        "separate_source": false,
+        "comparison_mode": "unavailable",
+        "exact_text_compatible": false,
+        "generated_text": "",
+        "validator_text": "",
+        "text_match": null,
+        "discrepancy": null
+      },
+      "failed_count": 2,
+      "failed_check_ids": [
+        "QUOTE_VALIDATOR_SOURCE_NOT_SEPARATE",
+        "QUOTE_CITATION_INCOMPLETE"
+      ],
+      "manual_review_flags": []
+    }
+  },
+  "agents": [
+    {
+      "agent": "agent:validator-1",
+      "decision_source": "independent_validator_bundle",
+      "passed": false,
+      "total_checks": 10,
+      "failed_checks": 2,
+      "days": [
+        {
+          "day_number": 1,
+          "failed_count": 2,
+          "failed_check_ids": [
+            "QUOTE_VALIDATOR_SOURCE_NOT_SEPARATE",
+            "QUOTE_CITATION_INCOMPLETE"
+          ],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Luke 15:16-17",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "failed",
+            "original_source": "",
+            "validator_source": "quote_catalog",
+            "separate_source": false,
+            "comparison_mode": "unavailable",
+            "exact_text_compatible": false,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": null,
+            "discrepancy": null
+          }
+        }
+      ],
+      "validated_at_utc": "2026-03-17T12:59:08.448235+00:00"
+    },
+    {
+      "agent": "agent:validator-2",
+      "decision_source": "independent_validator_bundle",
+      "passed": false,
+      "total_checks": 10,
+      "failed_checks": 2,
+      "days": [
+        {
+          "day_number": 1,
+          "failed_count": 2,
+          "failed_check_ids": [
+            "QUOTE_VALIDATOR_SOURCE_NOT_SEPARATE",
+            "QUOTE_CITATION_INCOMPLETE"
+          ],
+          "manual_review_flags": [],
+          "scripture": {
+            "status": "passed",
+            "original_source": "api_bible",
+            "validator_source": "bolls_life",
+            "separate_source": true,
+            "comparison_mode": "exact_text",
+            "exact_text_compatible": true,
+            "generated_text": "",
+            "validator_text": "",
+            "reference": "Luke 15:16-17",
+            "translation": "NASB",
+            "text_match": true,
+            "discrepancy": false
+          },
+          "timeless_wisdom": {
+            "status": "failed",
+            "original_source": "",
+            "validator_source": "quote_catalog",
+            "separate_source": false,
+            "comparison_mode": "unavailable",
+            "exact_text_compatible": false,
+            "generated_text": "",
+            "validator_text": "",
+            "text_match": null,
+            "discrepancy": null
+          }
+        }
+      ],
+      "validated_at_utc": "2026-03-17T12:59:09.211810+00:00"
+    }
+  ]
+}

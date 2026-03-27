@@ -1,0 +1,88 @@
+]0;Orchestrator ▶ DevG
+════════════════════════════════════════════════════════════════════════
+  Codex-Claude Orchestrator starting
+════════════════════════════════════════════════════════════════════════
+  Started     : 2026-03-10 20:19:20
+  Log         : /Volumes/claude-projects/projects/devotional-generator-system-a/logs/run_20260310_201920.log
+  Prompt file : /Volumes/claude-projects/projects/orchestrator-prompts/ready/DevG.txt
+  State file  : session-state.json
+  Work dir    : /Volumes/claude-projects/projects/devotional-generator-system-a  [extracted from prompt file]
+  Max steps   : 50
+  Timeout/turn: 3600s
+  Skip perms  : True  (default)
+  Phase mode  : single-phase (PASS → COMPLETION)
+  Preflight   : OK
+  Prompts repo : /Volumes/claude-projects/projects/orchestrator-prompts
+  Notifications: ntfy → https://ntfy.sh/VictorMans-ideas
+  Prompt mode  : debate
+  Planner      : none
+  [Resume] Plan already approved — skipping debate pre-pass.
+
+────────────────────────────────────────────────────────────────────────
+  Turn 1  ·  elapsed 0m 0s  ·  started 20:19:20
+────────────────────────────────────────────────────────────────────────
+
+  Calling claude (work_dir=/Volumes/claude-projects/projects/devotional-generator-system-a, timeout=3600s)…
+---
+
+## Cycle 1A — COMPLETE
+
+**What was done:**
+
+1. **One-line fix** in `src/api/full_run_assets.py:529` — `build_approval_gate_report` now passes `include_agent_validated=True` to `build_pending_sections_and_previews`. This surfaces sections with `verification_status == "agent_validated"` in the operator pending queue.
+
+2. **New regression test** `test_build_approval_gate_report_surfaces_agent_validated_sections` in `tests/pipeline/test_full_run_assets.py` — confirms agent_validated sections appear in pending_sections, and that exportable is still False (fail-closed contract intact).
+
+3. **Evidence artifact** written to `docs/system/outputs/2026-03-10__09__devg__two-eyes-cycle-1a-results.md`.
+
+**Test results:** 22/22 pass (11 full_run_assets + 11 export_gate).
+
+---
+
+## HUMAN CHECKPOINT — Required Before Cycle 1B
+
+**Please review and approve:**
+
+1. **Code diff** — `src/api/full_run_assets.py` line ~529: `build_pending_sections_and_previews(book)` → `build_pending_sections_and_previews(book, include_agent_validated=True)`
+
+2. **New test** — `test_build_approval_gate_report_surfaces_agent_validated_sections`: verifies that `agent_validated` sections appear in the approval gate pending queue AND that `exportable` remains `False` (export gate unchanged).
+
+3. **Cycle 1B scope** — A new CLI script (`scripts/apply_decisions_and_export.py`) that reads `__approval-decisions.json`, applies `approval_status` mutations to `__book.json`, re-runs ExportGate, and emits a publish-ready PDF (or exits non-zero if still blocked).
+
+**Semantic confirmed:** `agent_validated` sections surface to the operator for review. No silent promotion. Export remains fail-closed.
+
+**Authorize Cycle 1B to proceed?**
+
+---
+
+```yaml
+envelope_version: "1.0"
+session_id: "devg-two-eyes-20260310"
+turn_id: "cycle-1a"
+phase_id: "section-2-cycle-1a"
+outcome: "NEEDS_HUMAN"
+evidence:
+  - label: "cycle-1a-results"
+    type: "artifact"
+    file: "docs/system/outputs/2026-03-10__09__devg__two-eyes-cycle-1a-results.md"
+  - label: "code-change"
+    type: "code"
+    file: "src/api/full_run_assets.py"
+  - label: "new-test"
+    type: "test"
+    file: "tests/pipeline/test_full_run_assets.py"
+notes: "Cycle 1A complete. One-line fix applied and verified (22/22 tests pass). Human checkpoint required before Cycle 1B (apply-decisions CLI) proceeds."
+```
+  Exit code: 0
+
+  Orchestrator → state=NEEDS_HUMAN  action=escalate
+  Reason: needs_human
+]0;Orchestrator ⏸ SECTION CHECKPOINT — DevG
+════════════════════════════════════════════════════════════════════════
+  SECTION COMPLETE — awaiting human approval
+════════════════════════════════════════════════════════════════════════
+  Review the planning/ and docs/system/outputs/ artifacts, then
+  re-select this prompt to approve and continue to the next section.
+  [warn] notification failed to send
+
+  Returning to prompt selection…

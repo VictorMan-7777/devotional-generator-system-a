@@ -31,6 +31,7 @@ from src.scripture.retrieval import (
     ScriptureResult,
     ScriptureRetriever,
 )
+from src.scripture.source_policy import ScriptureSourcePolicy
 
 
 # ---------------------------------------------------------------------------
@@ -54,12 +55,20 @@ def _bolls_verse(book: int, chapter: int, verse: int, text: str) -> dict:
 
 def _make_retriever(
     side_effects: list,
-    api_bible_key: str | None = None,
+    api_bible_key: str | None = "",
 ) -> ScriptureRetriever:
     """Construct a ScriptureRetriever with a mock HttpClient."""
     http_client = MagicMock(spec=HttpClient)
     http_client.get.side_effect = side_effects
-    return ScriptureRetriever(http_client=http_client, api_bible_key=api_bible_key)
+    return ScriptureRetriever(
+        http_client=http_client,
+        api_bible_key=api_bible_key,
+        source_policy=ScriptureSourcePolicy(
+            primary_source="bolls_life",
+            validator_source="api_bible",
+            fallback_sources=("operator_import",),
+        ),
+    )
 
 
 def _make_csv(rows: list[dict], tmp_path: Path) -> Path:
@@ -353,6 +362,41 @@ class TestFallbackChain:
         assert isinstance(result, ScriptureFailureAlert)
         assert result.failure_mode == FailureMode.UNPARSEABLE_REFERENCE
         assert result.attempted_sources == []
+
+    def test_api_bible_can_be_primary_when_policy_requests_it(self):
+        """Source ordering comes from policy, not a hard-coded provider chain."""
+        api_bible_data = {"data": {"content": "Primary API.Bible text"}}
+        retriever = ScriptureRetriever(
+            http_client=MagicMock(
+                spec=HttpClient,
+                **{
+                    "get.side_effect": [
+                        _mock_response(200, api_bible_data),
+                    ]
+                },
+            ),
+            api_bible_key="test-key",
+            source_policy=ScriptureSourcePolicy(
+                primary_source="api_bible",
+                validator_source="bolls_life",
+                fallback_sources=("operator_import",),
+            ),
+        )
+        result = retriever.retrieve("Romans 8:15", "NASB")
+        assert isinstance(result, ScriptureResult)
+        assert result.retrieval_source == "api_bible"
+        assert result.text == "Primary API.Bible text"
+        assert result.source_access_policy == "licensed_text_cache_refresh_30d"
+        assert result.cache_expires_at_utc
+
+    def test_bolls_metadata_is_reference_first(self):
+        verse_data = _bolls_verse(45, 8, 15, "Spirit of adoption text here")
+        retriever = _make_retriever([_mock_response(200, verse_data)])
+        result = retriever.retrieve("Romans 8:15", "NASB")
+        assert isinstance(result, ScriptureResult)
+        assert result.retrieval_source == "bolls_life"
+        assert result.source_access_policy == "reference_canonical_text_refreshable"
+        assert result.copyright_notice == ""
 
 
 # ---------------------------------------------------------------------------

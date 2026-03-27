@@ -49,9 +49,34 @@ def _poll_interval(last_question_time: float | None) -> int:
 def _answer_question(question: str) -> str:
     from src.llm.grok_agent import run_grok_agent
 
-    task = f"""You are Grok, monitoring the DevG devotional content generation system.
-A user has asked you a question. Answer it thoroughly using the file tools to look up
-current state from the repo and DB as needed.
+    # Load memory for context without triggering a MEMORY.md update
+    _memory_path = repo_root / "grok_workspace" / "MEMORY.md"
+    _memory = ""
+    if _memory_path.exists():
+        try:
+            _memory = _memory_path.read_text(encoding="utf-8")
+        except Exception:
+            pass
+
+    # Override system prompt: chat answers must NOT write files or return session-end markers.
+    # The default run_grok_agent system prompt instructs Grok to update MEMORY.md "at the end
+    # of every session", which causes the model to write the file and return "Done." or
+    # "## Session complete." as its final content — useless as a chat answer.
+    system = (
+        "You are Grok, monitoring the DevG devotional content generation system. "
+        "Use the provided file tools to read what you need, then answer the question directly. "
+        "Your final text response MUST be your complete answer to the user's question — "
+        "conversational prose, specific numbers and file names where relevant. "
+        "Do NOT update MEMORY.md. "
+        "You MAY write proposal files to grok_workspace/proposals/ using write_workspace_file — "
+        "use this when a [Q] asks you to submit a proposal. For all other responses, do not write files. "
+        "Do NOT end with 'Done.', 'Session complete.', or any termination marker. "
+        "Your response ends when you have finished answering the question.\n\n"
+        + (f"## Your persistent memory (read-only for this call):\n{_memory}" if _memory else "")
+    )
+
+    task = f"""A user has asked you a question about the DevG devotional content generation system.
+Answer it thoroughly using the file tools to look up current state from the repo and DB as needed.
 
 You have persistent notes in grok_workspace/ from previous sessions — check there first.
 
@@ -62,19 +87,18 @@ Relevant places to look depending on the question:
 - Outliner status: list_files("docs/system/outputs/*outliner-training-cycle.json") newest 3
 - Worker states: list_files("docs/system/outputs/*training-manager-review.json") newest 1
 - Library: data/library/resource-catalog.json
-- Dashboard script: scripts/autoresearch/devg-watch
 - Your own notes: list_files("grok_workspace/**/*")
 - Code: src/autoresearch/outliner_training_agent.py, src/llm/router.py, etc.
 
 Respond conversationally and directly. Be specific — use actual numbers and file names from
 what you read. Keep the answer under 400 words unless the question requires more detail.
 """
-    from src.llm.grok_agent import run_grok_agent
     return run_grok_agent(
         task=task,
         model="grok-4-1-fast-reasoning",
         max_tokens=2000,
         max_tool_rounds=15,
+        system=system,
     )
 
 
